@@ -1,0 +1,9 @@
+*.rar
+*.tar
+*.zip
+*.log
+.DS_Store
+.DS_Store?
+.Trashes
+._*
+_notes/
