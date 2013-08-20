@@ -20,7 +20,7 @@ class calcular_primas{
     
     public function get_prima($cobertura,$tasa){
         
-        $suma_asegurada=$this->valor_INMA*$this->porcentaje_INMA;
+        $suma_asegurada=$this->valor_INMA*($this->valor_INMA*$this->porcentaje_INMA);
         
         switch($cobertura->tipo_calculo){
             

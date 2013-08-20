@@ -8,11 +8,12 @@ session_start();
       require_once ('../../php/entity/flota.php');
       require_once ('../../php/entity/clasificacion.php');
       require_once ('../../php/entity/re_tipo_cobertura_aseguradora.php');
+      require_once ('../../php/entity/parametros.php');
 
      if(isset($_POST["nombre"]) && isset($_POST["cedula"]) && isset($_POST["telefono"]) && isset($_POST["correo"]) &&
         isset($_POST["edad"]) && isset($_POST["sexo"]) && isset($_POST["civil"]) && isset($_POST["tipo"]) && 
         isset($_POST["marca"]) && isset($_POST["modelo"]) && isset($_POST["ano"]) && isset($_POST["ocupantes"]) && 
-        isset($_POST["cobertura"]) && isset($_POST["version"])){
+        isset($_POST["cobertura"]) && isset($_POST["version"]) && isset($_POST["valor"])){
         //&& isset($_POST["flota"])
         //FALTA valor, usado 
          
@@ -42,6 +43,7 @@ session_start();
             $cotizacion->id_flota=1;
             $cotizacion->cr_time='NOW()';
             $cotizacion->ut_time='NOW()';
+            $cotizacion->valor_INMA=$_POST["valor"];//Ver de donde sacamos este valor
  
  
    /*
@@ -79,10 +81,15 @@ session_start();
             //Obtenemos las coberturas asociadas a cada registro de la clasificacion
             $find_aseguradora->get_coberturas($cotizacion->tipo_cobertura,$res_clasificacion);
             //var_dump($res_clasificacion);
+            
+            $parametros=new parametros();
+            $array_parametros=$parametros->find_all();
+            
             $solicitud=new solicitud();
             $solicitud->cotizacion=$cotizacion;
             $solicitud->res_clasificacion=$res_clasificacion;
             $solicitud->flota=$array_flota[0];
+            $solicitud->parametros=$array_parametros;
             
             $_SESSION['solicitud']=serialize($solicitud);
     

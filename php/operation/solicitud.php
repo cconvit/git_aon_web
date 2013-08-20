@@ -6,6 +6,7 @@ class solicitud{
     public $res_clasificacion;
     public $re_aseguradora_cotizacion;
     public $flota;
+    public $parametros;
     
     
     
@@ -26,9 +27,11 @@ class solicitud{
         $calcular_primas->sexo=$this->cotizacion->sexo;
         $calcular_primas->valor_INMA=  $this->cotizacion->valor_INMA;
         $calcular_primas->porcentaje_INMA=  $this->flota->porcentaje_INMA;
+        $calcular_primas->UT=$this->parametros[0]->valor;//Cambiar este valor
+        
         
         $this->re_aseguradora_cotizacion=array();
-        
+       
         foreach($aseguradoras as $item){
        
             
@@ -37,6 +40,7 @@ class solicitud{
              
                 if($this->res_clasificacion[$x]->id_aseguradora == $item){
                    
+                    
                     foreach ($this->res_clasificacion[$x]->coberturas as $cobertura){
                         
                         $tasa=  $this->res_clasificacion[$x]->tasa;
