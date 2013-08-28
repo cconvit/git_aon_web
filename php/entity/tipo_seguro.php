@@ -1,15 +1,14 @@
 <?php
 
-class aseguradora{
+class tipo_seguro{
     
-    protected static $table_name="tbl_aseguradora";
-    protected static $db_fields=array('id','nombre','logo_img');
+    protected static $table_name="tbl_tipo_seguro";
+    protected static $db_fields=array('id','nombre');
     
     public $id;
     public $nombre;
-    public $logo_img;
     
-  public function aseguradora (){
+  public function tipo_cobertura (){
       
       
   }
@@ -19,8 +18,13 @@ class aseguradora{
 		return self::find_by_sql("SELECT * FROM ".self::$table_name);
   }
   
+  public static function find_by_id($id) {
+      global $database;
+		return self::find_by_sql("SELECT * FROM ".self::$table_name." WHERE id={$database->escape_value($id)}");
+  }
+  
   public static function find_by_sql($sql="") {
-      
+   //   echo $sql;
     global $database;
     $result_set = $database->query($sql);
     $object_array = array();

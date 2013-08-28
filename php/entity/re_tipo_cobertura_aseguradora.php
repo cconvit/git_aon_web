@@ -3,7 +3,7 @@
 class re_tipo_cobertura_aseguradora{
     
     protected static $table_name="tbl_re_tipo_cob_as";
-    protected static $db_fields=array('id_convenio_as','id_tipo_cob','id_cob_as','id_tipo_carro','tipo_calculo','valor','descripcion');
+    protected static $db_fields=array('id_convenio_as','id_tipo_cob','id_cob_as','id_tipo_carro','tipo_calculo','valor','descripcion','limite','tasa','incluida');
     
     public $id_convenio_as;
     public $id_tipo_cob;
@@ -13,6 +13,9 @@ class re_tipo_cobertura_aseguradora{
     public $valor;
     public $descripcion;
     public $prima;
+    public $limite;
+    public $tasa;
+    public $incluida;
     
   public function re_tipo_cobertura_aseguradora (){
       
@@ -26,7 +29,8 @@ class re_tipo_cobertura_aseguradora{
       return self::find_by_sql("SELECT re.id_convenio_as as 'id_convenio_as',re.id_tipo_cob as 'id_tipo_cob',
                                        re.id_cob_as as 'id_cob_as', re.id_tipo_carro as 'id_tipo_carro',
                                        re.tipo_calculo as 'tipo_calculo',re.valor as 'valor',
-                                       de.desc_cobertura as 'descripcion' 
+                                       de.desc_cobertura as 'descripcion',re.limite as 'limite',re.tasa as 'tasa',
+                                       re.incluida as 'incluida'
                                FROM  tbl_re_tipo_cob_as re
                                INNER JOIN tbl_cob_as de ON (de.id=re.id_cob_as)
                                WHERE re.id_convenio_as='{$database->escape_value($this->id_convenio_as)}' 
@@ -43,7 +47,8 @@ class re_tipo_cobertura_aseguradora{
       return self::find_by_sql("SELECT re.id_convenio_as as 'id_convenio_as',re.id_tipo_cob as 'id_tipo_cob',
                                        re.id_cob_as as 'id_cob_as', re.id_tipo_carro as 'id_tipo_carro',
                                        re.tipo_calculo as 'tipo_calculo',re.valor as 'valor',
-                                       de.desc_cobertura as 'descripcion' 
+                                       de.desc_cobertura as 'descripcion',re.limite as 'limite',re.tasa as 'tasa',
+                                       re.incluida as 'incluida'
                                FROM  tbl_re_tipo_cob_as re
                                INNER JOIN tbl_cob_as de ON (de.id=re.id_cob_as)
                                WHERE re.id_convenio_as='{$database->escape_value($this->id_convenio_as)}' 

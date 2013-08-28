@@ -1,25 +1,47 @@
 <?php
 
-class aseguradora{
+class plantilla_grupo{
     
-    protected static $table_name="tbl_aseguradora";
-    protected static $db_fields=array('id','nombre','logo_img');
     
-    public $id;
-    public $nombre;
-    public $logo_img;
+    protected static $db_fields=array('id_grupo','descripcion');
     
-  public function aseguradora (){
+   
+    public $id_grupo;
+    public $descripcion;
+    
+  public function plantilla_grupo (){
       
       
   }
-            
+       
+  
+    //Buscamos por Marca, Modelo y Tipo de Carro
+  public function find_re_plantilla_detalle_tipo_seguro($id_flota,$tipo_seguro) {
+   
+      
+      global $database;
+    
+      return self::find_by_sql("SELECT d.id_grupo as 'id_grupo',g.descripcion as 'descripcion' 
+                                FROM `tbl_plantilla_detalle` d 
+                                INNER JOIN tbl_re_plantilla_flota r ON d.id_plantilla=r.id_plantilla 
+                                INNER JOIN tbl_cob_as c ON d.id_cobertura=c.id 
+                                INNER JOIN tbl_grupo g ON d.id_grupo=g.id
+                                WHERE     r.id_flota='{$database->escape_value($id_flota)}' 
+                                      AND r.id_tipo_seguro='{$database->escape_value($tipo_seguro)}'
+                                GROUP BY d.id_grupo
+                                ");
+                                      
+                                     
+
+  }
+  
   // Common Database Methods
   public static function find_all() {
 		return self::find_by_sql("SELECT * FROM ".self::$table_name);
   }
   
   public static function find_by_sql($sql="") {
+//echo $sql;
       
     global $database;
     $result_set = $database->query($sql);
@@ -83,3 +105,4 @@ class aseguradora{
   ///////////////////////////FIN METODOS ESTANDAR//////////////////////////////
 }
 ?>
+

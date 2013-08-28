@@ -4,10 +4,9 @@
 class cobertura_aseguradora{
     
     protected static $table_name="tbl_cob_as";
-    protected static $db_fields=array('id','id_aseguradora','desc_cobertura');
+    protected static $db_fields=array('id','desc_cobertura');
     
     public $id;
-    public $id_aseguradora;
     public $desc_cobertura;
     
   public function cobertura_aseguradora (){

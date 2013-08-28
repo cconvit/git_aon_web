@@ -56,4 +56,22 @@ function get_data_aseguradora($id_aseguradora){
     
     return $datos;
 }
+
+function formatMoney($number, $fractional=false) { 
+    if ($fractional) { 
+        $number = sprintf('%.2f', $number); 
+    } 
+    while (true) { 
+        $replaced = preg_replace('/(-?\d+)(\d\d\d)/', '$1%$2', $number); 
+        if ($replaced != $number) { 
+            $number = $replaced; 
+        } else { 
+            break; 
+        } 
+    } 
+    
+    $number=str_replace(".",",",$number);
+    $number=str_replace("%",".",$number);
+    return $number; 
+} 
 ?>

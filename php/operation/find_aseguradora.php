@@ -34,7 +34,7 @@ class find_aseguradora{
             foreach($res_clasificacion_2 as $item)
                 $qry_clasificacion=$qry_clasificacion." AND c.id_aseguradora <> '{$item->id_aseguradora}'";
             
-            if(sizeof($res_clasificacion_2) != 0)
+            if((sizeof($res_clasificacion_2) != 0) || (sizeof($res_clasificacion_1) != 0))
                $res_clasificacion_3=$clasificacion->find_clasificacion_by_marca_modelo_carro_ano_aseguradora($tipo_cobertura,$id_flota,$qry_clasificacion);
             else
                $res_clasificacion_3=$clasificacion->find_clasificacion_by_marca_modelo_carro_ano($tipo_cobertura,$id_flota);

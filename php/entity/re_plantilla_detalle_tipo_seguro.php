@@ -1,18 +1,43 @@
 <?php
 
-class tipo_cobertura{
+class re_plantilla_detalle_tipo_seguro{
     
-    protected static $table_name="tbl_tipo_cobertura";
-    protected static $db_fields=array('id','nombre');
+ 
+    protected static $db_fields=array('id_cobertura','id_grupo','descripcion');
     
-    public $id;
-    public $nombre;
+    public $id_cobertura;
+    public $id_grupo;
+    public $descripcion;
+
     
-  public function tipo_cobertura (){
+    
+    
+    
+  public function re_plantilla_detalle_tipo_seguro (){
       
       
   }
-            
+  //Buscamos por Marca, Modelo y Tipo de Carro
+  public function find_re_plantilla_detalle_tipo_seguro($id_flota,$tipo_seguro,$id_grupo) {
+   
+      global $database;
+    
+      return self::find_by_sql("SELECT d.id_cobertura as 'id_cobertura',d.id_grupo as 'id_grupo',
+                                       c.desc_cobertura as 'descripcion' 
+                                FROM `tbl_plantilla_detalle` d 
+                                INNER JOIN tbl_re_plantilla_flota r ON d.id_plantilla=r.id_plantilla 
+                                INNER JOIN tbl_cob_as c ON d.id_cobertura=c.id  
+                                WHERE     r.id_flota='{$database->escape_value($id_flota)}' 
+                                      AND r.id_tipo_seguro='{$database->escape_value($tipo_seguro)}'
+                                      AND d.id_grupo='{$database->escape_value($id_grupo)}'
+                                ");
+                                      
+                                     
+
+  }
+  
+  
+  
   // Common Database Methods
   public static function find_all() {
 		return self::find_by_sql("SELECT * FROM ".self::$table_name);
@@ -20,6 +45,7 @@ class tipo_cobertura{
   
   public static function find_by_sql($sql="") {
       
+// echo $sql;
     global $database;
     $result_set = $database->query($sql);
     $object_array = array();
