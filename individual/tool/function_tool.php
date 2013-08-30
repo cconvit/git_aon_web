@@ -6,47 +6,47 @@ function get_data_aseguradora($id_aseguradora){
                                                     
         case 1:
             $id="mercantil";
-            $name="mercantil";
+            $name="Mercantil";
             break;
 
         case 2:
             $id="banesco";
-            $name="banesco seguros";
+            $name="Banesco Seguros";
             break;
 
         case 3:
             $id="zurich";
-            $name="zurich";
+            $name="Zurich";
             break;
 
         case 4:
             $id="venezolana";
-            $name="venezolana";
+            $name="Venezolana";
             break;
 
         case 5:
             $id="vitalica";
-            $name="seguros la vitalica";
+            $name="Seguros la Vitalica";
             break;
 
         case 6:
             $id="caracas";
-            $name="seguros caracas";
+            $name="Seguros Caracas";
             break;
 
         case 7:
             $id="canarias";
-            $name="seguros canarias";
+            $name="Seguros Canarias";
             break;
 
         case 8:
             $id="estar";
-            $name="estar seguros";
+            $name="Estar Seguros";
             break;
 
         case 9:
             $id="altamira";
-            $name="seguros altamira";
+            $name="Seguros Altamira";
             break;
 
     }
