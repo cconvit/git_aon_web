@@ -1,0 +1,1 @@
+<?php$dbstr ="AONVEQA2=  (DESCRIPTION=    (ADDRESS=      (PROTOCOL=TCP)      (HOST=10.10.180.32)(PORT=1521))    (CONNECT_DATA=      (SERVER=dedicated)      (SID=AONVEQA2)))";$conn = oci_connect('dbo','dbo',$dbstr);if(!$conn){ 	echo "ERROR"; }else{	echo "QUE PALAS";}?>
