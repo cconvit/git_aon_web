@@ -104,5 +104,9 @@ class plantilla_grupo{
     
   ///////////////////////////FIN METODOS ESTANDAR//////////////////////////////
 }
+<<<<<<< HEAD
 ?>
 
+=======
+?>
+>>>>>>> deee7ede865484c4eecb99de1c84c4eb755df353
