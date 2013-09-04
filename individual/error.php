@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Aon - Gracias por cotizar con Aon</title>
+<title>Aon - Lo sentimos, ha ocurrido un error</title>
 <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
 <link href="css/normalize.css" rel="stylesheet" type="text/css">
 <link href="css/style.css" rel="stylesheet" type="text/css">
@@ -20,7 +20,7 @@
 	</div>
 	<div id="contenido">
 		<div class="center">
-      <p>Gracias por cotizar con nosotros. En la brevedad un Ejecutivo de Atención al Cliente se comunicará con usted. Si desea contactarnos directamente lo puede hacer a través de los teléfonos <span class="red">212 4009324</span> | <span class="red">212 4009322</span> o por correo electrónico a la cuenta ve.solicito.cotizacion@aon.com</p>
+      <p>Lo sentimos, ha ocurrido un error interno y en estos momentos no podemos realizar tu cotización. Por favor, intenta nuevamente. Si este error persiste, comunícate con nuestros Ejecutivos de Venta a los teléfonos <span class="red">212 4009324</span> | <span class="red">212 4009322</span>.</p>
     </div>
 	</div>
 	<div id="mensaje">
