@@ -160,7 +160,7 @@ if(isset($solicitud) && isset($var_aseguradoras)){
                      $datos=get_data_aseguradora($cotizacion_aseguradora->id_aseguradora);
                     ?>
                                     <td><div class="logo-select">
-                                                    <div id="<?echo $datos["id"];?>" class="icono-aseguradora"></div>
+                                                    <div id="<?echo $datos["id"];?>" class="icono-aseguradora" data="<?echo $cotizacion_aseguradora->id_aseguradora;?>"></div>
                                                     <div><?echo $datos["name"];?></div>
                                             </div></td>
                             </tr>
