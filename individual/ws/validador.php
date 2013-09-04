@@ -86,7 +86,7 @@ session_start();
                 
                 header("Location: ../aseguradoras.php");
             else
-                header("Location: http://www.google.com");
+                header("Location: ../contactanos.php");
                 
      }
         }else

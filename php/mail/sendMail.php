@@ -28,10 +28,14 @@ function sendMail($to, $to_name,$body_html,$redirect,$error){
 	$mail->IsHTML(true);
 	$mail->Send();
         
-        if($mail->Send())  
-           header($redirect); 
-        else
-           header($error); 
+        if($mail->Send()) { 
+           
+           header("Location: ".$redirect); 
+        }
+        else{
+           
+           header("Location: ".$error); 
+        }
         
 	
 }
