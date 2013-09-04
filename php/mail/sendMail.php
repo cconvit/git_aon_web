@@ -8,7 +8,7 @@
         $redirect="";
         * 
         */
-function sendMail($to, $to_name,$body_html,$redirect){
+function sendMail($to, $to_name,$body_html,$redirect,$error){
 	$mail = new PHPMailer();
 	$mail->IsSMTP();
 	$mail->SMTPAuth = true;
@@ -27,6 +27,12 @@ function sendMail($to, $to_name,$body_html,$redirect){
         $mail->AddAddress($to, $to_name);
 	$mail->IsHTML(true);
 	$mail->Send();
-	header($redirect); 
+        
+        if($mail->Send())  
+           header($redirect); 
+        else
+           header($error); 
+        
+	
 }
 ?>
