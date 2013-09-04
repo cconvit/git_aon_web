@@ -27,6 +27,7 @@ class cotizacion{
     public $valor_INMA;
     public $cr_time;
     public $ut_time;
+    public $tipo;//Nevo , Usado
    
     
   public function cotizacion (){
