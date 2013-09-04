@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Aon - Gracias por cotizar con Aon</title>
+<title>Aon - Contáctanos</title>
 <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
 <link href="css/normalize.css" rel="stylesheet" type="text/css">
 <link href="css/style.css" rel="stylesheet" type="text/css">
@@ -20,7 +20,7 @@
 	</div>
 	<div id="contenido">
 		<div class="center">
-      <p>Gracias por cotizar con nosotros. En la brevedad un Ejecutivo de Atención al Cliente se comunicará con usted. Si desea contactarnos directamente lo puede hacer a través de los teléfonos 212 4009324 | 212 4009322. o por correo electrónico a la cuenta ve.solicito.cotizacion@aon.com</p>
+      <p>No hemos encontrado aseguradoras para cotizar tu vehículo según la informacioón suministrada. Por favor, contacta a un Ejecutivo de Ventas a los teléfonos 212 4009324 | 212 4009322 o por correo electrónico a la cuenta ve.solicito.cotizacion@aon.com</p>
     </div>
 	</div>
 	<div id="mensaje">
