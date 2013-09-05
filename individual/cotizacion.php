@@ -13,6 +13,8 @@
 	require_once ('../php/entity/re_plantilla_detalle_tipo_seguro.php');
 	require_once ('tool/function_tool.php');
 	require_once ('../php/entity/tipo_seguro.php');
+        require_once ('../php/entity/grua.php');
+        require_once ('../php/entity/segmentacion.php');
 
 	$solicitud=  unserialize($_SESSION['solicitud']);
 	$var_aseguradoras=$_POST['aseguradoras'];
@@ -95,7 +97,7 @@
 														$tasa="";
 														$prima="";
 														$limite="";
-														$incluida="";
+														
 														foreach ($cotizacion_aseguradora->coberturas as $cobertura){													
 																if($cobertura->id_cob_as == $detalle->id_cobertura){
 																		
@@ -105,7 +107,7 @@
 																				$suma_primas=$suma_primas+$cobertura->prima;
 																		}
 																		if($cobertura->limite != 0)$limite=formatMoney($cobertura->limite,true);
-																		if($cobertura->incluida == 1)$incluida="incluida";
+																		if($cobertura->incluida == 1)$prima="INCLUIDA";
 																		break;
 																}
 														}

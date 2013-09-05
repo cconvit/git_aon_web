@@ -79,7 +79,45 @@ class clasificacion{
                                      
   }
   
- 
+  //Buscamos por Marca, Modelo y Tipo de Carro
+  public function find_clasificacion_by_marca_modelo_carro_ano_RCV($id_flota) {
+   
+      global $database;
+    
+      return self::find_by_sql("SELECT c.id as 'id',c.id_aseguradora as 'id_aseguradora',ase.nombre as 'as_nombre',c.marca as 'marca',
+                                       c.modelo as 'modelo',c.clasificacion as 'clasificacion',
+                                       c.tipo_carro as 'tipo_carro','0' as 'tasa','{$database->escape_value($this->ano)}'  as 'ano',
+                                       a.id_convenio_as as 'convenio'
+                                FROM tbl_clasificacion c 
+                                INNER JOIN tbl_re_flota_co_as a ON (a.id_aseguradora=c.id_aseguradora)
+                                INNER JOIN tbl_aseguradora ase ON ase.id=c.id_aseguradora
+                                WHERE marca='{$database->escape_value($this->marca)}' 
+                                      AND modelo='{$database->escape_value($this->modelo)}' 
+                                      AND c.tipo_carro='{$database->escape_value($this->tipo_carro)}' 
+                                      AND a.id_flota='{$database->escape_value($id_flota)}'");
+                                      
+                                   
+  }
+    //Buscamos por Marca, Modelo y Tipo de Carro
+  public function find_clasificacion_by_marca_modelo_carro_ano_aseguradora_RCV($id_flota,$descartar) {
+   
+      global $database;
+    
+      return self::find_by_sql("SELECT c.id as 'id',c.id_aseguradora as 'id_aseguradora',ase.nombre as 'as_nombre',c.marca as 'marca',
+                                       c.modelo as 'modelo',c.clasificacion as 'clasificacion',
+                                       c.tipo_carro as 'tipo_carro','0' as 'tasa','{$database->escape_value($this->ano)}'  as 'ano',
+                                       a.id_convenio_as as 'convenio'
+                                FROM tbl_clasificacion c 
+                                INNER JOIN tbl_re_flota_co_as a ON (a.id_aseguradora=c.id_aseguradora)
+                                INNER JOIN tbl_aseguradora ase ON ase.id=c.id_aseguradora
+                                WHERE marca='{$database->escape_value($this->marca)}' 
+                                      AND modelo='{$database->escape_value($this->modelo)}' 
+                                      AND c.tipo_carro='{$database->escape_value($this->tipo_carro)}' 
+                                      AND a.id_flota='{$database->escape_value($id_flota)}'
+                                      {$descartar}");
+                                      
+                                   
+  }
   
   // Common Database Methods
   public static function find_all() {
@@ -88,7 +126,8 @@ class clasificacion{
   
   public static function find_by_sql($sql="") {
       
-
+//echo $sql;
+//echo "                     ";
     global $database;
     $result_set = $database->query($sql);
     $object_array = array();

@@ -15,11 +15,11 @@ class grua{
       
   }
     
-  public static function find_by_convenio_carro_ano() {
+  public  function find_by_convenio_carro_ano() {
       global $database;
-      
+     
       return self::find_by_sql("SELECT * FROM ".self::$table_name." 
-                                WHERE   id_convenio_aseguradora='{$database->escape_value($this->id_convenio_aseguradora)}' 
+                                WHERE   id_convenio_as='{$database->escape_value($this->id_convenio_aseguradora)}' 
                                 AND id_tipo_carro='{$database->escape_value($this->id_tipo_carro)}' 
                                 AND ano='{$database->escape_value($this->ano)}'     
                                 ");

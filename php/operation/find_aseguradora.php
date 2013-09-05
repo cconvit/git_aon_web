@@ -12,7 +12,10 @@ class find_aseguradora{
             $res_clasificacion=array();//Objeto con todas las clasificaciones posibles de las aseguradoras
             
             //Obtenemos el primer grupo de clasificacion basado en Marca y Modelo
-            $res_clasificacion_1=$clasificacion->find_clasificacion_by_marca_modelo_carro_ano($tipo_cobertura,$id_flota);
+            if($tipo_cobertura == 3)
+                $res_clasificacion_1=$clasificacion->find_clasificacion_by_marca_modelo_carro_ano_RCV($id_flota);
+            else
+                $res_clasificacion_1=$clasificacion->find_clasificacion_by_marca_modelo_carro_ano($tipo_cobertura,$id_flota);
             
             //Generamos un String con todas las aseguradoras en el que se obtuvieron resultados
             foreach($res_clasificacion_1 as $item)
@@ -21,11 +24,17 @@ class find_aseguradora{
             //Cambiamos los parametros de busqueda
             $clasificacion->modelo="TODOS";
             
-            if(sizeof($res_clasificacion_1) != 0)
-               $res_clasificacion_2=$clasificacion->find_clasificacion_by_marca_modelo_carro_ano_aseguradora($tipo_cobertura,$id_flota,$qry_clasificacion);
-            else
-               $res_clasificacion_2=$clasificacion->find_clasificacion_by_marca_modelo_carro_ano($tipo_cobertura,$id_flota);
-            
+            if(sizeof($res_clasificacion_1) != 0){
+               if($tipo_cobertura == 3)
+                   $res_clasificacion_2=$clasificacion->find_clasificacion_by_marca_modelo_carro_ano_aseguradora_RCV($id_flota,$qry_clasificacion);
+               else
+                   $res_clasificacion_2=$clasificacion->find_clasificacion_by_marca_modelo_carro_ano_aseguradora($tipo_cobertura,$id_flota,$qry_clasificacion);
+            }else{
+                if($tipo_cobertura == 3)
+                   $res_clasificacion_2=$clasificacion->find_clasificacion_by_marca_modelo_carro_ano_RCV($id_flota);
+                else
+                   $res_clasificacion_2=$clasificacion->find_clasificacion_by_marca_modelo_carro_ano($tipo_cobertura,$id_flota);
+            }
              //Cambiamos los parametros de busqueda
             $clasificacion->marca="TODOS";
             $clasificacion->modelo="TODOS";
@@ -35,10 +44,18 @@ class find_aseguradora{
                 $qry_clasificacion=$qry_clasificacion." AND c.id_aseguradora <> '{$item->id_aseguradora}'";
             
             if((sizeof($res_clasificacion_2) != 0) || (sizeof($res_clasificacion_1) != 0))
-               $res_clasificacion_3=$clasificacion->find_clasificacion_by_marca_modelo_carro_ano_aseguradora($tipo_cobertura,$id_flota,$qry_clasificacion);
-            else
-               $res_clasificacion_3=$clasificacion->find_clasificacion_by_marca_modelo_carro_ano($tipo_cobertura,$id_flota);
-            
+            {
+                if($tipo_cobertura == 3)
+                   $res_clasificacion_3=$clasificacion->find_clasificacion_by_marca_modelo_carro_ano_aseguradora_RCV($id_flota,$qry_clasificacion);
+                else
+                   $res_clasificacion_3=$clasificacion->find_clasificacion_by_marca_modelo_carro_ano_aseguradora($tipo_cobertura,$id_flota,$qry_clasificacion);
+  
+            }else{
+                if($tipo_cobertura == 3)
+                   $res_clasificacion_3=$clasificacion->find_clasificacion_by_marca_modelo_carro_ano_RCV($id_flota);
+                else
+                   $res_clasificacion_3=$clasificacion->find_clasificacion_by_marca_modelo_carro_ano($tipo_cobertura,$id_flota);          
+            }
             
             //Agregamos los resultados de la primera busqueda a un array
             foreach ($res_clasificacion_1 as $item)
