@@ -12,7 +12,7 @@
 	<div id="supper" class="separator"></div>
 	<div id="header">
 		<div class="center">
-			<p class="menu"><a class="current" href="index.php">Inicio</a> <span>│</span> <a href="terminos.html">Términos de Uso</p>
+			<p class="menu"><a class="current" href="index.php">Inicio</a><span>│</span><a href="terminos.html" target="_blank" onClick="window.open(this.href, this.target, 'width=500, height=400, resizable=0'); return false;">Términos de Uso</a></p>
 			<p><a href="index.php"><img src="img/logo.png"></a></p>
 			<p> <span>Aon Risk Services Venezuela Corretaje de Seguros, C.A. | RIF J-00067607-0 | Inscripción SAA N 102.</span> <span style="float: right; margin-top: -9px">Facilidad disponible para empleados de <img src="img/gm.png" width="24" height="24"></span> </p>
 			<div class="exclusivo"></div>
@@ -30,7 +30,7 @@
 		<div class="center">
 			<div class="separator"></div>
 			<div id="legal">
-        <input type="button" id="btn-cotizar" class="boton boton-footer" value="ir al inicio" style="width: 145px; background-position: 30px 0px">
+        <a href="index.php" class="boton boton-footer" value="ir al inicio" style="width: 145px; background-position: 30px 0px"></a>
 			</div>
 		</div>
 	</div>
