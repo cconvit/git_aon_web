@@ -30,7 +30,7 @@
 		<div class="center">
 			<div class="separator"></div>
 			<div id="legal">
-        <input type="button" id="btn-cotizar" class="boton boton-footer" value="Volver a cotizar" style="width: 145px; background-position: 30px 0px">
+        <input type="button" id="btn-cotizar" class="boton boton-footer" value="Ir al inicio" style="width: 145px; background-position: 30px 0px">
 			</div>
 		</div>
 	</div>
