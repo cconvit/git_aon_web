@@ -25,7 +25,7 @@ function get_data_aseguradora($id_aseguradora){
             break;
 
         case 5:
-            $id="vitalica";
+            $id="vitalicia";
             $name="Seguros la Vitalica";
             break;
 
