@@ -30,7 +30,7 @@
 		<div class="center">
 			<div class="separator"></div>
 			<div id="legal">
-        <a href="index.php" class="boton boton-footer" value="Ir al inicio" style="width: 145px; background-position: 30px 0px"></a>
+        <input type="button" class="boton boton-footer" value="ir al inicio" style="width: 100px; background-position: -10px 0px" onclick="location.href='index.php'">
 			</div>
 		</div>
 	</div>

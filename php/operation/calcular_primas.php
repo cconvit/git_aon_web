@@ -79,7 +79,7 @@ class calcular_primas{
                     //Valor Grua Segun ano del vehiculo
                     $grua=new grua();
                     $grua->ano=  $this->ano;
-                    $grua->id_tipo_carro=$cobertura->tipo_carro;
+                    $grua->id_tipo_carro=$cobertura->id_tipo_carro;
                     $grua->id_convenio_aseguradora=$cobertura->id_convenio_as;
                     $result=$grua->find_by_convenio_carro_ano();
                     

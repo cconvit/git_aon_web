@@ -13,27 +13,19 @@
 	require_once ('../php/entity/re_plantilla_detalle_tipo_seguro.php');
 	require_once ('tool/function_tool.php');
 	require_once ('../php/entity/tipo_seguro.php');
-        require_once ('../php/entity/grua.php');
-        require_once ('../php/entity/segmentacion.php');
-
+  require_once ('../php/entity/grua.php');
+  require_once ('../php/entity/segmentacion.php');
 	$solicitud=  unserialize($_SESSION['solicitud']);
 	$var_aseguradoras=$_POST['aseguradoras'];
-
 	if(isset($solicitud) && isset($var_aseguradoras)){
-
 		$var_aseguradoras=  urldecode($var_aseguradoras);
 		$aseguradoras=  explode(",", $var_aseguradoras);
-		//$aseguradoras=array();		
-		//$aseguradoras[0]="1";
-		//$aseguradoras[1]="2";
 		$solicitud->calcular_primas($aseguradoras);
 		$_SESSION['solicitud']=serialize($solicitud);
 		$plantilla_grupo=new plantilla_grupo();
 		$grupos=$plantilla_grupo->find_re_plantilla_detalle_tipo_seguro($solicitud->cotizacion->id_flota, $solicitud->cotizacion->tipo_cobertura);		
 		$tipo_seguro=new tipo_seguro();
-		$cobertura_seguro=$tipo_seguro->find_by_id($solicitud->cotizacion->tipo_cobertura);		
-		// var_dump($solicitud);
-		// echo $solicitud->re_aseguradora_cotizacion[0]->coberturas[1]->prima;           
+		$cobertura_seguro=$tipo_seguro->find_by_id($solicitud->cotizacion->tipo_cobertura);		         
 ?>
 <!DOCTYPE html>
 <html>
@@ -143,8 +135,8 @@
 								?>
 								<td>
                   <div class="logo-select">
-										<div id="<?echo $datos["id"];?>" data="<?echo $cotizacion_aseguradora->id_aseguradora;?>" class="icono-aseguradora"></div>
-										<div><?echo $datos["name"];?></div>
+										<div id="<?php echo $datos["id"];?>" data="<?php echo $cotizacion_aseguradora->id_aseguradora;?>" class="icono-aseguradora"></div>
+										<div><?php echo $datos["name"];?></div>
 									</div>
                 </td>
 							</tr>
