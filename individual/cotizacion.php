@@ -35,9 +35,14 @@
 <title>Aon - Cotización</title>
 <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
 <link href="css/normalize.css" rel="stylesheet" type="text/css">
+<link href="css/jquery-ui-1.10.3.custom.min" rel="stylesheet" type="text/css">
 <link href="css/style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
+<div id="dialog">
+<p class="dialog-message">Estamos cotizando su vehículo. Esta operación puede durar unos minutos, por favor espere.</p>
+<p style="text-align: center"><img src="img/loader.gif" width="30" height="30"></p>
+</div>
 <div id="contenedor">
 	<div id="supper" class="separator"></div>
 	<div id="header">
@@ -171,10 +176,11 @@
 		</div>
 	</div>
 </div>
-<script src="../plugins/jquery-1.10.2.min.js"></script> 
+<script src="../plugins/jquery-1.10.2.min.js"></script>
+<script src="../plugins/jquery-ui-1.10.3.custom.min.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>
 <?php
-}            
+}
 ?>
