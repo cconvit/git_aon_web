@@ -46,7 +46,7 @@ class solicitud{
                         $tasa=  $this->res_clasificacion[$x]->tasa;
                         $ano=  $this->res_clasificacion[$x]->ano;
                         
-                        $calcular_primas->get_prima($cobertura,$tasa,$ano);
+                        $calcular_primas->get_prima($cobertura,$tasa);
                                 
 
                     }

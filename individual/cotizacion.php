@@ -13,8 +13,9 @@
 	require_once ('../php/entity/re_plantilla_detalle_tipo_seguro.php');
 	require_once ('tool/function_tool.php');
 	require_once ('../php/entity/tipo_seguro.php');
-  require_once ('../php/entity/grua.php');
-  require_once ('../php/entity/segmentacion.php');
+        require_once ('../php/entity/grua.php');
+        require_once ('../php/entity/segmentacion.php');
+        
 	$solicitud=  unserialize($_SESSION['solicitud']);
 	$var_aseguradoras=$_POST['aseguradoras'];
 	if(isset($solicitud) && isset($var_aseguradoras)){

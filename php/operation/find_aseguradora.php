@@ -19,7 +19,7 @@ class find_aseguradora{
             
             //Generamos un String con todas las aseguradoras en el que se obtuvieron resultados
             foreach($res_clasificacion_1 as $item)
-                $qry_clasificacion=$qry_clasificacion." AND c.id_aseguradora <> '{$item->id_aseguradora}'";
+                $qry_clasificacion=$qry_clasificacion." AND a.id_aseguradora <> '{$item->id_aseguradora}'";
           
             //Cambiamos los parametros de busqueda
             $clasificacion->modelo="TODOS";
@@ -41,7 +41,7 @@ class find_aseguradora{
             
             //Generamos un String con todas las aseguradoras en el que se obtuvieron resultados
             foreach($res_clasificacion_2 as $item)
-                $qry_clasificacion=$qry_clasificacion." AND c.id_aseguradora <> '{$item->id_aseguradora}'";
+                $qry_clasificacion=$qry_clasificacion." AND a.id_aseguradora <> '{$item->id_aseguradora}'";
             
             if((sizeof($res_clasificacion_2) != 0) || (sizeof($res_clasificacion_1) != 0))
             {

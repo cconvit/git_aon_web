@@ -28,14 +28,14 @@ class clasificacion{
    
       global $database;
     
-      return self::find_by_sql("SELECT c.id as 'id',c.id_aseguradora as 'id_aseguradora',ase.nombre as 'as_nombre',c.marca as 'marca',
+      return self::find_by_sql("SELECT c.id as 'id',a.id_aseguradora as 'id_aseguradora',ase.nombre as 'as_nombre',c.marca as 'marca',
                                        c.modelo as 'modelo',c.clasificacion as 'clasificacion',
                                        c.tipo_carro as 'tipo_carro',t.tasa as 'tasa',t.ano as 'ano',
                                        t.id_convenio_as as 'convenio'
                                 FROM tbl_clasificacion c INNER JOIN tbl_tasa_casco t 
-                                ON   (c.tipo_carro=t.tipo_carro AND c.clasificacion=t.clasificacion)
-                                INNER JOIN tbl_re_flota_co_as a ON (t.id_convenio_as=a.id_convenio_as AND a.id_aseguradora=c.id_aseguradora)
-                                INNER JOIN tbl_aseguradora ase ON ase.id=c.id_aseguradora
+                                ON   (c.tipo_carro=t.tipo_carro AND c.clasificacion=t.clasificacion AND t.id_convenio_as=c.id_convenio_as)
+                                INNER JOIN tbl_re_flota_co_as a ON (t.id_convenio_as=a.id_convenio_as)
+                                INNER JOIN tbl_aseguradora ase ON ase.id=a.id_aseguradora
                                 WHERE marca='{$database->escape_value($this->marca)}' 
                                       AND modelo='{$database->escape_value($this->modelo)}' 
                                       AND c.tipo_carro='{$database->escape_value($this->tipo_carro)}' 
@@ -61,14 +61,14 @@ class clasificacion{
    
       global $database;
 
-      return self::find_by_sql("SELECT c.id as 'id',c.id_aseguradora as 'id_aseguradora',ase.nombre as 'as_nombre',c.marca as 'marca',
+      return self::find_by_sql("SELECT c.id as 'id',a.id_aseguradora as 'id_aseguradora',ase.nombre as 'as_nombre',c.marca as 'marca',
                                        c.modelo as 'modelo',c.clasificacion as 'clasificacion',
                                        c.tipo_carro as 'tipo_carro',t.tasa as 'tasa',t.ano as 'ano',
                                        t.id_convenio_as as 'convenio'
                                 FROM tbl_clasificacion c INNER JOIN tbl_tasa_casco t 
-                                ON   (c.tipo_carro=t.tipo_carro AND c.clasificacion=t.clasificacion) 
-                                INNER JOIN tbl_re_flota_co_as a ON (t.id_convenio_as=a.id_convenio_as AND a.id_aseguradora=c.id_aseguradora)
-                                INNER JOIN tbl_aseguradora ase ON ase.id=c.id_aseguradora
+                                ON   (c.tipo_carro=t.tipo_carro AND c.clasificacion=t.clasificacion AND t.id_convenio_as=c.id_convenio_as) 
+                                INNER JOIN tbl_re_flota_co_as a ON (t.id_convenio_as=a.id_convenio_as)
+                                INNER JOIN tbl_aseguradora ase ON ase.id=a.id_aseguradora
                                 WHERE marca='{$database->escape_value($this->marca)}' 
                                       AND modelo='{$database->escape_value($this->modelo)}' 
                                       AND c.tipo_carro='{$database->escape_value($this->tipo_carro)}' 
@@ -84,13 +84,13 @@ class clasificacion{
    
       global $database;
     
-      return self::find_by_sql("SELECT c.id as 'id',c.id_aseguradora as 'id_aseguradora',ase.nombre as 'as_nombre',c.marca as 'marca',
+      return self::find_by_sql("SELECT c.id as 'id',a.id_aseguradora as 'id_aseguradora',ase.nombre as 'as_nombre',c.marca as 'marca',
                                        c.modelo as 'modelo',c.clasificacion as 'clasificacion',
                                        c.tipo_carro as 'tipo_carro','0' as 'tasa','{$database->escape_value($this->ano)}'  as 'ano',
                                        a.id_convenio_as as 'convenio'
                                 FROM tbl_clasificacion c 
-                                INNER JOIN tbl_re_flota_co_as a ON (a.id_aseguradora=c.id_aseguradora)
-                                INNER JOIN tbl_aseguradora ase ON ase.id=c.id_aseguradora
+                                INNER JOIN tbl_re_flota_co_as a ON (a.id_convenio_as=c.id_convenio_as)
+                                INNER JOIN tbl_aseguradora ase ON ase.id=a.id_aseguradora
                                 WHERE marca='{$database->escape_value($this->marca)}' 
                                       AND modelo='{$database->escape_value($this->modelo)}' 
                                       AND c.tipo_carro='{$database->escape_value($this->tipo_carro)}' 
@@ -103,13 +103,13 @@ class clasificacion{
    
       global $database;
     
-      return self::find_by_sql("SELECT c.id as 'id',c.id_aseguradora as 'id_aseguradora',ase.nombre as 'as_nombre',c.marca as 'marca',
+      return self::find_by_sql("SELECT c.id as 'id',a.id_aseguradora as 'id_aseguradora',ase.nombre as 'as_nombre',c.marca as 'marca',
                                        c.modelo as 'modelo',c.clasificacion as 'clasificacion',
                                        c.tipo_carro as 'tipo_carro','0' as 'tasa','{$database->escape_value($this->ano)}'  as 'ano',
                                        a.id_convenio_as as 'convenio'
                                 FROM tbl_clasificacion c 
-                                INNER JOIN tbl_re_flota_co_as a ON (a.id_aseguradora=c.id_aseguradora)
-                                INNER JOIN tbl_aseguradora ase ON ase.id=c.id_aseguradora
+                                INNER JOIN tbl_re_flota_co_as a ON (a.id_convenio_as=c.id_convenio_as)
+                                INNER JOIN tbl_aseguradora ase ON ase.id=a.id_aseguradora
                                 WHERE marca='{$database->escape_value($this->marca)}' 
                                       AND modelo='{$database->escape_value($this->modelo)}' 
                                       AND c.tipo_carro='{$database->escape_value($this->tipo_carro)}' 

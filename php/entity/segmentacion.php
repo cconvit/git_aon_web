@@ -3,9 +3,9 @@
 class segmentacion{
     
     protected static $table_name="tbl_segmentacion";
-    protected static $db_fields=array('id_aseguradora','id_estado_civil','id_sexo','edad','tasa');
+    protected static $db_fields=array('id_convenio_as','id_estado_civil','id_sexo','edad','tasa');
     
-    public $id_aseguradora;
+    public $id_convenio_as;
     public $id_estado_civil;
     public $id_sexo;
     public $edad;
@@ -19,6 +19,18 @@ class segmentacion{
   // Common Database Methods
   public static function find_all() {
 		return self::find_by_sql("SELECT * FROM ".self::$table_name);
+  }
+  
+  public function find_tasa() {
+      
+      global $database;
+      
+		return self::find_by_sql("SELECT * FROM ".self::$table_name." 
+                                                   WHERE id_convenio_as='{$database->escape_value($this->id_convenio_as)}'
+                                                   AND   id_estado_civil='{$database->escape_value($this->id_estado_civil)}'
+                                                   AND   edad='{$database->escape_value($this->edad)}'
+                                                   AND   id_sexo='{$database->escape_value($this->id_sexo)}'
+                                                   LIMIT 1");
   }
   
   public static function find_by_sql($sql="") {
