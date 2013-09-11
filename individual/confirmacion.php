@@ -1,3 +1,12 @@
+<?php
+session_start();
+
+        require_once("../php/db/config.php");
+	require_once ('../php/db/database.php');
+	require_once ('../php/entity/flota.php');
+        
+$flota=unserialize($_SESSION['flota']);
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,7 +23,7 @@
 		<div class="center">
 			<p class="menu"><a class="current" href="index.php">Inicio</a> <span>│</span><a href="terminos.html" target="_blank" onClick="window.open(this.href, this.target, 'width=500, height=400, resizable=0'); return false;">Términos de Uso</a></p>
 			<p><a href="index.php"><img src="img/logo.png"></a></p>
-			<p> <span>Aon Risk Services Venezuela Corretaje de Seguros, C.A. | RIF J-00067607-0 | Inscripción SAA N 102.</span> <span style="float: right; margin-top: -9px">Facilidad disponible para empleados de <img src="img/gm.png" width="24" height="24"></span> </p>
+			<p> <span>Aon Risk Services Venezuela Corretaje de Seguros, C.A. | RIF J-00067607-0 | Inscripción SAA N 102.</span> <span style="float: right; margin-top: -9px">Facilidad disponible para empleados de <img src="img/cliente/<?php echo $flota->avatar;?>" width="24" height="24"></span> </p>
 			<div class="exclusivo"></div>
 		</div>
 	</div>
@@ -30,7 +39,7 @@
 		<div class="center">
 			<div class="separator"></div>
 			<div id="legal">
-        <input type="button" class="boton boton-footer" value="Volver a cotizar" style="width: 145px; background-position: 33px 0px" onclick="location.href='index.php'">
+        <input type="button" class="boton boton-footer" value="Volver a cotizar" style="width: 145px; background-position: 33px 0px" onclick="location.href='index.php?i=<?php echo $flota->id; ?>'">
 			</div>
 		</div>
 	</div>

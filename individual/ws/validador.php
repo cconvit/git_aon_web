@@ -11,18 +11,15 @@ session_start();
       require_once ('../../php/entity/re_tipo_cobertura_aseguradora.php');
       require_once ('../../php/entity/parametros.php');
 
+        
+      $flota=unserialize($_SESSION['flota']);
+
      if(isset($_POST["nombre"]) && isset($_POST["cedula"]) && isset($_POST["telefono"]) && isset($_POST["correo"]) &&
         isset($_POST["edad"]) && isset($_POST["sexo"]) && isset($_POST["civil"]) && isset($_POST["tipo"]) && 
         isset($_POST["marca"]) && isset($_POST["modelo"]) && isset($_POST["ano"]) && isset($_POST["ocupantes"]) && 
-        isset($_POST["cobertura"]) && isset($_POST["version"])){
-        //&& isset($_POST["flota"])
+        isset($_POST["cobertura"]) && isset($_POST["version"]) && isset($flota)){
+        
         //FALTA valor, usado 
-         
-     $flota=new flota();
-     $flota->id=1;
-     $array_flota=$flota->find_all();
-            
-     if(sizeof($array_flota) > 0){  
          
             $cotizacion=new cotizacion();
             $parametros=new parametros();
@@ -41,8 +38,7 @@ session_start();
             $cotizacion->car_modelo=$_POST["modelo"];
             $cotizacion->car_ocupantes=$_POST["ocupantes"];
             $cotizacion->tipo_cobertura=$_POST["cobertura"];
-            $cotizacion->id_flota=$_POST["flota"];
-            $cotizacion->id_flota=1;
+            $cotizacion->id_flota=$flota->id;
             $cotizacion->cr_time='NOW()';
             $cotizacion->ut_time='NOW()';
             $cotizacion->tipo=$_POST["tipo"];
@@ -88,7 +84,7 @@ session_start();
             else
                 header("Location: ../contactanos.php");
                 
-     }
+     
         }else
             echo "Error en las variables";
             

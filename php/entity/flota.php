@@ -3,13 +3,14 @@
 class flota{
     
     protected static $table_name="tbl_flota";
-    protected static $db_fields=array('id','empresa','porcentaje_INMA','cr_time','ut_time');
+    protected static $db_fields=array('id','empresa','porcentaje_INMA','cr_time','ut_time','avatar');
     
     public $id;
     public $empresa;
     public $porcentaje_INMA;
     public $cr_time;
     public $ut_time;
+    public $avatar;
     
   public function flota (){
       
@@ -20,6 +21,14 @@ class flota{
   public static function find_all() {
 		return self::find_by_sql("SELECT * FROM ".self::$table_name);
   }
+  
+  public  function find_by_id_flota() {
+      
+      global $database;
+      
+		return self::find_by_sql("SELECT * FROM ".self::$table_name." WHERE id='{$database->escape_value($this->id)}'");
+  }
+  
   
   public static function find_by_sql($sql="") {
       
