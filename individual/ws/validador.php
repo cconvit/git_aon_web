@@ -30,6 +30,7 @@ session_start();
             $cotizacion->cedula=$_POST["cedula"];
             $cotizacion->telefono=$_POST["telefono"];
             $cotizacion->email=$_POST["correo"];
+         
             $cotizacion->edad=$_POST["edad"];
             $cotizacion->sexo=$_POST["sexo"];
             $cotizacion->estado_civil=$_POST["civil"];
@@ -73,9 +74,9 @@ session_start();
             $solicitud=new solicitud();
             $solicitud->cotizacion=$cotizacion;
             $solicitud->res_clasificacion=$res_clasificacion;
-            $solicitud->flota=$array_flota[0];
+            $solicitud->flota=$flota;
             $solicitud->parametros=$array_parametros;
-            
+           
             $_SESSION['solicitud']=serialize($solicitud);
     
             if(sizeof($solicitud->res_clasificacion) > 0)

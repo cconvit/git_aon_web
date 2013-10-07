@@ -1,6 +1,8 @@
 <?php
 
-function sendMail($to, $to_name,$body_html,$redirect,$error){
+function sendMailCotizacion($to, $to_name,$body_html,$redirect,$error){
+    
+    echo "Enviando";
 	$mail = new PHPMailer();
 	$mail->IsSMTP();
 	$mail->SMTPAuth = true;
@@ -16,10 +18,10 @@ function sendMail($to, $to_name,$body_html,$redirect,$error){
 	$mail->Subject = "Cotizacion AON";
 	$mail->AltBody = "Si no puedes ver este mail visita";
 	$mail->MsgHTML($body_html);
-  $mail->AddAddress($to, $to_name);
+        $mail->AddAddress($to, $to_name);
 	$mail->IsHTML(true);
 	$mail->Send();
-        
+
         if($mail->Send()) { 
            
            header("Location: ".$redirect); 
