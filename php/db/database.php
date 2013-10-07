@@ -19,7 +19,7 @@ class MySQLDatabase {
 			die("Database connection failed: " . mysql_error());
 		}
 		else {
-			$db_select = mysql_select_db("cotizador_aon", $this->connection);
+			$db_select = mysql_select_db("individual", $this->connection);
 			if (!$db_select) {
 				die("Database selection failed: " . mysql_error());
 			}
