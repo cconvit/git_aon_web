@@ -7,7 +7,7 @@ class find_aseguradora{
         
     }
     
-    public function get_clasificacion($tipo_cobertura,$id_flota,$clasificacion){
+    public function get_clasificacion($tipo_cobertura,$id_flota,$clasificacion,$suma_asegurada){
         
             $res_clasificacion=array();//Objeto con todas las clasificaciones posibles de las aseguradoras
             
@@ -57,6 +57,21 @@ class find_aseguradora{
                    $res_clasificacion_3=$clasificacion->find_clasificacion_by_marca_modelo_carro_ano($tipo_cobertura,$id_flota);          
             }
             
+            //Generamos un String con todas las aseguradoras en el que se obtuvieron resultados
+            foreach($res_clasificacion_3 as $item)
+                $qry_clasificacion=$qry_clasificacion." AND a.id_aseguradora <> '{$item->id_aseguradora}'";
+            
+            
+            //Realizamos la busqueda por monto asegurado
+            if((sizeof($res_clasificacion_3) != 0) || (sizeof($res_clasificacion_2) != 0) || (sizeof($res_clasificacion_1) != 0))
+            
+                   $res_clasificacion_4=$clasificacion->find_clasificacion_by_carro_ano_aseguradora_monstoAsegurado($tipo_cobertura,$id_flota,$qry_clasificacion,$suma_asegurada);
+            else
+                   $res_clasificacion_4=$clasificacion->find_clasificacion_by_carro_ano_montoAsegurado($tipo_cobertura,$id_flota,$suma_asegurada);          
+            
+            
+            
+            
             //Agregamos los resultados de la primera busqueda a un array
             foreach ($res_clasificacion_1 as $item)
                 array_push($res_clasificacion, $item);
@@ -67,6 +82,10 @@ class find_aseguradora{
             
             //Agregamos los resultados de la tercera busqueda a un array
             foreach ($res_clasificacion_3 as $item)
+                array_push($res_clasificacion, $item);
+            
+            //Agregamos los resultados de la cuarta busqueda a un array
+            foreach ($res_clasificacion_4 as $item)
                 array_push($res_clasificacion, $item);
             
             

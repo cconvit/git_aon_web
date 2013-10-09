@@ -55,7 +55,8 @@ session_start();
             $cotizacion->car_ano=$_POST["ano"];
             }
 
-            
+            //Calculamos la suma asegurada
+            $suma_asegurada=$cotizacion->valor_INMA+$cotizacion->valor_INMA*$flota->porcentaje_INMA;
             //Busqueda de la clasificacion
             $find_aseguradora=new find_aseguradora();
             $clasificacion= new clasificacion();
@@ -64,7 +65,7 @@ session_start();
             $clasificacion->ano=$cotizacion->car_ano;   
             $clasificacion->tipo_carro=$cotizacion->tipo_carro; 
             
-            $res_clasificacion=$find_aseguradora->get_clasificacion($cotizacion->tipo_cobertura,$cotizacion->id_flota,$clasificacion);
+            $res_clasificacion=$find_aseguradora->get_clasificacion($cotizacion->tipo_cobertura,$cotizacion->id_flota,$clasificacion,$suma_asegurada);
             //var_dump($res_clasificacion);
             //Obtenemos las coberturas asociadas a cada registro de la clasificacion
             $find_aseguradora->get_coberturas($cotizacion->tipo_cobertura,$res_clasificacion);

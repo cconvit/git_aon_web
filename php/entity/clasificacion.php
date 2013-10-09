@@ -57,6 +57,53 @@ class clasificacion{
       */
   }
   
+  //Buscamos por  Tipo de Carro, ano y monto asegurado
+  public function find_clasificacion_by_carro_ano_montoAsegurado($tipo_cobertura,$id_flota,$suma_asegurada) {
+   
+      global $database;
+    
+      return self::find_by_sql("SELECT c.id as 'id',a.id_aseguradora as 'id_aseguradora',ase.nombre as 'as_nombre','TODOS' as 'marca',
+                                       'TODOS' as 'modelo',c.clasificacion as 'clasificacion',
+                                       c.tipo_carro as 'tipo_carro',t.tasa as 'tasa',t.ano as 'ano',
+                                       t.id_convenio_as as 'convenio'
+                                FROM tbl_clasificacion_ma c INNER JOIN tbl_tasa_casco t 
+                                ON   (c.tipo_carro=t.tipo_carro AND c.clasificacion=t.clasificacion AND t.id_convenio_as=c.id_convenio_as)
+                                INNER JOIN tbl_re_flota_co_as a ON (t.id_convenio_as=a.id_convenio_as)
+                                INNER JOIN tbl_aseguradora ase ON ase.id=a.id_aseguradora
+                                WHERE c.monto_min <='{$database->escape_value($suma_asegurada)}' 
+                                      AND c.monto_max >'{$database->escape_value($suma_asegurada)}' 
+                                      AND c.tipo_carro='{$database->escape_value($this->tipo_carro)}' 
+                                      AND t.ano='{$database->escape_value($this->ano)}' 
+                                      AND t.id_tipo_co='{$database->escape_value($tipo_cobertura)}'
+                                      AND a.id_flota='{$database->escape_value($id_flota)}'");
+                                      
+                                    
+  }
+  
+  //Buscamos por tipo de carro, ano, aseguradora y monsto asegurado
+  public function find_clasificacion_by_carro_ano_aseguradora_monstoAsegurado($tipo_cobertura,$id_flota,$descartar,$suma_asegurada) {
+   
+      global $database;
+
+      return self::find_by_sql("SELECT c.id as 'id',a.id_aseguradora as 'id_aseguradora',ase.nombre as 'as_nombre','TODOS' as 'marca',
+                                       'TODOS' as 'modelo',c.clasificacion as 'clasificacion',
+                                       c.tipo_carro as 'tipo_carro',t.tasa as 'tasa',t.ano as 'ano',
+                                       t.id_convenio_as as 'convenio'
+                                FROM tbl_clasificacion_ma c INNER JOIN tbl_tasa_casco t 
+                                ON   (c.tipo_carro=t.tipo_carro AND c.clasificacion=t.clasificacion AND t.id_convenio_as=c.id_convenio_as)
+                                INNER JOIN tbl_re_flota_co_as a ON (t.id_convenio_as=a.id_convenio_as)
+                                INNER JOIN tbl_aseguradora ase ON ase.id=a.id_aseguradora
+                                WHERE c.monto_min <='{$database->escape_value($suma_asegurada)}' 
+                                      AND c.monto_max >'{$database->escape_value($suma_asegurada)}' 
+                                      AND c.tipo_carro='{$database->escape_value($this->tipo_carro)}' 
+                                      AND t.ano='{$database->escape_value($this->ano)}' 
+                                      AND t.id_tipo_co='{$database->escape_value($tipo_cobertura)}'
+                                      AND a.id_flota='{$database->escape_value($id_flota)}'
+                                      {$descartar}");
+                                     
+  }
+  
+  
   public function find_clasificacion_by_marca_modelo_carro_ano_aseguradora($tipo_cobertura,$id_flota,$descartar) {
    
       global $database;
