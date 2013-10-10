@@ -48,6 +48,11 @@ function get_data_aseguradora($id_aseguradora){
             $id="altamira";
             $name="Seguros Altamira";
             break;
+        
+        case 10:
+            $id="multinacional";
+            $name="Multinacional de Seguros";
+            break;
 
     }
     
