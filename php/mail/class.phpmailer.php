@@ -602,7 +602,9 @@ class PHPMailer {
       $sendmail = sprintf("%s -oi -t", escapeshellcmd($this->Sendmail));
     }
     if ($this->SingleTo === true) {
+       
       foreach ($this->SingleToArray as $key => $val) {
+          
         if(!@$mail = popen($sendmail, 'w')) {
           throw new phpmailerException($this->Lang('execute') . $this->Sendmail, self::STOP_CRITICAL);
         }
