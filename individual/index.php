@@ -5,18 +5,17 @@ session_start();
 $id_flota=$_GET['i'];
 
 if(isset($id_flota)){
-    
-        require_once("../php/db/config.php");
+  echo "flota" ;
+  require_once("../php/db/config.php");
 	require_once ('../php/db/database.php');
-	require_once ('../php/entity/flota.php');
-        
-        $flota=new flota();
-        $flota->id=$id_flota;
-        $result=$flota->find_by_id_flota();
-        
-        if(sizeof($result) > 0){
-            
-        $_SESSION['flota']=serialize($result[0]);    
+	require_once ('../php/entity/flota.php');    
+  $flota=new flota();
+  $flota->id=$id_flota;
+  $result=$flota->find_by_id_flota();
+
+  if(sizeof($result) > 0){
+
+  $_SESSION['flota']=serialize($result[0]);    
 ?>
 <!DOCTYPE html>
 <html>
@@ -310,9 +309,8 @@ if(isset($id_flota)){
 </body>
 </html>
 <?php
-        }else{
-            
-            //No hay flota con ese id
+        }
+        else{
         }
 }else{
     
