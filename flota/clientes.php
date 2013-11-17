@@ -1,3 +1,15 @@
+<?php
+session_start();
+
+    require_once("../php/db/config.php");
+    require_once ('../php/db/database.php');
+    require_once ('../php/entity/cliente.php');
+    
+        $cliente=new cliente();
+        $clientes=$cliente->find_all();
+       
+        
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,9 +59,9 @@
         <ul>
           <li class="current"><a href="clientes.php">Clientes</a></li>
           <li><a href="seguros.php">Seguros</a></li>
-          <li><a href="coberturas">Coberturas</a></li>
-          <li><a href="convenios">Convenios</a></li>
-          <li><a href="flotas">Flotas</a></li>
+          <li><a href="coberturas.php">Coberturas</a></li>
+          <li><a href="convenios.php">Convenios</a></li>
+          <li><a href="flotas.php">Flotas</a></li>
           <li style="border: none;"><a href="Cotizaciones">Cotizaciones</a></li>
         </ul>
       </div>
@@ -62,111 +74,31 @@
           <div id="scroll">
             <table class="tbl-details" cellspacing="0" borderspacing="0">
               <tbody>
-                <tr>
+ <?php
+ 
+          if(sizeof($clientes) > 0){
+              
+              foreach ($clientes as $value) {         
+ ?>
+                  <tr>
                   <td>
                     <div class="item">
-                      <p class="item-title">Grupo BeConsult</p>
-                      <p clas="item-sub-title">Grupo BeConsult Venezuela, C.A.</p>
+                      <p class="item-title"><?php echo $value->nombre; ?></p>
+                      <p clas="item-sub-title"><?php echo $value->razon_social; ?></p>
                       <p class="separator"></p>
-                      <p class="item-info">Fecha de creación: <span>12-10-2013</span></p>
-                      <p class="item-info">Última modificación: <span>17-10-2013</span></p>
+                      <p class="item-info">Fecha de creación: <span><?php echo $value->cr_time; ?></span></p>
+                      <p class="item-info">Última modificación: <span><?php echo $value->ut_time; ?></span></p>
                       <div class="options">
-                        <input type="button" class="icon-operation icon-modified">
-                        <input type="button" class="icon-operation icon-delete">
+                        <input type="button" id-item="<?php echo $value->id; ?>" class="icon-operation icon-modified">
+                        <input type="button" id-item="<?php echo $value->id; ?>" class="icon-operation icon-delete">
                       </div>
                     </div>
                   </td>
                 </tr>
-                <tr>
-                  <td>
-                    <div class="item">
-                      <p class="item-title">Grupo BeConsult</p>
-                      <p clas="item-sub-title">Grupo BeConsult Venezuela, C.A.</p>
-                      <p class="separator"></p>
-                      <p class="item-info">Fecha de creación: <span>12-10-2013</span></p>
-                      <p class="item-info">Última modificación: <span>17-10-2013</span></p>
-                      <div class="options">
-                        <input type="button" class="icon-operation icon-modified">
-                        <input type="button" class="icon-operation icon-delete">
-                      </div>
-                    </div>
-                  </td>
-                </tr> 
-                <tr>
-                  <td>
-                    <div class="item">
-                      <p class="item-title">Grupo BeConsult</p>
-                      <p clas="item-sub-title">Grupo BeConsult Venezuela, C.A.</p>
-                      <p class="separator"></p>
-                      <p class="item-info">Fecha de creación: <span>12-10-2013</span></p>
-                      <p class="item-info">Última modificación: <span>17-10-2013</span></p>
-                      <div class="options">
-                        <input type="button" class="icon-operation icon-modified">
-                        <input type="button" class="icon-operation icon-delete">
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <div class="item">
-                      <p class="item-title">Grupo BeConsult</p>
-                      <p clas="item-sub-title">Grupo BeConsult Venezuela, C.A.</p>
-                      <p class="separator"></p>
-                      <p class="item-info">Fecha de creación: <span>12-10-2013</span></p>
-                      <p class="item-info">Última modificación: <span>17-10-2013</span></p>
-                      <div class="options">
-                        <input type="button" class="icon-operation icon-modified">
-                        <input type="button" class="icon-operation icon-delete">
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <div class="item">
-                      <p class="item-title">Grupo BeConsult</p>
-                      <p clas="item-sub-title">Grupo BeConsult Venezuela, C.A.</p>
-                      <p class="separator"></p>
-                      <p class="item-info">Fecha de creación: <span>12-10-2013</span></p>
-                      <p class="item-info">Última modificación: <span>17-10-2013</span></p>
-                      <div class="options">
-                        <input type="button" class="icon-operation icon-modified">
-                        <input type="button" class="icon-operation icon-delete">
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <div class="item">
-                      <p class="item-title">Grupo BeConsult</p>
-                      <p clas="item-sub-title">Grupo BeConsult Venezuela, C.A.</p>
-                      <p class="separator"></p>
-                      <p class="item-info">Fecha de creación: <span>12-10-2013</span></p>
-                      <p class="item-info">Última modificación: <span>17-10-2013</span></p>
-                      <div class="options">
-                        <input type="button" class="icon-operation icon-modified">
-                        <input type="button" class="icon-operation icon-delete">
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <div class="item">
-                      <p class="item-title">Grupo BeConsult Ultimo</p>
-                      <p clas="item-sub-title">Grupo BeConsult Venezuela, C.A.</p>
-                      <p class="separator"></p>
-                      <p class="item-info">Fecha de creación: <span>12-10-2013</span></p>
-                      <p class="item-info">Última modificación: <span>17-10-2013</span></p>
-                      <div class="options">
-                        <input type="button" class="icon-operation icon-modified">
-                        <input type="button" class="icon-operation icon-delete">
-                      </div>
-                    </div>
-                  </td>
-                </tr>                    
+<?php
+              }
+          }
+ ?>
               </tbody>
             </table>
           </div>

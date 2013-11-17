@@ -18,9 +18,9 @@
         <ul>
           <li><a href="clientes.php">Clientes</a></li>
           <li><a href="seguros.php">Seguros</a></li>
-          <li><a href="coberturas">Coberturas</a></li>
-          <li><a href="convenios">Convenios</a></li>
-          <li><a href="flotas">Flotas</a></li>
+          <li><a href="coberturas.php">Coberturas</a></li>
+          <li><a href="convenios.php">Convenios</a></li>
+          <li><a href="flotas.php">Flotas</a></li>
           <li style="border: none;"><a href="Cotizaciones">Cotizaciones</a></li>
         </ul>
       </div>
