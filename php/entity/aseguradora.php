@@ -3,11 +3,14 @@
 class aseguradora{
     
     protected static $table_name="tbl_aseguradora";
-    protected static $db_fields=array('id','nombre','logo_img');
+    protected static $db_fields=array('id','nombre','razon_social','logo_img','ut_time','cr_time');
     
     public $id;
     public $nombre;
+    public $razon_social;
     public $logo_img;
+    public $ut_time;
+    public $cr_time;
     
   public function aseguradora (){
       
@@ -28,6 +31,73 @@ class aseguradora{
       $object_array[] = self::instantiate($row);
     }
     return $object_array;
+  }
+  
+    public  function update_by_id() {
+      
+      global $database;
+      
+        $sql="UPDATE ".self::$table_name." SET
+                                  nombre='{$database->escape_value($this->nombre)}',
+                                  razon_social='{$database->escape_value($this->razon_social)}',
+                                  logo_img='{$database->escape_value($this->logo_img)}'
+                                  WHERE id='{$database->escape_value($this->id)}'";
+
+    
+                                 
+      if($database->query($sql)) {
+          
+          if(mysql_affected_rows() != 0){
+             
+          return true;}
+         else{
+             return false;
+         }
+
+      } else {
+        return false;
+      }
+      
+  }
+  
+  public  function create() {
+      
+      global $database;
+      
+        $sql="INSERT INTO ".self::$table_name." (nombre,razon_social,logo_img,cr_time) VALUES (
+                            '{$database->escape_value($this->nombre)}',
+                            '{$database->escape_value($this->razon_social)}',
+                            '{$database->escape_value($this->logo_img)}',
+                            NOW())";
+                                          
+                                          
+      if($database->query($sql)) {
+        $this->id = $database->insert_id();
+        return true;
+      } else {
+        return false;
+      }
+  }
+  
+   public  function delete() {
+      
+      global $database;
+      
+        $sql="DELETE FROM ".self::$table_name."
+                                  WHERE id='{$database->escape_value($this->id)}'";
+
+    
+                                 
+      if($database->query($sql)) {
+         if(mysql_affected_rows() != 0)
+             return true;
+         else
+             return false;
+      } else {
+          echo "pepe";
+        return false;
+      }
+      
   }
   
   

@@ -1,45 +1,70 @@
-
 <?php
 
-class convenio_aseguradora{
+class cliente{
     
-    protected static $table_name="tbl_convenio_aseguradora";
-    protected static $db_fields=array('id','id_aseguradora','descripcion','as_nombre');
+    protected static $table_name="tbl_cliente";
+    protected static $db_fields=array('id','nombre','razon_social','cr_time','ut_time','estatus');
     
     public $id;
-    public $id_aseguradora;
-    public $descripcion;
-    public $as_nombre;
+    public $nombre;
+    public $razon_social;
+    public $cr_time;
+    public $ut_time;
+    public $estatus;
     
-  public function convenio_aseguradora (){
+  public function cliente (){
       
       
   }
             
   // Common Database Methods
   public static function find_all() {
-		return self::find_by_sql("SELECT ca.id,ca.id_aseguradora,ca.descripcion,a.nombre as 'as_nombre' FROM `tbl_convenio_aseguradora` ca INNER JOIN tbl_aseguradora a ON ca.id_aseguradora=a.id");
+		return self::find_by_sql("SELECT * FROM ".self::$table_name);
   }
   
-  public static function find_by_sql($sql="") {
-      
-    global $database;
-    $result_set = $database->query($sql);
-    $object_array = array();
-    while ($row = $database->fetch_array($result_set)) {
-      $object_array[] = self::instantiate($row);
-    }
-    return $object_array;
-  }
-  
-   public  function create() {
+  public  function find_by_id_cliente() {
       
       global $database;
       
-        $sql="INSERT INTO ".self::$table_name." (id_aseguradora,descripcion) VALUES (
-                            '{$database->escape_value($this->id_aseguradora)}',
-                            '{$database->escape_value($this->descripcion)}'
-                            )";
+		return self::find_by_sql("SELECT * FROM ".self::$table_name." WHERE id='{$database->escape_value($this->id)}'");
+  }
+  
+  public  function update_by_id() {
+      
+      global $database;
+      
+        $sql="UPDATE ".self::$table_name." SET
+                                  nombre='{$database->escape_value($this->nombre)}',
+                                  razon_social='{$database->escape_value($this->razon_social)}',
+                                  estatus='{$database->escape_value($this->estatus)}'
+                                  WHERE id='{$database->escape_value($this->id)}'";
+
+    
+                                 
+      if($database->query($sql)) {
+          
+          if(mysql_affected_rows() != 0){
+             $this->id_user = $database->insert_id();
+          return true;}
+         else{
+             return false;
+         }
+
+      } else {
+        return false;
+      }
+      
+  }
+  
+  public  function create() {
+      
+      global $database;
+      
+        $sql="INSERT INTO ".self::$table_name." (nombre,razon_social,estatus,cr_time) VALUES (
+                            '{$database->escape_value($this->nombre)}',
+                            '{$database->escape_value($this->razon_social)}',
+                            '{$database->escape_value($this->estatus)}',
+                            NOW())";
                                           
                                           
       if($database->query($sql)) {
@@ -70,6 +95,20 @@ class convenio_aseguradora{
       }
       
   }
+  
+  
+  public static function find_by_sql($sql="") {
+      
+    global $database;
+    $result_set = $database->query($sql);
+    $object_array = array();
+    while ($row = $database->fetch_array($result_set)) {
+      $object_array[] = self::instantiate($row);
+    }
+    return $object_array;
+  }
+  
+  
   ///////////////////////////METODOS ESTANDAR//////////////////////////////////
   
   private static function instantiate($record) {

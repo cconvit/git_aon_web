@@ -1,24 +1,23 @@
 
 <?php
 
-class convenio_aseguradora{
+class re_flota_co_as{
     
-    protected static $table_name="tbl_convenio_aseguradora";
-    protected static $db_fields=array('id','id_aseguradora','descripcion','as_nombre');
+    protected static $table_name="tbl_re_flota_co_as";
+    protected static $db_fields=array('id_flota','id_aseguradora','id_convenio_as');
     
-    public $id;
+    public $id_flota;
     public $id_aseguradora;
-    public $descripcion;
-    public $as_nombre;
+    public $id_convenio_as;
     
-  public function convenio_aseguradora (){
+  public function re_flota_co_as (){
       
       
   }
             
   // Common Database Methods
   public static function find_all() {
-		return self::find_by_sql("SELECT ca.id,ca.id_aseguradora,ca.descripcion,a.nombre as 'as_nombre' FROM `tbl_convenio_aseguradora` ca INNER JOIN tbl_aseguradora a ON ca.id_aseguradora=a.id");
+		return self::find_by_sql("SELECT * FROM ".self::$table_name);
   }
   
   public static function find_by_sql($sql="") {
@@ -32,18 +31,20 @@ class convenio_aseguradora{
     return $object_array;
   }
   
-   public  function create() {
+  
+  public  function create() {
       
       global $database;
       
-        $sql="INSERT INTO ".self::$table_name." (id_aseguradora,descripcion) VALUES (
+        $sql="INSERT INTO ".self::$table_name." (id_flota,id_aseguradora,id_convenio_as) VALUES (
+                            '{$database->escape_value($this->id_flota)}',
                             '{$database->escape_value($this->id_aseguradora)}',
-                            '{$database->escape_value($this->descripcion)}'
-                            )";
+                            '{$database->escape_value($this->id_convenio_as)}'"
+                            . ")";
                                           
                                           
       if($database->query($sql)) {
-        $this->id = $database->insert_id();
+       
         return true;
       } else {
         return false;
@@ -55,7 +56,8 @@ class convenio_aseguradora{
       global $database;
       
         $sql="DELETE FROM ".self::$table_name."
-                                  WHERE id='{$database->escape_value($this->id)}'";
+                                  WHERE id_flota='{$database->escape_value($this->id_flota)}'
+                                  AND id_aseguradora='{$database->escape_value($this->id_aseguradora)}'" ;
 
     
                                  

@@ -42,6 +42,72 @@ class flota{
   }
   
   
+    public  function update_by_id() {
+      
+      global $database;
+      
+        $sql="UPDATE ".self::$table_name." SET
+                                  empresa='{$database->escape_value($this->empresa)}',
+                                  porcentaje_INMA='{$database->escape_value($this->porcentaje_INMA)}',
+                                  avatar='{$database->escape_value($this->avatar)}'
+                                  WHERE id='{$database->escape_value($this->id)}'";
+
+    
+                                 
+      if($database->query($sql)) {
+          
+          if(mysql_affected_rows() != 0){
+             
+          return true;}
+         else{
+             return false;
+         }
+
+      } else {
+        return false;
+      }
+      
+  }
+  
+  public  function create() {
+      
+      global $database;
+      
+        $sql="INSERT INTO ".self::$table_name." (empresa,porcentaje_INMA,avatar,cr_time) VALUES (
+                            '{$database->escape_value($this->empresa)}',
+                            '{$database->escape_value($this->porcentaje_INMA)}',
+                            '{$database->escape_value($this->avatar)}',
+                            NOW())";
+                                          
+                                          
+      if($database->query($sql)) {
+        $this->id = $database->insert_id();
+        return true;
+      } else {
+        return false;
+      }
+  }
+  
+   public  function delete() {
+      
+      global $database;
+      
+        $sql="DELETE FROM ".self::$table_name."
+                                  WHERE id='{$database->escape_value($this->id)}'";
+
+    
+                                 
+      if($database->query($sql)) {
+         if(mysql_affected_rows() != 0)
+             return true;
+         else
+             return false;
+      } else {
+          echo "pepe";
+        return false;
+      }
+      
+  }
   ///////////////////////////METODOS ESTANDAR//////////////////////////////////
   
   private static function instantiate($record) {
