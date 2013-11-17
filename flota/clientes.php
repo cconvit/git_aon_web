@@ -59,7 +59,7 @@
             <span class="title">Clientes</span>  
             <input type="button" id="open-dialog" class="add-button" value="Nuevo cliente">
           </div>
-          <div id="scroll-panel">
+          <div id="scroll">
             <table class="tbl-details" cellspacing="0" borderspacing="0">
               <tbody>
                 <tr>
@@ -155,7 +155,7 @@
                 <tr>
                   <td>
                     <div class="item">
-                      <p class="item-title">Grupo BeConsult</p>
+                      <p class="item-title">Grupo BeConsult Ultimo</p>
                       <p clas="item-sub-title">Grupo BeConsult Venezuela, C.A.</p>
                       <p class="separator"></p>
                       <p class="item-info">Fecha de creación: <span>12-10-2013</span></p>

@@ -366,9 +366,9 @@ body, html{
 }
 #main{
   position: absolute;
-  left: 223px;
-  padding-top: 55px;
-  width: 1157px;
+  left: 163px;
+  padding: 55px 60px 0px 60px;
+  min-width: 420px;
 }
 #main-detail{
  padding: 0px;
@@ -406,9 +406,10 @@ body, html{
 #left-nav ul li a:hover{
   font-weight: bold;
 }
-#scroll-panel{
+#scroll{
   height: 490px;
   overflow-y: auto;
+  min-height: 133px;
 }
 #nav-operations{
   display: inline-block;
