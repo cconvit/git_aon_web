@@ -406,6 +406,19 @@ body, html{
 #left-nav ul li a:hover{
   font-weight: bold;
 }
+#scroll-panel{
+  height: 490px;
+  overflow-y: auto;
+}
+#nav-operations{
+  display: inline-block;
+  width: 100%;
+  padding: 22px 0px 20px 0px;
+  position: relative;
+  border-top: solid 1px #ACACAC;
+  border-bottom: solid 2px #ACACAC;
+  margin-bottom: 0px;
+}
 #footer{
   height: 41px;
   width: 100%;
@@ -524,25 +537,25 @@ a.access-title{
   top: 55px;
 }
 .icon-operation{
-  width: 95px;
-  height: 27px;
   background-image: url(../img/sprite.png);
   background-repeat: no-repeat;
   display: inline-block;
   margin-bottom: 2px;
   clear: both;
   float: left;
+  width: 90px;
+  height: 25px;
 }
 .icon-modified{
-  background-position: 0px 0px;
+  background-position: -5px -5px;
 }
 .icon-delete{
-  background-position: 0px -27px;
+  background-position: -5px -35px;
 }
 .add-button{
-  width: 140px;
+  width: 146px;
   height: 25px;
-  background-position: -100px 0px;
+  background-position: -103px -5px;
   right: 0px;
   position: absolute;
   right: 0px;
@@ -555,28 +568,18 @@ a.access-title{
 .common-button{
   width: 104px;
   height: 23px;
-  background-position: -100px -31px;
+  background-position: -104px -36px;
   color: #FFFEFE;
   font-size: 14px;
   padding: 1px 5px 3px 5px;
   text-align: center;
 }
-#scroll-panel{
-  height: 490px;
-  overflow-y: auto;
-}
+
+
 .buttons-panel{
   position: relative;
   float: right;
   margin-top: 10px;
   margin-right: -10px;
 }
-#nav-operations{
-  display: inline-block;
-  width: 100%;
-  padding: 22px 0px 20px 0px;
-  position: relative;
-  border-top: solid 1px #ACACAC;
-  border-bottom: solid 2px #ACACAC;
-  margin-bottom: 0px;
-}
+
