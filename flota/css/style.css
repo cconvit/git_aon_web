@@ -105,7 +105,7 @@ button::-moz-focus-inner, input::-moz-focus-inner {
 /* links */
 
 a {
-	color: #4D4F53;
+	color: #ACACAC;
 	text-decoration: none;
 }
 a:visited {
@@ -119,10 +119,6 @@ a:focus {
 }
 a:hover, a:active {
 	outline: 0;
-}
-.current{
-	text-decoration: underline;
-	color: #ACACAC;
 }
 
 /* ovelays styles */
@@ -342,6 +338,7 @@ body, html{
   height: 100%;
   overflow: hidden;
 }
+
 #header{
   height: 82px;
   background-color: #E61E17;
@@ -419,6 +416,52 @@ body, html{
   bottom: 0px;
   left: 0px;
 }
+.access{
+  position: absolute; 
+  top: 120px; 
+  width: 740px; 
+  left: 50%; 
+  margin-left: -370px;
+}
+.access div{
+  float: left;
+}
+.access-icon-right{
+  margin-right: 100px;
+}
+.access-icon{
+  width: 176px;
+  height: 201px;
+  background-image: url(../img/sprite.png);
+  background-repeat: no-repeat;
+  display: block;
+}
+a.access-title{
+  padding-top: 10px;
+  text-align: center;
+  font-size: 16px;
+  text-transform: uppercase;
+  display: block;
+}
+
+.new-cotizacion{
+  background-position: -5px -70px;
+}
+.new-flota{
+  background-position: -186px -70px;
+}
+.view-cotizacion{
+  background-position: -367px -70px;
+}
+.new-cotizacion:hover{
+  background-position: -5px -283px;
+}
+.new-flota:hover{
+  background-position: -186px -283px;
+}
+.view-cotizacion:hover{
+  background-position: -367px -283px;
+}
 .title{
   font-size: 27px;
   color: #ACACAC;
@@ -442,6 +485,9 @@ body, html{
   border: 1px solid #FBEED5;
   border-radius: 4px 4px 4px 4px;
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+.current{
+  background-color: #ECECEC;;
 }
 .tbl-details{
   width: 100%;
@@ -516,7 +562,7 @@ body, html{
   text-align: center;
 }
 #scroll-panel{
-  height: 392px;
+  height: 490px;
   overflow-y: auto;
 }
 .buttons-panel{

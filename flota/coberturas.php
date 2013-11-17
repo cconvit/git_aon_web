@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Aon - Clientes</title>
+<title>Aon - Coberturas</title>
 <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
 <link href="css/jquery-ui-1.10.3.custom.min.css" rel="stylesheet" type="text/css">
 <link href="css/normalize.css" rel="stylesheet" type="text/css">
@@ -18,7 +18,7 @@
           <td><input type="text" class="common-input" name="nombre_cliente" id="nombre-cliente"></td></td>
         </tr>
          <tr>
-          <td>Razón Social</td>
+          <td>Descripción</td>
         </tr>
         <tr>
           <td><input type="text" class="common-input" name="rs_cliente" id="rs-cliente"></td></td>
@@ -42,12 +42,12 @@
       <div id="top-nav"></div>
     </div>
     <div id="content">
-      <div class="message">Ocurrio un error mientras se cargaba el cliente. Por favor intente mas tarde. Si el error persiste, comuniquese con el administrador del sistema.</div>
+      <div class="message">Ocurrio un error mientras se cargaba la cobertura. Por favor intente mas tarde. Si el error persiste, comuniquese con el administrador del sistema.</div>
       <div id="left-nav">
         <ul>
-          <li class="current"><a href="clientes.php">Clientes</a></li>
+          <li><a href="clientes.php">Clientes</a></li>
           <li><a href="seguros.php">Seguros</a></li>
-          <li><a href="coberturas">Coberturas</a></li>
+          <li class="current"><a href="coberturas">Coberturas</a></li>
           <li><a href="convenios">Convenios</a></li>
           <li><a href="flotas">Flotas</a></li>
           <li style="border: none;"><a href="Cotizaciones">Cotizaciones</a></li>
@@ -56,8 +56,8 @@
       <div id="main">
         <div id="main-detail">
           <div id="nav-operations">
-            <span class="title">Clientes</span>  
-            <input type="button" id="open-dialog" class="add-button" value="Nuevo cliente">
+            <span class="title">Coberturas</span>  
+            <input type="button" id="open-dialog" class="add-button" value="Nueva cobertura">
           </div>
           <div id="scroll-panel">
             <table class="tbl-details" cellspacing="0" borderspacing="0">
