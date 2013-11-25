@@ -11,6 +11,7 @@ var AON = {
     $main.css("height", windowHeight - 272 );
     console.log(windowHeight - 272);
   },
+
   init: function(){
     AON.setMainWidth();
     $(window).resize(function() {
@@ -20,27 +21,47 @@ var AON = {
   }
 };
 
-// kick it all off here 
-$(document).ready(AON.init);
-$(function (e){
+var UTIL = {
+  initDialogs: function(width){
+    $(".dialog").dialog({ 
+      modal: true, 
+      autoOpen: false, 
+      width: width, 
+      resizable: false, 
+      position: "top+15%"
+    });
+  },
+  loadDialog: function(page, dialog){
+    dialog.load(page, function(e){
+      dialog.dialog("open");
+    });
+  },
+  init: function(){
+    UTIL.initDialogs(400);
+  }
+};
 
-  var dialog = $("#dialog");
-  dialog.dialog({
-     modal: true,
-     autoOpen: false,
-     width: 400,
-     resizable: false,
-     position: "top+15%" 
-   });
-   
-  $("#close-dialog").bind("click", function(e){
-    dialog.dialog("close");
-    return false;
-  });
-  
-  $("#open-dialog").bind("click", function(e){
-    dialog.dialog("open");
-    return false;
-  });
-  
+$(document).ready(function(e){
+  AON.init();
+  UTIL.init();
 });
+
+function isValidateSubmit(form){
+  var cont, element, message;
+  cont = 0;
+  message = form.find("div.error");
+  form.find("input.is-required").each(function () {
+   element = $(this);
+   if(element.val() === ""){
+     cont++;
+   }
+  });
+  if(cont > 0){
+    message.show();
+    return false;
+  }
+  else{
+    return true;
+  }
+}
+

@@ -56,7 +56,6 @@ input[type="text"], input[type="password"], select {
   border-radius: 6px;
   -webkit-border-radius: 6px;
   -moz-border-radius: 6px;
- 
 }
 button, input[type="button"], input[type="reset"], input[type="submit"] {
 	cursor: pointer;
@@ -299,7 +298,7 @@ td {
 
 /* buttons */
 
-input[type="button"] {
+input[type="button"], input[type="submit"]  {
 	background-color: transparent;
 	border: none;
 	background-image: url(../img/sprite.png);
@@ -314,9 +313,6 @@ input[type="button"] {
 
 /* error */
 
-.is-required{
-	background-color: #E01B22 !important;
-}
 
 /* chrome frame prompt */
 
@@ -500,6 +496,10 @@ a.access-title{
   border-radius: 4px 4px 4px 4px;
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
 }
+.error{
+  font-size: 12px;
+  color: #E61E17;
+}
 .current{
   background-color: #ECECEC;;
 }
@@ -575,8 +575,6 @@ a.access-title{
   padding: 1px 5px 3px 5px;
   text-align: center;
 }
-
-
 .buttons-panel{
   position: relative;
   float: right;

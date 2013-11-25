@@ -1,14 +1,10 @@
 <?php
 session_start();
-
-    require_once("../php/db/config.php");
-    require_once ('../php/db/database.php');
-    require_once ('../php/entity/aseguradora.php');   
-    
-        $aseguradora=new aseguradora();
-        $aseguradoras=$aseguradora->find_all();
-       
-        
+require_once("../php/db/config.php");
+require_once ('../php/db/database.php');
+require_once ('../php/entity/aseguradora.php');   
+$aseguradora=new aseguradora();
+$aseguradoras=$aseguradora->find_all();
 ?>
 <!DOCTYPE html>
 <html>
@@ -20,33 +16,35 @@ session_start();
 <link href="css/normalize.css" rel="stylesheet" type="text/css">
 <link href="css/style.css" rel="stylesheet" type="text/css">
 <body>
-  <div id="dialog">   
-    <table align="center" width="360">
-      <tbody>
-        <tr>
-          <td>Nombre</td>
-        </tr>
-        <tr>
-          <td><input type="text" class="common-input" name="nombre_cliente" id="nombre-cliente"></td></td>
-        </tr>
-         <tr>
-          <td>Razón Social</td>
-        </tr>
-        <tr>
-          <td><input type="text" class="common-input" name="rs_cliente" id="rs-cliente"></td></td>
-        </tr>        
-      </tbody>
-      <tfoot>
-        <tr>
-          <td>    
-            <div class="buttons-panel">
-              <input type="button" class="common-button" value="Guardar">
-              <input type="button" id="close-dialog" class="common-button" value="Salir" > 
-            </div> 
-          </td>
-        </tr>
-      </tfoot>
-    </table> 
+  <div id="new" class="dialog">   
+    <form method="post" action="operation.php?operation_type=3" onsubmit="return isValidateSubmit($(this))">
+      <table align="center" width="360">
+        <tbody>
+          <tr>
+            <td>Nombre</td>
+          </tr>
+          <tr>
+            <td><input type="text" class="common-input" name="nombre_cliente" id="nombre-cliente"></td></td>
+          </tr>
+           <tr>
+            <td>Razón Social</td>
+          </tr>
+          <tr>
+            <td><input type="text" class="common-input" name="rs_cliente" id="rs-cliente"></td></td>
+          </tr>        
+        </tbody>
+        <tfoot>
+          <tr>
+            <td>    
+              <div class="buttons-panel">
+                <input type="button" class="common-button" value="Guardar">
+                <input type="button" id="close-dialog" class="common-button" onclick="$('#new').dialog('close');" value="Salir" > 
+              </div> 
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </form>
   </div>
   <div id="container">
     <div id="header">
@@ -54,7 +52,7 @@ session_start();
       <div id="top-nav"></div>
     </div>
     <div id="content">
-      <div class="message">Ocurrio un error mientras se cargaba el seguro. Por favor intente mas tarde. Si el error persiste, comuniquese con el administrador del sistema.</div>
+      <div class="message hide">Ocurrio un error mientras se cargaba el seguro. Por favor intente mas tarde. Si el error persiste, comuniquese con el administrador del sistema.</div>
       <div id="left-nav">
         <ul>
           <li><a href="clientes.php">Clientes</a></li>
@@ -69,9 +67,9 @@ session_start();
         <div id="main-detail">
           <div id="nav-operations">
             <span class="title">Seguros</span>  
-            <input type="button" id="open-dialog" class="add-button" value="Nuevo seguro">
+            <input type="button" id="open-dialog" class="add-button" onclick="$('#new').dialog('open');" value="Nuevo seguro">
           </div>
-          <div id="scroll-panel">
+          <div id="scroll">
             <table class="tbl-details" cellspacing="0" borderspacing="0">
               <tbody>
 <?php
@@ -89,16 +87,16 @@ session_start();
                       <p class="item-info">Fecha de creación: <span><?php echo $value->cr_time; ?></span></p>
                       <p class="item-info">Última modificación: <span><?php echo $value->ut_time; ?></span></p>
                       <div class="options">
-                        <input type="button" id-item="<?php echo $value->id; ?>" class="icon-operation icon-modified">
+                        <input type="button" id-item="<?php echo $value->id; ?>" class="icon-operation icon-modified" onclick="UTIL.loadDialog('load/loadInsure.php?id=' + $(this).attr('id-item'),$('#modify')); return false;">
                         <input type="button" id-item="<?php echo $value->id; ?>" class="icon-operation icon-delete">
                       </div>
                     </div>
                   </td>
                 </tr>
-<?php
+                <?php
+                 }
               }
-          }
- ?>               
+             ?>               
               </tbody>
             </table>
           </div>
@@ -107,8 +105,8 @@ session_start();
       </div>
   </div>
   <div id="footer"></div>
+  <div id="modify" class="dialog"></div>
   <script src="../plugins/jquery-1.10.2.min.js"></script>  
   <script src="../plugins/jquery-ui-1.10.3.custom.min.js"></script>
   <script src="js/snippet.js"></script>
-  <script src="js/function.js"></script>
 </body>
