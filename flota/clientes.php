@@ -5,17 +5,15 @@ require_once ('../php/db/database.php');
 require_once ('../php/entity/cliente.php');
 $cliente = new cliente();
 $clientes = $cliente->find_all();
+$msg = "hide";
+$msg_desc = "";
+$msg_type = "succesfull";
 
-$msg="hide";
-$msg_desc="";
-$msg_type="succesfull";
-
-if(isset($_SESSION['msg'] )){
-    if($_SESSION['msg'] == "show"){
-        $msg="show";
-        $msg_desc=$_SESSION['msg_desc']; 
-    }
-
+if (isset($_SESSION['msg'])) {
+  if ($_SESSION['msg'] == "show") {
+    $msg = "show";
+    $msg_desc = $_SESSION['msg_desc'];
+  }
 }
 ?>
 <!DOCTYPE html>
@@ -30,7 +28,7 @@ if(isset($_SESSION['msg'] )){
   </head>
   <body>
     <div id="new" class="dialog">
-      <form id="new-client" method="post" action="../php/operation/administracion.php?operation_type=1&target=../../flota/clientes.php" onsubmit="return isValidateSubmit($(this))">
+      <form id="new-client" method="post" action="../php/operation/administration.php?operation_type=1&target=../../flota/clientes.php" onsubmit="return isValidateSubmit($(this))">
         <table align="center" width="360">
           <tbody>
             <tr>
@@ -69,7 +67,7 @@ if(isset($_SESSION['msg'] )){
         <div id="top-nav"></div>
       </div>
       <div id="content">
-        <div class="message <?php echo $msg." ".$msg_type; ?>"><?php echo $msg_desc; ?></div>
+        <div class="message <?php echo $msg . " " . $msg_type; ?>"><?php echo $msg_desc; ?></div>
         <div id="left-nav">
           <ul>
             <li class="current"><a href="clientes.php">Clientes</a></li>
@@ -102,9 +100,11 @@ if(isset($_SESSION['msg'] )){
                             <p class="item-info">Fecha de creación: <span><?php echo $value->cr_time; ?></span></p>
                             <p class="item-info">Última modificación: <span><?php echo $value->ut_time; ?></span></p>
                             <div class="options">
-                              <input type="button" id="modify-client" id-item="<?php echo $value->id; ?>" class="icon-operation icon-modified" onclick="UTIL.loadDialog('load/loadClient.php?id=' + $(this).attr('id-item'), $('#modify'));
-                                return false;">
-                              <input type="button" id="delete-client" id-item="<?php echo $value->id; ?>" class="icon-operation icon-delete">
+                              <form method="post" action="operation.php?operation_type=3" onsubmit="return formOperation()">
+                                <input type="button" id="modify-client" id-item="<?php echo $value->id; ?>" class="icon-operation icon-modified" onclick="UTIL.loadDialog('load/loadClient.php', this, $('#modify'));return false;">
+                                <input type="submit" type="submit" value="" class="icon-operation icon-delete">
+                                <input type="hidden" name="id" value="<?php echo $value->id; ?>">
+                              </form> 
                             </div>
                           </div>
                         </td>
@@ -125,8 +125,8 @@ if(isset($_SESSION['msg'] )){
     <script src="../plugins/jquery-ui-1.10.3.custom.min.js"></script>
     <script src="js/snippet.js"></script>
   </body>
- <?php
- $_SESSION['msg'] = "hide";
- $_SESSION['msg_desc'] = "";
- $msg_type="succesfull";
- ?>
+  <?php
+  $_SESSION['msg'] = "hide";
+  $_SESSION['msg_desc'] = "";
+  $msg_type = "succesfull";
+  ?>
