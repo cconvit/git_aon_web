@@ -18,7 +18,7 @@ $clientes = $cliente->find_all();
   </head>
   <body>
     <div id="new" class="dialog">
-      <form id="new-client" method="post" action="operation.php?operation_type=1" onsubmit="return isValidateSubmit($(this))">
+      <form method="post" action="operation.php?operation_type=1" onsubmit="return isValidateSubmit($(this))">
         <table align="center" width="360">
           <tbody>
             <tr>
@@ -90,9 +90,11 @@ $clientes = $cliente->find_all();
                             <p class="item-info">Fecha de creación: <span><?php echo $value->cr_time; ?></span></p>
                             <p class="item-info">Última modificación: <span><?php echo $value->ut_time; ?></span></p>
                             <div class="options">
-                              <input type="button" id="modify-client" id-item="<?php echo $value->id; ?>" class="icon-operation icon-modified" onclick="loadDialog('load/loadClient.php?id=' + $(this).attr('id-item'), $('#modify'));
-                                return false;">
-                              <input type="button" id="delete-client" id-item="<?php echo $value->id; ?>" class="icon-operation icon-delete">
+                              <form method="post" action="operation.php?operation_type=3" onsubmit="return formOperation()">
+                                <input type="button" id="modify-client" id-item="<?php echo $value->id; ?>" class="icon-operation icon-modified" onclick="UTIL.loadDialog('load/loadClient.php', this, $('#modify'));return false;">
+                                <input type="submit" type="submit" value="" class="icon-operation icon-delete">
+                                <input type="hidden" name="id" value="<?php echo $value->id; ?>">
+                              </form>
                             </div>
                           </div>
                         </td>

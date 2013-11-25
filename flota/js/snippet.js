@@ -31,7 +31,9 @@ var UTIL = {
       position: "top+15%"
     });
   },
-  loadDialog: function(page, dialog){
+  loadDialog: function(page, button, dialog){
+    var id= $(button).attr("data");
+    var url = page + "?id=" + id;
     dialog.load(page, function(e){
       dialog.dialog("open");
     });
@@ -43,8 +45,17 @@ var UTIL = {
 
 $(document).ready(function(e){
   AON.init();
-  UTIL.init();
+  UTIL.init(); 
 });
+
+function formOperation(){
+  if(confirm("¿Desea eliminar este registro. Esta operación es permanente")){
+    return true;
+  }
+  else{
+    return false;
+  }
+}
 
 function isValidateSubmit(form){
   var cont, element, message;
