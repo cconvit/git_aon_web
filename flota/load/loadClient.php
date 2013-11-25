@@ -44,6 +44,6 @@ if (isset($_GET["id"])) {
   </div>
   <?php
 } else {
-  echo "Pepe";
+  echo "";
 }
 ?>

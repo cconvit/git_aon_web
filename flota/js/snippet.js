@@ -34,7 +34,7 @@ var UTIL = {
   loadDialog: function(page, button, dialog){
     var id= $(button).attr("data");
     var url = page + "?id=" + id;
-    dialog.load(page, function(e){
+    dialog.load(url, function(e){
       dialog.dialog("open");
     });
   },
