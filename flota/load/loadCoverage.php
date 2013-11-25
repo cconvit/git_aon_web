@@ -1,5 +1,5 @@
 <div>   
-  <form method="post" action="operation.php?operation_type=5">
+  <form method="post" action="operation.php?operation_type=8">
     <table align="center" width="360">
       <tbody>
         <tr>
@@ -9,7 +9,7 @@
           <td><input type="text" class="common-input is-required" name="nombre" id="nombre" value="ALTA2"></td></td>
         </tr>
          <tr>
-          <td>Razón Social</td>
+          <td>Descripción</td>
         </tr>
         <tr>
           <td><input type="text" class="common-input is-required" name="rs" id="rs" value="ALTA SISTEMA C.A.2"></td></td>
