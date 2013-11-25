@@ -96,7 +96,7 @@ button::-moz-focus-inner, input::-moz-focus-inner {
 	display: none;
 }
 .common-input{
-  width: 350px;
+  width: 360px;
   margin: 10px 0px;
   padding: 2px 5px 5px 5px;
 }
@@ -537,6 +537,9 @@ a.access-title{
   right: 0px;
   top: 55px;
 }
+.top-max{
+  top: 70px;
+}
 .icon-operation{
   background-image: url(../img/sprite.png);
   background-repeat: no-repeat;
@@ -576,9 +579,8 @@ a.access-title{
   text-align: center;
 }
 .buttons-panel{
-  position: relative;
-  float: right;
+  text-align: right; 
+  display: block;
   margin-top: 10px;
-  margin-right: -10px;
 }
 

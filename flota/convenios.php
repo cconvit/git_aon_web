@@ -1,11 +1,3 @@
-<?php
-session_start();
-require_once("../php/db/config.php");
-require_once ('../php/db/database.php');
-require_once ('../php/entity/cliente.php');
-$cliente = new cliente();
-$clientes = $cliente->find_all();
-?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -25,30 +17,24 @@ $clientes = $cliente->find_all();
               <td>Nombre</td>
             </tr>
             <tr>
-              <td><input type="text" class="common-input is-required" name="nombre" id="nombre"></td></td>
-            </tr>
-            <tr>
-              <td>Descripción</td>
-            </tr>
-            <tr>
-              <td><input type="text" class="common-input is-required" name="rs" id="rs"></td></td>
+              <td><input type="text" class="common-input is-required" name="nombre"></td></td>
             </tr>
             <tr>
               <td>Seguro</td>
             </tr>
             <tr>
               <td>
-                <select class="common-input" style="width: 360px">
+                <select class="common-input" name="seguro" style="width: 370px">
                   <option value="1">Mercantil</option>
                   <option value="2">Caracas</option>
                 </select>
               </td>
             </tr>
             <tr>
-              <td>Poliza</td>
+              <td>Poliza (opcional)</td>
             </tr>
             <tr>
-              <td><input type="text" class="common-input is-required" name="rs" id="rs"></td></td>
+              <td><input type="text" class="common-input is-required" name="poliza"></td></td>
             </tr>
             <tr>
               <td><div class="error hide">Uno o más campos son inválidos.</div></td>
@@ -94,32 +80,27 @@ $clientes = $cliente->find_all();
             <div id="scroll">
               <table class="tbl-details" cellspacing="0" borderspacing="0">
                 <tbody>
-                  <?php
-                  if (sizeof($clientes) > 0) {
-                    foreach ($clientes as $value) {
-                      ?>
-                      <tr>
-                        <td>
-                          <div class="item">
-                            <p class="item-title"><?php echo $value->nombre; ?></p>
-                            <p clas="item-sub-title"><?php echo $value->razon_social; ?></p>
-                            <p class="separator"></p>
-                            <p class="item-info">Fecha de creación: <span><?php echo $value->cr_time; ?></span></p>
-                            <p class="item-info">Última modificación: <span><?php echo $value->ut_time; ?></span></p>
-                            <div class="options">
-                              <form method="post" action="operation.php?operation_type=3" onsubmit="return formOperation()">
-                                <input type="button" id="modify-client" id-item="<?php echo $value->id; ?>" class="icon-operation icon-modified" onclick="UTIL.loadDialog('load/loadClient.php', this, $('#modify'));return false;">
-                                <input type="submit" type="submit" value="" class="icon-operation icon-delete">
-                                <input type="hidden" name="id" value="<?php echo $value->id; ?>">
-                              </form>
-                            </div>
-                          </div>
-                        </td>
-                      </tr>
-                      <?php
-                    }
-                  }
-                  ?>
+
+                  <tr>
+                    <td>
+                      <div class="item">
+                        <p class="item-title">Acuerdo empresa 2013</p>
+                        <p clas="item-sub-title">Mercantil</p>
+                        <p clas="item-sub-title">1029383-122</p>
+                        <p class="separator"></p>
+                        <p class="item-info">Fecha de creación: <span><?php echo $value->cr_time; ?></span></p>
+                        <p class="item-info">Última modificación: <span><?php echo $value->ut_time; ?></span></p>
+                        <div class="options top-max">
+                          <form method="post" action="operation.php?operation_type=12" onsubmit="return formOperation()">
+                            <input type="button" id="modify-client" id-item="<?php echo $value->id; ?>" class="icon-operation icon-modified" onclick="UTIL.loadDialog('load/loadAgreement.php', this, $('#modify'));
+                                return false;">
+                            <input type="submit" type="submit" value="" class="icon-operation icon-delete">
+                            <input type="hidden" name="id" value="<?php echo $value->id; ?>">
+                          </form>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
                 </tbody>
               </table>
             </div>
