@@ -1,3 +1,18 @@
+<?php
+session_start();
+require_once("../../php/db/config.php");
+require_once ('../../php/db/database.php');
+require_once ('../../php/entity/aseguradora.php');
+
+if (isset($_REQUEST["id"]) ){
+    
+    $aseguradora = new aseguradora();
+    $aseguradora->id=$_REQUEST["id"];
+    $aseguradora_aux = $aseguradora->find_by_id_aseguradora();
+    
+
+  
+?>
 <div>   
   <form method="post" action="operation.php?operation_type=5">
     <table align="center" width="360">
@@ -31,3 +46,12 @@
     </table>
   </form>
 </div>
+<?php
+}else
+{
+    
+   echo "Pepe";
+    
+}
+
+?>

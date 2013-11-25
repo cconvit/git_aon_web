@@ -5,6 +5,18 @@ require_once ('../php/db/database.php');
 require_once ('../php/entity/aseguradora.php');
 $aseguradora = new aseguradora();
 $aseguradoras = $aseguradora->find_all();
+
+$msg = "hide";
+$msg_desc = "";
+$msg_type = "succesfull";
+
+if (isset($_SESSION['msg'])) {
+  if ($_SESSION['msg'] == "show") {
+    $msg = "show";
+    $msg_desc = $_SESSION['msg_desc'];
+  }
+}
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -17,7 +29,7 @@ $aseguradoras = $aseguradora->find_all();
     <link href="css/style.css" rel="stylesheet" type="text/css">
   <body>
     <div id="new" class="dialog">   
-      <form method="post" action="operation.php?operation_type=4" onsubmit="return isValidateSubmit($(this))">
+      <form method="post" action="../php/operation/administration.php?operation_type=4&target=../../flota/seguros.php" onsubmit="return isValidateSubmit($(this))">
         <table align="center" width="360">
           <tbody>
             <tr>
@@ -55,7 +67,7 @@ $aseguradoras = $aseguradora->find_all();
         <div id="top-nav"></div>
       </div>
       <div id="content">
-        <div class="message hide">Ocurrio un error mientras se cargaba el seguro. Por favor intente mas tarde. Si el error persiste, comuniquese con el administrador del sistema.</div>
+        <div class="message <?php echo $msg . " " . $msg_type; ?>"><?php echo $msg_desc; ?></div>
         <div id="left-nav">
           <ul>
             <li><a href="clientes.php">Clientes</a></li>
@@ -89,8 +101,8 @@ $aseguradoras = $aseguradora->find_all();
                             <p class="item-info">Fecha de creación: <span><?php echo $value->cr_time; ?></span></p>
                             <p class="item-info">Última modificación: <span><?php echo $value->ut_time; ?></span></p>
                             <div class="options">
-                              <form method="post" action="operation.php?operation_type=6" onsubmit="return formOperation()">
-                                <input type="button" data="<?php echo $value->id; ?>" class="icon-operation icon-modified" onclick="UTIL.loadDialog('load/loadInsure.php', this, $('#modify')); return false;">
+                              <form method="post" action="../php/operation/administration.php?operation_type=6&target=../../flota/seguros.php" onsubmit="return formOperation()">
+                                <input type="button" id="modify-insure" id-item="<?php echo $value->id; ?>" class="icon-operation icon-modified" onclick="UTIL.loadDialog('load/loadInsure.php', this, $('#modify')); return false;">
                                 <input type="submit" class="icon-operation icon-delete" value="">
                                 <input type="hidden" name="id" value="<?php echo $value->id; ?>">
                               </form>
@@ -115,3 +127,8 @@ $aseguradoras = $aseguradora->find_all();
     <script src="../plugins/jquery-ui-1.10.3.custom.min.js"></script>
     <script src="js/snippet.js"></script>
   </body>
+    <?php
+  $_SESSION['msg'] = "hide";
+  $_SESSION['msg_desc'] = "";
+  $msg_type = "succesfull";
+  ?>

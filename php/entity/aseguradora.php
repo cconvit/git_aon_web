@@ -33,6 +33,13 @@ class aseguradora{
     return $object_array;
   }
   
+  public  function find_by_id_aseguradora() {
+      
+      global $database;
+      
+		return self::find_by_sql("SELECT * FROM ".self::$table_name." WHERE id='{$database->escape_value($this->id)}'");
+  }
+  
     public  function update_by_id() {
       
       global $database;
