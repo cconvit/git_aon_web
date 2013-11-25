@@ -96,7 +96,7 @@ button::-moz-focus-inner, input::-moz-focus-inner {
 	display: none;
 }
 .common-input{
-  width: 100%;
+  width: 350px;
   margin: 10px 0px;
   padding: 2px 5px 5px 5px;
 }
