@@ -1,3 +1,28 @@
+<?php
+session_start();
+require_once("../php/db/config.php");
+require_once ('../php/db/database.php');
+require_once ('../php/entity/convenio_aseguradora.php');
+require_once ('../php/entity/aseguradora.php');
+
+$convenio_aseguradora = new convenio_aseguradora();
+$convenios_aseguradoras = $convenio_aseguradora->find_all();
+$msg = "hide";
+$msg_desc = "";
+$msg_type = "succesfull";
+
+if (isset($_SESSION['msg'])) {
+  if ($_SESSION['msg'] == "show") {
+    $msg = "show";
+    $msg_desc = $_SESSION['msg_desc'];
+    $msg_type = $_SESSION['msg_type'];
+  }
+}
+
+$aseguradora =new aseguradora();
+$aseguradoras=$aseguradora->find_all();
+  
+?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -10,7 +35,7 @@
   </head>
   <body>
     <div id="new" class="dialog">
-      <form method="post" action="operation.php?operation_type=10" onsubmit="return isValidateSubmit($(this))">
+      <form id="new-convenio" method="post" action="../php/operation/administration.php?operation_type=10&target=../../flota/convenios.php" onsubmit="return isValidateSubmit($(this))">
         <table align="center" width="370">
           <tbody>
             <tr>
@@ -25,8 +50,16 @@
             <tr>
               <td>
                 <select class="common-input" name="seguro" style="width: 370px">
-                  <option value="1">Mercantil</option>
-                  <option value="2">Caracas</option>
+                  <?php
+             
+                    if (sizeof($aseguradoras) > 0) {
+                         foreach ($aseguradoras as $value) {
+                  ?>
+                   <option value="<?php echo $value->id; ?>"><?php echo $value->nombre; ?></option>
+              <?php
+                    }
+               }
+              ?>
                 </select>
               </td>
             </tr>
@@ -60,7 +93,7 @@
         <div id="top-nav"></div>
       </div>
       <div id="content">
-        <div class="message hide">Ocurrio un error mientras se cargaba el cliente. Por favor intente mas tarde. Si el error persiste, comuniquese con el administrador del sistema.</div>
+        <div class="message <?php echo $msg . " " . $msg_type; ?>"><?php echo $msg_desc; ?></div>
         <div id="left-nav">
           <ul>
             <li class="current"><a href="clientes.php">Clientes</a></li>
@@ -80,19 +113,22 @@
             <div id="scroll">
               <table class="tbl-details" cellspacing="0" borderspacing="0">
                 <tbody>
-
-                  <tr>
+<?php
+                  if (sizeof($convenios_aseguradoras) > 0) {
+                    foreach ($convenios_aseguradoras as $value) {
+                      ?>                
+				<tr>
                     <td>
                       <div class="item">
-                        <p class="item-title">Acuerdo empresa 2013</p>
-                        <p clas="item-sub-title">Mercantil</p>
-                        <p clas="item-sub-title">1029383-122</p>
+                        <p class="item-title"><?php echo $value->descripcion; ?></p>
+                        <p clas="item-sub-title"><?php echo $value->as_nombre; ?></p>
+                        <p clas="item-sub-title"><?php echo ""; ?></p>
                         <p class="separator"></p>
                         <p class="item-info">Fecha de creación: <span><?php echo $value->cr_time; ?></span></p>
                         <p class="item-info">Última modificación: <span><?php echo $value->ut_time; ?></span></p>
                         <div class="options top-max">
-                          <form method="post" action="operation.php?operation_type=12" onsubmit="return formOperation()">
-                            <input type="button" id="modify-client" id-item="<?php echo $value->id; ?>" class="icon-operation icon-modified" onclick="UTIL.loadDialog('load/loadAgreement.php', this, $('#modify'));
+                          <form method="post" action="../php/operation/administration.php?operation_type=12&target=../../flota/convenios.php" onsubmit="return formOperation()">
+                            <input type="button" data="<?php echo $value->id; ?>" class="icon-operation icon-modified" onclick="UTIL.loadDialog('load/loadAgreement.php', this, $('#modify'));
                                 return false;">
                             <input type="submit" type="submit" value="" class="icon-operation icon-delete">
                             <input type="hidden" name="id" value="<?php echo $value->id; ?>">
@@ -101,6 +137,10 @@
                       </div>
                     </td>
                   </tr>
+                  <?php
+                    }
+                  }
+                  ?>
                 </tbody>
               </table>
             </div>
@@ -113,3 +153,8 @@
     <script src="../plugins/jquery-ui-1.10.3.custom.min.js"></script>
     <script src="js/snippet.js"></script>
   </body>
+<?php
+  $_SESSION['msg'] = "hide";
+  $_SESSION['msg_desc'] = "";
+  $msg_type = "succesfull";
+  ?>

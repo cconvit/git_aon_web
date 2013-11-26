@@ -31,6 +31,30 @@ if (isset($_REQUEST["operation_type"])) {
     case 6:
       deleteAseguradora($_REQUEST["id"]);
       break;
+  
+    case 7:
+      newCobertura($_REQUEST["nombre"], $_REQUEST["descripcion"]);
+      break;
+  
+    case 8:
+      updateCobertura($_REQUEST["id"], $_REQUEST["nombre"], $_REQUEST["descripcion"]);
+      break;
+
+    case 9:
+      deleteCobertura($_REQUEST["id"]);
+      break;
+  
+    case 10:
+      newConvenio($_REQUEST["nombre"], $_REQUEST["seguro"],$_REQUEST["poliza"]);
+      break;
+  
+    case 11:
+      updateConvenio($_REQUEST["id"], $_REQUEST["nombre"],$_REQUEST["seguro"],$_REQUEST["poliza"]);
+      break;
+
+    case 12:
+      deleteConvenio($_REQUEST["id"]);
+      break;
   }
 }
 
@@ -140,20 +164,134 @@ function newAseguradora($nombre, $razon_social) {
 
 function deleteAseguradora($id) {
 
-  require_once ('../entity/aseguradora.php');
+ require_once ('../entity/aseguradora.php');
   $aseguradora = new aseguradora();
   $aseguradora->id = $id;
 
   $_SESSION["msg"] = "show";
 
   if (!$aseguradora->delete()) {
-    $_SESSION["msg_desc"] = "Ocurrio un error al tratar de eliminar un seguro. Por favor intente mas tarde. Si el error persiste, comuniquese con el administrador del sistema.";
+    $_SESSION["msg_desc"] = "Ocurrio un error al tratar de crear un seguro. Por favor intente mas tarde. Si el error persiste, comuniquese con el administrador del sistema.";
     $_SESSION["msg_type"] = "error";
   } else {
-    $_SESSION["msg_desc"] = "El seguro fue eliminado exitosamente";
-    $_SESSION["msg_type"] = "succesfull";
+    $_SESSION["msg_desc"] = "La creación del seguro se realizó exitosamente";
+     $_SESSION["msg_type"]  = "succesfull";
   }
   header('Location: ' . $_GET["target"]);
 }
 
+function newCobertura($nombre, $descripcion) {
+
+  require_once ('../entity/cobertura_aseguradora.php');
+  $cobertura_aseguradora = new cobertura_aseguradora();
+  $cobertura_aseguradora->desc_cobertura = $nombre;
+
+
+  $_SESSION["msg"] = "show";
+
+  if (!$cobertura_aseguradora->create()) {
+    $_SESSION["msg_desc"] = "Ocurrio un error al tratar de crear una cobertura. Por favor intente mas tarde. Si el error persiste, comuniquese con el administrador del sistema.";
+    $_SESSION["msg_type"] = "error";
+  } else {
+    $_SESSION["msg_desc"] = "La creación de la cobertura se realizó exitosamente";
+     $_SESSION["msg_type"]  = "succesfull";
+  }
+  header('Location: ' . $_GET["target"]);
+}
+
+function updateCobertura($id, $nombre, $descripcion) {
+
+  require_once ('../entity/cobertura_aseguradora.php');
+  $cobertura_aseguradora = new cobertura_aseguradora();
+  $cobertura_aseguradora->id=$id;
+  $cobertura_aseguradora->desc_cobertura = $nombre;
+
+
+  $_SESSION["msg"] = "show";
+
+  if (!$cobertura_aseguradora->update_by_id()) {
+    $_SESSION["msg_desc"] = "Ocurrio un error al tratar de actualizar una cobertura. Por favor intente mas tarde. Si el error persiste, comuniquese con el administrador del sistema.";
+    $_SESSION["msg_type"] = "error";
+  } else {
+    $_SESSION["msg_desc"] = "La actualización de la cobertura se realizó exitosamente";
+     $_SESSION["msg_type"]  = "succesfull";
+  }
+  header('Location: ' . $_GET["target"]);
+}
+
+function deleteCobertura($id) {
+
+  require_once ('../entity/cobertura_aseguradora.php');
+  $cobertura_aseguradora = new cobertura_aseguradora();
+  $cobertura_aseguradora->id=$id;
+
+
+  $_SESSION["msg"] = "show";
+
+  if (!$cobertura_aseguradora->delete()) {
+    $_SESSION["msg_desc"] = "Ocurrio un error al tratar de eliminar una cobertura. Por favor intente mas tarde. Si el error persiste, comuniquese con el administrador del sistema.";
+    $_SESSION["msg_type"] = "error";
+  } else {
+    $_SESSION["msg_desc"] = "La eliminación de la cobertura se realizó exitosamente";
+     $_SESSION["msg_type"]  = "succesfull";
+  }
+  header('Location: ' . $_GET["target"]);
+}
+
+function newConvenio($nombre, $seguro,$poliza) {
+
+  require_once ('../entity/convenio_aseguradora.php');
+  $convenio_aseguradora = new convenio_aseguradora();
+  $convenio_aseguradora->descripcion = $nombre;
+  $convenio_aseguradora->id_aseguradora = $seguro;
+
+  $_SESSION["msg"] = "show";
+
+  if (!$convenio_aseguradora->create()) {
+    $_SESSION["msg_desc"] = "Ocurrio un error al tratar de crear un convenio. Por favor intente mas tarde. Si el error persiste, comuniquese con el administrador del sistema.";
+    $_SESSION["msg_type"] = "error";
+  } else {
+    $_SESSION["msg_desc"] = "La creación del convenio se realizó exitosamente";
+     $_SESSION["msg_type"]  = "succesfull";
+  }
+  header('Location: ' . $_GET["target"]);
+}
+
+function updateConvenio($id,$nombre, $seguro,$poliza) {
+
+  require_once ('../entity/convenio_aseguradora.php');
+  $convenio_aseguradora = new convenio_aseguradora();
+  $convenio_aseguradora->id=$id;
+  $convenio_aseguradora->descripcion = $nombre;
+  $convenio_aseguradora->id_aseguradora = $seguro;
+
+  $_SESSION["msg"] = "show";
+
+  if (!$convenio_aseguradora->update_by_id()) {
+    $_SESSION["msg_desc"] = "Ocurrio un error al tratar de actualizar el convenio. Por favor intente mas tarde. Si el error persiste, comuniquese con el administrador del sistema.";
+    $_SESSION["msg_type"] = "error";
+  } else {
+    $_SESSION["msg_desc"] = "La actualización del convenio se realizó exitosamente";
+     $_SESSION["msg_type"]  = "succesfull";
+  }
+  header('Location: ' . $_GET["target"]);
+}
+
+function deleteConvenio($id) {
+
+  require_once ('../entity/convenio_aseguradora.php');
+  $convenio_aseguradora = new convenio_aseguradora();
+  $convenio_aseguradora->id=$id;
+
+  $_SESSION["msg"] = "show";
+
+  if (!$convenio_aseguradora->delete()) {
+    $_SESSION["msg_desc"] = "Ocurrio un error al tratar de eliminar el convenio. Por favor intente mas tarde. Si el error persiste, comuniquese con el administrador del sistema.";
+    $_SESSION["msg_type"] = "error";
+  } else {
+    $_SESSION["msg_desc"] = "La eliminación del convenio se realizó exitosamente";
+     $_SESSION["msg_type"]  = "succesfull";
+  }
+  header('Location: ' . $_GET["target"]);
+}
 ?>
