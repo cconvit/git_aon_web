@@ -10,7 +10,7 @@ if (isset($_GET["id"])) {
   $cliente_aux = $cliente->find_by_id_cliente();
   ?>
   <div>   
-    <form method="post" action="../php/operation/administration.php?operation_type=2&target=../../flota/clientes.php&id_item=<?Php echo $cliente_aux[0]->id; ?>">
+    <form method="post" action="../php/operation/administration.php?operation_type=2&target=../../flota/clientes.php&id=<?Php echo $cliente_aux[0]->id; ?>">
       <table align="center" width="360">
         <tbody>
           <tr>

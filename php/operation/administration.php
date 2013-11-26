@@ -48,10 +48,10 @@ function updateClient($id, $nombre, $razon_social) {
 
   if (!$cliente->update_by_id()) {
     $_SESSION["msg_desc"] = "Ocurrio un error al modificar al cliente. Por favor intente mas tarde. Si el error persiste, comuniquese con el administrador del sistema.";
-    $msg_type = "error";
+    $_SESSION["msg_type"] = "error";
   } else {
     $_SESSION["msg_desc"] = "La modificación del cliente se realizó exitosamente";
-    $msg_type = "succesfull";
+    $_SESSION["msg_type"] = "succesfull";
   }
   header('Location: ' . $_GET["target"]);
 }
@@ -69,10 +69,10 @@ function newClient($nombre, $razon_social) {
 
   if (!$cliente->create()) {
     $_SESSION["msg_desc"] = "Ocurrio un error al tratar de crear al cliente. Por favor intente mas tarde. Si el error persiste, comuniquese con el administrador del sistema.";
-    $msg_type = "error";
+    $_SESSION["msg_type"] = "error";
   } else {
     $_SESSION["msg_desc"] = "La creación del cliente se realizó exitosamente";
-    $msg_type = "succesfull";
+     $_SESSION["msg_type"]  = "succesfully";
   }
   header('Location: ' . $_GET["target"]);
 }
@@ -87,10 +87,10 @@ function deleteClient($id) {
 
   if (!$cliente->delete()) {
     $_SESSION["msg_desc"] = "Ocurrio un error al tratar de eliminar al cliente. Por favor intente mas tarde. Si el error persiste, comuniquese con el administrador del sistema.";
-    $msg_type = "error";
+    $_SESSION["msg_type"] = "error";
   } else {
     $_SESSION["msg_desc"] = "El cliente fue eliminado exitosamente";
-    $msg_type = "succesfull";
+    $_SESSION["msg_type"] = "succesfully";
   }
   header('Location: ' . $_GET["target"]);
 }
