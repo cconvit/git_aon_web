@@ -53,7 +53,7 @@ if (isset($_SESSION['msg'])) {
               <td>
                 <div class="buttons-panel">
                   <input type="submit" class="common-button" value="Guardar">
-                  <input type="button" id="close-dialog" class="common-button" onclick="$('#new').dialog('close');" value="Salir" >
+                  <input type="button" class="common-button" value="Salir" onclick="$('#new').dialog('close');">
                 </div>
               </td>
             </tr>

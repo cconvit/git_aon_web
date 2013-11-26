@@ -5,7 +5,6 @@ require_once ('../php/db/database.php');
 require_once ('../php/entity/aseguradora.php');
 $aseguradora = new aseguradora();
 $aseguradoras = $aseguradora->find_all();
-
 $msg = "hide";
 $msg_desc = "";
 $msg_type = "succesfull";
@@ -16,7 +15,6 @@ if (isset($_SESSION['msg'])) {
     $msg_desc = $_SESSION['msg_desc'];
   }
 }
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -45,7 +43,7 @@ if (isset($_SESSION['msg'])) {
               <td><input type="text" class="common-input is-required" name="rs"></td></td>
             </tr>
             <tr>
-              <td><div class="error hide">Uno o más campos son inválidos.</div></td>
+              <td><div class="required hide">Uno o más campos son inválidos.</div></td>
             </tr>            
           </tbody>
           <tfoot>
@@ -53,7 +51,7 @@ if (isset($_SESSION['msg'])) {
               <td>    
                 <div class="buttons-panel">
                   <input type="submit" class="common-button" value="Guardar">
-                  <input type="button" id="close-dialog" class="common-button" onclick="$('#new').dialog('close');" value="Salir" > 
+                  <input type="button" class="common-button" onclick="$('#new').dialog('close');" value="Salir" > 
                 </div> 
               </td>
             </tr>
@@ -102,7 +100,7 @@ if (isset($_SESSION['msg'])) {
                             <p class="item-info">Última modificación: <span><?php echo $value->ut_time; ?></span></p>
                             <div class="options">
                               <form method="post" action="../php/operation/administration.php?operation_type=6&target=../../flota/seguros.php" onsubmit="return formOperation()">
-                                <input type="button" id="modify-insure" id-item="<?php echo $value->id; ?>" class="icon-operation icon-modified" onclick="UTIL.loadDialog('load/loadInsure.php', this, $('#modify')); return false;">
+                                <input type="button" data="<?php echo $value->id; ?>" class="icon-operation icon-modified" onclick="UTIL.loadDialog('load/loadInsure.php', this, $('#modify'));return false;">
                                 <input type="submit" class="icon-operation icon-delete" value="">
                                 <input type="hidden" name="id" value="<?php echo $value->id; ?>">
                               </form>
@@ -127,7 +125,7 @@ if (isset($_SESSION['msg'])) {
     <script src="../plugins/jquery-ui-1.10.3.custom.min.js"></script>
     <script src="js/snippet.js"></script>
   </body>
-    <?php
+  <?php
   $_SESSION['msg'] = "hide";
   $_SESSION['msg_desc'] = "";
   $msg_type = "succesfull";

@@ -1,21 +1,21 @@
 <div>   
-  <form method="post" action="operation.php?operation_type=8">
+  <form method="post" action="operation.php?operation_type=8" onsubmit="return isValidateSubmit($(this))">
     <table align="center" width="360">
       <tbody>
         <tr>
           <td>Nombre</td>
         </tr>
         <tr>
-          <td><input type="text" class="common-input is-required" name="nombre" id="nombre" value="ALTA2"></td></td>
+          <td><input type="text" class="common-input is-required" name="nombre"></td></td>
         </tr>
          <tr>
           <td>Descripción</td>
         </tr>
         <tr>
-          <td><input type="text" class="common-input is-required" name="rs" id="rs" value="ALTA SISTEMA C.A.2"></td></td>
+          <td><input type="text" class="common-input is-required" name="rs"></td></td>
         </tr>
         <tr>
-          <td><div class="error hide">Uno o más campos son inválidos.</div></td>
+          <td><div class="required hide">Uno o más campos son inválidos.</div></td>
         </tr>
       </tbody>
       <tfoot>

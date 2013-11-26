@@ -33,13 +33,16 @@ $coberturas = $co_as->find_all();
             <tr>
               <td><input type="text" class="common-input is-required" name="descripcion"></td></td>
             </tr>
+            <tr>
+              <td><div class="required hide">Uno o más campos son inválidos.</div></td>
+            </tr>              
           </tbody>
           <tfoot>
             <tr>
               <td>
                 <div class="buttons-panel">
                   <input type="submit" class="common-button" value="Guardar">
-                  <input type="button" id="close-dialog" class="common-button" value="Salir" >
+                  <input type="button" class="common-button" value="Salir" onclick="$('#new').dialog('close');">
                 </div>
               </td>
             </tr>
@@ -75,7 +78,6 @@ $coberturas = $co_as->find_all();
                 <tbody>
                   <?php
                   if (sizeof($coberturas) > 0) {
-
                     foreach ($coberturas as $value) {
                       ?>
                       <tr>
@@ -88,10 +90,9 @@ $coberturas = $co_as->find_all();
                             <p class="item-info">Última modificación: <span><?php echo $value->ut_time; ?></span></p>
                             <div class="options">
                               <form method="post" action="operation.php?operation_type=9" onsubmit="return formOperation()">
-                                <input type="button" data="<?php echo $value->id; ?>" class="icon-operation icon-modified" onclick="UTIL.loadDialog('load/loadCoverage.php', this, $('#modify'));return false;">
+                                <input type="button" data="<?php echo $value->id; ?>" class="icon-operation icon-modified" onclick="UTIL.loadDialog('load/loadCoverage.php', this, $('#modify')); return false;">
                                 <input type="submit" class="icon-operation icon-delete" value="">
-                                <input type="hidden" name="id" value="<?php echo $value->id; ?>"
-                                </div>
+                                <input type="hidden" name="id" value="<?php echo $value->id; ?>">
                               </form>
                             </div>
                         </td>
