@@ -45,7 +45,7 @@ if (isset($_SESSION['msg'])) {
               <td><input type="text" class="common-input is-required" name="rs" id="rs"></td></td>
             </tr>
             <tr>
-              <td><div class="error hide">Uno o más campos son inválidos.</div></td>
+              <td><div class="required hide">Uno o más campos son inválidos.</div></td>
             </tr>
           </tbody>
           <tfoot>

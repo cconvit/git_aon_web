@@ -60,7 +60,7 @@ function formOperation(){
 function isValidateSubmit(form){
   var cont, element, message;
   cont = 0;
-  message = form.find("div.error");
+  message = form.find("div.required");
   form.find("input.is-required").each(function () {
    element = $(this);
    if(element.val() === ""){
