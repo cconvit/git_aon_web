@@ -13,6 +13,7 @@ if (isset($_SESSION['msg'])) {
   if ($_SESSION['msg'] == "show") {
     $msg = "show";
     $msg_desc = $_SESSION['msg_desc'];
+    $msg_type = $_SESSION['msg_type'];
   }
 }
 ?>

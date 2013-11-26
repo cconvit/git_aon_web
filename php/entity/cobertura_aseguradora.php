@@ -32,6 +32,75 @@ class cobertura_aseguradora{
     return $object_array;
   }
   
+  public  function find_by_id_cobertura() {
+      
+      global $database;
+      
+		return self::find_by_sql("SELECT * FROM ".self::$table_name." WHERE id='{$database->escape_value($this->id)}'");
+  }
+  
+    public  function update_by_id() {
+      
+      global $database;
+      
+        $sql="UPDATE ".self::$table_name." SET
+                                  desc_cobertura='{$database->escape_value($this->desc_cobertura)}'
+                                  WHERE id='{$database->escape_value($this->id)}'";
+
+    
+                  
+      if($database->query($sql)) {
+          
+          if(mysql_affected_rows() != 0){
+             $this->id_user = $database->insert_id();
+          return true;}
+         else{
+             return false;
+         }
+
+      } else {
+        return false;
+      }
+      
+  }
+  
+    public  function create() {
+      
+      global $database;
+      
+        $sql="INSERT INTO ".self::$table_name." (desc_cobertura,cr_time) VALUES (
+                            '{$database->escape_value($this->desc_cobertura)}',
+                            NOW())";
+                                          
+                                          
+      if($database->query($sql)) {
+        $this->id = $database->insert_id();
+        return true;
+      } else {
+        return false;
+      }
+  }
+  
+     public  function delete() {
+      
+      global $database;
+      
+        $sql="DELETE FROM ".self::$table_name."
+                                  WHERE id='{$database->escape_value($this->id)}'";
+
+    
+                                 
+      if($database->query($sql)) {
+         if(mysql_affected_rows() != 0)
+             return true;
+         else
+             return false;
+      } else {
+          echo "pepe";
+        return false;
+      }
+      
+  }
   
   ///////////////////////////METODOS ESTANDAR//////////////////////////////////
   
