@@ -21,15 +21,15 @@ if (isset($_REQUEST["operation_type"])) {
       break;
 
     case 4:
-      newSeguro($_REQUEST["nombre"], $_REQUEST["rs"]);
+      newAseguradora($_REQUEST["nombre"], $_REQUEST["rs"]);
       break;
-
+  
     case 5:
-      updateSeguro($_REQUEST["id"], $_REQUEST["nombre"], $_REQUEST["rs"]);
+      updateAseguradora($_REQUEST["id"], $_REQUEST["nombre"], $_REQUEST["rs"]);
       break;
 
     case 6:
-      deleteSeguro($_REQUEST["id"]);
+      deleteAseguradora($_REQUEST["id"]);
       break;
   }
 }
@@ -72,7 +72,7 @@ function newClient($nombre, $razon_social) {
     $_SESSION["msg_type"] = "error";
   } else {
     $_SESSION["msg_desc"] = "La creación del cliente se realizó exitosamente";
-     $_SESSION["msg_type"]  = "succesfully";
+     $_SESSION["msg_type"]  = "succesfull";
   }
   header('Location: ' . $_GET["target"]);
 }
@@ -90,7 +90,68 @@ function deleteClient($id) {
     $_SESSION["msg_type"] = "error";
   } else {
     $_SESSION["msg_desc"] = "El cliente fue eliminado exitosamente";
-    $_SESSION["msg_type"] = "succesfully";
+    $_SESSION["msg_type"] = "succesfull";
+  }
+  header('Location: ' . $_GET["target"]);
+}
+
+function updateAseguradora($id, $nombre, $razon_social) {
+
+  require_once ('../entity/aseguradora.php');
+  $aseguradora = new aseguradora();
+  $aseguradora->id = $id;
+  $aseguradora->estatus = "1";
+  $aseguradora->nombre = $nombre;
+  $aseguradora->razon_social = $razon_social;
+
+
+  $_SESSION["msg"] = "show";
+
+  if (!$aseguradora->update_by_id()) {
+    $_SESSION["msg_desc"] = "Ocurrio un error al modificar el seguro. Por favor intente mas tarde. Si el error persiste, comuniquese con el administrador del sistema.";
+    $_SESSION["msg_type"] = "error";
+  } else {
+    $_SESSION["msg_desc"] = "La modificación del seguro se realizó exitosamente";
+    $_SESSION["msg_type"] = "succesfull";
+  }
+  header('Location: ' . $_GET["target"]);
+}
+
+function newAseguradora($nombre, $razon_social) {
+
+  require_once ('../entity/aseguradora.php');
+  $aseguradora = new aseguradora();
+  $aseguradora->estatus = "1";
+  $aseguradora->nombre = $nombre;
+  $aseguradora->razon_social = $razon_social;
+
+
+  $_SESSION["msg"] = "show";
+
+  if (!$aseguradora->create()) {
+    $_SESSION["msg_desc"] = "Ocurrio un error al tratar de crear un seguro. Por favor intente mas tarde. Si el error persiste, comuniquese con el administrador del sistema.";
+    $_SESSION["msg_type"] = "error";
+  } else {
+    $_SESSION["msg_desc"] = "La creación del seguro se realizó exitosamente";
+     $_SESSION["msg_type"]  = "succesfull";
+  }
+  header('Location: ' . $_GET["target"]);
+}
+
+function deleteAseguradora($id) {
+
+  require_once ('../entity/aseguradora.php');
+  $aseguradora = new aseguradora();
+  $aseguradora->id = $id;
+
+  $_SESSION["msg"] = "show";
+
+  if (!$aseguradora->delete()) {
+    $_SESSION["msg_desc"] = "Ocurrio un error al tratar de eliminar un seguro. Por favor intente mas tarde. Si el error persiste, comuniquese con el administrador del sistema.";
+    $_SESSION["msg_type"] = "error";
+  } else {
+    $_SESSION["msg_desc"] = "El seguro fue eliminado exitosamente";
+    $_SESSION["msg_type"] = "succesfull";
   }
   header('Location: ' . $_GET["target"]);
 }
