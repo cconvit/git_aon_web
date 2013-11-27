@@ -42,6 +42,17 @@ var UTIL = {
   }
 };
 
+var WIZARD = {
+  init: function(step) {
+    var step = step;
+  },
+  create: function(form) {
+    if (isValidateSubmit(form)) {
+      form.submit()
+    }
+  }
+}
+
 $(document).ready(function(e) {
   AON.init();
   UTIL.init();
@@ -57,7 +68,6 @@ function formOperation() {
 }
 
 function isValidateSubmit(form) {
-  alert()
   var cont, element, message;
   cont = 0;
   message = form.find("div.required");

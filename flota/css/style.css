@@ -48,7 +48,7 @@ button, input, select, textarea {
   margin: 0;
   vertical-align: middle;
 }
-input[type="text"], input[type="password"], select {
+input[type="text"], input[type="password"], select, textarea {
   font-size: 14px;
   color: #ffffff;
   background-color: #959595;
@@ -57,6 +57,11 @@ input[type="text"], input[type="password"], select {
   -webkit-border-radius: 6px;
   -moz-border-radius: 6px;
 }
+input[type="text"]:focus, input[type="password"]:focus, select:focus, textarea:focus {
+  outline: none;
+  -webkit-focus-ring-color: none;
+}
+
 button, input[type="button"], input[type="reset"], input[type="submit"] {
   cursor: pointer;
   -webkit-appearance: button;
@@ -310,6 +315,9 @@ input[type="button"], input[type="submit"]  {
   right: 0px;
   top: 31px;
 }
+input[type="button"]:focus, input[type="submit"]:focus{
+  outline: none;
+}
 
 /* error */
 
@@ -416,8 +424,18 @@ body, html{
   border-bottom: solid 2px #ACACAC;
   margin-bottom: 0px;
 }
+#nav-step{
+  margin-top: 9px;
+  color: #FFFFFF;
+}
+#nav-step ul li{
+  display: inline-block;
+  margin-left: 26px;
+  vertical-align: middle;
+  cursor: pointer;
+}
 #footer{
-  height: 41px;
+  height: 42px;
   width: 100%;
   background-color: #54B6E7;
   position: fixed;
@@ -425,6 +443,7 @@ body, html{
   z-index: 10;
   bottom: 0px;
   left: 0px;
+  text-align: center;
 }
 .access{
   position: absolute; 
@@ -453,7 +472,6 @@ a.access-title{
   text-transform: uppercase;
   display: block;
 }
-
 .new-cotizacion{
   background-position: -5px -70px;
 }
@@ -478,6 +496,14 @@ a.access-title{
   text-transform: uppercase;
   padding: 13px 0px;
   font-style: italic;
+}
+.arrow{
+  width: 6px;
+  height: 14px;
+  background-image: url('../img/sprite.png');
+  background-repeat: no-repeat;
+  display: inline-block;
+  background-position: -247px -35px; 
 }
 .message{
   width: 1277px;
@@ -545,14 +571,28 @@ a.access-title{
   top: 70px;
 }
 .icon-operation{
-  background-image: url(../img/sprite.png);
-  background-repeat: no-repeat;
   display: inline-block;
   margin-bottom: 2px;
   clear: both;
   float: left;
   width: 90px;
   height: 25px;
+}
+.icon-step{
+  width: 82px;
+  height: 25px;
+}
+.icon-next{
+  background-position: -280px -37px;
+}
+.icon-back{
+  background-position: -280px -5px;
+}
+.icon-next-disabled{
+  background-position: -379px -37px;
+}
+.icon-back-disabled{
+  background-position: -379px -5px;
 }
 .icon-modified{
   background-position: -5px -5px;
