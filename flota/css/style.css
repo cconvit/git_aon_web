@@ -434,6 +434,12 @@ body, html{
   vertical-align: middle;
   cursor: pointer;
 }
+#nav-step ul li a{
+  color: #FFFFFF;
+}
+#nav-step ul li a.current-step{
+  color: #4D4F53;
+}
 #footer{
   height: 42px;
   width: 100%;
@@ -444,7 +450,7 @@ body, html{
   bottom: 0px;
   left: 0px;
   text-align: center;
-}
+} 
 .access{
   position: absolute; 
   top: 120px; 
@@ -562,10 +568,13 @@ a.access-title{
   clear: both;
   position: relative;
 }
+.info-down{
+  position: relative;
+}
 .options{
   position: absolute;
   right: 0px;
-  top: 55px;
+  top: 0px;
 }
 .top-max{
   top: 70px;
@@ -577,6 +586,10 @@ a.access-title{
   float: left;
   width: 90px;
   height: 25px;
+}
+.icon-upload{
+  width: 95px;
+  background-position: -474px -5px;
 }
 .icon-step{
   width: 82px;
@@ -599,6 +612,13 @@ a.access-title{
 }
 .icon-delete{
   background-position: -5px -35px;
+}
+.check{
+  display: inline-block;
+  background-image: url('../img/sprite.png');
+  background-position: -214px -34px;
+  width: 24px;
+  height: 24px;
 }
 .add-button{
   width: 146px;

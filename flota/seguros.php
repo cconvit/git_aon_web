@@ -26,6 +26,7 @@ if (isset($_SESSION['msg'])) {
     <link href="css/jquery-ui-1.10.3.custom.min.css" rel="stylesheet" type="text/css">
     <link href="css/normalize.css" rel="stylesheet" type="text/css">
     <link href="css/style.css" rel="stylesheet" type="text/css">
+  </head>
   <body>
     <div id="new" class="dialog">   
       <form method="post" action="../php/operation/administration.php?operation_type=4&target=../../flota/seguros.php" onsubmit="return isValidateSubmit($(this))">
@@ -88,7 +89,6 @@ if (isset($_SESSION['msg'])) {
                 <tbody>
                   <?php
                   if (sizeof($aseguradoras) > 0) {
-
                     foreach ($aseguradoras as $value) {
                       ?>
                       <tr>
@@ -97,14 +97,17 @@ if (isset($_SESSION['msg'])) {
                             <p class="item-title"><?php echo $value->nombre; ?></p>
                             <p clas="item-sub-title"><?php echo $value->razon_social; ?></p>
                             <p class="separator"></p>
-                            <p class="item-info">Fecha de creación: <span><?php echo $value->cr_time; ?></span></p>
-                            <p class="item-info">Última modificación: <span><?php echo $value->ut_time; ?></span></p>
-                            <div class="options">
-                              <form method="post" action="../php/operation/administration.php?operation_type=6&target=../../flota/seguros.php" onsubmit="return formOperation()">
-                                <input type="button" data="<?php echo $value->id; ?>" class="icon-operation icon-modified" onclick="UTIL.loadDialog('load/loadInsure.php', this, $('#modify'));return false;">
-                                <input type="submit" class="icon-operation icon-delete" value="">
-                                <input type="hidden" name="id" value="<?php echo $value->id; ?>">
-                              </form>
+                            <div class="info-down">
+                              <p class="item-info">Fecha de creación: <span><?php echo $value->cr_time; ?></span></p>
+                              <p class="item-info">Última modificación: <span><?php echo $value->ut_time; ?></span></p>
+                              <div class="options">
+                                <form method="post" action="../php/operation/administration.php?operation_type=6&target=../../flota/seguros.php" onsubmit="return formOperation()">
+                                  <input type="button" data="<?php echo $value->id; ?>" class="icon-operation icon-modified" onclick="UTIL.loadDialog('load/loadInsure.php', this, $('#modify'));
+                                          return false;">
+                                  <input type="submit" class="icon-operation icon-delete" value="">
+                                  <input type="hidden" name="id" value="<?php echo $value->id; ?>">
+                                </form>
+                              </div>
                             </div>
                           </div>
                         </td>
@@ -126,8 +129,9 @@ if (isset($_SESSION['msg'])) {
     <script src="../plugins/jquery-ui-1.10.3.custom.min.js"></script>
     <script src="js/snippet.js"></script>
   </body>
-  <?php
-  $_SESSION['msg'] = "hide";
-  $_SESSION['msg_desc'] = "";
-  $msg_type = "succesfull";
-  ?>
+</html>
+<?php
+$_SESSION['msg'] = "hide";
+$_SESSION['msg_desc'] = "";
+$msg_type = "succesfull";
+?>

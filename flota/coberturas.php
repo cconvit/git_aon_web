@@ -97,14 +97,17 @@ if (isset($_SESSION['msg'])) {
                             <p class="item-title"><?php echo $value->desc_cobertura; ?></p>
                             <p clas="item-sub-title"><?php echo ""; ?></p>
                             <p class="separator"></p>
-                            <p class="item-info">Fecha de creación: <span><?php echo $value->cr_time; ?></span></p>
-                            <p class="item-info">Última modificación: <span><?php echo $value->ut_time; ?></span></p>
-                            <div class="options">
-                              <form method="post" action="../php/operation/administration.php?operation_type=9&target=../../flota/coberturas.php" onsubmit="return formOperation()">
-                                <input type="button" data="<?php echo $value->id; ?>" class="icon-operation icon-modified" onclick="UTIL.loadDialog('load/loadCoverage.php', this, $('#modify')); return false;">
-                                <input type="submit" class="icon-operation icon-delete" value="">
-                                <input type="hidden" name="id" value="<?php echo $value->id; ?>">
-                              </form>
+                            <div class="info-down">
+                              <p class="item-info">Fecha de creación: <span><?php echo $value->cr_time; ?></span></p>
+                              <p class="item-info">Última modificación: <span><?php echo $value->ut_time; ?></span></p>
+                              <div class="options">
+                                <form method="post" action="../php/operation/administration.php?operation_type=9&target=../../flota/coberturas.php" onsubmit="return formOperation()">
+                                  <input type="button" data="<?php echo $value->id; ?>" class="icon-operation icon-modified" onclick="UTIL.loadDialog('load/loadCoverage.php', this, $('#modify'));
+                                          return false;">
+                                  <input type="submit" class="icon-operation icon-delete" value="">
+                                  <input type="hidden" name="id" value="<?php echo $value->id; ?>">
+                                </form>
+                              </div>
                             </div>
                         </td>
                       </tr>
@@ -126,8 +129,9 @@ if (isset($_SESSION['msg'])) {
     <script src="js/snippet.js"></script>
     <script src="js/function.js"></script>
   </body>
-    <?php
-  $_SESSION['msg'] = "hide";
-  $_SESSION['msg_desc'] = "";
-  $msg_type = "succesfull";
-  ?>
+</html>
+<?php
+$_SESSION['msg'] = "hide";
+$_SESSION['msg_desc'] = "";
+$msg_type = "succesfull";
+?>
