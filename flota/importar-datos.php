@@ -37,16 +37,93 @@
                   <tr>
                     <td>
                       <div class='item'>
-                        <p><span class="check"></span><span class="item-title">Cobertura amplia</span></p>
+                        <p><span class="check icon-check"></span><span class="item-title">Cobertura amplia</span></p>
                         <p class="separator"></p>
                         <div class="info-down">
                           <div class="options">
-                            <p><input type="button" class="icon-operation icon-upload"></p>
+                            <form method="post" action="operation.php?operation_upload=1">
+                              <p>
+                                <input id="input-file" type="button" class="icon-operation icon-upload">
+                                <input type="file" name="coverage" class="hide" value="null">
+                              </p>
+                            </form>
                           </div>
                         </div>
                       </div>
                     </td>
                   </tr>
+                  <tr>
+                    <td>
+                      <div class='item'>
+                        <p><span class="uncheck icon-check"></span><span class="item-title">Perdida total</span></p>
+                        <p class="separator"></p>
+                        <div class="info-down">
+                          <div class="options">
+                            <form method="post" action="operation.php?operation_upload=2">
+                              <p>
+                                <input id="input-file" type="button" class="icon-operation icon-upload">
+                                <input type="file" name="loss" class="hide" value="null">
+                              </p>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class='item'>
+                        <p><span class="check icon-check"></span><span class="item-title">Clasificación</span></p>
+                        <p class="separator"></p>
+                        <div class="info-down">
+                          <div class="options">
+                            <form method="post" action="operation.php?operation_upload=3">
+                              <p>
+                                <input id="input-file" type="button" class="icon-operation icon-upload">
+                                <input type="file" name="clasification" class="hide" value="null">
+                              </p>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>                    
+                  <tr>
+                    <td>
+                      <div class='item'>
+                        <p><span class="uncheck icon-check"></span><span class="item-title">Segmentacion</span></p>
+                        <p class="separator"></p>
+                        <div class="info-down">
+                          <div class="options">
+                            <form method="post" action="operation.php?operation_upload=4">
+                              <p>
+                                <input id="input-file" type="button" class="icon-operation icon-upload">
+                                <input type="file" name="groups" class="hide" value="null">
+                              </p>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>                  
+                  <tr>
+                    <td>
+                      <div class='item'>
+                        <p><span class="check icon-check"></span><span class="item-title">Grua</span></p>
+                        <p class="separator"></p>
+                        <div class="info-down">
+                          <div class="options">
+                            <form method="post" action="operation.php?operation_upload=5">
+                              <p>
+                                <input id="input-file" type="button" class="icon-operation icon-upload">
+                                <input type="file" name="assistance" class="hide" value="null">
+                              </p>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>                  
                 </table>
               </div>
             </div>
@@ -66,6 +143,9 @@
           </div>
         </div>
       </div>
+    </div>
+    <div id="load" class="modal">
+      <div class="modal"><p>Estamos procesando el archivo. Esta operación puede tardar unos minutos. Por favor, espere</p></div>
     </div>
     <script src="../plugins/jquery-1.10.2.min.js"></script>
     <script src="../plugins/jquery-ui-1.10.3.custom.min.js"></script>

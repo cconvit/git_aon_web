@@ -136,14 +136,6 @@ a:hover, a:active {
 .ui-widget-header{
   display: none;
 }
-.dialog-message{
-  background-color: #FFFFFF;
-  color: #4D4F53;
-  float: left;
-  clear: both;
-  margin-bottom: 15px;
-  padding: 3px;
-}
 .ui-widget-content{
   border: none;
   background-color: #FFFFFF;
@@ -613,12 +605,24 @@ a.access-title{
 .icon-delete{
   background-position: -5px -35px;
 }
-.check{
+.icon-check{
   display: inline-block;
   background-image: url('../img/sprite.png');
-  background-position: -214px -34px;
   width: 24px;
   height: 24px;
+  margin-right: 10px;
+}
+.icon-edit{
+  width: 29px;
+  height: 25px;
+  background-image: url('../img/sprite.png');
+  background-position: -549px -40px;
+}
+.check{
+  background-position: -518px -40px;
+}
+.uncheck{
+  background-position: -480px -40px;
 }
 .add-button{
   width: 146px;
@@ -647,4 +651,14 @@ a.access-title{
   display: block;
   margin-top: 10px;
 }
-
+.dialog-message{
+  background-color: #FFFFFF;
+  color: #4D4F53;
+  float: left;
+  clear: both;
+  margin-bottom: 15px;
+  padding: 3px;
+}
+.modal{
+  padding-top: 30px;
+}

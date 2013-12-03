@@ -43,17 +43,29 @@ var UTIL = {
 };
 
 var WIZARD = {
-  init: function(step) {
-    var step = step;
-  },
   create: function(form) {
     if (isValidateSubmit(form)) {
-      form.submit()
+      form.submit();
     }
   }
-}
+};
 
-$(document).ready(function(e) {
+$(function(e) {
+
+  //next: all event Jquery functions
+
+  var load = $("#load");
+  load.dialog({modal: true, autoOpen: true, width: 400, resizable: false, position: "center"});
+
+  // throw click input file event
+  $("input[id='input-file']").on("click", function(e) {
+    $(this).next().trigger("click").change(function(e) {
+      $(this).parents("form").submit();
+      load.dialog("open");
+    });
+    return false;
+  });
+
   AON.init();
   UTIL.init();
 });
@@ -85,4 +97,3 @@ function isValidateSubmit(form) {
     return true;
   }
 }
-
