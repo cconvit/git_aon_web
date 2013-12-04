@@ -29,10 +29,22 @@
         <div id="main">
           <div id="main-detail">
             <div id="nav-operations">
-              <span class="title">Importar datos</span>
+              <span class="title">Coberturas</span>
             </div>
             <div id="scroll" style="margin-top: 30px">
-
+              <div class='item'>
+                <p><span class="check icon-check"></span><span class="item-title">Cobertura amplia</span></p>
+                <p class="separator"></p>
+                <div class="info-down">
+                  <div class="options">
+                    <form method="post" action="operation.php?operation_upload=1">
+                      <p>
+                        <input id="input-file" type="button" class="icon-operation icon-upload">
+                      </p>
+                    </form>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <div id="load" class="modal">
