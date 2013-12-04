@@ -41,10 +41,10 @@
                         <p class="separator"></p>
                         <div class="info-down">
                           <div class="options">
-                            <form method="post" action="operation.php?operation_upload=1">
+                            <form method="post" action="operation.php?operation_upload=1" enctype="multipart/form-data">
                               <p>
                                 <input id="input-file" type="button" class="icon-operation icon-upload">
-                                <input type="file" name="file" class="hide" value="null">
+                                <input type="file" name="coverage" class="hide">
                               </p>
                             </form>
                           </div>
@@ -59,7 +59,7 @@
                         <p class="separator"></p>
                         <div class="info-down">
                           <div class="options">
-                            <form method="post" action="operation.php?operation_upload=2">
+                            <form method="post" action="operation.php?operation_upload=2" enctype="multipart/form-data">
                               <p>
                                 <input id="input-file" type="button" class="icon-operation icon-upload">
                                 <input type="file" name="loss" class="hide" value="null">
@@ -77,7 +77,7 @@
                         <p class="separator"></p>
                         <div class="info-down">
                           <div class="options">
-                            <form method="post" action="operation.php?operation_upload=3">
+                            <form method="post" action="operation.php?operation_upload=3" enctype="multipart/form-data">
                               <p>
                                 <input id="input-file" type="button" class="icon-operation icon-upload">
                                 <input type="file" name="clasification" class="hide" value="null">
@@ -95,7 +95,7 @@
                         <p class="separator"></p>
                         <div class="info-down">
                           <div class="options">
-                            <form method="post" action="operation.php?operation_upload=4">
+                            <form method="post" action="operation.php?operation_upload=4" enctype="multipart/form-data">
                               <p>
                                 <input id="input-file" type="button" class="icon-operation icon-upload">
                                 <input type="file" name="groups" class="hide" value="null">
@@ -113,7 +113,7 @@
                         <p class="separator"></p>
                         <div class="info-down">
                           <div class="options">
-                            <form method="post" action="operation.php?operation_upload=5">
+                            <form method="post" action="operation.php?operation_upload=5" enctype="multipart/form-data">
                               <p>
                                 <input id="input-file" type="button" class="icon-operation icon-upload">
                                 <input type="file" name="assistance" class="hide" value="null">

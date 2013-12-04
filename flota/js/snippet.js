@@ -60,7 +60,7 @@ $(function(e) {
   // throw click input file event
   $("input[id='input-file']").on("click", function(e) {
     $(this).next().trigger("click").change(function(e) {
-      $(this).parents("form").submit();
+      $(this).parents("form").trigger("submit");
       load.dialog("open");
     });
     return false;

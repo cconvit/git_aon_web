@@ -571,6 +571,10 @@ a.access-title{
 .top-max{
   top: 70px;
 }
+.icon-square{
+  width: 29px;
+  height: 25px;
+}
 .icon-operation{
   display: inline-block;
   margin-bottom: 2px;
@@ -615,8 +619,7 @@ a.access-title{
 .icon-edit{
   width: 29px;
   height: 25px;
-  background-image: url('../img/sprite.png');
-  background-position: -549px -40px;
+  background-position: -545px -46px;
 }
 .check{
   background-position: -518px -40px;

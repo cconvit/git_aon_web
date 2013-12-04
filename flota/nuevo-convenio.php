@@ -57,13 +57,7 @@
                           <option>Caracas</option>
                         </select>
                       </td>
-                    </tr>                 
-                    <tr>
-                      <td>INMA %</td>
-                    </tr>                 
-                    <tr>
-                      <td><input type="text" name="inma" class="common-input is-required"></td>
-                    </tr>                 
+                    </tr>                                
                     <tr>
                       <td>Número de póliza</td>
                     </tr>                 
