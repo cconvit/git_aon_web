@@ -44,7 +44,7 @@
                             <form method="post" action="operation.php?operation_upload=1">
                               <p>
                                 <input id="input-file" type="button" class="icon-operation icon-upload">
-                                <input type="file" name="coverage" class="hide" value="null">
+                                <input type="file" name="file" class="hide" value="null">
                               </p>
                             </form>
                           </div>

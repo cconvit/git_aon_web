@@ -4,11 +4,13 @@
 class convenio_aseguradora{
     
     protected static $table_name="tbl_convenio_aseguradora";
-    protected static $db_fields=array('id','id_aseguradora','descripcion','as_nombre','ut_time','cr_time');
+    protected static $db_fields=array('id','id_aseguradora','nombre','descripcion','num_poliza','as_nombre','ut_time','cr_time');
     
     public $id;
     public $id_aseguradora;
+    public $nombre;
     public $descripcion;
+    public $num_poliza;
     public $as_nombre;
     public $ut_time;
     public $cr_time;
@@ -20,7 +22,7 @@ class convenio_aseguradora{
             
   // Common Database Methods
   public static function find_all() {
-		return self::find_by_sql("SELECT ca.id,ca.id_aseguradora,ca.descripcion,a.nombre as 'as_nombre',ca.cr_time as 'cr_time',ca.ut_time as 'ut_time' FROM `tbl_convenio_aseguradora` ca INNER JOIN tbl_aseguradora a ON ca.id_aseguradora=a.id");
+		return self::find_by_sql("SELECT ca.id,ca.id_aseguradora,ca.nombre,ca.descripcion,ca.num_poliza,a.nombre as 'as_nombre',ca.cr_time as 'cr_time',ca.ut_time as 'ut_time' FROM `tbl_convenio_aseguradora` ca INNER JOIN tbl_aseguradora a ON ca.id_aseguradora=a.id");
   }
   
   public static function find_by_sql($sql="") {
@@ -38,7 +40,7 @@ class convenio_aseguradora{
       
       global $database;
       
-		return self::find_by_sql("SELECT ca.id,ca.id_aseguradora,ca.descripcion,a.nombre as 'as_nombre',ca.cr_time as 'cr_time',ca.ut_time as 'ut_time' FROM `tbl_convenio_aseguradora` ca INNER JOIN tbl_aseguradora a ON ca.id_aseguradora=a.id
+		return self::find_by_sql("SELECT ca.id,ca.id_aseguradora,ca.nombre,ca.descripcion,ca.num_poliza,a.nombre as 'as_nombre',ca.cr_time as 'cr_time',ca.ut_time as 'ut_time' FROM `tbl_convenio_aseguradora` ca INNER JOIN tbl_aseguradora a ON ca.id_aseguradora=a.id
                                              WHERE ca.id='{$database->escape_value($this->id)}'");
   }
   
@@ -46,9 +48,11 @@ class convenio_aseguradora{
       
       global $database;
       
-        $sql="INSERT INTO ".self::$table_name." (id_aseguradora,descripcion,cr_time) VALUES (
+        $sql="INSERT INTO ".self::$table_name." (id_aseguradora,nombre,descripcion,num_poliza,cr_time) VALUES (
                             '{$database->escape_value($this->id_aseguradora)}',
+                            '{$database->escape_value($this->nombre)}',
                             '{$database->escape_value($this->descripcion)}',
+                            '{$database->escape_value($this->num_poliza)}',
                             NOW())";
                                           
                                           
@@ -65,7 +69,9 @@ class convenio_aseguradora{
       global $database;
       
         $sql="UPDATE ".self::$table_name." SET
+                                  nombre='{$database->escape_value($this->nombre)}',
                                   descripcion='{$database->escape_value($this->descripcion)}',
+                                  num_poliza='{$database->escape_value($this->num_poliza)}',
                                   id_aseguradora='{$database->escape_value($this->id_aseguradora)}'
                                   WHERE id='{$database->escape_value($this->id)}'";
 
