@@ -30,25 +30,81 @@
           <div id="main-detail">
             <div id="nav-operations">
               <span class="title">Coberturas</span>
+              <input type="button" class="add-button" value="Añadir cobertura" onclick="loadDialog()">
             </div>
             <div id="scroll" style="margin-top: 30px">
-              <div class='item'>
-                <p><span class="check icon-check"></span><span class="item-title">Cobertura amplia</span></p>
-                <p class="separator"></p>
-                <div class="info-down">
-                  <div class="options">
-                    <form method="post" action="operation.php?operation_upload=1">
-                      <p>
-                        <input id="input-file" type="button" class="icon-operation icon-upload">
-                      </p>
-                    </form>
-                  </div>
-                </div>
-              </div>
+              <table class="tbl-details" cellspacing="0" borderspacing="0">
+                <tbody>
+                  <tr>
+                    <td>
+                      <div class='item'>
+                        <p><span class="check icon-check"></span><span class="item-title">Eventos catastróficos</span></p>
+                        <p class="separator"></p>
+                        <div class="info-down">
+                          <div class="options">
+                            <form method="post" action="operation.php?operation_upload=1">
+                              <p>
+                                <input id="input-file" type="button" class="icon-operation icon-edit">
+                              </p>
+                            </form>
+                          </div>
+                        </div>
+                      </div>            
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class='item'>
+                        <p><span class="check icon-check"></span><span class="item-title">Cobertura amplia</span></p>
+                        <p class="separator"></p>
+                        <div class="info-down">
+                          <div class="options">
+                            <form method="post" action="operation.php?operation_upload=1">
+                              <p>
+                                <input id="input-file" type="button" class="icon-operation icon-edit">
+                              </p>
+                            </form>
+                          </div>
+                        </div>
+                      </div>            
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class='item'>
+                        <p><span class="check icon-check"></span><span class="item-title">Cobertura amplia</span></p>
+                        <p class="separator"></p>
+                        <div class="info-down">
+                          <div class="options">
+                            <form method="post" action="operation.php?operation_upload=1">
+                              <p>
+                                <input id="input-file" type="button" class="icon-operation icon-edit">
+                              </p>
+                            </form>
+                          </div>
+                        </div>
+                      </div>            
+                    </td>
+                  </tr>                  
+                </tbody>
+              </table>
             </div>
           </div>
           <div id="load" class="modal">
             <div class="modal"><p>Estamos procesando el archivo. Esta operación puede tardar unos minutos. Por favor, espere</p></div>
+          </div>
+        </div>
+        <div id="footer">
+          <div id="nav-step">
+            <ul>
+              <li style="margin-left: 0px"><input type="button" class="icon-step icon-back-disabled" value=""></li>
+              <li>Crear convenio</li>
+              <li><span class="arrow"></span></li>                      
+              <li><a href="importar-datos.php">Importar datos</a></li>
+              <li><span class="arrow"></span></li>               
+              <li><a class="current-step" href="condiciones.php">Condiciones y coberturas</a></li>
+              <li class="button-back"><input type="button" class="icon-step icon-next" value="" onclick="WIZARD.create($('#create-agreement').find('form'));"></li>                
+            </ul>
           </div>
         </div>
       </div>

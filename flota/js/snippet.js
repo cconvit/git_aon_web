@@ -57,7 +57,7 @@ $(function(e) {
   var load = $("#load");
   load.dialog({modal: true, autoOpen: false, width: 400, resizable: false, position: "center"});
 
-  // throw click input file event
+  //throw click input file event
   $("input[id='input-file']").on("click", function(e) {
     $(this).next().trigger("click").change(function(e) {
       $(this).parents("form").trigger("submit");

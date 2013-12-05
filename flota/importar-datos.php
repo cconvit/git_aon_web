@@ -115,8 +115,8 @@
                           <div class="options">
                             <form method="post" action="operation.php?operation_upload=5" enctype="multipart/form-data">
                               <p>
-                                <input id="input-file" type="button" class="icon-operation icon-upload">
-                                <input type="file" name="assistance" class="hide" value="null">
+                                <input id="input-file" type="submit" class="icon-operation icon-upload">
+                                <input type="file" name="assistance" class="hide">
                               </p>
                             </form>
                           </div>
@@ -137,7 +137,7 @@
               <li><span class="arrow"></span></li>                      
               <li><a class="current-step" href="importar-datos.php">Importar datos</a></li>
               <li><span class="arrow"></span></li>               
-              <li>Condiciones y coberturas</li>
+              <li><a href="condiciones.php">Condiciones y coberturas</a></li>
               <li class="button-back"><input type="button" class="icon-step icon-next" value="" onclick="WIZARD.create($('#create-agreement').find('form'));"></li>                
             </ul>
           </div>

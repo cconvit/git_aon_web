@@ -77,11 +77,11 @@
           <div id="nav-step">
             <ul>
               <li style="margin-left: 0px"><input type="button" class="icon-step icon-back-disabled" value=""></li>
-              <li><a href="importar-datos.php">Crear convenio</a></li>
+              <li><a class='current-step' href="importar-datos.php">Crear convenio</a></li>
               <li><span class="arrow"></span></li>                      
               <li><a href="importar-datos.php">Importar datos</a></li>
               <li><span class="arrow"></span></li>               
-              <li>Condiciones y coberturas</li>
+              <li><a href="condiciones.php">Condiciones y coberturas</a></li>
               <li class="button-back"><input type="button" class="icon-step icon-next" value="" onclick="WIZARD.create($('#create-agreement').find('form'));"></li>                
             </ul>
           </div>
@@ -91,8 +91,5 @@
     <script src="../plugins/jquery-1.10.2.min.js"></script>
     <script src="../plugins/jquery-ui-1.10.3.custom.min.js"></script>
     <script src="js/snippet.js"></script>
-    <scrip type="text/javascript">
-      $(document).ready(WIZARD.init("1"));
-    </scrip>
 </body>
 </html>
