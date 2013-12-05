@@ -45,7 +45,7 @@ if (isset($_REQUEST["operation_type"])) {
       break;
   
     case 10:
-      newConvenio($_REQUEST["nombre"], $_REQUEST["seguro"],$_REQUEST["poliza"]);
+      newConvenio($_REQUEST["nombre"],$_REQUEST["descripcion"], $_REQUEST["seguro"],$_REQUEST["poliza"]);
       break;
   
     case 11:
@@ -238,12 +238,14 @@ function deleteCobertura($id) {
   header('Location: ' . $_GET["target"]);
 }
 
-function newConvenio($nombre, $seguro,$poliza) {
+function newConvenio($nombre,$descripcion,$seguro,$poliza) {
 
   require_once ('../entity/convenio_aseguradora.php');
   $convenio_aseguradora = new convenio_aseguradora();
-  $convenio_aseguradora->descripcion = $nombre;
+  $convenio_aseguradora->nombre = $nombre;
+  $convenio_aseguradora->descripcion = $descripcion;
   $convenio_aseguradora->id_aseguradora = $seguro;
+  $convenio_aseguradora->num_poliza = $poliza;
 
   $_SESSION["msg"] = "show";
 
