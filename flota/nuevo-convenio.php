@@ -77,7 +77,7 @@
           <div id="nav-step">
             <ul>
               <li style="margin-left: 0px"><input type="button" class="icon-step icon-back-disabled" value=""></li>
-              <li><a class='current-step' href="importar-datos.php">Crear convenio</a></li>
+              <li><a class='current-step' href="nuevo-convenio.php">Crear convenio</a></li>
               <li><span class="arrow"></span></li>                      
               <li><a href="importar-datos.php">Importar datos</a></li>
               <li><span class="arrow"></span></li>               

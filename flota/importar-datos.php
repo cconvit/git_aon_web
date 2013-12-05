@@ -44,7 +44,7 @@
                             <form method="post" action="operation.php?operation_upload=1" enctype="multipart/form-data">
                               <p>
                                 <input id="input-file" type="button" class="icon-operation icon-upload">
-                                <input type="file" name="coverage" class="hide">
+                                <input type="file" name="amplia" class="hide">
                               </p>
                             </form>
                           </div>
@@ -62,7 +62,7 @@
                             <form method="post" action="operation.php?operation_upload=2" enctype="multipart/form-data">
                               <p>
                                 <input id="input-file" type="button" class="icon-operation icon-upload">
-                                <input type="file" name="loss" class="hide" value="null">
+                                <input type="file" name="total" class="hide" value="null">
                               </p>
                             </form>
                           </div>
@@ -80,7 +80,7 @@
                             <form method="post" action="operation.php?operation_upload=3" enctype="multipart/form-data">
                               <p>
                                 <input id="input-file" type="button" class="icon-operation icon-upload">
-                                <input type="file" name="clasification" class="hide" value="null">
+                                <input type="file" name="clasificacion" class="hide" value="null">
                               </p>
                             </form>
                           </div>
@@ -98,7 +98,7 @@
                             <form method="post" action="operation.php?operation_upload=4" enctype="multipart/form-data">
                               <p>
                                 <input id="input-file" type="button" class="icon-operation icon-upload">
-                                <input type="file" name="groups" class="hide" value="null">
+                                <input type="file" name="segmentacion" class="hide" value="null">
                               </p>
                             </form>
                           </div>
@@ -115,8 +115,8 @@
                           <div class="options">
                             <form method="post" action="operation.php?operation_upload=5" enctype="multipart/form-data">
                               <p>
-                                <input id="input-file" type="submit" class="icon-operation icon-upload">
-                                <input type="file" name="assistance" class="hide">
+                                <input id="input-file" type="button" class="icon-operation icon-upload">
+                                <input type="file" name="grua" class="hide">
                               </p>
                             </form>
                           </div>
