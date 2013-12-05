@@ -52,7 +52,7 @@
                     </tr>                  
                     <tr>
                       <td>
-                        <select name="seguro" class="common-input is-required" style="width: 370px">
+                        <select name="seguro" class="common-input common-select">
                           <option>Mercantil</option>
                           <option>Caracas</option>
                         </select>

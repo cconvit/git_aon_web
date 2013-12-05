@@ -9,6 +9,57 @@
     <link href="css/style.css" rel="stylesheet" type="text/css">
   </head>
   <body>
+    <div id="new" class="dialog">
+      <form method="post" action="oeration.php" onsubmit="return isValidateSubmit($(this))">
+        <table align="center" width="360">
+          <tbody>
+            <tr>
+              <td>Cobertura</td>
+            </tr>
+            <tr>
+              <td><select name="cobertura" class="common-input common-select"  style="width: 370px;"></select></td>
+            </tr>
+            <tr>
+              <td>Tipo de Cálculo</td>
+            </tr>
+            <tr>
+              <td><select name="calculo" class="common-input common-select" style="width: 370px;"></select></td>
+            </tr>
+            <tr>
+              <td>Particular</td>
+            </tr>
+            <tr>
+              <td><input type="text" name="particular" class="common-input is-required"></td>
+            </tr>
+            <tr>
+              <td>Rustico</td>
+            </tr>
+            <tr>
+              <td><input type="text" name="rustico" class="common-input is-required"></td>
+            </tr>
+            <tr>
+              <td>Pickup/Van</td>
+            </tr>
+            <tr>
+              <td><input type="text" name="pickup" class="common-input is-required"></td>
+            </tr>
+            <tr>
+              <td><div class="required hide">Uno o más campos son inválidos.</div></td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td>
+                <div class="buttons-panel">
+                  <input type="submit" class="common-button" value="Guardar">
+                  <input type="button" class="common-button" value="Salir" onclick="$('#new').dialog('close');">
+                </div>
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+      </form>
+    </div>
     <div id="container">
       <div id="header">
         <img id="logo" src="img/logo.png">
@@ -29,8 +80,8 @@
         <div id="main">
           <div id="main-detail">
             <div id="nav-operations">
-              <span class="title">Coberturas</span>
-              <input type="button" class="add-button" value="Añadir cobertura" onclick="loadDialog()">
+              <span class="title">Coberturas y Condiciones</span>
+              <input type="button" class="add-button" value="Añadir cobertura" onclick="$('#new').dialog('open');">
             </div>
             <div id="scroll" style="margin-top: 30px">
               <table class="tbl-details" cellspacing="0" borderspacing="0">
@@ -42,56 +93,20 @@
                         <p class="separator"></p>
                         <div class="info-down">
                           <div class="options">
-                            <form method="post" action="operation.php?operation_upload=1">
+                            <form method="post" action="operation.php" action="">
                               <p>
-                                <input id="input-file" type="button" class="icon-operation icon-edit">
+                                <input id="input-file" type="button" class="icon-operation icon-modified" data="1" onclick="UTIL.loadDialog('load/loadConditon.php', this, $('#modify')); return false;">
+                                <input id="input-file" type="button" class="icon-operation icon-delete" data="1">
                               </p>
                             </form>
                           </div>
                         </div>
                       </div>            
                     </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class='item'>
-                        <p><span class="check icon-check"></span><span class="item-title">Cobertura amplia</span></p>
-                        <p class="separator"></p>
-                        <div class="info-down">
-                          <div class="options">
-                            <form method="post" action="operation.php?operation_upload=1">
-                              <p>
-                                <input id="input-file" type="button" class="icon-operation icon-edit">
-                              </p>
-                            </form>
-                          </div>
-                        </div>
-                      </div>            
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class='item'>
-                        <p><span class="check icon-check"></span><span class="item-title">Cobertura amplia</span></p>
-                        <p class="separator"></p>
-                        <div class="info-down">
-                          <div class="options">
-                            <form method="post" action="operation.php?operation_upload=1">
-                              <p>
-                                <input id="input-file" type="button" class="icon-operation icon-edit">
-                              </p>
-                            </form>
-                          </div>
-                        </div>
-                      </div>            
-                    </td>
-                  </tr>                  
+                  </tr>                 
                 </tbody>
               </table>
             </div>
-          </div>
-          <div id="load" class="modal">
-            <div class="modal"><p>Estamos procesando el archivo. Esta operación puede tardar unos minutos. Por favor, espere</p></div>
           </div>
         </div>
         <div id="footer">
@@ -109,6 +124,7 @@
         </div>
       </div>
     </div>
+    <div id="modify" class="dialog"></div>
     <script src="../plugins/jquery-1.10.2.min.js"></script>
     <script src="../plugins/jquery-ui-1.10.3.custom.min.js"></script>
     <script src="js/snippet.js"></script>
