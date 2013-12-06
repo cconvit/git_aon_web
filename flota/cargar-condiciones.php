@@ -111,12 +111,13 @@
         </div>
         <div id="footer">
           <div id="nav-step">
-            <ul>
+            <ul>            
               <li>Crear convenio</li>
               <li><span class="arrow"></span></li>                      
               <li>Importar datos</li>
               <li><span class="arrow"></span></li>               
               <li><a class="current-step" href="cargar-condiciones.php">Condiciones y coberturas</a></li>
+              <li><input type="button" class="icon-step icon-end" onclick="location.href='convenios.php'"></li>            
             </ul>
           </div>
         </div>

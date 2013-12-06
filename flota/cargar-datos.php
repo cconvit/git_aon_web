@@ -39,6 +39,7 @@
                       <p><span class="check icon-check"></span><span class="item-title">Cobertura amplia</span></p>
                       <p class="separator"></p>
                       <div class="info-down">
+                       <p class="item-info">Última modificación: <span>2013-11-25 17:17:57</span></p> 
                         <div class="options">
                           <form method="post" action="operation.php?operation_upload=1" enctype="multipart/form-data">
                             <p>
@@ -57,6 +58,7 @@
                       <p><span class="uncheck icon-check"></span><span class="item-title">Pérdida total</span></p>
                       <p class="separator"></p>
                       <div class="info-down">
+                       <p class="item-info">Última modificación: <span>2013-11-25 17:17:57</span></p> 
                         <div class="options">
                           <form method="post" action="operation.php?operation_upload=2" enctype="multipart/form-data">
                             <p>
@@ -74,6 +76,7 @@
                     <div class='item'>
                       <p><span class="check icon-check"></span><span class="item-title">Clasificación</span></p>
                       <p class="separator"></p>
+                      <p class="item-info">Última modificación: <span>2013-11-25 17:17:57</span></p>     
                       <div class="info-down">
                         <div class="options">
                           <form method="post" action="operation.php?operation_upload=3" enctype="multipart/form-data">
@@ -93,6 +96,7 @@
                       <p><span class="uncheck icon-check"></span><span class="item-title">Segmentación</span></p>
                       <p class="separator"></p>
                       <div class="info-down">
+                       <p class="item-info">Última modificación: <span>2013-11-25 17:17:57</span></p> 
                         <div class="options">
                           <form method="post" action="operation.php?operation_upload=4" enctype="multipart/form-data">
                             <p>
@@ -111,6 +115,7 @@
                       <p><span class="check icon-check"></span><span class="item-title">Grúa</span></p>
                       <p class="separator"></p>
                       <div class="info-down">
+                       <p class="item-info">Última modificación: <span>2013-11-25 17:17:57</span></p> 
                         <div class="options">
                           <form method="post" action="operation.php?operation_upload=5" enctype="multipart/form-data">
                             <p>
@@ -130,11 +135,13 @@
         <div id="footer">
           <div id="nav-step">
             <ul>
-              <li>Crear convenio</li>
+              <li><input type="button" class="icon-step icon-exit" onclick="WIZARD.exit()"></li>
+              <li>Crear convenio</a></li>
               <li><span class="arrow"></span></li>                      
-              <li><a class="current-step" href="cargar-datos.php">Importar datos</a></li>
+              <li><a class='current-step' href="cargar-datos.php?i">Importar datos</a></li>
               <li><span class="arrow"></span></li>               
               <li>Condiciones y coberturas</li>
+              <li><input id="next" type="button" class="icon-step icon-next" role="import"></li>
             </ul>
           </div>
         </div>

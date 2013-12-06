@@ -33,7 +33,7 @@
             </div>
             <div id="scroll" style="height: 455px;">
               <div id="create-agreement">
-                <form method="post" action="operation.php" style="margin-top: 30px" onsubmit="return isValidateSubmit($(this));">  
+                <form method="post" action="operation.php" style="margin-top: 30px">  
                   <table>
                     <tr>
                       <td>Nombre</td>
@@ -62,13 +62,10 @@
                       <td>Número de póliza (opcional)</td>
                     </tr>                 
                     <tr>
-                      <td><input type="text" name="poliza" class="common-input is-required"></td>
+                      <td><input type="text" name="poliza" class="common-input"></td>
                     </tr>
                     <tr>
                       <td><div class="required hide">Uno o más campos son inválidos.</div></td>
-                    </tr>
-                    <tr>
-                      <td><input type="submit" class="common-button" value="Siguiente"></td>
                     </tr>
                   </table>
                 </form>
@@ -79,11 +76,13 @@
         <div id="footer">
           <div id="nav-step">
             <ul>
+              <li><input id="next" type="button" class="icon-step icon-exit" role="create"></li>
               <li><a class='current-step' href="crear-convenio.php">Crear convenio</a></li>
               <li><span class="arrow"></span></li>                      
               <li>Importar datos</li>
               <li><span class="arrow"></span></li>               
               <li>Condiciones y coberturas</li>
+              <li><input id="next" type="button" class="icon-step icon-next" role="create"></li>
             </ul>
           </div>
         </div>

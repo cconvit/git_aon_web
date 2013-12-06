@@ -45,8 +45,13 @@ var UTIL = {
 var WIZARD = {
   create: function(form) {
     if (isValidateSubmit(form)) {
-      form.submit();
+      form.trigger("submit");
     }
+  },
+  exit: function(){
+    if(confirm("Realmente desea salir del asistente?")){
+      document.location.href = "convenios.php";
+    }  
   }
 };
 
@@ -65,7 +70,26 @@ $(function(e) {
     });
     return false;
   });
+  
+  //send next step form
+  $("input[id='next']").on("click", function(e){
+    var wizard = WIZARD;
+    var role = $(this).attr("role");
+    switch(role){
+      case "create":
+        wizard.create($("body").find("form"));
+        break;
+      case "imports":
+        wizard.import();
+        break;
+      case "conditions":
+        wizard.condition();
+        break;
+    }
+    return false;
+  });
 
+  // init all
   AON.init();
   UTIL.init();
 });
