@@ -40,6 +40,24 @@ class grua{
     return $object_array;
   }
   
+  public  function create() {
+    
+        global $database;
+
+        $sql = "INSERT INTO " . self::$table_name . " (id_convenio_as,id_tipo_carro,ano,valor) VALUES (
+                            '{$database->escape_value($this->id_convenio_as)}',
+                            '{$database->escape_value($this->id_tipo_carro)}',
+                            '{$database->escape_value($this->ano)}',
+                            '{$database->escape_value($this->valor)}'
+                            )";
+
+        if ($database->query($sql)) {
+            $this->id = $database->insert_id();
+            return true;
+        } else {
+            return false;
+        }
+    }
   
   ///////////////////////////METODOS ESTANDAR//////////////////////////////////
   

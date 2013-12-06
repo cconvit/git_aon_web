@@ -55,7 +55,7 @@ $aseguradoras = $aseguradora->find_all();
             </div>
             <div id="scroll" style="height: 455px;">
               <div id="create-agreement">
-                <form method="post" action="../php/operation/administration.php?operation_type=10&target=../../flota/importar_datos.php&target_fail=../../flota/convenios.php">  
+                <form method="post" action="../php/operation/administration.php?operation_type=10&target=../../flota/cargar-datos.php&target_fail=../../flota/convenios.php">  
                   <table>
                     <tr>
                       <td>Nombre</td>

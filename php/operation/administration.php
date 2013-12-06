@@ -252,11 +252,12 @@ function newConvenio($nombre,$descripcion,$seguro,$poliza) {
   if (!$convenio_aseguradora->create()) {
     $_SESSION["msg_desc"] = "Ocurrio un error al tratar de crear un convenio. Por favor intente mas tarde. Si el error persiste, comuniquese con el administrador del sistema.";
     $_SESSION["msg_type"] = "error";
-    $_SESSION["id_convenio_as"]=$convenio_aseguradora->id;
+    
     header('Location: ' . $_GET["target_fail"]);
   } else {
     $_SESSION["msg_desc"] = "La creación del convenio se realizó exitosamente";
      $_SESSION["msg_type"]  = "succesfull";
+     $_SESSION["id_convenio_as"]=$convenio_aseguradora->id;
      header('Location: ' . $_GET["target"]);
   }
   
