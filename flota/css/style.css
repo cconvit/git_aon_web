@@ -105,6 +105,9 @@ button::-moz-focus-inner, input::-moz-focus-inner {
   margin: 10px 0px;
   padding: 2px 5px 5px 5px;
 }
+.common-select{
+  width: 370px;
+}
 
 /* links */
 
@@ -424,7 +427,6 @@ body, html{
   display: inline-block;
   margin-left: 26px;
   vertical-align: middle;
-  cursor: pointer;
 }
 #nav-step ul li a{
   color: #FFFFFF;
@@ -592,16 +594,13 @@ a.access-title{
   height: 25px;
 }
 .icon-next{
-  background-position: -280px -37px;
+  background-position: -277px -5px;
 }
-.icon-back{
-  background-position: -280px -5px;
+.icon-exit{
+  background-position: -277px -37px;
 }
-.icon-next-disabled{
-  background-position: -379px -37px;
-}
-.icon-back-disabled{
-  background-position: -379px -5px;
+.icon-end{
+  background-position: -377px -5px;
 }
 .icon-modified{
   background-position: -5px -5px;

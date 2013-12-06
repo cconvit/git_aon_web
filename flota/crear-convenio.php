@@ -53,7 +53,7 @@ $aseguradoras = $aseguradora->find_all();
             <div id="nav-operations">
               <span class="title">Crear convenio</span>
             </div>
-            <div id="scroll" style="margin-top: 30px">
+            <div id="scroll" style="height: 455px;">
               <div id="create-agreement">
                 <form method="post" action="../php/operation/administration.php?operation_type=10&target=../../flota/importar_datos.php&target_fail=../../flota/convenios.php">  
                   <table>
@@ -67,7 +67,7 @@ $aseguradoras = $aseguradora->find_all();
                       <td>Descripción</td>
                     </tr>                 
                     <tr>
-                      <td><textarea name="descripcion" class="common-input is-required" style="height: 100px"></textarea></td>
+                      <td><textarea name="descripcion" class="common-input is-required" style="height: 66px"></textarea></td>
                     </tr>
                     <tr>
                       <td>Seguro</td>
@@ -88,14 +88,14 @@ $aseguradoras = $aseguradora->find_all();
                       </td>
                     </tr>                                
                     <tr>
-                      <td>Número de póliza</td>
+                      <td>Número de póliza (opcional)</td>
                     </tr>                 
                     <tr>
-                      <td><input type="text" name="poliza" class="common-input is-required"></td>
+                      <td><input type="text" name="poliza" class="common-input"></td>
                     </tr>
                     <tr>
                       <td><div class="required hide">Uno o más campos son inválidos.</div></td>
-                    </tr>                    
+                    </tr>
                   </table>
                 </form>
               </div>
@@ -105,13 +105,13 @@ $aseguradoras = $aseguradora->find_all();
         <div id="footer">
           <div id="nav-step">
             <ul>
-              <li style="margin-left: 0px"><input type="button" class="icon-step icon-back-disabled" value=""></li>
-              <li><a class='current-step' href="importar-datos.php">Crear convenio</a></li>
+              <li><input id="next" type="button" class="icon-step icon-exit" role="create"></li>
+              <li><a class='current-step' href="crear-convenio.php">Crear convenio</a></li>
               <li><span class="arrow"></span></li>                      
-              <li><a href="importar-datos.php">Importar datos</a></li>
+              <li>Importar datos</li>
               <li><span class="arrow"></span></li>               
-              <li><a href="condiciones.php">Condiciones y coberturas</a></li>
-              <li class="button-back"><input type="button" class="icon-step icon-next" value="" onclick="WIZARD.create($('#create-agreement').find('form'));"></li>                
+              <li>Condiciones y coberturas</li>
+              <li><input id="next" type="button" class="icon-step icon-next" role="create"></li>
             </ul>
           </div>
         </div>

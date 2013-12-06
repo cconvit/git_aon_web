@@ -106,7 +106,7 @@ $aseguradoras = $aseguradora->find_all();
           <div id="main-detail">
             <div id="nav-operations">
               <span class="title">Convenios</span>
-              <input type="button" class="add-button" onclick="location.href='nuevo-convenio.php'" value="Nuevo convenio">
+              <input type="button" class="add-button" onclick="location.href = 'crear-convenio.php'" value="Nuevo convenio">
             </div>
             <div id="scroll">
               <table class="tbl-details" cellspacing="0" borderspacing="0">
@@ -126,7 +126,8 @@ $aseguradoras = $aseguradora->find_all();
                             <p class="item-info">Última modificación: <span><?php echo $value->ut_time; ?></span></p>
                             <div class="options top-max">
                               <form method="post" action="../php/operation/administration.php?operation_type=12&target=../../flota/convenios.php" onsubmit="return formOperation()">
-                                <input type="button" data="<?php echo $value->id; ?>" class="icon-operation icon-modified" onclick="UTIL.loadDialog('load/loadAgreement.php', this, $('#modify')); return false;">
+                                <input type="button" data="<?php echo $value->id; ?>" class="icon-operation icon-modified" onclick="UTIL.loadDialog('load/loadAgreement.php', this, $('#modify'));
+                                        return false;">
                                 <input type="submit" type="submit" class="icon-operation icon-delete" value="">
                                 <input type="hidden" name="id" value="<?php echo $value->id; ?>">
                               </form>
