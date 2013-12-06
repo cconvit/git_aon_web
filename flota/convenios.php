@@ -106,7 +106,7 @@ $aseguradoras = $aseguradora->find_all();
           <div id="main-detail">
             <div id="nav-operations">
               <span class="title">Convenios</span>
-              <input type="button" class="add-button" onclick="location.href = 'nuevo-convenio.php'" value="Nuevo convenio">
+              <input type="button" class="add-button" onclick="location.href = 'crear-convenio.php'" value="Nuevo convenio">
             </div>
             <div id="scroll">
               <table class="tbl-details" cellspacing="0" borderspacing="0">

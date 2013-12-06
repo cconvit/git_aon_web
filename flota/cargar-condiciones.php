@@ -83,7 +83,7 @@
               <span class="title">Coberturas y Condiciones</span>
               <input type="button" class="add-button" value="Añadir cobertura" onclick="$('#new').dialog('open');">
             </div>
-            <div id="scroll" style="margin-top: 30px">
+            <div id="scroll">
               <table class="tbl-details" cellspacing="0" borderspacing="0">
                 <tbody>
                   <tr>
@@ -112,13 +112,11 @@
         <div id="footer">
           <div id="nav-step">
             <ul>
-              <li style="margin-left: 0px"><input type="button" class="icon-step icon-back-disabled" value=""></li>
               <li>Crear convenio</li>
               <li><span class="arrow"></span></li>                      
-              <li><a href="importar-datos.php">Importar datos</a></li>
+              <li>Importar datos</li>
               <li><span class="arrow"></span></li>               
-              <li><a class="current-step" href="condiciones.php">Condiciones y coberturas</a></li>
-              <li class="button-back"><input type="button" class="icon-step icon-next" value="" onclick="WIZARD.create($('#create-agreement').find('form'));"></li>                
+              <li><a class="current-step" href="cargar-condiciones.php">Condiciones y coberturas</a></li>
             </ul>
           </div>
         </div>

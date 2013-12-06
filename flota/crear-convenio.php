@@ -31,9 +31,9 @@
             <div id="nav-operations">
               <span class="title">Crear convenio</span>
             </div>
-            <div id="scroll" style="margin-top: 30px">
+            <div id="scroll" style="height: 455px;">
               <div id="create-agreement">
-                <form method="post" action="operation.php?operation_type=1&step=1">  
+                <form method="post" action="operation.php" style="margin-top: 30px" onsubmit="return isValidateSubmit($(this));">  
                   <table>
                     <tr>
                       <td>Nombre</td>
@@ -45,7 +45,7 @@
                       <td>Descripción</td>
                     </tr>                 
                     <tr>
-                      <td><textarea name="descripcion" class="common-input is-required" style="height: 100px"></textarea></td>
+                      <td><textarea name="descripcion" class="common-input is-required" style="height: 66px"></textarea></td>
                     </tr>
                     <tr>
                       <td>Seguro</td>
@@ -59,14 +59,17 @@
                       </td>
                     </tr>                                
                     <tr>
-                      <td>Número de póliza</td>
+                      <td>Número de póliza (opcional)</td>
                     </tr>                 
                     <tr>
                       <td><input type="text" name="poliza" class="common-input is-required"></td>
                     </tr>
                     <tr>
                       <td><div class="required hide">Uno o más campos son inválidos.</div></td>
-                    </tr>                    
+                    </tr>
+                    <tr>
+                      <td><input type="submit" class="common-button" value="Siguiente"></td>
+                    </tr>
                   </table>
                 </form>
               </div>
@@ -76,11 +79,11 @@
         <div id="footer">
           <div id="nav-step">
             <ul>
-              <li><a class='current-step' href="nuevo-convenio.php">Crear convenio</a></li>
+              <li><a class='current-step' href="crear-convenio.php">Crear convenio</a></li>
               <li><span class="arrow"></span></li>                      
-              <li><a href="importar-datos.php">Importar datos</a></li>
+              <li>Importar datos</li>
               <li><span class="arrow"></span></li>               
-              <li><a href="condiciones.php">Condiciones y coberturas</a></li>
+              <li>Condiciones y coberturas</li>
             </ul>
           </div>
         </div>
@@ -89,5 +92,5 @@
     <script src="../plugins/jquery-1.10.2.min.js"></script>
     <script src="../plugins/jquery-ui-1.10.3.custom.min.js"></script>
     <script src="js/snippet.js"></script>
-</body>
+  </body>
 </html>

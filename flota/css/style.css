@@ -420,14 +420,13 @@ body, html{
   margin-bottom: 0px;
 }
 #nav-step{
-  margin-top: 9px;
+  margin-top: 12px;
   color: #FFFFFF;
 }
 #nav-step ul li{
   display: inline-block;
   margin-left: 26px;
   vertical-align: middle;
-  cursor: pointer;
 }
 #nav-step ul li a{
   color: #FFFFFF;
