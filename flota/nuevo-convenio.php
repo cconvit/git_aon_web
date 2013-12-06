@@ -76,13 +76,11 @@
         <div id="footer">
           <div id="nav-step">
             <ul>
-              <li style="margin-left: 0px"><input type="button" class="icon-step icon-back-disabled" value=""></li>
               <li><a class='current-step' href="nuevo-convenio.php">Crear convenio</a></li>
               <li><span class="arrow"></span></li>                      
               <li><a href="importar-datos.php">Importar datos</a></li>
               <li><span class="arrow"></span></li>               
               <li><a href="condiciones.php">Condiciones y coberturas</a></li>
-              <li class="button-back"><input type="button" class="icon-step icon-next" value="" onclick="WIZARD.create($('#create-agreement').find('form'));"></li>                
             </ul>
           </div>
         </div>
