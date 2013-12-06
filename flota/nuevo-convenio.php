@@ -1,3 +1,25 @@
+<?php
+session_start();
+require_once("../php/db/config.php");
+require_once ('../php/db/database.php');
+require_once ('../php/entity/convenio_aseguradora.php');
+require_once ('../php/entity/aseguradora.php');
+
+$msg = "hide";
+$msg_desc = "";
+$msg_type = "succesfull";
+
+if (isset($_SESSION['msg'])) {
+  if ($_SESSION['msg'] == "show") {
+    $msg = "show";
+    $msg_desc = $_SESSION['msg_desc'];
+    $msg_type = $_SESSION['msg_type'];
+  }
+}
+
+$aseguradora = new aseguradora();
+$aseguradoras = $aseguradora->find_all();
+?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -33,7 +55,7 @@
             </div>
             <div id="scroll" style="margin-top: 30px">
               <div id="create-agreement">
-                <form method="post" action="operation.php?operation_type=1&step=1">  
+                <form method="post" action="../php/operation/administration.php?operation_type=10&target=../../flota/importar_datos.php&target_fail=../../flota/convenios.php">  
                   <table>
                     <tr>
                       <td>Nombre</td>
@@ -52,10 +74,17 @@
                     </tr>                  
                     <tr>
                       <td>
-                        <select name="seguro" class="common-input is-required" style="width: 370px">
-                          <option>Mercantil</option>
-                          <option>Caracas</option>
-                        </select>
+                          <select class="common-input" name="seguro" style="width: 370px">
+                            <?php
+                            if (sizeof($aseguradoras) > 0) {
+                              foreach ($aseguradoras as $value) {
+                                ?>
+                                <option value="<?php echo $value->id; ?>"><?php echo $value->nombre; ?></option>
+                                <?php
+                              }
+                            }
+                            ?>
+                          </select>
                       </td>
                     </tr>                                
                     <tr>
@@ -93,3 +122,8 @@
     <script src="js/snippet.js"></script>
 </body>
 </html>
+  <?php
+  $_SESSION['msg'] = "hide";
+  $_SESSION['msg_desc'] = "";
+  $msg_type = "succesfull";
+  ?>

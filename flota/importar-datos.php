@@ -41,7 +41,7 @@
                         <p class="separator"></p>
                         <div class="info-down">
                           <div class="options">
-                            <form method="post" action="operation.php?operation_upload=1" enctype="multipart/form-data">
+                            <form method="post" action="../php/operation/operation_upload.php?operation_upload=1&target=../../flota/importar-datos.php" enctype="multipart/form-data">
                               <p>
                                 <input id="input-file" type="button" class="icon-operation icon-upload">
                                 <input type="file" name="coverage" class="hide">
