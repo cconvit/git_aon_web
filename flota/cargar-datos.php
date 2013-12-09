@@ -1,3 +1,21 @@
+<?php
+session_start();
+require_once("../php/db/config.php");
+require_once ('../php/db/database.php');
+
+$msg = "hide";
+$msg_desc = "";
+$msg_type = "succesfull";
+
+if (isset($_SESSION['msg'])) {
+  if ($_SESSION['msg'] == "show") {
+    $msg = "show";
+    $msg_desc = $_SESSION['msg_desc'];
+    $msg_type = $_SESSION['msg_type'];
+  }
+}
+
+?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -41,10 +59,10 @@
                       <div class="info-down">
                        <p class="item-info">Última modificación: <span>2013-11-25 17:17:57</span></p> 
                         <div class="options">
-                          <form method="post" action="operation.php?operation_upload=1" enctype="multipart/form-data">
+                          <form method="post" action="../php/operation/operation_upload.php?operation_upload=1&target=../../flota/cargar-datos.php" enctype="multipart/form-data">
                             <p>
                               <input id="input-file" type="button" class="icon-operation icon-upload">
-                              <input type="file" name="amplia" class="hide">
+                              <input type="file" name="file" class="hide">
                             </p>
                           </form>
                         </div>
@@ -60,10 +78,10 @@
                       <div class="info-down">
                        <p class="item-info">Última modificación: <span>2013-11-25 17:17:57</span></p> 
                         <div class="options">
-                          <form method="post" action="operation.php?operation_upload=2" enctype="multipart/form-data">
+                          <form method="post" action="../php/operation/operation_upload.php?operation_upload=2&target=../../flota/cargar-datos.php" enctype="multipart/form-data">
                             <p>
                               <input id="input-file" type="button" class="icon-operation icon-upload">
-                              <input type="file" name="total" class="hide" value="null">
+                              <input type="file" name="file" class="hide" value="null">
                             </p>
                           </form>
                         </div>
@@ -79,10 +97,10 @@
                       <p class="item-info">Última modificación: <span>2013-11-25 17:17:57</span></p>     
                       <div class="info-down">
                         <div class="options">
-                          <form method="post" action="operation.php?operation_upload=3" enctype="multipart/form-data">
+                          <form method="post" action="../php/operation/operation_upload.php?operation_upload=3&target=../../flota/cargar-datos.php" enctype="multipart/form-data">
                             <p>
                               <input id="input-file" type="button" class="icon-operation icon-upload">
-                              <input type="file" name="clasificacion" class="hide" value="null">
+                              <input type="file" name="file" class="hide" value="null">
                             </p>
                           </form>
                         </div>
@@ -98,10 +116,10 @@
                       <div class="info-down">
                        <p class="item-info">Última modificación: <span>2013-11-25 17:17:57</span></p> 
                         <div class="options">
-                          <form method="post" action="operation.php?operation_upload=4" enctype="multipart/form-data">
+                          <form method="post" action="../php/operation/operation_upload.php?operation_upload=4&target=../../flota/cargar-datos.php" enctype="multipart/form-data">
                             <p>
                               <input id="input-file" type="button" class="icon-operation icon-upload">
-                              <input type="file" name="segmentacion" class="hide" value="null">
+                              <input type="file" name="file" class="hide" value="null">
                             </p>
                           </form>
                         </div>
@@ -117,10 +135,10 @@
                       <div class="info-down">
                        <p class="item-info">Última modificación: <span>2013-11-25 17:17:57</span></p> 
                         <div class="options">
-                          <form method="post" action="operation.php?operation_upload=5" enctype="multipart/form-data">
+                          <form method="post" action="../php/operation/operation_upload.php?operation_upload=5&target=../../flota/cargar-datos.php" enctype="multipart/form-data">
                             <p>
                               <input id="input-file" type="button" class="icon-operation icon-upload">
-                              <input type="file" name="grua" class="hide">
+                              <input type="file" name="file" class="hide">
                             </p>
                           </form>
                         </div>
@@ -155,3 +173,8 @@
     <script src="js/snippet.js"></script>
   </body>
 </html>
+  <?php
+  $_SESSION['msg'] = "hide";
+  $_SESSION['msg_desc'] = "";
+  $msg_type = "succesfull";
+  ?>

@@ -2,6 +2,7 @@
 
 class clasificacion{
     
+    protected static $table_name = "tbl_clasificacion";
     protected static $db_fields=array('id','id_aseguradora','as_nombre','marca','modelo','clasificacion','tipo_carro','tasa','ano','convenio');
     
     public $id;
@@ -19,7 +20,7 @@ class clasificacion{
     
     
     
-  public function convenio_aseguradora (){
+  public function clasificacion (){
       
       
   }
@@ -184,7 +185,26 @@ class clasificacion{
     return $object_array;
   }
   
-  
+ public  function create() {
+    
+        global $database;
+
+        $sql = "INSERT INTO " . self::$table_name . " (id_convenio_as,marca,modelo,clasificacion,tipo_carro) VALUES (
+                            '{$database->escape_value($this->id_convenio_as)}',
+                            '{$database->escape_value($this->marca)}',
+                            '{$database->escape_value($this->modelo)}',
+                            '{$database->escape_value($this->clasificacion)}',
+                            '{$database->escape_value($this->tipo_carro)}'
+                            )";
+
+        if ($database->query($sql)) {
+            $this->id = $database->insert_id();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
   ///////////////////////////METODOS ESTANDAR//////////////////////////////////
   
   private static function instantiate($record) {
