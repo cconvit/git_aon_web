@@ -21,6 +21,18 @@ class cobertura_aseguradora{
 		return self::find_by_sql("SELECT * FROM ".self::$table_name);
   }
   
+  public static function find_all_unset($id_convenio_as) {
+      
+      global $database;
+      
+		return self::find_by_sql("SELECT * FROM ".self::$table_name." cob
+                                          WHERE cob.id NOT IN (
+                                          SELECT re.id_cob_as FROM  tbl_re_tipo_cob_as re
+                                          WHERE re.id_convenio_as='{$database->escape_value($id_convenio_as)}' 
+                                          GROUP BY re.id_cob_as)
+                                        ");
+  }
+  
   public static function find_by_sql($sql="") {
       
     global $database;

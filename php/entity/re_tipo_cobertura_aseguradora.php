@@ -57,6 +57,20 @@ class re_tipo_cobertura_aseguradora{
                               ");
   }
   
+  public function find_re_by_convenio_cobertura() {
+	
+      global $database;
+      
+      return self::find_by_sql("SELECT re.id_convenio_as as 'id_convenio_as',
+                                       de.desc_cobertura as 'descripcion',re.id_cob_as as 'id_cob_as'
+                               FROM  tbl_re_tipo_cob_as re
+                               INNER JOIN tbl_cob_as de ON (de.id=re.id_cob_as)
+                               WHERE re.id_convenio_as='{$database->escape_value($this->id_convenio_as)}' 
+                               GROUP BY re.id_cob_as
+                              ");
+  }
+
+  
   // Common Database Methods
   public static function find_all() {
 		return self::find_by_sql("SELECT * FROM ".self::$table_name);
@@ -74,6 +88,30 @@ class re_tipo_cobertura_aseguradora{
     return $object_array;
   }
   
+  public  function create() {
+      
+      global $database;
+      
+        $sql="INSERT INTO ".self::$table_name." (id_convenio_as,id_tipo_cob,id_cob_as,id_tipo_carro,tipo_calculo,valor,limite,tasa,incluida) VALUES (
+                            '{$database->escape_value($this->id_convenio_as)}',
+                            '{$database->escape_value($this->id_tipo_cob)}',
+                            '{$database->escape_value($this->id_cob_as)}',
+                            '{$database->escape_value($this->id_tipo_carro)}',
+                            '{$database->escape_value($this->tipo_calculo)}',
+                            '{$database->escape_value($this->valor)}',
+                            '{$database->escape_value($this->limite)}',
+                            '{$database->escape_value($this->tasa)}',
+                            '{$database->escape_value($this->incluida)}'
+                            )";
+                                          
+                                          
+      if($database->query($sql)) {
+        $this->id = $database->insert_id();
+        return true;
+      } else {
+        return false;
+      }
+  }
   
   ///////////////////////////METODOS ESTANDAR//////////////////////////////////
   

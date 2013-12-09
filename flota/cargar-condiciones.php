@@ -1,3 +1,32 @@
+<?php
+session_start();
+require_once("../php/db/config.php");
+require_once ('../php/db/database.php');
+require_once ('../php/entity/re_tipo_cobertura_aseguradora.php');
+require_once ('../php/entity/cobertura_aseguradora.php');
+require_once ('../php/entity/tipo_calculo.php');
+
+$condicion= new re_tipo_cobertura_aseguradora();
+$condicion->id_convenio_as=$_SESSION["id_convenio_as"];
+$condiciones = $condicion->find_re_by_convenio_cobertura();
+
+$cobertura_aseguradora=new cobertura_aseguradora();
+$coberturas=$cobertura_aseguradora->find_all_unset($_SESSION["id_convenio_as"]);
+
+$tipo_calculo=new tipo_calculo();
+$calculos=$tipo_calculo->find_all();
+$msg = "hide";
+$msg_desc = "";
+$msg_type = "succesfull";
+
+if (isset($_SESSION['msg'])) {
+  if ($_SESSION['msg'] == "show") {
+    $msg = "show";
+    $msg_desc = $_SESSION['msg_desc'];
+    $msg_type = $_SESSION['msg_type'];
+  }
+}
+?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -10,34 +39,56 @@
   </head>
   <body>
     <div id="load">
-      <form method="post" action="operation.php" onsubmit="return isValidateSubmit($(this))">
+      <form method="post" action="../php/operation/administration.php?operation_type=13&target=../../flota/cargar-condiciones.php" onsubmit="return isValidateSubmit($(this))">
         <table align="center" width="360">
           <tbody>
             <tr>
               <td>Cobertura</td>
             </tr>
             <tr>
-              <td><select name="cobertura" class="common-input common-select"  style="width: 370px;"></select>
+             <td><select name="cobertura" class="common-input common-select"  style="width: 370px;">
+                   <?php
+             
+                    if (sizeof($coberturas) > 0) {
+                         foreach ($coberturas as $value) {
+                  ?>
+                   <option value="<?php echo $value->id; ?>"><?php echo $value->desc_cobertura; ?></option>
+                   <?php
+                         }
+                    }
+                   ?>                 
+                 </select>
               </td>
             </tr>
             <tr>
               <td>Tipo de Cálculo</td>
             </tr>
             <tr>
-              <td><select name="calculo" class="common-input common-select" style="width: 370px;"></select>
+              <td><select name="calculo" class="common-input common-select" style="width: 370px;">
+                  <?php
+             
+                    if (sizeof($calculos) > 0) {
+                         foreach ($calculos as $value) {
+                  ?>
+                     <option value="<?php echo $value->id; ?>"><?php echo utf8_encode($value->descripcion); ?></option>
+                   <?php
+                         }
+                    }
+                   ?>
+                </select>
               </td>
             </tr>
             <tr>
               <td>Limite</td>
             </tr>
             <tr>
-              <td><input type="text" class="common-input"></td>
+              <td><input type="text" name="limite" class="common-input"></td>
             </tr>
             <tr>
               <td>Tasa</td>
             </tr>
             <tr>
-              <td><input type="text" class="common-input"></td>
+              <td><input type="text" name="tasa" class="common-input"></td>
             </tr>                          
             <tr>
               <td>
@@ -121,10 +172,14 @@
             <div id="scroll">
               <table class="tbl-details" cellspacing="0" borderspacing="0">
                 <tbody>
+                <?php
+                    if (sizeof($condiciones) > 0) {
+                      foreach ($condiciones as $value) {
+                 ?>
                   <tr>
                     <td>
                       <div class='item'>
-                        <p><span class="check icon-check"></span><span class="item-title">Eventos catastróficos</span></p>
+                        <p><span class="check icon-check"></span><span class="item-title"><?php echo $value->descripcion; ?></span></p>
                         <p class="separator"></p>
                         <div class="info-down">
                           <div class="options">
@@ -139,7 +194,11 @@
                         </div>
                       </div>            
                     </td>
-                  </tr>                 
+                  </tr>     
+                   <?php
+                    }
+                  }
+                  ?>
                 </tbody>
               </table>
             </div>
@@ -166,3 +225,8 @@
     <script src="js/snippet.js"></script>
   </body>
 </html>
+  <?php
+  $_SESSION['msg'] = "hide";
+  $_SESSION['msg_desc'] = "";
+  $msg_type = "succesfull";
+  ?>

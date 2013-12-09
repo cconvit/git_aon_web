@@ -55,6 +55,10 @@ if (isset($_REQUEST["operation_type"])) {
     case 12:
       deleteConvenio($_REQUEST["id"]);
       break;
+  
+    case 13:
+      newCondicion();
+      break;
   }
 }
 
@@ -304,5 +308,76 @@ function deleteConvenio($id) {
      $_SESSION["msg_type"]  = "succesfull";
   }
   header('Location: ' . $_GET["target"]);
+}
+
+function newCondicion() {
+
+  require_once ('../entity/re_tipo_cobertura_aseguradora.php');
+  $condicion = new re_tipo_cobertura_aseguradora();
+
+  if(isset($_REQUEST["cobertura"]) && isset($_REQUEST["calculo"]) && isset($_REQUEST["limite"]) && isset($_REQUEST["tasa"]) && isset($_SESSION["id_convenio_as"])){
+      
+        $condicion->id_cob_as=$_REQUEST["cobertura"];
+        $condicion->tipo_calculo=$_REQUEST["calculo"];
+        $condicion->limite=$_REQUEST["limite"];
+        $condicion->tasa=$_REQUEST["tasa"];
+        $condicion->incluida=$_REQUEST["incluida"] == "true" ? "1":"0";
+        $condicion->id_convenio_as=$_SESSION["id_convenio_as"];
+        
+        if($_REQUEST["cobertura_amplia"] == "true")
+            createCondicion($condicion,"1");
+        
+       
+        if($_REQUEST["perdida_total"] == "true")
+            createCondicion($condicion,"2");
+        
+        if($_REQUEST["rcv"] == "true")
+            createCondicion($condicion,"3");
+            
+      $_SESSION["msg_desc"] = "La creación de la cobertura se realizó exitosamente";
+      $_SESSION["msg_type"]  = "succesfull";
+  }else{
+      
+      $_SESSION["msg_desc"] = "Ocurrio un error al tratar de crear la cobertura al convenio. Por favor intente mas tarde. Si el error persiste, comuniquese con el administrador del sistema.";
+      $_SESSION["msg_type"] = "error";
+  }
+  
+
+  $_SESSION["msg"] = "show";
+
+  header('Location: ' . $_GET["target"]);
+}
+
+function createCondicion($condicion,$tipo_cob,$valor){
+    
+    for($x=1;$x<4;$x++){
+        
+         $condicion->id_tipo_cob=$tipo_cob;
+         $condicion->valor=$valor == "" ? "0":$valor;
+         $condicion->id_tipo_carro=$x;  
+         
+         switch ($x){
+             
+             case 1:
+                   $condicion->valor=$_REQUEST["particular"];
+             break;
+         
+             case 2:
+                   $condicion->valor=$_REQUEST["rustico"];
+             break;
+         
+             case 3:
+                   $condicion->valor=$_REQUEST["pickup"];
+             break;
+         
+             default:
+                   $condicion->valor=0;
+             break;
+             
+         }
+         $condicion->create();
+        
+    }
+    
 }
 ?>
