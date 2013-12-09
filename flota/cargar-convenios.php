@@ -34,10 +34,9 @@ $aseguradoras = $aseguradora->find_all();
   </head>
   <body>
     <div id="new" class="dialog">
-      
-      
-      
-      
+      <table>
+          <tr></tr>
+      </table>
     </div>
     <div id="container">
       <div id="header">

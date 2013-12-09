@@ -78,7 +78,6 @@ if (isset($_SESSION['msg'])) {
                 </select>
               </td>
             </tr>
-            <tr>
               <td>Limite</td>
             </tr>
             <tr>
@@ -185,8 +184,7 @@ if (isset($_SESSION['msg'])) {
                           <div class="options">
                             <form method="post" action="operation.php" action="">
                               <p>
-                                <input id="input-file" type="button" class="icon-operation icon-modified" data="1" onclick="UTIL.loadDialog('load/loadConditon.php', this, $('#modify'));
-                                    return false;">
+                                <input id="input-file" type="button" class="icon-operation icon-modified" data="1" onclick="UTIL.loadDialog('load/loadConditon.php', this, $('#modify')); return false;">
                                 <input id="input-file" type="button" class="icon-operation icon-delete" data="1">
                               </p>
                             </form>
