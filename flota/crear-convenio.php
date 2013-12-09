@@ -55,51 +55,51 @@ $aseguradoras = $aseguradora->find_all();
             </div>
             <div id="scroll" style="height: 455px;">
               <div style="margin-top: 30px">
-                  <div id="create-agreement">
-                    <form method="post" action="../php/operation/administration.php?operation_type=10&target=../../flota/cargar-datos.php&target_fail=../../flota/convenios.php">  
-                      <table>
-                        <tr>
-                          <td>Nombre</td>
-                        </tr>
-                        <tr>
-                          <td><input type="text" name="nombre" class="common-input is-required"></td>
-                        </tr>                  
-                        <tr>
-                          <td>Descripción</td>
-                        </tr>                 
-                        <tr>
-                          <td><textarea name="descripcion" class="common-input is-required" style="height: 66px"></textarea></td>
-                        </tr>
-                        <tr>
-                          <td>Seguro</td>
-                        </tr>                  
-                        <tr>
-                          <td>
-                            <select class="common-input" name="seguro" style="width: 370px">
-                              <?php
-                              if (sizeof($aseguradoras) > 0) {
-                                foreach ($aseguradoras as $value) {
-                                  ?>
-                                  <option value="<?php echo $value->id; ?>"><?php echo $value->nombre; ?></option>
-                                  <?php
-                                }
+                <div id="create-agreement">
+                  <form method="post" action="../php/operation/administration.php?operation_type=10&target=../../flota/cargar-datos.php&target_fail=../../flota/convenios.php">  
+                    <table>
+                      <tr>
+                        <td>Nombre</td>
+                      </tr>
+                      <tr>
+                        <td><input type="text" name="nombre" class="common-input is-required"></td>
+                      </tr>                  
+                      <tr>
+                        <td>Descripción</td>
+                      </tr>                 
+                      <tr>
+                        <td><textarea name="descripcion" class="common-input is-required" style="height: 66px"></textarea></td>
+                      </tr>
+                      <tr>
+                        <td>Seguro</td>
+                      </tr>                  
+                      <tr>
+                        <td>
+                          <select class="common-input" name="seguro" style="width: 370px">
+                            <?php
+                            if (sizeof($aseguradoras) > 0) {
+                              foreach ($aseguradoras as $value) {
+                                ?>
+                                <option value="<?php echo $value->id; ?>"><?php echo $value->nombre; ?></option>
+                                <?php
                               }
-                              ?>
-                            </select>
-                          </td>
-                        </tr>                                
-                        <tr>
-                          <td>Número de póliza (opcional)</td>
-                        </tr>                 
-                        <tr>
-                          <td><input type="text" name="poliza" class="common-input"></td>
-                        </tr>
-                        <tr>
-                          <td><div class="required hide">Uno o más campos son inválidos.</div></td>
-                        </tr>
-                      </table>
-                    </form>
-                  </div>
+                            }
+                            ?>
+                          </select>
+                        </td>
+                      </tr>                                
+                      <tr>
+                        <td>Número de póliza (opcional)</td>
+                      </tr>                 
+                      <tr>
+                        <td><input type="text" name="poliza" class="common-input"></td>
+                      </tr>
+                      <tr>
+                        <td><div class="required hide">Uno o más campos son inválidos.</div></td>
+                      </tr>
+                    </table>
+                  </form>
+                </div>
               </div>
             </div>
           </div>

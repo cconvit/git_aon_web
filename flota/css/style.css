@@ -84,6 +84,9 @@ input[type="checkbox"], input[type="radio"] {
   background-color: #c6c6c6;
   border: none;
 }
+input[type="checkbox"]{
+  vertical-align: baseline;
+}
 input[type="search"] {
   -webkit-appearance: textfield;
   -moz-box-sizing: content-box;
@@ -104,6 +107,9 @@ button::-moz-focus-inner, input::-moz-focus-inner {
   width: 360px;
   margin: 10px 0px;
   padding: 2px 5px 5px 5px;
+}
+.common-value{
+  width: 105px;
 }
 .common-select{
   width: 370px;
@@ -232,6 +238,9 @@ ul, ol {
   margin: 0;
   padding: 0;
 }
+ul li{
+  list-style: none;
+}
 dd {
   margin: 0 0 0 40px;
 }
@@ -272,6 +281,7 @@ fieldset {
 label {
   cursor: pointer;
   display: inline;
+  vertical-align: middle;
 }
 legend {
   border: 0;
@@ -663,4 +673,7 @@ a.access-title{
 }
 .modal{
   padding-top: 30px;
+}
+.text-center{
+  text-align: center;
 }
