@@ -14,7 +14,6 @@ if (isset($_SESSION['msg'])) {
     $msg_type = $_SESSION['msg_type'];
   }
 }
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -156,10 +155,10 @@ if (isset($_SESSION['msg'])) {
               <li><input type="button" class="icon-step icon-exit" onclick="WIZARD.exit()"></li>
               <li>Crear convenio</a></li>
               <li><span class="arrow"></span></li>                      
-              <li><a class='current-step' href="cargar-datos.php?i">Importar datos</a></li>
+              <li><a class='current-step' href="cargar-datos.php">Importar datos</a></li>
               <li><span class="arrow"></span></li>               
-              <li>Condiciones y coberturas</li>
-              <li><input id="next" type="button" class="icon-step icon-next" role="import"></li>
+              <li><a class='current-step' href="cargar-condiciones.php">Condiciones y </a></li>
+              <li><input id="next" type="button" class="icon-step icon-next" onclick="location.href='cargar-condiciones.php'"></li>
             </ul>
           </div>
         </div>

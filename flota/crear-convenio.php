@@ -106,8 +106,8 @@ $aseguradoras = $aseguradora->find_all();
           <div id="footer">
             <div id="nav-step">
               <ul>
-                <li><input id="next" type="button" class="icon-step icon-exit" role="create"></li>
-                <li><a class='current-step' href="crear-fota.php">Crear convenio</a></li>
+                <li><input type="button" class="icon-step icon-exit" onclick="location.href = 'convenios.php'"></li>
+                <li><a class='current-step' href="crear-convenio.php">Crear convenio</a></li>
                 <li><span class="arrow"></span></li>                      
                 <li>Importar datos</li>
                 <li><span class="arrow"></span></li>               

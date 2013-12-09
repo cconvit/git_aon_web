@@ -33,6 +33,12 @@ $aseguradoras = $aseguradora->find_all();
     <link href="css/style.css" rel="stylesheet" type="text/css">
   </head>
   <body>
+    <div id="new" class="dialog">
+      <
+      
+      
+      
+    </div>
     <div id="container">
       <div id="header">
         <img id="logo" src="img/logo.png">

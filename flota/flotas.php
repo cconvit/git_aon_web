@@ -16,7 +16,7 @@
         <div id="top-nav"></div>
       </div>
       <div id="content">
-        <div class="message <?php echo $msg . " " . $msg_type; ?>"><?php echo $msg_desc; ?></div>
+        <div class="message"></div>
         <div id="left-nav">
           <ul>
             <li><a href="clientes.php">Clientes</a></li>
@@ -36,34 +36,24 @@
             <div id="scroll">
               <table class="tbl-details" cellspacing="0" borderspacing="0">
                 <tbody>
-                  <?php
-                  if (sizeof($convenios_aseguradoras) > 0) {
-                    foreach ($convenios_aseguradoras as $value) {
-                      ?>                
-                      <tr>
-                        <td>
-                          <div class="item">
-                            <p class="item-title"><?php echo $value->as_nombre; ?></p>
-                            <p clas="item-sub-title"><?php echo $value->descripcion; ?></p>
-                            <p clas="item-sub-title"><?php echo "1002102"; ?></p>
-                            <p class="separator"></p>
-                            <p class="item-info">Fecha de creación: <span><?php echo $value->cr_time; ?></span></p>
-                            <p class="item-info">Última modificación: <span><?php echo $value->ut_time; ?></span></p>
-                            <div class="options top-max">
-                              <form method="post" action="../php/operation/administration.php?operation_type=12&target=../../flota/convenios.php" onsubmit="return formOperation()">
-                                <input type="button" data="<?php echo $value->id; ?>" class="icon-operation icon-modified" onclick="UTIL.loadDialog('load/loadAgreement.php', this, $('#modify'));
-                                    return false;">
-                                <input type="submit" type="submit" class="icon-operation icon-delete" value="">
-                                <input type="hidden" name="id" value="<?php echo $value->id; ?>">
-                              </form>
-                            </div>
-                          </div>
-                        </td>
-                      </tr>
-                      <?php
-                    }
-                  }
-                  ?>
+                  <tr>
+                    <td>
+                      <div class="item">
+                        <p class="item-title">movistar</p>
+                        <p clas="item-sub-title">movistar empresa</p>
+                        <p class="separator"></p>
+                        <p class="item-info">Fecha de creación: <span></span></p>
+                        <p class="item-info">Última modificación: <span></span></p>
+                        <div class="options top-max">
+                          <form method="post" action="../php/operation/administration.php?operation_type=12&target=../../flota/convenios.php" onsubmit="return formOperation()">
+                            <input type="button" data="" class="icon-operation icon-modified" onclick="UTIL.loadDialog('load/loadAgreement.php', this, $('#modify')); return false;">
+                            <input type="submit" type="submit" class="icon-operation icon-delete" value="">
+                            <input type="hidden" name="id" value="">
+                          </form>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
                 </tbody>
               </table>
             </div>
