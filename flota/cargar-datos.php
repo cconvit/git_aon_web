@@ -33,7 +33,7 @@ if (isset($_SESSION['msg'])) {
         <div id="top-nav"></div>
       </div>
       <div id="content">
-        <div class="message hide"></div>
+         <div class="message <?php echo $msg . " " . $msg_type; ?>"><?php echo $msg_desc; ?></div>
         <div id="left-nav">
           <ul>
             <li><a href="clientes.php">Clientes</a></li>
@@ -54,7 +54,7 @@ if (isset($_SESSION['msg'])) {
                 <tr>
                   <td>
                     <div class='item'>
-                      <p><span class="check icon-check"></span><span class="item-title">Cobertura amplia</span></p>
+                      <p><span class="<?php echo $_SESSION["up_amplia"];?> icon-check"></span><span class="item-title">Cobertura amplia</span></p>
                       <p class="separator"></p>
                       <div class="info-down">
                        <p class="item-info">Última modificación: <span>2013-11-25 17:17:57</span></p> 
@@ -73,7 +73,7 @@ if (isset($_SESSION['msg'])) {
                 <tr>
                   <td>
                     <div class='item'>
-                      <p><span class="uncheck icon-check"></span><span class="item-title">Pérdida total</span></p>
+                      <p><span class="<?php echo $_SESSION["up_total"];?> icon-check"></span><span class="item-title">Pérdida total</span></p>
                       <p class="separator"></p>
                       <div class="info-down">
                        <p class="item-info">Última modificación: <span>2013-11-25 17:17:57</span></p> 
@@ -92,7 +92,7 @@ if (isset($_SESSION['msg'])) {
                 <tr>
                   <td>
                     <div class='item'>
-                      <p><span class="check icon-check"></span><span class="item-title">Clasificación</span></p>
+                      <p><span class="<?php echo $_SESSION["up_clasificacion"];?> icon-check"></span><span class="item-title">Clasificación</span></p>
                       <p class="separator"></p>
                       <p class="item-info">Última modificación: <span>2013-11-25 17:17:57</span></p>     
                       <div class="info-down">
@@ -111,7 +111,7 @@ if (isset($_SESSION['msg'])) {
                 <tr>
                   <td>
                     <div class='item'>
-                      <p><span class="uncheck icon-check"></span><span class="item-title">Segmentación</span></p>
+                      <p><span class="<?php echo $_SESSION["up_segmentacion"];?> icon-check"></span><span class="item-title">Segmentación</span></p>
                       <p class="separator"></p>
                       <div class="info-down">
                        <p class="item-info">Última modificación: <span>2013-11-25 17:17:57</span></p> 
@@ -130,7 +130,7 @@ if (isset($_SESSION['msg'])) {
                 <tr>
                   <td>
                     <div class='item'>
-                      <p><span class="check icon-check"></span><span class="item-title">Grúa</span></p>
+                      <p><span class="<?php echo $_SESSION["up_grua"];?> icon-check"></span><span class="item-title">Grúa</span></p>
                       <p class="separator"></p>
                       <div class="info-down">
                        <p class="item-info">Última modificación: <span>2013-11-25 17:17:57</span></p> 

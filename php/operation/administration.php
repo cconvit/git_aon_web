@@ -258,6 +258,11 @@ function newConvenio($nombre,$descripcion,$seguro,$poliza) {
     $_SESSION["msg_desc"] = "La creación del convenio se realizó exitosamente";
      $_SESSION["msg_type"]  = "succesfull";
      $_SESSION["id_convenio_as"]=$convenio_aseguradora->id;
+     $_SESSION["up_amplia"]="uncheck";
+     $_SESSION["up_total"]="uncheck";
+     $_SESSION["up_segmentacion"]="uncheck";
+     $_SESSION["up_grua"]="uncheck";
+     $_SESSION["up_clasificacion"]="uncheck";
      header('Location: ' . $_GET["target"]);
   }
   

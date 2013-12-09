@@ -287,8 +287,10 @@ function create_tasa_casco($data, $id_convenio_as, $tipo_seguro) {
         $tasa_casco->ano = $tasa["ano"];
         $tasa_casco->tasa = $tasa["tasa"];
         
-        if($tasa_casco->create())
+        if($tasa_casco->create()){
             set_msg("La carga del archivo fue exitosa","succesfull");
+            if($tipo_seguro == 1)$_SESSION["up_amplia"]="check"; else $_SESSION["up_total"]="check";
+        }
         else
             set_msg("Error al importar el archivo. El archivo tiene datos errados para la importacion","error");
     }
@@ -309,8 +311,10 @@ function create_clasificacion($data, $id_convenio_as) {
         $clasificacion->clasificacion = $cla["clasificacion"];
         $clasificacion->tipo_carro = $cla["tipo_carro"];
         
-        if($clasificacion->create())
+        if($clasificacion->create()){
             set_msg("La carga del archivo fue exitosa","succesfull");
+            $_SESSION["up_clasificacion"]="check";
+        }     
         else
             set_msg("Error al importar el archivo. El archivo tiene datos errados para la importacion","error");
     }
@@ -331,8 +335,10 @@ function create_segmentacion($data, $id_convenio_as) {
         $segmentacion->edad = $seg["edad"];
         $segmentacion->tasa = $seg["tasa"];
         
-        if($segmentacion->create())
+        if($segmentacion->create()){
             set_msg("La carga del archivo fue exitosa","succesfull");
+            $_SESSION["up_segmentacion"]="check";
+        }
         else
             set_msg("Error al importar el archivo. El archivo tiene datos errados para la importacion","error");
     }
@@ -352,8 +358,10 @@ function create_grua($data, $id_convenio_as) {
         $grua->ano = $gr["ano"];
         $grua->valor = $gr["valor"];
         
-        if($grua->create())
+        if($grua->create()){
             set_msg("La carga del archivo fue exitosa","succesfull");
+            $_SESSION["up_grua"]="check";
+        }
         else
             set_msg("Error al importar el archivo. El archivo tiene datos errados para la importacion","error");
     }
