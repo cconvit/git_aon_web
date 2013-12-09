@@ -54,26 +54,27 @@ $aseguradoras = $aseguradora->find_all();
               <span class="title">Crear convenio</span>
             </div>
             <div id="scroll" style="height: 455px;">
-              <div id="create-agreement">
-                <form method="post" action="../php/operation/administration.php?operation_type=10&target=../../flota/cargar-datos.php&target_fail=../../flota/convenios.php">  
-                  <table>
-                    <tr>
-                      <td>Nombre</td>
-                    </tr>
-                    <tr>
-                      <td><input type="text" name="nombre" class="common-input is-required"></td>
-                    </tr>                  
-                    <tr>
-                      <td>Descripción</td>
-                    </tr>                 
-                    <tr>
-                      <td><textarea name="descripcion" class="common-input is-required" style="height: 66px"></textarea></td>
-                    </tr>
-                    <tr>
-                      <td>Seguro</td>
-                    </tr>                  
-                    <tr>
-                      <td>
+              <div style="margin-top: 30px">
+                <div id="create-agreement">
+                  <form method="post" action="../php/operation/administration.php?operation_type=10&target=../../flota/cargar-datos.php&target_fail=../../flota/convenios.php">  
+                    <table>
+                      <tr>
+                        <td>Nombre</td>
+                      </tr>
+                      <tr>
+                        <td><input type="text" name="nombre" class="common-input is-required"></td>
+                      </tr>                  
+                      <tr>
+                        <td>Descripción</td>
+                      </tr>                 
+                      <tr>
+                        <td><textarea name="descripcion" class="common-input is-required" style="height: 66px"></textarea></td>
+                      </tr>
+                      <tr>
+                        <td>Seguro</td>
+                      </tr>                  
+                      <tr>
+                        <td>
                           <select class="common-input" name="seguro" style="width: 370px">
                             <?php
                             if (sizeof($aseguradoras) > 0) {
@@ -85,45 +86,45 @@ $aseguradoras = $aseguradora->find_all();
                             }
                             ?>
                           </select>
-                      </td>
-                    </tr>                                
-                    <tr>
-                      <td>Número de póliza (opcional)</td>
-                    </tr>                 
-                    <tr>
-                      <td><input type="text" name="poliza" class="common-input"></td>
-                    </tr>
-                    <tr>
-                      <td><div class="required hide">Uno o más campos son inválidos.</div></td>
-                    </tr>
-                  </table>
-                </form>
+                        </td>
+                      </tr>                                
+                      <tr>
+                        <td>Número de póliza (opcional)</td>
+                      </tr>                 
+                      <tr>
+                        <td><input type="text" name="poliza" class="common-input"></td>
+                      </tr>
+                      <tr>
+                        <td><div class="required hide">Uno o más campos son inválidos.</div></td>
+                      </tr>
+                    </table>
+                  </form>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div id="footer">
-          <div id="nav-step">
-            <ul>
-              <li><input id="next" type="button" class="icon-step icon-exit" role="create"></li>
-              <li><a class='current-step' href="crear-convenio.php">Crear convenio</a></li>
-              <li><span class="arrow"></span></li>                      
-              <li>Importar datos</li>
-              <li><span class="arrow"></span></li>               
-              <li>Condiciones y coberturas</li>
-              <li><input id="next" type="button" class="icon-step icon-next" role="create"></li>
-            </ul>
+          <div id="footer">
+            <div id="nav-step">
+              <ul>
+                <li><input id="next" type="button" class="icon-step icon-exit" role="create"></li>
+                <li><a class='current-step' href="crear-fota.php">Crear convenio</a></li>
+                <li><span class="arrow"></span></li>                      
+                <li>Importar datos</li>
+                <li><span class="arrow"></span></li>               
+                <li>Condiciones y coberturas</li>
+                <li><input id="next" type="button" class="icon-step icon-next" role="create"></li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <script src="../plugins/jquery-1.10.2.min.js"></script>
-    <script src="../plugins/jquery-ui-1.10.3.custom.min.js"></script>
-    <script src="js/snippet.js"></script>
-</body>
+      <script src="../plugins/jquery-1.10.2.min.js"></script>
+      <script src="../plugins/jquery-ui-1.10.3.custom.min.js"></script>
+      <script src="js/snippet.js"></script>
+  </body>
 </html>
-  <?php
-  $_SESSION['msg'] = "hide";
-  $_SESSION['msg_desc'] = "";
-  $msg_type = "succesfull";
-  ?>
+<?php
+$_SESSION['msg'] = "hide";
+$_SESSION['msg_desc'] = "";
+$msg_type = "succesfull";
+?>

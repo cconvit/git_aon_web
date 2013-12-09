@@ -9,39 +9,74 @@
     <link href="css/style.css" rel="stylesheet" type="text/css">
   </head>
   <body>
-    <div id="new" class="dialog">
-      <form method="post" action="oeration.php" onsubmit="return isValidateSubmit($(this))">
+    <div id="load">
+      <form method="post" action="operation.php" onsubmit="return isValidateSubmit($(this))">
         <table align="center" width="360">
           <tbody>
             <tr>
               <td>Cobertura</td>
             </tr>
             <tr>
-              <td><select name="cobertura" class="common-input common-select"  style="width: 370px;"></select></td>
+              <td><select name="cobertura" class="common-input common-select"  style="width: 370px;"></select>
+              </td>
             </tr>
             <tr>
               <td>Tipo de Cálculo</td>
             </tr>
             <tr>
-              <td><select name="calculo" class="common-input common-select" style="width: 370px;"></select></td>
+              <td><select name="calculo" class="common-input common-select" style="width: 370px;"></select>
+              </td>
             </tr>
             <tr>
-              <td>Particular</td>
+              <td>Limite</td>
             </tr>
             <tr>
-              <td><input type="text" name="particular" class="common-input is-required"></td>
+              <td><input type="text" class="common-input"></td>
             </tr>
             <tr>
-              <td>Rustico</td>
+              <td>Tasa</td>
             </tr>
             <tr>
-              <td><input type="text" name="rustico" class="common-input is-required"></td>
+              <td><input type="text" class="common-input"></td>
+            </tr>                          
+            <tr>
+              <td>
+                <table>
+                  <tr>
+                    <td><div class="common-value">Particular</div></td>
+                    <td><div class="common-value text-center">Rustico</div></td>
+                    <td><div class="common-value text-center">Pickup/Van</div></td>
+                  </tr>
+                  <tr>
+                    <td><input type="text" name="particular" class="common-input common-value is-required" style="margin-right: 10px;"></td>
+                    <td><input type="text" name="rustico" class="common-input common-value is-required" style="margin-right: 10px;"></td>
+                    <td><input type="text" name="pickup" class="common-input common-value is-required"></td>
+                  </tr>                  
+                </table>
+              </td>
             </tr>
             <tr>
-              <td>Pickup/Van</td>
+              <td>Aplica con las siguientes condiciones:</td>
             </tr>
             <tr>
-              <td><input type="text" name="pickup" class="common-input is-required"></td>
+              <td>
+                <ul id="check-list" style="margin-top: 7px;">
+                  <li>
+                    <input type="checkbox" name="cobertura_amplia" value="true">
+                    <label form="cobertura_amplia">Cobertura amplia</label></li>
+                  <li>
+                    <input type="checkbox" name="perdida_total" value="true">
+                    <label form="perdida_total">Pérdida total</label></li>
+                  <li>
+                    <input type="checkbox" name="rcv" value="true">
+                    <label form="rcv">RCV</label>
+                  </li>
+                  <li>
+                    <input type="checkbox" name="incluida" value="true">
+                    <label form="rcv">Incluida sin costo</label>
+                  </li>                  
+                </ul>
+              </td>
             </tr>
             <tr>
               <td><div class="required hide">Uno o más campos son inválidos.</div></td>
@@ -52,7 +87,7 @@
               <td>
                 <div class="buttons-panel">
                   <input type="submit" class="common-button" value="Guardar">
-                  <input type="button" class="common-button" value="Salir" onclick="$('#new').dialog('close');">
+                  <input type="button" class="common-button" value="Salir" onclick="$('#load').dialog('close');">
                 </div>
               </td>
             </tr>
@@ -81,7 +116,7 @@
           <div id="main-detail">
             <div id="nav-operations">
               <span class="title">Coberturas y Condiciones</span>
-              <input type="button" class="add-button" value="Añadir cobertura" onclick="$('#new').dialog('open');">
+              <input type="button" class="add-button" value="Añadir cobertura" onclick="$('#load').dialog('open');">
             </div>
             <div id="scroll">
               <table class="tbl-details" cellspacing="0" borderspacing="0">
@@ -95,7 +130,8 @@
                           <div class="options">
                             <form method="post" action="operation.php" action="">
                               <p>
-                                <input id="input-file" type="button" class="icon-operation icon-modified" data="1" onclick="UTIL.loadDialog('load/loadConditon.php', this, $('#modify')); return false;">
+                                <input id="input-file" type="button" class="icon-operation icon-modified" data="1" onclick="UTIL.loadDialog('load/loadConditon.php', this, $('#modify'));
+                                    return false;">
                                 <input id="input-file" type="button" class="icon-operation icon-delete" data="1">
                               </p>
                             </form>
@@ -117,7 +153,7 @@
               <li>Importar datos</li>
               <li><span class="arrow"></span></li>               
               <li><a class="current-step" href="cargar-condiciones.php">Condiciones y coberturas</a></li>
-              <li><input type="button" class="icon-step icon-end" onclick="location.href='convenios.php'"></li>            
+              <li><input type="button" class="icon-step icon-end" onclick="location.href = 'convenios.php'"></li>            
             </ul>
           </div>
         </div>

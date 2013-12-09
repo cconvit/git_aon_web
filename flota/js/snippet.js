@@ -27,7 +27,7 @@ var UTIL = {
       autoOpen: false,
       width: width,
       resizable: false,
-      position: "top+15%"
+      position: "top"
     });
   },
   loadDialog: function(page, button, dialog) {
@@ -60,7 +60,13 @@ $(function(e) {
   //next: all event Jquery functions
 
   var load = $("#load");
-  load.dialog({modal: true, autoOpen: false, width: 400, resizable: false, position: "center"});
+  load.dialog({
+    modal: true, 
+    autoOpen: false, 
+    width: 400, 
+    resizable: false,
+    position:"top+3%"
+  });
 
   //throw click input file event
   $("input[id='input-file']").on("click", function(e) {
@@ -115,6 +121,7 @@ function isValidateSubmit(form) {
   });
   if (cont > 0) {
     message.show();
+    console.log("false")
     return false;
   }
   else {
