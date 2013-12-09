@@ -54,7 +54,7 @@ $aseguradoras = $aseguradora->find_all();
               <span class="title">Crear convenio</span>
             </div>
             <div id="scroll" style="height: 455px;">
-              <div id="create-agreement">
+              <div style="margin-top: 30px">
                 <form method="post" action="../php/operation/administration.php?operation_type=10&target=../../flota/importar_datos.php&target_fail=../../flota/convenios.php">  
                   <table>
                     <tr>
@@ -74,17 +74,17 @@ $aseguradoras = $aseguradora->find_all();
                     </tr>                  
                     <tr>
                       <td>
-                          <select class="common-input" name="seguro" style="width: 370px">
-                            <?php
-                            if (sizeof($aseguradoras) > 0) {
-                              foreach ($aseguradoras as $value) {
-                                ?>
-                                <option value="<?php echo $value->id; ?>"><?php echo $value->nombre; ?></option>
-                                <?php
-                              }
+                        <select class="common-input" name="seguro" style="width: 370px">
+                          <?php
+                          if (sizeof($aseguradoras) > 0) {
+                            foreach ($aseguradoras as $value) {
+                              ?>
+                              <option value="<?php echo $value->id; ?>"><?php echo $value->nombre; ?></option>
+                              <?php
                             }
-                            ?>
-                          </select>
+                          }
+                          ?>
+                        </select>
                       </td>
                     </tr>                                
                     <tr>
@@ -106,7 +106,7 @@ $aseguradoras = $aseguradora->find_all();
           <div id="nav-step">
             <ul>
               <li><input id="next" type="button" class="icon-step icon-exit" role="create"></li>
-              <li><a class='current-step' href="crear-convenio.php">Crear convenio</a></li>
+              <li><a class='current-step' href="crear-fota.php">Crear convenio</a></li>
               <li><span class="arrow"></span></li>                      
               <li>Importar datos</li>
               <li><span class="arrow"></span></li>               
@@ -120,10 +120,10 @@ $aseguradoras = $aseguradora->find_all();
     <script src="../plugins/jquery-1.10.2.min.js"></script>
     <script src="../plugins/jquery-ui-1.10.3.custom.min.js"></script>
     <script src="js/snippet.js"></script>
-</body>
+  </body>
 </html>
-  <?php
-  $_SESSION['msg'] = "hide";
-  $_SESSION['msg_desc'] = "";
-  $msg_type = "succesfull";
-  ?>
+<?php
+$_SESSION['msg'] = "hide";
+$_SESSION['msg_desc'] = "";
+$msg_type = "succesfull";
+?>

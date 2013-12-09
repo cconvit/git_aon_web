@@ -115,6 +115,7 @@ function isValidateSubmit(form) {
   });
   if (cont > 0) {
     message.show();
+    console.log("false")
     return false;
   }
   else {
