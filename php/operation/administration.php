@@ -59,6 +59,10 @@ if (isset($_REQUEST["operation_type"])) {
     case 13:
       newCondicion();
       break;
+  
+    case 16:
+      newFlota($_REQUEST["nombre"],$_REQUEST["decripcion"],$_REQUEST["inma"]);
+      break;
   }
 }
 
@@ -379,5 +383,27 @@ function createCondicion($condicion,$tipo_cob,$valor){
         
     }
     
+}
+
+function newFlota($nombre, $descripcion,$inma) {
+
+  require_once ('../entity/flota.php');
+  $flota = new flota();
+  $flota->empresa =$nombre;
+  $flota->descripcion = $descripcion;
+  $flota->porcentaje_INMA = $inma/100;
+
+
+  $_SESSION["msg"] = "show";
+
+  if (!$flota->create()) {
+    $_SESSION["msg_desc"] = "Ocurrio un error al tratar de crear la flota. Por favor intente mas tarde. Si el error persiste, comuniquese con el administrador del sistema.";
+    $_SESSION["msg_type"] = "error";
+  } else {
+    $_SESSION["msg_desc"] = "La creación de la flota se realizó exitosamente";
+     $_SESSION["msg_type"]  = "succesfull";
+     $_SESSION["id_flota"]=$flota->id;
+  }
+  header('Location: ' . $_GET["target"]);
 }
 ?>

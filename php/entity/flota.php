@@ -3,11 +3,12 @@
 class flota{
     
     protected static $table_name="tbl_flota";
-    protected static $db_fields=array('id','empresa','porcentaje_INMA','cr_time','ut_time','avatar');
+    protected static $db_fields=array('id','empresa','porcentaje_INMA','descripcion','cr_time','ut_time','avatar');
     
     public $id;
     public $empresa;
     public $porcentaje_INMA;
+    public $descripcion;
     public $cr_time;
     public $ut_time;
     public $avatar;
@@ -49,7 +50,8 @@ class flota{
         $sql="UPDATE ".self::$table_name." SET
                                   empresa='{$database->escape_value($this->empresa)}',
                                   porcentaje_INMA='{$database->escape_value($this->porcentaje_INMA)}',
-                                  avatar='{$database->escape_value($this->avatar)}'
+                                  avatar='{$database->escape_value($this->avatar)}',
+                                  descripcion='{$database->escape_value($this->descripcion)}',
                                   WHERE id='{$database->escape_value($this->id)}'";
 
     
@@ -73,10 +75,11 @@ class flota{
       
       global $database;
       
-        $sql="INSERT INTO ".self::$table_name." (empresa,porcentaje_INMA,avatar,cr_time) VALUES (
+        $sql="INSERT INTO ".self::$table_name." (empresa,porcentaje_INMA,avatar,descripcion,cr_time) VALUES (
                             '{$database->escape_value($this->empresa)}',
                             '{$database->escape_value($this->porcentaje_INMA)}',
                             '{$database->escape_value($this->avatar)}',
+                            '{$database->escape_value($this->descripcion)}',
                             NOW())";
                                           
                                           

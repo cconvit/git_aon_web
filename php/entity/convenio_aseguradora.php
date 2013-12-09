@@ -1,4 +1,3 @@
-
 <?php
 
 class convenio_aseguradora {
@@ -22,7 +21,7 @@ class convenio_aseguradora {
   public static function find_all() {
     return self::find_by_sql("SELECT ca.id,ca.id_aseguradora,ca.nombre,ca.descripcion,ca.num_poliza,a.nombre as 'as_nombre',ca.cr_time as 'cr_time',ca.ut_time as 'ut_time' FROM `tbl_convenio_aseguradora` ca INNER JOIN tbl_aseguradora a ON ca.id_aseguradora=a.id");
   }
-
+  
   public static function find_by_sql($sql = "") {
 
     global $database;
@@ -34,6 +33,15 @@ class convenio_aseguradora {
     return $object_array;
   }
 
+  public function find_by_flota($flota) {
+
+    global $database;
+
+    return self::find_by_sql("SELECT ca.id,ca.id_aseguradora,ca.nombre,ca.descripcion,ca.num_poliza,a.nombre as 'as_nombre',ca.cr_time as 'cr_time',ca.ut_time as 'ut_time' FROM `tbl_convenio_aseguradora` ca INNER JOIN tbl_aseguradora a ON ca.id_aseguradora=a.id
+                              INNER JOIN tbl_re_flota_co_as re ON re.id_convenio_as=ca.id               
+                              WHERE re.id_flota='{$database->escape_value($flota)}'");
+  }
+  
   public function find_by_id_convenio() {
 
     global $database;
