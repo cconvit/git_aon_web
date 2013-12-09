@@ -36,7 +36,7 @@ if (isset($_SESSION['msg'])) {
         <div id="top-nav"></div>
       </div>
       <div id="content">
-        <div class="message <?php echo $msg . " " . $msg_type; ?>"><?php echo $msg_desc; ?></div>
+        <div class="message"></div>
         <div id="left-nav">
           <ul>
             <li><a href="clientes.php">Clientes</a></li>

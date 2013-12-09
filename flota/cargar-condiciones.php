@@ -147,7 +147,8 @@
         </div>
         <div id="footer">
           <div id="nav-step">
-            <ul>            
+            <ul>
+              <li><input type="button" class="icon-step icon-exit" onclick="location.href = 'convenios.php'"></li>
               <li>Crear convenio</li>
               <li><span class="arrow"></span></li>                      
               <li>Importar datos</li>

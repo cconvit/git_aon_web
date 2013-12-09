@@ -513,7 +513,8 @@ a.access-title{
   background-image: url('../img/sprite.png');
   background-repeat: no-repeat;
   display: inline-block;
-  background-position: -247px -35px; 
+  background-position: -252px -39px;
+  margin-top: 5px;
 }
 .message{
   width: 1277px;
@@ -635,6 +636,12 @@ a.access-title{
 }
 .uncheck{
   background-position: -480px -40px;
+}
+.check-wrap{
+  width: 15px;
+  height: 14px;
+  background-image: url('img/sprite.png');
+  background-position: -225px -40px;
 }
 .add-button{
   width: 146px;

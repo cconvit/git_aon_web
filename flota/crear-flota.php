@@ -66,7 +66,7 @@
           <div id="footer">
             <div id="nav-step">
               <ul>
-                <li><input id="next" type="button" class="icon-step icon-exit" role="create"></li>
+                <li><input type="button" class="icon-step icon-exit" onclick="location.href = 'flotas.php'"></li>
                 <li><a class='current-step' href="crear-flota.php">Crear flota</a></li>
                 <li><span class="arrow"></span></li>                      
                 <li>Agregar convenios</li>
