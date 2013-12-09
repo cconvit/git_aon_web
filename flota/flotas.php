@@ -1,3 +1,23 @@
+<?php
+session_start();
+require_once("../php/db/config.php");
+require_once ('../php/db/database.php');
+require_once ('../php/entity/flota.php');
+
+$flota = new flota();
+$flotas = $flota->find_all();
+$msg = "hide";
+$msg_desc = "";
+$msg_type = "succesfull";
+
+if (isset($_SESSION['msg'])) {
+  if ($_SESSION['msg'] == "show") {
+    $msg = "show";
+    $msg_desc = $_SESSION['msg_desc'];
+    $msg_type = $_SESSION['msg_type'];
+  }
+}
+?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -37,14 +57,14 @@
               <table class="tbl-details" cellspacing="0" borderspacing="0">
                 <tbody>
                   <?php
-                  if (sizeof($convenios_aseguradoras) > 0) {
-                    foreach ($convenios_aseguradoras as $value) {
+                  if (sizeof($flotas) > 0) {
+                    foreach ($flotas as $value) {
                       ?>                
                       <tr>
                         <td>
                           <div class="item">
-                            <p class="item-title"><?php echo $value->as_nombre; ?></p>
-                            <p clas="item-sub-title"><?php echo $value->descripcion; ?></p>
+                            <p class="item-title"><?php echo $value->empresa; ?></p>
+                            <p clas="item-sub-title"><?php echo $value->porcentaje_INMA; ?></p>
                             <p clas="item-sub-title"><?php echo "1002102"; ?></p>
                             <p class="separator"></p>
                             <p class="item-info">Fecha de creación: <span><?php echo $value->cr_time; ?></span></p>
