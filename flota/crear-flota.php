@@ -1,3 +1,19 @@
+<?php
+session_start();
+
+$msg = "hide";
+$msg_desc = "";
+$msg_type = "succesfull";
+
+if (isset($_SESSION['msg'])) {
+  if ($_SESSION['msg'] == "show") {
+    $msg = "show";
+    $msg_desc = $_SESSION['msg_desc'];
+    $msg_type = $_SESSION['msg_type'];
+  }
+}
+
+?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -33,7 +49,7 @@
             </div>
             <div id="scroll" style="height: 455px;">
               <div style="margin-top: 30px">
-                <form method="post" action="operation.php" onsubmit="return isValidateSubmit($(this))">
+                <form method="post" action="../php/operation/administration.php?operation_type=16&target=../../flota/cargar-convenios.php" onsubmit="return isValidateSubmit($(this))">
                   <table>
                     <tbody>
                       <tr>

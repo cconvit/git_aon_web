@@ -36,23 +36,32 @@
             <div id="scroll">
               <table class="tbl-details" cellspacing="0" borderspacing="0">
                 <tbody>
-                  <tr>
-                    <td>
-                      <div class="item">
-                        <p class="item-title">Mercantil Seguros</p>
-                        <p clas="item-sub-title">MERCANTIL 01-32-34-8819 01-07-2013/2014</p>
-                        <p class="separator"></p>
-                        <div class="info-down">
-                          <div class="options">
-                            <form onsubmit="return formOperation()" action="../php/operation/administration.php?operation_type=12&amp;target=../../flota/convenios.php" method="post">
-                              <input type="submit" value="" class="icon-operation icon-delete">
-                              <input type="hidden" value="1" name="id">
-                            </form>
+                  <?php
+                  if (sizeof($convenios_aseguradoras) > 0) {
+                    foreach ($convenios_aseguradoras as $value) {
+                      ?>                
+                      <tr>
+                        <td>
+                          <div class="item">
+                            <p class="item-title"><?php echo $value->as_nombre; ?></p>
+                            <p clas="item-sub-title"><?php echo $value->descripcion; ?></p>
+                            <p clas="item-sub-title"><?php echo "1002102"; ?></p>
+                            <p class="separator"></p>
+                            <p class="item-info">Fecha de creación: <span><?php echo $value->cr_time; ?></span></p>
+                            <p class="item-info">Última modificación: <span><?php echo $value->ut_time; ?></span></p>
+                            <div class="options top-max">
+                              <form method="post" action="../php/operation/administration.php?operation_type=12&target=../../flota/convenios.php" onsubmit="return formOperation()">
+                                <input type="submit" type="submit" class="icon-operation icon-delete" value="">
+                                <input type="hidden" name="id" value="<?php echo $value->id; ?>">
+                              </form>
+                            </div>
                           </div>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>                 
+                        </td>
+                      </tr>
+                      <?php
+                    }
+                  }
+                  ?>               
                 </tbody>
               </table>
             </div>

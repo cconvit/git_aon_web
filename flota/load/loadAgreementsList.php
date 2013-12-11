@@ -126,7 +126,7 @@
 <form action="operation.php" method="post" onsubmit="return URLSendAgreements();">
   <div class="buttons-panel" style="margin-top: 20px;">
     <input type="submit" class="common-button" value="Aplicar" onclick="return URLSendAgreements()">
-    <input type="button" class="common-button" value="Salir" onclick="$('#new').dialog('close');">
+    <input type="button" class="common-button" value="Salir" onclick="$('#load').dialog('close');">
     <input type="hidden" name="data[]" value="">
   </div>
 </form>
