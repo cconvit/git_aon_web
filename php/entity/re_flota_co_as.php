@@ -64,7 +64,6 @@ class re_flota_co_as {
       else
         return false;
     } else {
-      echo "pepe";
       return false;
     }
   }

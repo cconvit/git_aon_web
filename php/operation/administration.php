@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 require_once("../db/config.php");
 require_once ('../db/database.php');
@@ -23,7 +24,7 @@ if (isset($_REQUEST["operation_type"])) {
     case 4:
       newAseguradora($_REQUEST["nombre"], $_REQUEST["rs"]);
       break;
-  
+
     case 5:
       updateAseguradora($_REQUEST["id"], $_REQUEST["nombre"], $_REQUEST["rs"]);
       break;
@@ -31,11 +32,11 @@ if (isset($_REQUEST["operation_type"])) {
     case 6:
       deleteAseguradora($_REQUEST["id"]);
       break;
-  
+
     case 7:
       newCobertura($_REQUEST["nombre"], $_REQUEST["descripcion"]);
       break;
-  
+
     case 8:
       updateCobertura($_REQUEST["id"], $_REQUEST["nombre"], $_REQUEST["descripcion"]);
       break;
@@ -43,19 +44,19 @@ if (isset($_REQUEST["operation_type"])) {
     case 9:
       deleteCobertura($_REQUEST["id"]);
       break;
-  
+
     case 10:
-      newConvenio($_REQUEST["nombre"],$_REQUEST["descripcion"], $_REQUEST["seguro"],$_REQUEST["poliza"]);
+      newConvenio($_REQUEST["nombre"], $_REQUEST["descripcion"], $_REQUEST["seguro"], $_REQUEST["poliza"]);
       break;
-  
+
     case 11:
-      updateConvenio($_REQUEST["id"], $_REQUEST["nombre"],$_REQUEST["seguro"],$_REQUEST["poliza"]);
+      updateConvenio($_REQUEST["id"], $_REQUEST["nombre"], $_REQUEST["seguro"], $_REQUEST["poliza"]);
       break;
 
     case 12:
       deleteConvenio($_REQUEST["id"]);
       break;
-  
+
     case 13:
       newCondicion();
       break;
@@ -70,7 +71,6 @@ function updateClient($id, $nombre, $razon_social) {
   $cliente->estatus = "1";
   $cliente->nombre = $nombre;
   $cliente->razon_social = $razon_social;
-
 
   $_SESSION["msg"] = "show";
 
@@ -100,7 +100,7 @@ function newClient($nombre, $razon_social) {
     $_SESSION["msg_type"] = "error";
   } else {
     $_SESSION["msg_desc"] = "La creación del cliente se realizó exitosamente";
-     $_SESSION["msg_type"]  = "succesfull";
+    $_SESSION["msg_type"] = "succesfull";
   }
   header('Location: ' . $_GET["target"]);
 }
@@ -161,14 +161,14 @@ function newAseguradora($nombre, $razon_social) {
     $_SESSION["msg_type"] = "error";
   } else {
     $_SESSION["msg_desc"] = "La creación del seguro se realizó exitosamente";
-     $_SESSION["msg_type"]  = "succesfull";
+    $_SESSION["msg_type"] = "succesfull";
   }
   header('Location: ' . $_GET["target"]);
 }
 
 function deleteAseguradora($id) {
 
- require_once ('../entity/aseguradora.php');
+  require_once ('../entity/aseguradora.php');
   $aseguradora = new aseguradora();
   $aseguradora->id = $id;
 
@@ -179,7 +179,7 @@ function deleteAseguradora($id) {
     $_SESSION["msg_type"] = "error";
   } else {
     $_SESSION["msg_desc"] = "La creación del seguro se realizó exitosamente";
-     $_SESSION["msg_type"]  = "succesfull";
+    $_SESSION["msg_type"] = "succesfull";
   }
   header('Location: ' . $_GET["target"]);
 }
@@ -198,7 +198,7 @@ function newCobertura($nombre, $descripcion) {
     $_SESSION["msg_type"] = "error";
   } else {
     $_SESSION["msg_desc"] = "La creación de la cobertura se realizó exitosamente";
-     $_SESSION["msg_type"]  = "succesfull";
+    $_SESSION["msg_type"] = "succesfull";
   }
   header('Location: ' . $_GET["target"]);
 }
@@ -207,7 +207,7 @@ function updateCobertura($id, $nombre, $descripcion) {
 
   require_once ('../entity/cobertura_aseguradora.php');
   $cobertura_aseguradora = new cobertura_aseguradora();
-  $cobertura_aseguradora->id=$id;
+  $cobertura_aseguradora->id = $id;
   $cobertura_aseguradora->desc_cobertura = $nombre;
 
 
@@ -218,7 +218,7 @@ function updateCobertura($id, $nombre, $descripcion) {
     $_SESSION["msg_type"] = "error";
   } else {
     $_SESSION["msg_desc"] = "La actualización de la cobertura se realizó exitosamente";
-     $_SESSION["msg_type"]  = "succesfull";
+    $_SESSION["msg_type"] = "succesfull";
   }
   header('Location: ' . $_GET["target"]);
 }
@@ -227,7 +227,7 @@ function deleteCobertura($id) {
 
   require_once ('../entity/cobertura_aseguradora.php');
   $cobertura_aseguradora = new cobertura_aseguradora();
-  $cobertura_aseguradora->id=$id;
+  $cobertura_aseguradora->id = $id;
 
 
   $_SESSION["msg"] = "show";
@@ -237,12 +237,12 @@ function deleteCobertura($id) {
     $_SESSION["msg_type"] = "error";
   } else {
     $_SESSION["msg_desc"] = "La eliminación de la cobertura se realizó exitosamente";
-     $_SESSION["msg_type"]  = "succesfull";
+    $_SESSION["msg_type"] = "succesfull";
   }
   header('Location: ' . $_GET["target"]);
 }
 
-function newConvenio($nombre,$descripcion,$seguro,$poliza) {
+function newConvenio($nombre, $descripcion, $seguro, $poliza) {
 
   require_once ('../entity/convenio_aseguradora.php');
   $convenio_aseguradora = new convenio_aseguradora();
@@ -256,27 +256,26 @@ function newConvenio($nombre,$descripcion,$seguro,$poliza) {
   if (!$convenio_aseguradora->create()) {
     $_SESSION["msg_desc"] = "Ocurrio un error al tratar de crear un convenio. Por favor intente mas tarde. Si el error persiste, comuniquese con el administrador del sistema.";
     $_SESSION["msg_type"] = "error";
-    
     header('Location: ' . $_GET["target_fail"]);
-  } else {
+  } 
+  else {
     $_SESSION["msg_desc"] = "La creación del convenio se realizó exitosamente";
-     $_SESSION["msg_type"]  = "succesfull";
-     $_SESSION["id_convenio_as"]=$convenio_aseguradora->id;
-     $_SESSION["up_amplia"]="uncheck";
-     $_SESSION["up_total"]="uncheck";
-     $_SESSION["up_segmentacion"]="uncheck";
-     $_SESSION["up_grua"]="uncheck";
-     $_SESSION["up_clasificacion"]="uncheck";
-     header('Location: ' . $_GET["target"]);
+    $_SESSION["msg_type"] = "succesfull";
+    $_SESSION["id_convenio_as"] = $convenio_aseguradora->id;
+    $_SESSION["up_amplia"] = "uncheck";
+    $_SESSION["up_total"] = "uncheck";
+    $_SESSION["up_segmentacion"] = "uncheck";
+    $_SESSION["up_grua"] = "uncheck";
+    $_SESSION["up_clasificacion"] = "uncheck";
+    header('Location: ' . $_GET["target"]);
   }
-  
 }
 
-function updateConvenio($id,$nombre, $seguro,$poliza) {
+function updateConvenio($id, $nombre, $seguro, $poliza) {
 
   require_once ('../entity/convenio_aseguradora.php');
   $convenio_aseguradora = new convenio_aseguradora();
-  $convenio_aseguradora->id=$id;
+  $convenio_aseguradora->id = $id;
   $convenio_aseguradora->descripcion = $nombre;
   $convenio_aseguradora->id_aseguradora = $seguro;
 
@@ -287,7 +286,7 @@ function updateConvenio($id,$nombre, $seguro,$poliza) {
     $_SESSION["msg_type"] = "error";
   } else {
     $_SESSION["msg_desc"] = "La actualización del convenio se realizó exitosamente";
-     $_SESSION["msg_type"]  = "succesfull";
+    $_SESSION["msg_type"] = "succesfull";
   }
   header('Location: ' . $_GET["target"]);
 }
@@ -296,7 +295,7 @@ function deleteConvenio($id) {
 
   require_once ('../entity/convenio_aseguradora.php');
   $convenio_aseguradora = new convenio_aseguradora();
-  $convenio_aseguradora->id=$id;
+  $convenio_aseguradora->id = $id;
 
   $_SESSION["msg"] = "show";
 
@@ -305,7 +304,7 @@ function deleteConvenio($id) {
     $_SESSION["msg_type"] = "error";
   } else {
     $_SESSION["msg_desc"] = "La eliminación del convenio se realizó exitosamente";
-     $_SESSION["msg_type"]  = "succesfull";
+    $_SESSION["msg_type"] = "succesfull";
   }
   header('Location: ' . $_GET["target"]);
 }
@@ -315,69 +314,67 @@ function newCondicion() {
   require_once ('../entity/re_tipo_cobertura_aseguradora.php');
   $condicion = new re_tipo_cobertura_aseguradora();
 
-  if(isset($_REQUEST["cobertura"]) && isset($_REQUEST["calculo"]) && isset($_REQUEST["limite"]) && isset($_REQUEST["tasa"]) && isset($_SESSION["id_convenio_as"])){
-      
-        $condicion->id_cob_as=$_REQUEST["cobertura"];
-        $condicion->tipo_calculo=$_REQUEST["calculo"];
-        $condicion->limite=$_REQUEST["limite"];
-        $condicion->tasa=$_REQUEST["tasa"];
-        $condicion->incluida=$_REQUEST["incluida"] == "true" ? "1":"0";
-        $condicion->id_convenio_as=$_SESSION["id_convenio_as"];
-        
-        if($_REQUEST["cobertura_amplia"] == "true")
-            createCondicion($condicion,"1");
-        
-       
-        if($_REQUEST["perdida_total"] == "true")
-            createCondicion($condicion,"2");
-        
-        if($_REQUEST["rcv"] == "true")
-            createCondicion($condicion,"3");
-            
-      $_SESSION["msg_desc"] = "La creación de la cobertura se realizó exitosamente";
-      $_SESSION["msg_type"]  = "succesfull";
-  }else{
-      
-      $_SESSION["msg_desc"] = "Ocurrio un error al tratar de crear la cobertura al convenio. Por favor intente mas tarde. Si el error persiste, comuniquese con el administrador del sistema.";
-      $_SESSION["msg_type"] = "error";
+  if (isset($_REQUEST["cobertura"]) && isset($_REQUEST["calculo"]) && isset($_REQUEST["limite"]) && isset($_REQUEST["tasa"]) && isset($_SESSION["id_convenio_as"])) {
+
+    $condicion->id_cob_as = $_REQUEST["cobertura"];
+    $condicion->tipo_calculo = $_REQUEST["calculo"];
+    $condicion->limite = $_REQUEST["limite"];
+    $condicion->tasa = $_REQUEST["tasa"];
+    $condicion->incluida = $_REQUEST["incluida"] == "true" ? "1" : "0";
+    $condicion->id_convenio_as = $_SESSION["id_convenio_as"];
+
+    if ($_REQUEST["cobertura_amplia"] == "true")
+      createCondicion($condicion, "1");
+
+
+    if ($_REQUEST["perdida_total"] == "true")
+      createCondicion($condicion, "2");
+
+    if ($_REQUEST["rcv"] == "true")
+      createCondicion($condicion, "3");
+
+    $_SESSION["msg_desc"] = "La creación de la cobertura se realizó exitosamente";
+    $_SESSION["msg_type"] = "succesfull";
+  }else {
+
+    $_SESSION["msg_desc"] = "Ocurrio un error al tratar de crear la cobertura al convenio. Por favor intente mas tarde. Si el error persiste, comuniquese con el administrador del sistema.";
+    $_SESSION["msg_type"] = "error";
   }
-  
+
 
   $_SESSION["msg"] = "show";
 
   header('Location: ' . $_GET["target"]);
 }
 
-function createCondicion($condicion,$tipo_cob,$valor){
-    
-    for($x=1;$x<4;$x++){
-        
-         $condicion->id_tipo_cob=$tipo_cob;
-         $condicion->valor=$valor == "" ? "0":$valor;
-         $condicion->id_tipo_carro=$x;  
-         
-         switch ($x){
-             
-             case 1:
-                   $condicion->valor=$_REQUEST["particular"];
-             break;
-         
-             case 2:
-                   $condicion->valor=$_REQUEST["rustico"];
-             break;
-         
-             case 3:
-                   $condicion->valor=$_REQUEST["pickup"];
-             break;
-         
-             default:
-                   $condicion->valor=0;
-             break;
-             
-         }
-         $condicion->create();
-        
+function createCondicion($condicion, $tipo_cob, $valor) {
+
+  for ($x = 1; $x < 4; $x++) {
+
+    $condicion->id_tipo_cob = $tipo_cob;
+    $condicion->valor = $valor == "" ? "0" : $valor;
+    $condicion->id_tipo_carro = $x;
+
+    switch ($x) {
+
+      case 1:
+        $condicion->valor = $_REQUEST["particular"];
+        break;
+
+      case 2:
+        $condicion->valor = $_REQUEST["rustico"];
+        break;
+
+      case 3:
+        $condicion->valor = $_REQUEST["pickup"];
+        break;
+
+      default:
+        $condicion->valor = 0;
+        break;
     }
-    
+    $condicion->create();
+  }
 }
+
 ?>

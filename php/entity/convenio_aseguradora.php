@@ -1,4 +1,3 @@
-
 <?php
 
 class convenio_aseguradora {
@@ -18,7 +17,7 @@ class convenio_aseguradora {
     
   }
 
-  // Common Database Methods
+// Common Database Methods
   public static function find_all() {
     return self::find_by_sql("SELECT ca.id,ca.id_aseguradora,ca.nombre,ca.descripcion,ca.num_poliza,a.nombre as 'as_nombre',ca.cr_time as 'cr_time',ca.ut_time as 'ut_time' FROM `tbl_convenio_aseguradora` ca INNER JOIN tbl_aseguradora a ON ca.id_aseguradora=a.id");
   }
@@ -39,7 +38,7 @@ class convenio_aseguradora {
     global $database;
 
     return self::find_by_sql("SELECT ca.id,ca.id_aseguradora,ca.nombre,ca.descripcion,ca.num_poliza,a.nombre as 'as_nombre',ca.cr_time as 'cr_time',ca.ut_time as 'ut_time' FROM `tbl_convenio_aseguradora` ca INNER JOIN tbl_aseguradora a ON ca.id_aseguradora=a.id
-                                             WHERE ca.id='{$database->escape_value($this->id)}'");
+             WHERE ca.id='{$database->escape_value($this->id)}'");
   }
 
   public function create() {
@@ -47,11 +46,11 @@ class convenio_aseguradora {
     global $database;
 
     $sql = "INSERT INTO " . self::$table_name . " (id_aseguradora,nombre,descripcion,num_poliza,cr_time) VALUES (
-                            '{$database->escape_value($this->id_aseguradora)}',
-                            '{$database->escape_value($this->nombre)}',
-                            '{$database->escape_value($this->descripcion)}',
-                            '{$database->escape_value($this->num_poliza)}',
-                            NOW())";
+'{$database->escape_value($this->id_aseguradora)}',
+'{$database->escape_value($this->nombre)}',
+'{$database->escape_value($this->descripcion)}',
+'{$database->escape_value($this->num_poliza)}',
+NOW())";
 
 
     if ($database->query($sql)) {
@@ -67,11 +66,11 @@ class convenio_aseguradora {
     global $database;
 
     $sql = "UPDATE " . self::$table_name . " SET
-                                  nombre='{$database->escape_value($this->nombre)}',
-                                  descripcion='{$database->escape_value($this->descripcion)}',
-                                  num_poliza='{$database->escape_value($this->num_poliza)}',
-                                  id_aseguradora='{$database->escape_value($this->id_aseguradora)}'
-                                  WHERE id='{$database->escape_value($this->id)}'";
+  nombre='{$database->escape_value($this->nombre)}',
+  descripcion='{$database->escape_value($this->descripcion)}',
+  num_poliza='{$database->escape_value($this->num_poliza)}',
+  id_aseguradora='{$database->escape_value($this->id_aseguradora)}'
+  WHERE id='{$database->escape_value($this->id)}'";
 
 
 
@@ -107,18 +106,18 @@ WHERE id='{$database->escape_value($this->id)}'";
     }
   }
 
-  ///////////////////////////METODOS ESTANDAR//////////////////////////////////
+///////////////////////////METODOS ESTANDAR//////////////////////////////////
 
   private static function instantiate($record) {
-    // Could check that $record exists and is an array
+// Could check that $record exists and is an array
     $object = new self;
-    // Simple, long-form approach:
-    // $object->id 				= $record['id'];
-    // $object->username 	= $record['username'];
-    // $object->password 	= $record['password'];
-    // $object->first_name = $record['first_name'];
-    // $object->last_name 	= $record['last_name'];
-    // More dynamic, short-form approach:
+// Simple, long-form approach:
+// $object->id 				= $record['id'];
+// $object->username 	= $record['username'];
+// $object->password 	= $record['password'];
+// $object->first_name = $record['first_name'];
+// $object->last_name 	= $record['last_name'];
+// More dynamic, short-form approach:
     foreach ($record as $attribute => $value) {
       if ($object->has_attribute($attribute)) {
         $object->$attribute = $value;
@@ -128,13 +127,13 @@ WHERE id='{$database->escape_value($this->id)}'";
   }
 
   private function has_attribute($attribute) {
-    // We don't care about the value, we just want to know if the key exists
-    // Will return true or false
+// We don't care about the value, we just want to know if the key exists
+// Will return true or false
     return array_key_exists($attribute, $this->attributes());
   }
 
   protected function attributes() {
-    // return an array of attribute names and their values
+// return an array of attribute names and their values
     $attributes = array();
     foreach (self::$db_fields as $field) {
       if (property_exists($this, $field)) {
@@ -147,15 +146,15 @@ WHERE id='{$database->escape_value($this->id)}'";
   protected function sanitized_attributes() {
     global $database;
     $clean_attributes = array();
-    // sanitize the values before submitting
-    // Note: does not alter the actual value of each attribute
+// sanitize the values before submitting
+// Note: does not alter the actual value of each attribute
     foreach ($this->attributes() as $key => $value) {
       $clean_attributes[$key] = $database->escape_value($value);
     }
     return $clean_attributes;
   }
 
-  ///////////////////////////FIN METODOS ESTANDAR//////////////////////////////
+///////////////////////////FIN METODOS ESTANDAR//////////////////////////////
 }
 
 ?>

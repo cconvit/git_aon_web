@@ -3,13 +3,11 @@ var AON = {
     var windowWidth = $(window).width();
     var $main = $("#main");
     $main.css("width", windowWidth - 283);
-    console.log(windowWidth - 283);
   },
   setScrollHeight: function() {
     var windowHeight = $(window).height();
     var $main = $("#scroll");
     $main.css("height", windowHeight - 272);
-    console.log(windowHeight - 272);
   },
   init: function() {
     AON.setMainWidth();
@@ -27,13 +25,18 @@ var UTIL = {
       autoOpen: false,
       width: width,
       resizable: false,
-      position: "top"
+      position: "center"
     });
   },
   loadDialog: function(page, button, dialog) {
-    var id = $(button).attr("data");
-    var url = page + "?id=" + id;
+    id = $(button).attr("data");
+    url = page + "?id=" + id;
     dialog.load(url, function(e) {
+      dialog.dialog("open");
+    });
+  },
+  loadList: function(page, dialog) {
+    dialog.load(page, function(e) {
       dialog.dialog("open");
     });
   },
@@ -48,9 +51,9 @@ var WIZARD = {
       form.trigger("submit");
     }
   },
-  exit: function(){
+  exit: function(page){
     if(confirm("Realmente desea salir del asistente?")){
-      document.location.href = "convenios.php";
+      document.location.href = page;
     }  
   }
 };
@@ -94,11 +97,40 @@ $(function(e) {
     }
     return false;
   });
-
+  
+  //check and uncheck list
+  $("#load").on("click", ".checkbox", function(e){
+    check = $(this);
+    if(check.attr("is-checked") === "true"){
+      check.removeClass("is-checked").attr("is-checked", "false");
+    }
+    else{
+      check.addClass("is-checked").attr("is-checked", "true");
+    }
+    return false;
+  });
+  
   // init all
   AON.init();
   UTIL.init();
 });
+
+ function URLSendAgreements(){
+    var data = [], input = $("input[name='data[]']");
+   $(".checkbox").each(function(index, value){
+      checkbox = $(this);    
+      if(checkbox.attr("is-checked")=== "true"){
+       data.push(checkbox.attr("data"));
+      }
+    });
+    if(data.length > 0){
+     input.val(data);
+     return true;
+    }
+    else{
+      return false;
+    }
+ }
 
 function formOperation() {
   if (confirm("¿Desea eliminar este registro. Esta operación es permanente")) {

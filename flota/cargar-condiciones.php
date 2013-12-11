@@ -6,15 +6,15 @@ require_once ('../php/entity/re_tipo_cobertura_aseguradora.php');
 require_once ('../php/entity/cobertura_aseguradora.php');
 require_once ('../php/entity/tipo_calculo.php');
 
-$condicion= new re_tipo_cobertura_aseguradora();
-$condicion->id_convenio_as=$_SESSION["id_convenio_as"];
+$condicion = new re_tipo_cobertura_aseguradora();
+$condicion->id_convenio_as = $_SESSION["id_convenio_as"];
 $condiciones = $condicion->find_re_by_convenio_cobertura();
 
-$cobertura_aseguradora=new cobertura_aseguradora();
-$coberturas=$cobertura_aseguradora->find_all_unset($_SESSION["id_convenio_as"]);
+$cobertura_aseguradora = new cobertura_aseguradora();
+$coberturas = $cobertura_aseguradora->find_all_unset($_SESSION["id_convenio_as"]);
 
-$tipo_calculo=new tipo_calculo();
-$calculos=$tipo_calculo->find_all();
+$tipo_calculo = new tipo_calculo();
+$calculos = $tipo_calculo->find_all();
 $msg = "hide";
 $msg_desc = "";
 $msg_type = "succesfull";
@@ -46,18 +46,17 @@ if (isset($_SESSION['msg'])) {
               <td>Cobertura</td>
             </tr>
             <tr>
-             <td><select name="cobertura" class="common-input common-select"  style="width: 370px;">
-                   <?php
-             
-                    if (sizeof($coberturas) > 0) {
-                         foreach ($coberturas as $value) {
-                  ?>
-                   <option value="<?php echo $value->id; ?>"><?php echo $value->desc_cobertura; ?></option>
-                   <?php
-                         }
+              <td><select name="cobertura" class="common-input common-select"  style="width: 370px;">
+                  <?php
+                  if (sizeof($coberturas) > 0) {
+                    foreach ($coberturas as $value) {
+                      ?>
+                      <option value="<?php echo $value->id; ?>"><?php echo $value->desc_cobertura; ?></option>
+                      <?php
                     }
-                   ?>                 
-                 </select>
+                  }
+                  ?>                 
+                </select>
               </td>
             </tr>
             <tr>
@@ -66,71 +65,70 @@ if (isset($_SESSION['msg'])) {
             <tr>
               <td><select name="calculo" class="common-input common-select" style="width: 370px;">
                   <?php
-             
-                    if (sizeof($calculos) > 0) {
-                         foreach ($calculos as $value) {
-                  ?>
-                     <option value="<?php echo $value->id; ?>"><?php echo utf8_encode($value->descripcion); ?></option>
-                   <?php
-                         }
+                  if (sizeof($calculos) > 0) {
+                    foreach ($calculos as $value) {
+                      ?>
+                      <option value="<?php echo $value->id; ?>"><?php echo utf8_encode($value->descripcion); ?></option>
+                      <?php
                     }
-                   ?>
+                  }
+                  ?>
                 </select>
               </td>
             </tr>
-              <td>Limite</td>
-            </tr>
-            <tr>
-              <td><input type="text" name="limite" class="common-input"></td>
-            </tr>
-            <tr>
-              <td>Tasa</td>
-            </tr>
-            <tr>
-              <td><input type="text" name="tasa" class="common-input"></td>
-            </tr>                          
-            <tr>
-              <td>
-                <table>
-                  <tr>
-                    <td><div class="common-value">Particular</div></td>
-                    <td><div class="common-value text-center">Rustico</div></td>
-                    <td><div class="common-value text-center">Pickup/Van</div></td>
-                  </tr>
-                  <tr>
-                    <td><input type="text" name="particular" class="common-input common-value is-required" style="margin-right: 10px;"></td>
-                    <td><input type="text" name="rustico" class="common-input common-value is-required" style="margin-right: 10px;"></td>
-                    <td><input type="text" name="pickup" class="common-input common-value is-required"></td>
-                  </tr>                  
-                </table>
-              </td>
-            </tr>
-            <tr>
-              <td>Aplica con las siguientes condiciones:</td>
-            </tr>
-            <tr>
-              <td>
-                <ul id="check-list" style="margin-top: 7px;">
-                  <li>
-                    <input type="checkbox" name="cobertura_amplia" value="true">
-                    <label form="cobertura_amplia">Cobertura amplia</label></li>
-                  <li>
-                    <input type="checkbox" name="perdida_total" value="true">
-                    <label form="perdida_total">Pérdida total</label></li>
-                  <li>
-                    <input type="checkbox" name="rcv" value="true">
-                    <label form="rcv">RCV</label>
-                  </li>
-                  <li>
-                    <input type="checkbox" name="incluida" value="true">
-                    <label form="rcv">Incluida sin costo</label>
-                  </li>                  
-                </ul>
-              </td>
-            </tr>
-            <tr>
-              <td><div class="required hide">Uno o más campos son inválidos.</div></td>
-            </tr>
+          <td>Limite</td>
+          </tr>
+          <tr>
+            <td><input type="text" name="limite" class="common-input"></td>
+          </tr>
+          <tr>
+            <td>Tasa</td>
+          </tr>
+          <tr>
+            <td><input type="text" name="tasa" class="common-input"></td>
+          </tr>                          
+          <tr>
+            <td>
+              <table>
+                <tr>
+                  <td><div class="common-value">Particular</div></td>
+                  <td><div class="common-value text-center">Rustico</div></td>
+                  <td><div class="common-value text-center">Pickup/Van</div></td>
+                </tr>
+                <tr>
+                  <td><input type="text" name="particular" class="common-input common-value is-required" style="margin-right: 10px;"></td>
+                  <td><input type="text" name="rustico" class="common-input common-value is-required" style="margin-right: 10px;"></td>
+                  <td><input type="text" name="pickup" class="common-input common-value is-required"></td>
+                </tr>                  
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td>Aplica con las siguientes condiciones:</td>
+          </tr>
+          <tr>
+            <td>
+              <ul id="check-list" style="margin-top: 7px;">
+                <li>
+                  <input type="checkbox" name="cobertura_amplia" value="true">
+                  <label form="cobertura_amplia">Cobertura amplia</label></li>
+                <li>
+                  <input type="checkbox" name="perdida_total" value="true">
+                  <label form="perdida_total">Pérdida total</label></li>
+                <li>
+                  <input type="checkbox" name="rcv" value="true">
+                  <label form="rcv">RCV</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="incluida" value="true">
+                  <label form="rcv">Incluida sin costo</label>
+                </li>                  
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td><div class="required hide">Uno o más campos son inválidos.</div></td>
+          </tr>
           </tbody>
           <tfoot>
             <tr>
@@ -171,32 +169,33 @@ if (isset($_SESSION['msg'])) {
             <div id="scroll">
               <table class="tbl-details" cellspacing="0" borderspacing="0">
                 <tbody>
-                <?php
-                    if (sizeof($condiciones) > 0) {
-                      foreach ($condiciones as $value) {
-                 ?>
-                  <tr>
-                    <td>
-                      <div class='item'>
-                        <p><span class="check icon-check"></span><span class="item-title"><?php echo $value->descripcion; ?></span></p>
-                        <p class="separator"></p>
-                        <div class="info-down">
-                          <div class="options">
-                            <form method="post" action="operation.php" action="">
-                              <p>
-                                <input id="input-file" type="button" class="icon-operation icon-modified" data="1" onclick="UTIL.loadDialog('load/loadConditon.php', this, $('#modify')); return false;">
-                                <input id="input-file" type="button" class="icon-operation icon-delete" data="1">
-                              </p>
-                            </form>
-                          </div>
-                        </div>
-                      </div>            
-                    </td>
-                  </tr>     
-                   <?php
-                    }
-                  }
-                  ?>
+<?php
+if (sizeof($condiciones) > 0) {
+  foreach ($condiciones as $value) {
+    ?>
+                      <tr>
+                        <td>
+                          <div class='item'>
+                            <p><span class="check icon-check"></span><span class="item-title"><?php echo $value->descripcion; ?></span></p>
+                            <p class="separator"></p>
+                            <div class="info-down">
+                              <div class="options">
+                                <form method="post" action="operation.php" action="">
+                                  <p>
+                                    <input id="input-file" type="button" class="icon-operation icon-modified" data="1" onclick="UTIL.loadDialog('load/loadConditon.php', this, $('#modify'));
+                                        return false;">
+                                    <input id="input-file" type="button" class="icon-operation icon-delete" data="1">
+                                  </p>
+                                </form>
+                              </div>
+                            </div>
+                          </div>            
+                        </td>
+                      </tr>     
+    <?php
+  }
+}
+?>
                 </tbody>
               </table>
             </div>
@@ -208,7 +207,7 @@ if (isset($_SESSION['msg'])) {
               <li><input type="button" class="icon-step icon-exit" onclick="location.href = 'convenios.php'"></li>
               <li>Crear convenio</li>
               <li><span class="arrow"></span></li>                      
-              <li>Importar datos</li>
+              <li><a href="cargar-datos.php">Importar datos</a></li>
               <li><span class="arrow"></span></li>               
               <li><a class="current-step" href="cargar-condiciones.php">Condiciones y coberturas</a></li>
               <li><input type="button" class="icon-step icon-end" onclick="location.href = 'convenios.php'"></li>            
@@ -223,8 +222,8 @@ if (isset($_SESSION['msg'])) {
     <script src="js/snippet.js"></script>
   </body>
 </html>
-  <?php
-  $_SESSION['msg'] = "hide";
-  $_SESSION['msg_desc'] = "";
-  $msg_type = "succesfull";
-  ?>
+<?php
+$_SESSION['msg'] = "hide";
+$_SESSION['msg_desc'] = "";
+$msg_type = "succesfull";
+?>

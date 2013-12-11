@@ -24,7 +24,7 @@ class tipo_seguro{
   }
   
   public static function find_by_sql($sql="") {
-   //   echo $sql;
+
     global $database;
     $result_set = $database->query($sql);
     $object_array = array();

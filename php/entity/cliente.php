@@ -90,7 +90,6 @@ class cliente{
          else
              return false;
       } else {
-          echo "pepe";
         return false;
       }
       

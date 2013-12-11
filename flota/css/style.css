@@ -149,9 +149,10 @@ a:hover, a:active {
   border: none;
   background-color: #FFFFFF;
   padding: 10px 14px;
+  color: #ACACAC;
 }
 .ui-dialog{
-  border-radius: 0px;
+  border-radius: 5px;
   position: fixed;
 }
 .ui-widget input{
@@ -444,6 +445,11 @@ body, html{
 #nav-step ul li a.current-step{
   color: #4D4F53;
 }
+#agreements-list{
+  margin-top: 20px;
+  max-height: 360px;
+  overflow-y: scroll;
+}
 #footer{
   height: 42px;
   width: 100%;
@@ -513,7 +519,7 @@ a.access-title{
   background-image: url('../img/sprite.png');
   background-repeat: no-repeat;
   display: inline-block;
-  background-position: -252px -39px;
+  background-position: -629px -16px;
   margin-top: 5px;
 }
 .message{
@@ -552,6 +558,12 @@ a.access-title{
 .tbl-details tr td{
   padding-bottom: 30px;
 }
+.tbl-check-list{
+  margin-top: 0px;
+}
+.tbl-check-list tr td{
+  padding-bottom: 7px;
+}
 .item{
   position: relative;
 }
@@ -562,6 +574,12 @@ a.access-title{
   font-size: 22px;
 }
 .item-info{
+  font-size: 11px;
+}
+.title-list{
+  font-size: 14px;
+}
+.subtitle-list{
   font-size: 11px;
 }
 .separator{
@@ -637,11 +655,22 @@ a.access-title{
 .uncheck{
   background-position: -480px -40px;
 }
-.check-wrap{
-  width: 15px;
-  height: 14px;
-  background-image: url('img/sprite.png');
-  background-position: -225px -40px;
+.checkbox{
+  width: 35px;
+  height: 35px;
+  background-image: url('../img/sprite.png');
+  background-position: -586px -36px;
+  display: inline-block;
+  float: left;
+  margin-top: -3px;
+  margin-right: 3px;
+}
+.is-checked{
+  background-position: -585px -5px;
+}
+.info-check{
+  margin-top: 3px;
+  margin-left: 5px;
 }
 .add-button{
   width: 146px;

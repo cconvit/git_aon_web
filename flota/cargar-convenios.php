@@ -1,27 +1,3 @@
-<?php
-session_start();
-require_once("../php/db/config.php");
-require_once ('../php/db/database.php');
-require_once ('../php/entity/convenio_aseguradora.php');
-require_once ('../php/entity/aseguradora.php');
-
-$convenio_aseguradora = new convenio_aseguradora();
-$convenios_aseguradoras = $convenio_aseguradora->find_all();
-$msg = "hide";
-$msg_desc = "";
-$msg_type = "succesfull";
-
-if (isset($_SESSION['msg'])) {
-  if ($_SESSION['msg'] == "show") {
-    $msg = "show";
-    $msg_desc = $_SESSION['msg_desc'];
-    $msg_type = $_SESSION['msg_type'];
-  }
-}
-
-$aseguradora = new aseguradora();
-$aseguradoras = $aseguradora->find_all();
-?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -33,18 +9,14 @@ $aseguradoras = $aseguradora->find_all();
     <link href="css/style.css" rel="stylesheet" type="text/css">
   </head>
   <body>
-    <div id="new" class="dialog">
-      <table>
-        <tr></r 
-      </table>
-    </div>
+    <div id="load" class="dialog"></div>
     <div id="container">
       <div id="header">
         <img id="logo" src="img/logo.png">
         <div id="top-nav"></div>
       </div>
       <div id="content">
-        <div class="message <?php echo $msg . " " . $msg_type; ?>"><?php echo $msg_desc; ?></div>
+        <div class="message hide"></div>
         <div id="left-nav">
           <ul>
             <li><a href="clientes.php">Clientes</a></li>
@@ -59,7 +31,7 @@ $aseguradoras = $aseguradora->find_all();
           <div id="main-detail">
             <div id="nav-operations">
               <span class="title">Agregar convenios</span>
-              <input type="button" class="add-button" value="Agregar convenio" onclick="$('#new').dialog('open');">
+              <input type="button" class="add-button" value="Agregar convenio" onclick="UTIL.loadList('load/loadAgreementsList.php', $('#load'));">
             </div>
             <div id="scroll">
               <table class="tbl-details" cellspacing="0" borderspacing="0">
@@ -88,11 +60,11 @@ $aseguradoras = $aseguradora->find_all();
           <div id="footer">
             <div id="nav-step">
               <ul>
-                <li><input id="next" type="button" class="icon-step icon-exit" role="create"></li>
-                <li><a class='current-step' href="crear-flota.php">Crear flota</a></li>
+                <li><input id="next" type="button" class="icon-step icon-exit" onclick="WIZARD.exit('flotas.php');"></li>
+                <li>Crear flota</li>
                 <li><span class="arrow"></span></li>                      
-                <li>Agregar convenios</li>
-                <li><input id="next" type="button" class="icon-step icon-next" role="create"></li>
+                <li><a class='current-step' href="cargar-convenios.php">Agregar convenios</a></li>
+                <li><input id="next" type="button" class="icon-step icon-end" role="create"></li>
               </ul>
             </div>
           </div>

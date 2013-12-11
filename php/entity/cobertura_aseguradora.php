@@ -108,7 +108,6 @@ class cobertura_aseguradora{
          else
              return false;
       } else {
-          echo "pepe";
         return false;
       }
       

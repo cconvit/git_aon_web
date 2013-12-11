@@ -41,7 +41,6 @@ class plantilla_grupo{
   }
   
   public static function find_by_sql($sql="") {
-//echo $sql;
       
     global $database;
     $result_set = $database->query($sql);

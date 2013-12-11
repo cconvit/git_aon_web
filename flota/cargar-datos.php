@@ -152,12 +152,12 @@ if (isset($_SESSION['msg'])) {
         <div id="footer">
           <div id="nav-step">
             <ul>
-              <li><input type="button" class="icon-step icon-exit" onclick="WIZARD.exit()"></li>
+              <li><input type="button" class="icon-step icon-exit" onclick="WIZARD.exit(convenios.php)"></li>
               <li>Crear convenio</a></li>
               <li><span class="arrow"></span></li>                      
               <li><a class='current-step' href="cargar-datos.php">Importar datos</a></li>
               <li><span class="arrow"></span></li>               
-              <li><a class='current-step' href="cargar-condiciones.php">Condiciones y </a></li>
+              <li><a href="cargar-condiciones.php">Condiciones y coberturas</a></li>
               <li><input id="next" type="button" class="icon-step icon-next" onclick="location.href='cargar-condiciones.php'"></li>
             </ul>
           </div>

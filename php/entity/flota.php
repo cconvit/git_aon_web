@@ -103,7 +103,6 @@ class flota{
          else
              return false;
       } else {
-          echo "pepe";
         return false;
       }
       

@@ -173,9 +173,7 @@ class clasificacion{
   }
   
   public static function find_by_sql($sql="") {
-      
-//echo $sql;
-//echo "                     ";
+
     global $database;
     $result_set = $database->query($sql);
     $object_array = array();

@@ -64,7 +64,6 @@ if (isset($_SESSION['msg'])) {
                         <td>
                           <div class="item">
                             <p class="item-title"><?php echo $value->empresa; ?></p>
-                            <p clas="item-sub-title"><?php echo $value->porcentaje_INMA; ?></p>
                             <p clas="item-sub-title"><?php echo "1002102"; ?></p>
                             <p class="separator"></p>
                             <p class="item-info">Fecha de creación: <span><?php echo $value->cr_time; ?></span></p>
