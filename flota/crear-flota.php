@@ -62,7 +62,7 @@ if (isset($_SESSION['msg'])) {
                         <td>Descripción</td>
                       </tr>
                       <tr>
-                        <td><textarea class="common-input is-required" name="decripcion" style="height: 66px;"></textarea></td>
+                        <td><textarea class="common-input is-required" name="descripcion" style="height: 66px;"></textarea></td>
                       </tr>
                       <tr>
                         <td>INMA (%)</td>

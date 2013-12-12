@@ -36,7 +36,7 @@ if (isset($_SESSION['msg'])) {
         <div id="top-nav"></div>
       </div>
       <div id="content">
-        <div class="message"></div>
+        <div class="message <?php echo $msg . " " . $msg_type; ?>"><?php echo $msg_desc; ?></div>
         <div id="left-nav">
           <ul>
             <li><a href="clientes.php">Clientes</a></li>
@@ -69,7 +69,7 @@ if (isset($_SESSION['msg'])) {
                             <p class="item-info">Fecha de creación: <span><?php echo $value->cr_time; ?></span></p>
                             <p class="item-info">Última modificación: <span><?php echo $value->ut_time; ?></span></p>
                             <div class="options top-max">
-                              <form method="post" action="../php/operation/administration.php?operation_type=12&target=../../flota/convenios.php" onsubmit="return formOperation()">
+                              <form method="post" action="../php/operation/administration.php?operation_type=18&target=../../flota/flotas.php" onsubmit="return formOperation()">
                                 <input type="button" data="<?php echo $value->id; ?>" class="icon-operation icon-modified" onclick="UTIL.loadDialog('load/loadAgreement.php', this, $('#modify'));
                                     return false;">
                                 <input type="submit" type="submit" class="icon-operation icon-delete" value="">

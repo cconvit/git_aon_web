@@ -33,7 +33,7 @@ class convenio_aseguradora {
     return $object_array;
   }
 
-  public function find_by_flota($flota) {
+  public static function find_by_flota($flota) {
 
     global $database;
 

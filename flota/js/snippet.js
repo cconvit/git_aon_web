@@ -127,7 +127,7 @@ $(function(e) {
 });
 
  function URLSendAgreements(){
-    var data = [], input = $("input[name='data[]']");
+    var data = [], input = $("input[name='data']");
    $(".checkbox").each(function(index, value){
       checkbox = $(this);    
       if(checkbox.attr("is-checked")=== "true"){

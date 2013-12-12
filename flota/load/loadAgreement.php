@@ -15,7 +15,7 @@ if (isset($_GET["id"])) {
  ?>
 
 <div>
-  <form method="post" action="../php/operation/administration.php?operation_type=11&target=../../flota/convenios.php&id=<?Php echo $convenio_aseguradora_aux[0]->id; ?>" onsubmit="return isValidateSubmit($(this))">
+  <form method="post" action="../php/operation/administration.php?operation_type=19&target=../../flota/cargar-convenios.php&id=<?Php echo $convenio_aseguradora_aux[0]->id; ?>" onsubmit="return isValidateSubmit($(this))">
     <table align="center" width="360">
       <tbody>
         <tr>

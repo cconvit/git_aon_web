@@ -62,7 +62,15 @@ if (isset($_REQUEST["operation_type"])) {
       break;
   
     case 16:
-      newFlota($_REQUEST["nombre"],$_REQUEST["decripcion"],$_REQUEST["inma"]);
+      newFlota($_REQUEST["nombre"],$_REQUEST["descripcion"],$_REQUEST["inma"]);
+      break;
+  
+    case 18:
+      deleteFlota($_REQUEST["id"]);
+      break;
+  
+    case 19:
+      newFlotaConvenios($_REQUEST["data"]);
       break;
   }
 }
@@ -401,5 +409,52 @@ function newFlota($nombre, $descripcion,$inma) {
      $_SESSION["id_flota"]=$flota->id;
   }
   header('Location: ' . $_GET["target"]);
+}
+
+function deleteFlota($id) {
+
+  require_once ('../entity/flota.php');
+  $flota = new flota();
+  $flota->id=$id;
+
+  $_SESSION["msg"] = "show";
+
+  if (!$flota->delete()) {
+    $_SESSION["msg_desc"] = "Ocurrio un error al tratar de eliminar la flota. Por favor intente mas tarde. Si el error persiste, comuniquese con el administrador del sistema.";
+    $_SESSION["msg_type"] = "error";
+  } else {
+    $_SESSION["msg_desc"] = "La eliminación de la flota se realizó exitosamente";
+     $_SESSION["msg_type"]  = "succesfull";
+  }
+  header('Location: ' . $_GET["target"]);
+}
+
+function newFlotaConvenios($data) {
+  
+  $data=explode(",", $data);
+  $resultado=true;
+  require_once ('../entity/re_flota_co_as.php');
+  $re_flota_co_as = new re_flota_co_as();
+  $re_flota_co_as->id_flota = $_SESSION["id_flota"];
+  
+  foreach ($data as $id){
+  
+      $re_flota_co_as->id_convenio_as = $id;
+      $resultado=$re_flota_co_as->create();
+      if(!$resultado)break;
+  }
+  
+  $_SESSION["msg"] = "show";
+
+  if (!$resultado) {
+    $_SESSION["msg_desc"] = "Ocurrio un error al tratar de asociar un convenio a la flota. Por favor intente mas tarde. Si el error persiste, comuniquese con el administrador del sistema.";
+    $_SESSION["msg_type"] = "error";
+    header('Location: ' . $_GET["target_fail"]);
+  } 
+  else {
+    $_SESSION["msg_desc"] = "La asosiación de los convenios a la flota se realizó exitosamente";
+    $_SESSION["msg_type"] = "succesfull";
+    header('Location: ' . $_GET["target"]);
+  }
 }
 ?>

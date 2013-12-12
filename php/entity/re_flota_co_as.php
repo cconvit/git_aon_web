@@ -1,4 +1,3 @@
-
 <?php
 
 class re_flota_co_as {
@@ -33,12 +32,10 @@ class re_flota_co_as {
 
     global $database;
 
-    $sql = "INSERT INTO " . self::$table_name . " (id_flota,id_aseguradora,id_convenio_as) VALUES (
-                            '{$database->escape_value($this->id_flota)}',
-                            '{$database->escape_value($this->id_aseguradora)}',
-                            '{$database->escape_value($this->id_convenio_as)}'"
-            . ")";
-
+    $sql = "INSERT INTO " . self::$table_name . " (id_flota,id_aseguradora,id_convenio_as) 
+                            SELECT '{$database->escape_value($this->id_flota)}',
+                                     co.id_aseguradora,'{$database->escape_value($this->id_convenio_as)}' FROM tbl_convenio_aseguradora co WHERE co.id='{$database->escape_value($this->id_convenio_as)}'
+                            ";
 
     if ($database->query($sql)) {
 
