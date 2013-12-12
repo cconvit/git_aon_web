@@ -33,8 +33,8 @@ if (isset($_GET["id"])) {
           <tr>
             <td>    
               <div class="buttons-panel">
-                <input type="submit" class="common-button" value="Modificar">
-                <input type="button" class="common-button" onclick="$('#modify').dialog('close');" value="Salir" > 
+                <input type="submit" class="img-common common-button" value="Modificar">
+                <input type="button" class="img-common common-button" onclick="$('#modify').dialog('close');" value="Salir" > 
               </div> 
             </td>
           </tr>

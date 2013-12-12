@@ -12,11 +12,11 @@
     <div id="modify" class="dialog"></div>
     <div id="container">
       <div id="header">
-        <img id="logo" src="img/logo.png">
+        <a href="index.php"><img id="logo" src="img/logo.png"></a>
         <div id="top-nav"></div>
       </div>
       <div id="content">
-        <div class="message"></div>
+        <div class="message hide"></div>
         <div id="left-nav">
           <ul>
             <li><a href="clientes.php">Clientes</a></li>
@@ -31,7 +31,7 @@
           <div id="main-detail">
             <div id="nav-operations">
               <span class="title">Cotizaciones</span>
-              <input type="button" class="add-button" onclick="location.href = 'cotizar.php'" value="Nueva cotización">
+              <input type="button" class="img-common add-button" onclick="location.href = 'crear-cotizacion.php'" value="Nueva cotización">
             </div>
             <div id="scroll">
               <table class="tbl-details" cellspacing="0" borderspacing="0">
@@ -40,16 +40,17 @@
                     <td>
                       <div class="item">
                         <p class="item-title">Nombre de la cotizacion</p>
-                        <p clas="item-sub-title">Nombre del Cliente</p>
                         <p clas="item-sub-title">Nombre de la flota</p>
                         <p class="separator"></p>
-                        <p class="item-info">Fecha de la cotización<span></span></p>
-                        <div class="options top-max">
-                          <form method="post" action="" onsubmit="return formOperation()">
-                            <input type="button" data="" class="icon-operation icon-modified">
-                            <input type="submit" type="submit" class="icon-operation icon-delete" value="">
-                            <input type="hidden" name="id" value="">
-                          </form>
+                        <div class="info-down">
+                          <p class="item-info">Fecha de la cotización<span></span></p>
+                          <div class="options">
+                            <form method="post" action="" onsubmit="return formOperation()">
+                              <input type="button" data="" class="img-common icon-operation icon-download">
+                              <input type="submit" type="submit" class="img-common icon-operation icon-delete" value="">
+                              <input type="hidden" name="id" value="">
+                            </form>
+                          </div>
                         </div>
                       </div>
                     </td>

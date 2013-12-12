@@ -17,7 +17,7 @@ $convenios_aseguradoras = $convenio_aseguradora->find_all();
           <tr>
             <td>
               <div class="list-checks">
-                <div class="checkbox" is-checked="false" data="<?php echo $value->id; ?>"></div>
+                <div class="img-common checkbox" is-checked="false" data="<?php echo $value->id; ?>"></div>
                 <div class="info-check">
                   <p class="title-list"><?php echo $value->as_nombre; ?></p>
                   <p class="subtitle-list"><?php echo $value->descripcion; ?></p>   
@@ -35,8 +35,8 @@ $convenios_aseguradoras = $convenio_aseguradora->find_all();
 </div>
 <form action="../php/operation/administration.php?operation_type=19&target=../../flota/cargar-convenios.php" method="post" onsubmit="return URLSendAgreements();">
   <div class="buttons-panel" style="margin-top: 20px;">
-    <input type="submit" class="common-button" value="Aplicar" onclick="return URLSendAgreements()">
-    <input type="button" class="common-button" value="Salir" onclick="$('#load').dialog('close');">
+    <input type="submit" class="img-common common-button" value="Aplicar" onclick="return URLSendAgreements()">
+    <input type="button" class="img-common common-button" value="Salir" onclick="$('#load').dialog('close');">
     <input type="hidden" name="data" value="">
   </div>
 </form>

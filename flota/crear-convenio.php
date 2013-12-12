@@ -33,7 +33,7 @@ $aseguradoras = $aseguradora->find_all();
   <body>
     <div id="container">
       <div id="header">
-        <img id="logo" src="img/logo.png">
+         <a href="index.php"><img id="logo" src="img/logo.png"></a>
         <div id="top-nav"></div>
       </div>
       <div id="content">
@@ -106,13 +106,13 @@ $aseguradoras = $aseguradora->find_all();
           <div id="footer">
             <div id="nav-step">
               <ul>
-                <li><input type="button" class="icon-step icon-exit" onclick="location.href = 'convenios.php'"></li>
+                <li><input type="button" class="img-common icon-step icon-exit" onclick="WIZARD.exit('convenios.php');"></li>
                 <li><a class='current-step' href="crear-convenio.php">Crear convenio</a></li>
-                <li><span class="arrow"></span></li>                      
-                <li>Importar datos</li>
-                <li><span class="arrow"></span></li>               
-                <li>Condiciones y coberturas</li>
-                <li><input id="next" type="button" class="icon-step icon-next" role="create"></li>
+                <li><span class="img-common arrow"></span></li>                      
+                <li><a>Importar datos</a></li>
+                <li><span class="img-common arrow"></span></li>               
+                <li><a>Condiciones y coberturas</a></li>
+                <li><input id="next" type="button" class="img-common icon-step icon-next" role="create"></li>
               </ul>
             </div>
           </div>

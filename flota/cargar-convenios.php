@@ -34,7 +34,7 @@ if (isset($_SESSION['msg'])) {
     <div id="load" class="dialog"></div>
     <div id="container">
       <div id="header">
-        <img id="logo" src="img/logo.png">
+         <a href="index.php"><img id="logo" src="img/logo.png"></a>
         <div id="top-nav"></div>
       </div>
       <div id="content">
@@ -53,7 +53,7 @@ if (isset($_SESSION['msg'])) {
           <div id="main-detail">
             <div id="nav-operations">
               <span class="title">Agregar convenios</span>
-              <input type="button" class="add-button" value="Agregar convenio" onclick="UTIL.loadList('load/loadAgreementsList.php', $('#load'));">
+              <input type="button" class="img-common add-button" value="Agregar convenio" onclick="UTIL.loadList('load/loadAgreementsList.php', $('#load'));">
             </div>
             <div id="scroll">
               <table class="tbl-details" cellspacing="0" borderspacing="0">
@@ -73,7 +73,7 @@ if (isset($_SESSION['msg'])) {
                             <p class="item-info">Última modificación: <span><?php echo $value->ut_time; ?></span></p>
                             <div class="options top-max">
                               <form method="post" action="../php/operation/administration.php?operation_type=12&target=../../flota/convenios.php" onsubmit="return formOperation()">
-                                <input type="submit" type="submit" class="icon-operation icon-delete" value="">
+                                <input type="submit" type="submit" class="img-common icon-operation icon-delete" value="">
                                 <input type="hidden" name="id" value="<?php echo $value->id; ?>">
                               </form>
                             </div>
@@ -91,11 +91,11 @@ if (isset($_SESSION['msg'])) {
           <div id="footer">
             <div id="nav-step">
               <ul>
-                <li><input id="next" type="button" class="icon-step icon-exit" ></li>
+                <li><input id="next" type="button" class="img-common icon-step icon-exit" ></li>
                 <li>Crear flota</li>
                 <li><span class="arrow"></span></li>                      
                 <li><a class='current-step' href="cargar-convenios.php">Agregar convenios</a></li>
-                <li><input id="next" type="button" class="icon-step icon-end" onclick="WIZARD.exit('flotas.php');"></li>
+                <li><input id="next" type="button" class="img-common icon-step icon-end" onclick="WIZARD.exit('flotas.php');"></li>
               </ul>
             </div>
           </div>

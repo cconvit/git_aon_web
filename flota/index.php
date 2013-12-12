@@ -11,7 +11,7 @@
   <body>
     <div id="container">
       <div id="header">
-        <img id="logo" src="img/logo.png">
+         <a href="index.php"><img id="logo" src="img/logo.png"></a>
         <div id="top-nav"></div>
       </div>
       <div id="content">

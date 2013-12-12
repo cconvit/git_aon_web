@@ -52,8 +52,8 @@ if (isset($_SESSION['msg'])) {
             <tr>
               <td>    
                 <div class="buttons-panel">
-                  <input type="submit" class="common-button" value="Guardar">
-                  <input type="button" class="common-button" onclick="$('#new').dialog('close');" value="Salir" > 
+                  <input type="submit" class="img-common common-button" value="Guardar">
+                  <input type="button" class="img-common common-button" onclick="$('#new').dialog('close');" value="Salir" > 
                 </div> 
               </td>
             </tr>
@@ -63,7 +63,7 @@ if (isset($_SESSION['msg'])) {
     </div>
     <div id="container">
       <div id="header">
-        <img id="logo" src="img/logo.png">
+         <a href="index.php"><img id="logo" src="img/logo.png"></a>
         <div id="top-nav"></div>
       </div>
       <div id="content">
@@ -82,7 +82,7 @@ if (isset($_SESSION['msg'])) {
           <div id="main-detail">
             <div id="nav-operations">
               <span class="title">Seguros</span>  
-              <input type="button" id="open-dialog" class="add-button" onclick="$('#new').dialog('open');" value="Nuevo seguro">
+              <input type="button" id="open-dialog" class="img-common add-button" onclick="$('#new').dialog('open');" value="Nuevo seguro">
             </div>
             <div id="scroll">
               <table class="tbl-details" cellspacing="0" borderspacing="0">
@@ -102,9 +102,9 @@ if (isset($_SESSION['msg'])) {
                               <p class="item-info">Última modificación: <span><?php echo $value->ut_time; ?></span></p>
                               <div class="options">
                                 <form method="post" action="../php/operation/administration.php?operation_type=6&target=../../flota/seguros.php" onsubmit="return formOperation()">
-                                  <input type="button" data="<?php echo $value->id; ?>" class="icon-operation icon-modified" onclick="UTIL.loadDialog('load/loadInsure.php', this, $('#modify'));
+                                  <input type="button" data="<?php echo $value->id; ?>" class="img-common icon-operation icon-modified" onclick="UTIL.loadDialog('load/loadInsure.php', this, $('#modify'));
                                           return false;">
-                                  <input type="submit" class="icon-operation icon-delete" value="">
+                                  <input type="submit" class="img-common icon-operation icon-delete" value="">
                                   <input type="hidden" name="id" value="<?php echo $value->id; ?>">
                                 </form>
                               </div>

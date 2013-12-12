@@ -107,6 +107,7 @@ button::-moz-focus-inner, input::-moz-focus-inner {
   width: 360px;
   margin: 10px 0px;
   padding: 2px 5px 5px 5px;
+  background-position: -159px -68px;
 }
 .common-value{
   width: 105px;
@@ -312,7 +313,6 @@ td {
 input[type="button"], input[type="submit"]  {
   background-color: transparent;
   border: none;
-  background-image: url(../img/sprite.png);
   background-repeat: no-repeat;
   display: inline-block;
 }
@@ -441,6 +441,7 @@ body, html{
 }
 #nav-step ul li a{
   color: #FFFFFF;
+  font-weight: bold;
 }
 #nav-step ul li a.current-step{
   font-weight: bold;
@@ -449,6 +450,9 @@ body, html{
   margin-top: 20px;
   max-height: 360px;
   overflow-y: scroll;
+}
+#tabs ul li{
+  float: right;
 }
 #footer{
   height: 42px;
@@ -460,6 +464,9 @@ body, html{
   bottom: 0px;
   left: 0px;
   text-align: center;
+}
+.img-common{
+  background-image: url('../img/sprite.png');
 }
 .button-red{
   font-size: 14px;
@@ -484,9 +491,9 @@ body, html{
   margin-right: 100px;
 }
 .access-icon{
-  width: 176px;
-  height: 201px;
-  background-image: url(../img/sprite.png);
+  width: 175px;
+  height: 205px;
+  background-image: url(../img/home.png);
   background-repeat: no-repeat;
   display: block;
 }
@@ -498,22 +505,22 @@ a.access-title{
   display: block;
 }
 .new-cotizacion{
-  background-position: -5px -70px;
+  background-position: -10px -221px;
 }
 .new-flota{
-  background-position: -186px -70px;
+  background-position: -197px -221px;
 }
 .view-cotizacion{
-  background-position: -367px -70px;
+  background-position: -382px -221px;
 }
 .new-cotizacion:hover{
-  background-position: -5px -283px;
+  background-position: -10px -6px;
 }
 .new-flota:hover{
-  background-position: -186px -283px;
+  background-position: -197px -6px;
 }
 .view-cotizacion:hover{
-  background-position: -367px -283px;
+  background-position: -382px -6px;
 }
 .title{
   font-size: 27px;
@@ -525,10 +532,9 @@ a.access-title{
 .arrow{
   width: 6px;
   height: 14px;
-  background-image: url('../img/sprite.png');
   background-repeat: no-repeat;
   display: inline-block;
-  background-position: -629px -16px;
+  background-position: -107px -144px;
   margin-top: 5px;
 }
 .message{
@@ -605,11 +611,8 @@ a.access-title{
 }
 .options{
   position: absolute;
-  right: 0px;
+  right: 5px;
   top: 0px;
-}
-.top-max{
-  top: 70px;
 }
 .icon-square{
   width: 29px;
@@ -625,30 +628,32 @@ a.access-title{
 }
 .icon-upload{
   width: 95px;
-  background-position: -474px -5px;
+  background-position: -292px -5px;
+}
+.icon-download{
+  background-position: -194px -5px;
 }
 .icon-step{
   width: 82px;
   height: 25px;
 }
 .icon-next{
-  background-position: -277px -5px;
+  background-position: -104px -5px;
 }
 .icon-exit{
-  background-position: -277px -37px;
+  background-position: -104px -36px;
 }
 .icon-end{
-  background-position: -377px -5px;
+  background-position: -195px -36px;
 }
 .icon-modified{
-  background-position: -5px -5px;
+  background-position: -4px -5px;
 }
 .icon-delete{
-  background-position: -5px -35px;
+  background-position: -4px -36px;
 }
 .icon-check{
   display: inline-block;
-  background-image: url('../img/sprite.png');
   width: 24px;
   height: 24px;
   margin-right: 10px;
@@ -659,39 +664,37 @@ a.access-title{
   background-position: -545px -40px;
 }
 .icon-excel{
-  background-image: url('../img/sprite.png');
-  background-position: -583px -103px;
+  background-position: -8px -133px;
   width: 52px;
   height: 62px;
   margin: 12px 5px;
 }
 .check{
-  background-position: -518px -40px;
+  background-position: -322px -67px;
 }
 .uncheck{
-  background-position: -480px -40px;
+  background-position: -284px -67px;
 }
 .checkbox{
   width: 35px;
   height: 35px;
-  background-image: url('../img/sprite.png');
-  background-position: -586px -36px;
+  background-position: -73px -164px;
   display: inline-block;
   float: left;
   margin-top: -3px;
   margin-right: 3px;
 }
 .is-checked{
-  background-position: -585px -5px;
+  background-position: -72px -133px;
 }
 .info-check{
   margin-top: 3px;
   margin-left: 5px;
 }
-.add-button{
+.add-button {
   width: 146px;
   height: 25px;
-  background-position: -103px -5px;
+  background-position: -5px -68px;
   right: 0px;
   position: absolute;
   right: 0px;
@@ -704,7 +707,7 @@ a.access-title{
 .common-button{
   width: 104px;
   height: 23px;
-  background-position: -104px -36px;
+  background-position: -159px -68px;
   color: #FFFEFE;
   font-size: 14px;
   padding: 1px 5px 3px 5px;

@@ -51,15 +51,15 @@ var WIZARD = {
       form.trigger("submit");
     }
   },
-   quotation: function(form) {
-    if (isValidateSubmit(form)&& isfileSelected()) {
+  quotation: function(form) {
+    if (isValidateSubmit(form) && isfileSelected()) {
       form.trigger("submit");
     }
   },
-  exit: function(page){
-    if(confirm("Realmente desea salir del asistente?")){
+  exit: function(page) {
+    if (confirm("Realmente desea salir del asistente?")) {
       document.location.href = page;
-    }  
+    }
   }
 };
 
@@ -67,13 +67,21 @@ $(function(e) {
 
   //next: all event Jquery functions
 
+  //init jquery-UI elements
   var load = $("#load");
   load.dialog({
-    modal: true, 
-    autoOpen: false, 
-    width: 400, 
+    modal: true,
+    autoOpen: false,
+    width: 400,
     resizable: false,
-    position:"top+3%"
+    position: "top+3%"
+  });
+
+  var tabs = $("#tabs");
+  tabs.tabs().find("ul").css({
+    "background-color": "#FFFFFF",
+    "display": "block",
+    "border": "none",
   });
 
   //throw click input file event
@@ -84,12 +92,12 @@ $(function(e) {
     });
     return false;
   });
-  
+
   //send next step form
-  $("input[id='next']").on("click", function(e){
+  $("input[id='next']").on("click", function(e) {
     var wizard = WIZARD;
     var role = $(this).attr("role");
-    switch(role){
+    switch (role) {
       case "create":
         wizard.create($("body").find("form"));
         break;
@@ -98,50 +106,50 @@ $(function(e) {
     }
     return false;
   });
-  
+
   //check and uncheck list
-  $("#load").on("click", ".checkbox", function(e){
+  $("#load").on("click", ".checkbox", function(e) {
     check = $(this);
-    if(check.attr("is-checked") === "true"){
+    if (check.attr("is-checked") === "true") {
       check.removeClass("is-checked").attr("is-checked", "false");
     }
-    else{
+    else {
       check.addClass("is-checked").attr("is-checked", "true");
     }
     return false;
   });
-  
+
   //throw upload method excel flota
-   var flag = false;
-  $(".upload").click(function(e){
+  var flag = false;
+  $(".upload").click(function(e) {
     fleet = $("#fleet");
     excel = $("#name");
-    fleet.trigger("click").change(function(e){
+    fleet.trigger("click").change(function(e) {
       excel.val(fleet.val());
     });
   });
-  
+
   // init all
   AON.init();
   UTIL.init();
 });
 
- function URLSendAgreements(){
-    var data = [], input = $("input[name='data']");
-   $(".checkbox").each(function(index, value){
-      checkbox = $(this);    
-      if(checkbox.attr("is-checked")=== "true"){
-       data.push(checkbox.attr("data"));
-      }
-    });
-    if(data.length > 0){
-     input.val(data);
-     return true;
+function URLSendAgreements() {
+  var data = [], input = $("input[name='data']");
+  $(".checkbox").each(function(index, value) {
+    checkbox = $(this);
+    if (checkbox.attr("is-checked") === "true") {
+      data.push(checkbox.attr("data"));
     }
-    else{
-      return false;
-    }
- }
+  });
+  if (data.length > 0) {
+    input.val(data);
+    return true;
+  }
+  else {
+    return false;
+  }
+}
 
 function formOperation() {
   if (confirm("¿Desea eliminar este registro. Esta operación es permanente")) {
@@ -171,12 +179,12 @@ function isValidateSubmit(form) {
   }
 }
 
-function isFileSelected(form){
- file = form.find("input[type='file']");
- if(file.val() === ""){
-   return false;
- }
- else{
-   return true;
- }
+function isFileSelected(form) {
+  file = form.find("input[type='file']");
+  if (file.val() === "") {
+    return false;
+  }
+  else {
+    return true;
+  }
 }

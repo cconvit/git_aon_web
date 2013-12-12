@@ -40,8 +40,8 @@
         <tr>
           <td>
             <div class="buttons-panel">
-              <input type="submit" class="common-button" value="Guardar">
-              <input type="button" class="common-button" value="Salir"onclick="$('#new').dialog('close')">
+              <input type="submit" class="img-common common-button" value="Guardar">
+              <input type="button" class="img-common common-button" value="Salir"onclick="$('#new').dialog('close')">
             </div>
           </td>
         </tr>

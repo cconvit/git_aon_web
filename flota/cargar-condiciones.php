@@ -134,8 +134,8 @@ if (isset($_SESSION['msg'])) {
             <tr>
               <td>
                 <div class="buttons-panel">
-                  <input type="submit" class="common-button" value="Guardar">
-                  <input type="button" class="common-button" value="Salir" onclick="$('#load').dialog('close');">
+                  <input type="submit" class="img-common common-button" value="Guardar">
+                  <input type="button" class="img-common common-button" value="Salir" onclick="$('#load').dialog('close');">
                 </div>
               </td>
             </tr>
@@ -145,7 +145,7 @@ if (isset($_SESSION['msg'])) {
     </div>
     <div id="container">
       <div id="header">
-        <img id="logo" src="img/logo.png">
+         <a href="index.php"><img id="logo" src="img/logo.png"></a>
         <div id="top-nav"></div>
       </div>
       <div id="content">
@@ -164,15 +164,15 @@ if (isset($_SESSION['msg'])) {
           <div id="main-detail">
             <div id="nav-operations">
               <span class="title">Coberturas y Condiciones</span>
-              <input type="button" class="add-button" value="Añadir cobertura" onclick="$('#load').dialog('open');">
+              <input type="button" class="img-common add-button" value="Añadir cobertura" onclick="$('#load').dialog('open');">
             </div>
             <div id="scroll">
               <table class="tbl-details" cellspacing="0" borderspacing="0">
                 <tbody>
-<?php
-if (sizeof($condiciones) > 0) {
-  foreach ($condiciones as $value) {
-    ?>
+                  <?php
+                  if (sizeof($condiciones) > 0) {
+                    foreach ($condiciones as $value) {
+                      ?>
                       <tr>
                         <td>
                           <div class='item'>
@@ -182,9 +182,9 @@ if (sizeof($condiciones) > 0) {
                               <div class="options">
                                 <form method="post" action="operation.php" action="">
                                   <p>
-                                    <input id="input-file" type="button" class="icon-operation icon-modified" data="1" onclick="UTIL.loadDialog('load/loadConditon.php', this, $('#modify'));
-                                        return false;">
-                                    <input id="input-file" type="button" class="icon-operation icon-delete" data="1">
+                                    <input id="input-file" type="button" class="img-common icon-operation icon-modified" data="1" onclick="UTIL.loadDialog('load/loadConditon.php', this, $('#modify'));
+                                            return false;">
+                                    <input id="input-file" type="button" class="img-common icon-operation icon-delete" data="1">
                                   </p>
                                 </form>
                               </div>
@@ -192,10 +192,10 @@ if (sizeof($condiciones) > 0) {
                           </div>            
                         </td>
                       </tr>     
-    <?php
-  }
-}
-?>
+                      <?php
+                    }
+                  }
+                  ?>
                 </tbody>
               </table>
             </div>
@@ -204,13 +204,13 @@ if (sizeof($condiciones) > 0) {
         <div id="footer">
           <div id="nav-step">
             <ul>
-              <li><input type="button" class="icon-step icon-exit" onclick="location.href = 'convenios.php'"></li>
-              <li>Crear convenio</li>
-              <li><span class="arrow"></span></li>                      
+              <li><input type="button" class="img-common icon-step icon-exit" onclick="location.href = 'convenios.php'"></li>
+              <li><a>Crear convenio</a></li>
+              <li><span class="img-common arrow"></span></li>                      
               <li><a href="cargar-datos.php">Importar datos</a></li>
-              <li><span class="arrow"></span></li>               
+              <li><span class="img-common arrow"></span></li>               
               <li><a class="current-step" href="cargar-condiciones.php">Condiciones y coberturas</a></li>
-              <li><input type="button" class="icon-step icon-end" onclick="location.href = 'convenios.php'"></li>            
+              <li><input type="button" class="img-common icon-step icon-end" onclick="location.href = 'convenios.php'"></li>            
             </ul>
           </div>
         </div>

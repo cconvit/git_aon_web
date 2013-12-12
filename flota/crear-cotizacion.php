@@ -11,7 +11,7 @@
   <body>
     <div id="container">
       <div id="header">
-        <img id="logo" src="img/logo.png">
+         <a href="index.php"><img id="logo" src="img/logo.png"></a>
         <div id="top-nav"></div>
       </div>
       <div id="content">
@@ -55,7 +55,7 @@
                             <input type="text" id="name" class="common-input is-required" style="margin-top: 5px" value="no ha seleccionado un archivo..." readonly="true">
                             <input type="file" id="fleet" name="flota" class="hide">
                           </div>
-                          <div class="icon-excel pull-rigth upload"></div>
+                          <div class="img-common icon-excel pull-rigth"></div>
                          <div class="required hide">Uno o más campos son inválidos.</div>
                         </td>
                       </tr>
@@ -68,12 +68,13 @@
           <div id="footer">
             <div id="nav-step">
               <ul>
-                <li><input type="button" class="icon-step icon-exit" onclick="WIZARD.exit('flotas.php');"></li>
+                <li><input type="button" class="img-common icon-step icon-exit" onclick="WIZARD.exit('flotas.php');"></li>
                 <li><a class='current-step' href="cotizar.php">Cotizar</a></li>
-                <li><span class="arrow"></span></li>                      
-                <li>Validar flota</li>
-                <li>Descargar cotización</li>
-                <li><input id="next" type="button" class="icon-step icon-next" role="create"></li>               
+                <li><span class="img-common arrow"></span></li>                      
+                <li><a>Validar flota</a></li>
+                <li><span class="img-common arrow"></span></li> 
+                <li><a>Descargar cotización</a></li>
+                <li><input id="next" type="button" class="img-common icon-step icon-next" role="create"></li>               
               </ul>
             </div>
           </div>
