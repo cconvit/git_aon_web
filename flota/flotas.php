@@ -70,8 +70,7 @@ if (isset($_SESSION['msg'])) {
                             <p class="item-info">Última modificación: <span><?php echo $value->ut_time; ?></span></p>
                             <div class="options top-max">
                               <form method="post" action="../php/operation/administration.php?operation_type=18&target=../../flota/flotas.php" onsubmit="return formOperation()">
-                                <input type="button" data="<?php echo $value->id; ?>" class="icon-operation icon-modified" onclick="UTIL.loadDialog('load/loadAgreement.php', this, $('#modify'));
-                                    return false;">
+                                <input type="button" data="<?php echo $value->id; ?>" class="icon-operation icon-modified">
                                 <input type="submit" type="submit" class="icon-operation icon-delete" value="">
                                 <input type="hidden" name="id" value="<?php echo $value->id; ?>">
                               </form>

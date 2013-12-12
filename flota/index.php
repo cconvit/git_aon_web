@@ -27,15 +27,15 @@
         </div>
         <div id="main">
           <div class="access">
-            <div class="access-icon-right">
+            <div class="access-icon-right pull-left">
               <a class="access-icon new-cotizacion"></a>
               <a class="access-title">Nueva cotización</a>
             </div>
-            <div class="access-icon-right">
+            <div class="access-icon-right pull-left">
               <a class="access-icon new-flota"></a>
               <a class="access-title">Nueva flota</a>
             </div>
-            <div class="access-icon-panel">
+            <div class="access-icon-panel pull-left">
               <a class="access-icon view-cotizacion"></a>
               <a class="access-title">Ver cotización</a>
             </div>          

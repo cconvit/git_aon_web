@@ -19,7 +19,6 @@ if (isset($_SESSION['msg'])) {
     $msg_type = $_SESSION['msg_type'];
   }
 }
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -92,11 +91,11 @@ if (isset($_SESSION['msg'])) {
           <div id="footer">
             <div id="nav-step">
               <ul>
-                <li><input id="next" type="button" class="icon-step icon-exit" onclick="WIZARD.exit('flotas.php');"></li>
+                <li><input id="next" type="button" class="icon-step icon-exit" ></li>
                 <li>Crear flota</li>
                 <li><span class="arrow"></span></li>                      
                 <li><a class='current-step' href="cargar-convenios.php">Agregar convenios</a></li>
-                <li><input id="next" type="button" class="icon-step icon-end" role="create"></li>
+                <li><input id="next" type="button" class="icon-step icon-end" onclick="WIZARD.exit('flotas.php');"></li>
               </ul>
             </div>
           </div>

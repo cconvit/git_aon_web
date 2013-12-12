@@ -84,7 +84,7 @@
     <script src="../plugins/jquery-ui-1.10.3.custom.min.js"></script>
     <script src="js/snippet.js"></script>
     <script type="text/javascript">
-      document.getElementById("name").value = "";
+      document.getElementById("name").value = "no ha seleccionado un archivo...";
     </script>
   </body>
 </html>

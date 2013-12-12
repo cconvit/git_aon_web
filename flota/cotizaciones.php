@@ -40,9 +40,10 @@
                     <td>
                       <div class="item">
                         <p class="item-title">Nombre de la cotizacion</p>
-                        <p clas="item-sub-title">Cliente</p>
+                        <p clas="item-sub-title">Nombre del Cliente</p>
+                        <p clas="item-sub-title">Nombre de la flota</p>
                         <p class="separator"></p>
-                        <p class="item-info">Fecha de creación: <span></span></p>
+                        <p class="item-info">Fecha de la cotización<span></span></p>
                         <div class="options top-max">
                           <form method="post" action="" onsubmit="return formOperation()">
                             <input type="button" data="" class="icon-operation icon-modified">
