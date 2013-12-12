@@ -51,6 +51,11 @@ var WIZARD = {
       form.trigger("submit");
     }
   },
+   quotation: function(form) {
+    if (isValidateSubmit(form)&& isfileSelected()) {
+      form.trigger("submit");
+    }
+  },
   exit: function(page){
     if(confirm("Realmente desea salir del asistente?")){
       document.location.href = page;
@@ -88,12 +93,8 @@ $(function(e) {
       case "create":
         wizard.create($("body").find("form"));
         break;
-      case "imports":
-        wizard.import();
-        break;
-      case "conditions":
-        wizard.condition();
-        break;
+      case "quotation":
+        wizard.quotation();
     }
     return false;
   });
@@ -108,6 +109,16 @@ $(function(e) {
       check.addClass("is-checked").attr("is-checked", "true");
     }
     return false;
+  });
+  
+  //throw upload method excel flota
+   var flag = false;
+  $(".upload").click(function(e){
+    fleet = $("#fleet");
+    excel = $("#name");
+    fleet.trigger("click").change(function(e){
+      excel.val(fleet.val());
+    });
   });
   
   // init all
@@ -153,10 +164,19 @@ function isValidateSubmit(form) {
   });
   if (cont > 0) {
     message.show();
-    console.log("false")
     return false;
   }
   else {
     return true;
   }
+}
+
+function isFileSelected(form){
+ file = form.find("input[type='file']");
+ if(file.val() === ""){
+   return false;
+ }
+ else{
+   return true;
+ }
 }

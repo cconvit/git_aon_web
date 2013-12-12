@@ -443,7 +443,7 @@ body, html{
   color: #FFFFFF;
 }
 #nav-step ul li a.current-step{
-  color: #4D4F53;
+  font-weight: bold;
 }
 #agreements-list{
   margin-top: 20px;
@@ -460,16 +460,25 @@ body, html{
   bottom: 0px;
   left: 0px;
   text-align: center;
-} 
+}
+.button-red{
+  font-size: 14px;
+  color: #ffffff;
+  background-color: #E51E17;
+  border: none;
+  border-radius: 6px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  padding-left: 5px;
+  padding: 2px 0px 5px 5px;
+  cursor: pointer;
+}
 .access{
   position: absolute; 
   top: 120px; 
   width: 740px; 
   left: 50%; 
   margin-left: -370px;
-}
-.access div{
-  float: left;
 }
 .access-icon-right{
   margin-right: 100px;
@@ -649,6 +658,13 @@ a.access-title{
   height: 27px;
   background-position: -545px -40px;
 }
+.icon-excel{
+  background-image: url('../img/sprite.png');
+  background-position: -583px -103px;
+  width: 52px;
+  height: 62px;
+  margin: 12px 5px;
+}
 .check{
   background-position: -518px -40px;
 }
@@ -712,4 +728,10 @@ a.access-title{
 }
 .text-center{
   text-align: center;
+}
+.pull-left{
+  float: left;
+}
+.pull-rigth{
+  float: right;
 }

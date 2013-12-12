@@ -1,19 +1,3 @@
-<?php
-session_start();
-
-$msg = "hide";
-$msg_desc = "";
-$msg_type = "succesfull";
-
-if (isset($_SESSION['msg'])) {
-  if ($_SESSION['msg'] == "show") {
-    $msg = "show";
-    $msg_desc = $_SESSION['msg_desc'];
-    $msg_type = $_SESSION['msg_type'];
-  }
-}
-
-?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -49,7 +33,7 @@ if (isset($_SESSION['msg'])) {
             </div>
             <div id="scroll" style="height: 455px;">
               <div style="margin-top: 30px">
-                <form method="post" action="../php/operation/administration.php?operation_type=16&target=../../flota/cargar-convenios.php" onsubmit="return isValidateSubmit($(this))">
+                <form method="post" action="operation.php" onsubmit="return isValidateSubmit($(this))">
                   <table>
                     <tbody>
                       <tr>
@@ -65,13 +49,15 @@ if (isset($_SESSION['msg'])) {
                         <td><textarea class="common-input is-required" name="decripcion" style="height: 66px;"></textarea></td>
                       </tr>
                       <tr>
-                        <td>INMA (%)</td>
-                      </tr>
-                      <tr>
-                        <td><input type="text" class="common-input is-required" name="inma" value="20"></td></td>
-                      </tr>
-                      <tr>
-                        <td><div class="required hide">Uno o más campos son inválidos.</div></td>
+                        <td>
+                          <div class="pull-left">
+                            <div class="button-red upload">explorar archivos</div>
+                            <input type="text" id="name" class="common-input is-required" style="margin-top: 5px" value="no ha seleccionado un archivo..." readonly="true">
+                            <input type="file" id="fleet" name="flota" class="hide">
+                          </div>
+                          <div class="icon-excel pull-rigth upload"></div>
+                         <div class="required hide">Uno o más campos son inválidos.</div>
+                        </td>
                       </tr>
                     </tbody>
                   </table>
@@ -83,10 +69,11 @@ if (isset($_SESSION['msg'])) {
             <div id="nav-step">
               <ul>
                 <li><input type="button" class="icon-step icon-exit" onclick="WIZARD.exit('flotas.php');"></li>
-                <li><a class='current-step' href="crear-flota.php">Crear flota</a></li>
+                <li><a class='current-step' href="cotizar.php">Cotizar</a></li>
                 <li><span class="arrow"></span></li>                      
-                <li>Agregar convenios</li>
-                <li><input id="next" type="button" class="icon-step icon-next" role="create"></li>
+                <li>Validar flota</li>
+                <li>Descargar cotización</li>
+                <li><input id="next" type="button" class="icon-step icon-next" role="create"></li>               
               </ul>
             </div>
           </div>
@@ -96,6 +83,9 @@ if (isset($_SESSION['msg'])) {
     <script src="../plugins/jquery-1.10.2.min.js"></script>
     <script src="../plugins/jquery-ui-1.10.3.custom.min.js"></script>
     <script src="js/snippet.js"></script>
+    <script type="text/javascript">
+      document.getElementById("name").value = "";
+    </script>
   </body>
 </html>
 <?php
