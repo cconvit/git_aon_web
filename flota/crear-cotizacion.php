@@ -74,7 +74,7 @@
                 <li><a>Validar flota</a></li>
                 <li><span class="img-common arrow"></span></li> 
                 <li><a>Descargar cotización</a></li>
-                <li><input id="next" type="button" class="img-common icon-step icon-next" role="create"></li>               
+                <li><input id="next" type="button" class="img-common icon-step icon-next" role="quotation"></li>               
               </ul>
             </div>
           </div>
@@ -85,7 +85,8 @@
     <script src="../plugins/jquery-ui-1.10.3.custom.min.js"></script>
     <script src="js/snippet.js"></script>
     <script type="text/javascript">
-      document.getElementById("name").value = "no ha seleccionado un archivo...";
+      document.getElementById("fleet").value = "";
+      document.getElementById("name").value = "no ha seleccionado un archivo..."; 
     </script>
   </body>
 </html>

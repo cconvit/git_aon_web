@@ -1,20 +1,31 @@
 var AON = {
-  setMainWidth: function() {
-    var windowWidth = $(window).width();
-    var $main = $("#main");
-    $main.css("width", windowWidth - 283);
+  setContentHeight: function(windowHeight) {
+    var content = $("#content");
+    content.css("height", windowHeight - 127);
   },
-  setScrollHeight: function() {
+  setMainWidth: function(windowWidth) {
+    var main = $("#main");
+    main.css("width", windowWidth - 283);
+  },
+  setScrollHeight: function(windowHeight) {
+    var main = $("#scroll");
+    main.css("height", windowHeight - 272);
+  },
+  setScrollListHeight: function(windowHeight) {
+    var list = $(".scrollable-list");
+    list.css("height", windowHeight - 215);
+  },
+  windowResize: function() {
+    var windowWidth = $(window).width();
     var windowHeight = $(window).height();
-    var $main = $("#scroll");
-    $main.css("height", windowHeight - 272);
+    var self = AON;
+    self.setMainWidth(windowWidth);
+    self.setScrollHeight(windowHeight);
+    self.setContentHeight(windowHeight);
   },
   init: function() {
-    AON.setMainWidth();
-    $(window).resize(function() {
-      AON.setMainWidth();
-      AON.setScrollHeight();
-    });
+    var self = AON;
+    self.windowResize();
   }
 };
 
@@ -52,8 +63,10 @@ var WIZARD = {
     }
   },
   quotation: function(form) {
-    if (isValidateSubmit(form) && isfileSelected()) {
-      form.trigger("submit");
+    if (isValidateSubmit(form)) {
+      if (isFileSelected(form)) {
+        form.trigger("submit");
+      }
     }
   },
   exit: function(page) {
@@ -95,14 +108,15 @@ $(function(e) {
 
   //send next step form
   $("input[id='next']").on("click", function(e) {
-    var wizard = WIZARD;
-    var role = $(this).attr("role");
+    wizard = WIZARD;
+    role = $(this).attr("role");
+    form = $("body").find("form");
     switch (role) {
       case "create":
-        wizard.create($("body").find("form"));
+        wizard.create(form);
         break;
       case "quotation":
-        wizard.quotation();
+        wizard.quotation(form);
     }
     return false;
   });
@@ -129,6 +143,10 @@ $(function(e) {
     });
   });
 
+  // set width and height size
+  $(window).resize(function() {
+    AON.windowResize();
+  });
   // init all
   AON.init();
   UTIL.init();
@@ -180,8 +198,10 @@ function isValidateSubmit(form) {
 }
 
 function isFileSelected(form) {
-  file = form.find("input[type='file']");
-  if (file.val() === "") {
+  message = form.find("div.required");
+  fileName = $("#fleet").val();
+  if (fileName === "") {
+    message.show();
     return false;
   }
   else {
