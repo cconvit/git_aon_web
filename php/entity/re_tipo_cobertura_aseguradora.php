@@ -40,6 +40,24 @@ class re_tipo_cobertura_aseguradora{
                                ");
   }
   
+   public function find_re_by_convenio_cobertura_tipo_carro_id_cob_as() {
+	
+      global $database;
+      
+      return self::find_by_sql("SELECT re.id_convenio_as as 'id_convenio_as',re.id_tipo_cob as 'id_tipo_cob',
+                                       re.id_cob_as as 'id_cob_as', re.id_tipo_carro as 'id_tipo_carro',
+                                       re.tipo_calculo as 'tipo_calculo',re.valor as 'valor',
+                                       de.desc_cobertura as 'descripcion',re.limite as 'limite',re.tasa as 'tasa',
+                                       re.incluida as 'incluida'
+                               FROM  tbl_re_tipo_cob_as re
+                               INNER JOIN tbl_cob_as de ON (de.id=re.id_cob_as)
+                               WHERE re.id_convenio_as='{$database->escape_value($this->id_convenio_as)}' 
+                               AND   re.id_tipo_cob='{$database->escape_value($this->id_tipo_cob)}' 
+                               AND   re.id_tipo_carro='{$database->escape_value($this->id_tipo_carro)}' 
+                               AND   de.id='{$database->escape_value($this->id_cob_as)}' 
+                               ");
+  }
+  
    public function find_re_by_convenio_cobertura_tipo_carro() {
 	
       global $database;

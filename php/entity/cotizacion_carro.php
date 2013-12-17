@@ -1,34 +1,43 @@
 <?php
 
-class cotizacion{
+class cotizacion_carro{
     
     protected static $table_name="tbl_cotizacion";
-    protected static $db_fields=array('id','nombre','descripcion','id_cliente','id_flota','empresa_flota','nombre_cliente','cr_time','ut_time');
+    protected static $db_fields=array('id','nombre','cedula','telefono','email','edad',
+                                      'sexo','estado_civil','tipo_carro','car_marca',
+                                      'car_modelo','car_ano','car_version','car_ocupantes',
+                                      'tipo_cobertura','id_flota','valor_INMA','cr_time','ut_time');
     
     public $id;
     public $nombre;
-    public $descripcion;
-    public $id_cliente;
+    public $cedula;
+    public $telefono;
+    public $email;
+    public $edad;
+    public $sexo;
+    public $estado_civil;
+    public $tipo_carro;
+    public $car_marca;
+    public $car_modelo;
+    public $car_ano;
+    public $car_version;
+    public $car_ocupantes;
+    public $tipo_cobertura;
     public $id_flota;
-    public $empresa_flota;
-    public $nombre_cliente;
+    public $valor_INMA;
     public $cr_time;
     public $ut_time;
-
+    public $tipo;//Nevo , Usado
    
     
-  public function cotizacion (){
+  public function cotizacion_carro (){
       
       
   }
             
   // Common Database Methods
-
   public static function find_all() {
-    return self::find_by_sql("SELECT cot.id as 'id',cot.nombre as 'nombre',cot.descripcion as 'descripcion',fl.empresa as 'empresa_flota',cl.nombre as 'nombre_cliente',cot.cr_time as 'cr_time',cot.ut_time as 'ut_time' 
-                              FROM `tbl_cotizacion` cot
-                              INNER JOIN tbl_flota fl ON fl.id=cot.id_flota 
-                              INNER JOIN tbl_cliente cl ON cl.id=cot.id_cliente");
+		return self::find_by_sql("SELECT * FROM ".self::$table_name);
   }
   
   public static function find_by_sql($sql="") {
@@ -42,41 +51,6 @@ class cotizacion{
     return $object_array;
   }
   
-    public function create() {
-
-    global $database;
-
-    $sql = "INSERT INTO " . self::$table_name . " ('nombre','descripcion','id_cliente','id_flota','cr_time') VALUES (
-                                                '{$database->escape_value($this->nombre)}',
-                                                '{$database->escape_value($this->descripcion)}',
-                                                '{$database->escape_value($this->id_cliente)}',
-                                                '{$database->escape_value($this->id_flota)}',
-                                                 NOW())";
-
-
-    if ($database->query($sql)) {
-      $this->id = $database->insert_id();
-      return true;
-    } else {
-      return false;
-    }
-  }
-  
-  public function delete() {
-
-    global $database;
-
-    $sql = "DELETE FROM " . self::$table_name . " WHERE id='{$database->escape_value($this->id)}'";
-
-    if ($database->query($sql)) {
-      if (mysql_affected_rows() != 0)
-        return true;
-      else
-        return false;
-    } else {
-      return false;
-    }
-  }
   
   ///////////////////////////METODOS ESTANDAR//////////////////////////////////
   
@@ -127,7 +101,33 @@ class cotizacion{
       return $clean_attributes;
     }
     
-   
+    public function create() {
+      
+    global $database;
+    // Don't forget your SQL syntax and good habits:
+    // - INSERT INTO table (key, key) VALUES ('value', 'value')
+    // - single-quotes around all values
+    // - escape all values to prevent SQL injection
+    $attributes = $this->sanitized_attributes();
+    
+    $sql = "INSERT INTO ".self::$table_name." (";
+    
+    $sql .= join(", ", array_keys($attributes));
+    $sql .= ") VALUES ('";
+    $sql .= join("', '", array_values($attributes));
+    $sql .= "')";
+    
+    $sql=str_replace("'NOW()'","NOW()",$sql);
+    
+      if($database->query($sql)) {
+        $this->id_user = $database->insert_id();
+        return true;
+      } else {
+        return false;
+      }
+      
+      
+    }
   ///////////////////////////FIN METODOS ESTANDAR//////////////////////////////
 }
 ?>
