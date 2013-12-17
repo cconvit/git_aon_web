@@ -33,7 +33,7 @@
             </div>
             <div id="scroll" style="height: 455px;">
               <div style="margin-top: 30px">
-                <form method="post" action="operation.php" onsubmit="return isValidateSubmit($(this))">
+                <form method="post" action="operation.php" enctype="multipart/form-data">
                   <table>
                     <tbody>
                       <tr>

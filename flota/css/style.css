@@ -419,9 +419,6 @@ body, html{
   padding: 72px 0px 5px 0px;
 
 }
-#left-nav ul li a:hover{
-  font-weight: bold;
-}
 #scroll{
   height: 490px;
   overflow-y: auto;
@@ -447,7 +444,6 @@ body, html{
 }
 #nav-step ul li a{
   color: #FFFFFF;
-  font-weight: bold;
 }
 #nav-step ul li a.current-step{
   font-weight: bold;
@@ -607,7 +603,7 @@ a.access-title{
   left: 163px;
   height: 12px;
   position: absolute;
-  top: 82px;
+  top: 0px;
   padding: 10px 0px 10px 0px;
   font-size: 14px;
   text-align: center;
@@ -739,7 +735,7 @@ a.access-title{
   background-position: -8px -133px;
   width: 52px;
   height: 62px;
-  margin: 12px 5px;
+  margin: 10px 5px;
 }
 .check{
   background-position: -322px -67px;
