@@ -23,7 +23,7 @@ if (isset($_GET["id"])) {
             <td>Razón Social</td>
           </tr>
           <tr>
-            <td><input type="text" class="common-input is-required" name="rs" id="rs" value="<?php echo $cliente_aux[0]->razon_social; ?>"></td>
+            <td><input type="text" class="common-input" name="rs" id="rs" value="<?php echo $cliente_aux[0]->razon_social; ?>"></td>
           </tr>
           <tr>
             <td><div class="required hide">Uno o más campos son inválidos.</div></td>

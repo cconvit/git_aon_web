@@ -46,7 +46,7 @@ if (isset($_SESSION['msg'])) {
               <td>Cobertura</td>
             </tr>
             <tr>
-              <td><select name="cobertura" class="common-input common-select"  style="width: 370px;">
+              <td><select name="cobertura" class="common-input common-select">
                   <?php
                   if (sizeof($coberturas) > 0) {
                     foreach ($coberturas as $value) {
@@ -63,7 +63,7 @@ if (isset($_SESSION['msg'])) {
               <td>Tipo de Cálculo</td>
             </tr>
             <tr>
-              <td><select name="calculo" class="common-input common-select" style="width: 370px;">
+              <td><select name="calculo" class="common-input common-select">
                   <?php
                   if (sizeof($calculos) > 0) {
                     foreach ($calculos as $value) {

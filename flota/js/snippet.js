@@ -15,6 +15,10 @@ var AON = {
     var list = $(".scrollable-list");
     list.css("height", windowHeight - 215);
   },
+  setMenuHeight: function(windowHeight){
+    var menu = $("#left-nav");
+    menu.css("height", windowHeight -127);
+  },
   windowResize: function() {
     var windowWidth = $(window).width();
     var windowHeight = $(window).height();
@@ -22,6 +26,7 @@ var AON = {
     self.setMainWidth(windowWidth);
     self.setScrollHeight(windowHeight);
     self.setContentHeight(windowHeight);
+    self.setMenuHeight(windowHeight);
   },
   init: function() {
     var self = AON;
@@ -36,7 +41,7 @@ var UTIL = {
       autoOpen: false,
       width: width,
       resizable: false,
-      position: "center"
+      position: "top+15%"
     });
   },
   loadDialog: function(page, button, dialog) {
@@ -94,7 +99,7 @@ $(function(e) {
   tabs.tabs().find("ul").css({
     "background-color": "#FFFFFF",
     "display": "block",
-    "border": "none",
+    "border": "none"
   });
 
   //throw click input file event

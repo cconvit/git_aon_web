@@ -11,7 +11,7 @@
   <body>
     <div id="container">
       <div id="header">
-         <a href="index.php"><img id="logo" src="img/logo.png"></a>
+        <a href="index.php"><img id="logo" src="img/logo.png"></a>
         <div id="top-nav"></div>
       </div>
       <div id="content">
@@ -21,15 +21,15 @@
             <li><a href="clientes.php">Clientes</a></li>
             <li><a href="seguros.php">Seguros</a></li>
             <li><a href="coberturas.php">Coberturas</a></li>
-            <li class="current"><a href="convenios.php">Convenios</a></li>
+            <li><a href="convenios.php">Convenios</a></li>
             <li><a href="flotas.php">Flotas</a></li>
-            <li style="border: none;"><a href="cotizaciones.php">Cotizaciones</a></li>
+            <li class="current" style="border: none;"><a href="cotizaciones.php">Cotizaciones</a></li>
           </ul>
         </div>
         <div id="main">
           <div id="main-detail">
             <div id="nav-operations">
-              <span class="title">Crear flota</span>
+              <span class="title">Crear cotización</span>
             </div>
             <div id="scroll" style="height: 455px;">
               <div style="margin-top: 30px">
@@ -49,14 +49,34 @@
                         <td><textarea class="common-input is-required" name="decripcion" style="height: 66px;"></textarea></td>
                       </tr>
                       <tr>
+                        <td>Cliente</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <select class="common-input common-select" name="cliente">
+                            <option>1</option>
+                          </select>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Flota</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <select type="text" class="common-input common-select" name="flota">
+                             <option>1</option>
+                          </select>
+                        </td>
+                      </tr>                       
+                      <tr>
                         <td>
                           <div class="pull-left">
                             <div class="button-red upload">explorar archivos</div>
                             <input type="text" id="name" class="common-input is-required" style="margin-top: 5px" value="no ha seleccionado un archivo..." readonly="true">
-                            <input type="file" id="fleet" name="flota" class="hide">
+                            <input type="file" id="fleet" name="file" class="hide">
                           </div>
-                          <div class="img-common icon-excel pull-rigth"></div>
-                         <div class="required hide">Uno o más campos son inválidos.</div>
+                          <div class="img-common icon-excel pull-rigth upload"></div>
+                          <div class="required hide">Uno o más campos son inválidos.</div>
                         </td>
                       </tr>
                     </tbody>
@@ -85,8 +105,8 @@
     <script src="../plugins/jquery-ui-1.10.3.custom.min.js"></script>
     <script src="js/snippet.js"></script>
     <script type="text/javascript">
-      document.getElementById("fleet").value = "";
-      document.getElementById("name").value = "no ha seleccionado un archivo..."; 
+                  document.getElementById("fleet").value = "";
+                  document.getElementById("name").value = "no ha seleccionado un archivo...";
     </script>
   </body>
 </html>

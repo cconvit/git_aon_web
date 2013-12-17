@@ -6,13 +6,13 @@
           <td>Cobertura</td>
         </tr>
         <tr>
-          <td><select name="cobertura" class="common-input common-select"  style="width: 370px;"></select></td>
+          <td><select name="cobertura" class="common-input common-select"></select></td>
         </tr>
         <tr>
           <td>Tipo de Cálculo</td>
         </tr>
         <tr>
-          <td><select name="calculo" class="common-input common-select" style="width: 370px;"></select></td>
+          <td><select name="calculo" class="common-input common-select"></select></td>
         </tr>
         <tr>
           <td>Particular</td>

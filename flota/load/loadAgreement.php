@@ -29,7 +29,7 @@ if (isset($_GET["id"])) {
         </tr>
         <tr>
           <td>
-            <select class="common-input" id="seguro" name="seguro" style="width: 370px">
+            <select class="common-input common-select" id="seguro" name="seguro">
              <?php
              
                if (sizeof($aseguradoras) > 0) {

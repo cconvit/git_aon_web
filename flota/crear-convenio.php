@@ -75,7 +75,7 @@ $aseguradoras = $aseguradora->find_all();
                       </tr>                  
                       <tr>
                         <td>
-                          <select class="common-input" name="seguro" style="width: 370px">
+                          <select class="common-input common-select" name="seguro">
                             <?php
                             if (sizeof($aseguradoras) > 0) {
                               foreach ($aseguradoras as $value) {

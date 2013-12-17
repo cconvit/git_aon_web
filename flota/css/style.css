@@ -377,8 +377,8 @@ body, html{
 #content{
   width: 100%;
   position: absolute;
-  padding: 82px 0px 41px 0px;
-  top: 0px;
+  top: 82px;
+  left: 0px;
   overflow: hidden;
 }
 #main{
@@ -393,7 +393,6 @@ body, html{
 #left-nav{
   width: 163px;
   border-right: solid 1px #ACACAC;
-  height: 100%;
   position: absolute;
   left: 0px;
   background-color: #FFFFFF;
