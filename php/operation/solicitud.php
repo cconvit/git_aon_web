@@ -28,6 +28,7 @@ class solicitud{
         $calcular_primas->valor_INMA=  $this->cotizacion->valor_INMA;
         $calcular_primas->porcentaje_INMA=  $this->flota->porcentaje_INMA;
         $calcular_primas->UT=$this->parametros[0]->valor;//Cambiar este valor
+        $calcular_primas->tipo_seguro=$this->cotizacion->tipo_cobertura;
         
         
         $this->re_aseguradora_cotizacion=array();
