@@ -37,7 +37,7 @@ $aseguradoras = $aseguradora->find_all();
         <div id="top-nav"></div>
       </div>
       <div id="content">
-        <div class="message hide"></div>
+        <div class="message <?php echo $msg . " " . $msg_type; ?>"><?php echo $msg_desc; ?></div>
         <div id="left-nav">
           <ul>
             <li><a href="clientes.php">Clientes</a></li>

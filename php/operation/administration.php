@@ -72,6 +72,14 @@ if (isset($_REQUEST["operation_type"])) {
     case 19:
       newFlotaConvenios($_REQUEST["data"]);
       break;
+  
+    case 20:
+      newCotizacion($_REQUEST["nombre"],$_REQUEST["descripcion"],$_REQUEST["cliente"],$_REQUEST["flota"],$_FILES["file"]["tmp_name"]);
+      break;
+  
+    case 21:
+      deleteCotizacion($_REQUEST["id"]);
+      break;
   }
 }
 
@@ -456,5 +464,61 @@ function newFlotaConvenios($data) {
     $_SESSION["msg_type"] = "succesfull";
     header('Location: ' . $_GET["target"]);
   }
+}
+
+function newCotizacion($nombre,$descripcion,$cliente,$flota,$tmp_name){
+    
+    var_dump($_FILES);
+    require_once '../Classes/PHPExcel.php';
+    require_once '../Classes/PHPExcel/IOFactory.php';
+    require_once ('../entity/cotizacion.php');
+    
+    $resultado=false;
+    
+    if(isset($nombre) && isset($descripcion) && isset($cliente) && isset($flota)){
+        
+        $cotizacion=new cotizacion();
+        $cotizacion->nombre=$nombre;
+        $cotizacion->descripcion=$descripcion;
+        $cotizacion->id_cliente=$cliente;
+        $cotizacion->id_flota=$flota;
+        $cotizacion->ut_time="NOW()";
+        $cotizacion->cr_time="NOW()";
+        $resultado=$cotizacion->create();
+        
+        
+    }
+    
+    $_SESSION["msg"] = "show";
+
+    if (!$resultado) {
+      $_SESSION["msg_desc"] = "Ocurrio un error al tratar de crear una nueva cotización. Por favor intente mas tarde. Si el error persiste, comuniquese con el administrador del sistema.";
+      $_SESSION["msg_type"] = "error";
+      header('Location: ' . $_GET["target_fail"]);
+    } 
+    else {
+      $_SESSION["msg_desc"] = "La creación de la cotización se realizó exitosamente";
+      $_SESSION["msg_type"] = "succesfull";
+      header('Location: ' . $_GET["target"]);
+  }   
+}
+
+function deleteCotizacion($id) {
+
+  require_once ('../entity/cotizacion.php');
+  $cotizacion = new cotizacion();
+  $cotizacion->id = $id;
+
+
+  $_SESSION["msg"] = "show";
+
+  if (!$cotizacion->delete()) {
+    $_SESSION["msg_desc"] = "Ocurrio un error al tratar de eliminar la cotización. Por favor intente mas tarde. Si el error persiste, comuniquese con el administrador del sistema.";
+    $_SESSION["msg_type"] = "error";
+  } else {
+    $_SESSION["msg_desc"] = "La eliminación de la cotización se realizó exitosamente";
+    $_SESSION["msg_type"] = "succesfull";
+  }
+  header('Location: ' . $_GET["target"]);
 }
 ?>

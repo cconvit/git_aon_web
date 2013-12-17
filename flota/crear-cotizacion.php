@@ -1,3 +1,28 @@
+<?php
+session_start();
+require_once("../php/db/config.php");
+require_once ('../php/db/database.php');
+require_once ('../php/entity/flota.php');
+require_once ('../php/entity/cliente.php');
+
+$msg = "hide";
+$msg_desc = "";
+$msg_type = "succesfull";
+
+if (isset($_SESSION['msg'])) {
+  if ($_SESSION['msg'] == "show") {
+    $msg = "show";
+    $msg_desc = $_SESSION['msg_desc'];
+    $msg_type = $_SESSION['msg_type'];
+  }
+}
+
+$flota = new flota();
+$flotas = $flota->find_all();
+
+$cliente = new cliente();
+$clientes = $cliente->find_all();
+?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -15,7 +40,7 @@
         <div id="top-nav"></div>
       </div>
       <div id="content">
-        <div class="message hide"></div>
+        <div class="message <?php echo $msg . " " . $msg_type; ?>"><?php echo $msg_desc; ?></div>
         <div id="left-nav">
           <ul>
             <li><a href="clientes.php">Clientes</a></li>
@@ -33,7 +58,7 @@
             </div>
             <div id="scroll" style="height: 455px;">
               <div style="margin-top: 30px">
-                <form method="post" action="operation.php" onsubmit="return isValidateSubmit($(this))">
+                <form method="post" action="../php/operation/administration.php?operation_type=20&target=../../flota/validar-flota.php&target_fail=../../flota/crear-cotizacion.php" onsubmit="return isValidateSubmit($(this))">
                   <table>
                     <tbody>
                       <tr>
@@ -46,7 +71,7 @@
                         <td>Descripción</td>
                       </tr>
                       <tr>
-                        <td><textarea class="common-input is-required" name="decripcion" style="height: 66px;"></textarea></td>
+                        <td><textarea class="common-input is-required" name="descripcion" style="height: 66px;"></textarea></td>
                       </tr>
                       <tr>
                         <td>Cliente</td>
@@ -54,7 +79,15 @@
                       <tr>
                         <td>
                           <select class="common-input common-select" name="cliente">
-                            <option>1</option>
+                            <?php
+                                if (sizeof($clientes) > 0) {
+                                     foreach ($clientes as $value) {
+                              ?>
+                               <option value="<?php echo $value->id; ?>"><?php echo $value->nombre; ?></option>
+                               <?php
+                                     }
+                                }
+                               ?>
                           </select>
                         </td>
                       </tr>
@@ -64,7 +97,15 @@
                       <tr>
                         <td>
                           <select type="text" class="common-input common-select" name="flota">
-                             <option>1</option>
+                             <?php
+                                if (sizeof($flotas) > 0) {
+                                     foreach ($flotas as $value) {
+                              ?>
+                               <option value="<?php echo $value->id; ?>"><?php echo $value->empresa; ?></option>
+                               <?php
+                                     }
+                                }
+                               ?>
                           </select>
                         </td>
                       </tr>                       

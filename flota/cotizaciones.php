@@ -1,3 +1,25 @@
+<?php
+session_start();
+require_once("../php/db/config.php");
+require_once ('../php/db/database.php');
+require_once ('../php/entity/cotizacion.php');
+
+
+$msg = "hide";
+$msg_desc = "";
+$msg_type = "succesfull";
+
+if (isset($_SESSION['msg'])) {
+  if ($_SESSION['msg'] == "show") {
+    $msg = "show";
+    $msg_desc = $_SESSION['msg_desc'];
+    $msg_type = $_SESSION['msg_type'];
+  }
+}
+
+$cotizacion = new cotizacion();
+$cotizaciones = $cotizacion->find_all();
+?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -16,7 +38,7 @@
         <div id="top-nav"></div>
       </div>
       <div id="content">
-        <div class="message hide"></div>
+        <div class="message <?php echo $msg . " " . $msg_type; ?>"><?php echo $msg_desc; ?></div>
         <div id="left-nav">
           <ul>
             <li><a href="clientes.php">Clientes</a></li>
@@ -35,26 +57,36 @@
             </div>
             <div id="scroll">
               <table class="tbl-details" cellspacing="0" borderspacing="0">
-                <tbody>               
+                <tbody>                                               
+                <?php
+                  if (sizeof($cotizaciones) > 0) {
+                    foreach ($cotizaciones as $value) {
+                      ?>                 
                   <tr>
                     <td>
                       <div class="item">
-                        <p class="item-title">Nombre de la cotizacion</p>
-                        <p clas="item-sub-title">Nombre de la flota</p>
+                        <p class="item-title"><?php echo $value->nombre; ?></p>
+                        <p clas="item-sub-title"><?php echo $value->empresa_flota; ?></p>
+                        <p clas="item-sub-title"><?php echo $value->nombre_cliente; ?></p>
                         <p class="separator"></p>
                         <div class="info-down">
-                          <p class="item-info">Fecha de la cotización<span></span></p>
+                          <p class="item-info">Fecha de creación: <span><?php echo $value->cr_time; ?></span></p>
+                          <p class="item-info">Última modificación: <span><?php echo $value->ut_time; ?></span></p>
                           <div class="options">
-                            <form method="post" action="" onsubmit="return formOperation()">
+                            <form method="post" action="../php/operation/administration.php?operation_type=21&target=../../flota/cotizaciones.php" onsubmit="return formOperation()">
                               <input type="button" data="" class="img-common icon-operation icon-download">
                               <input type="submit" type="submit" class="img-common icon-operation icon-delete" value="">
-                              <input type="hidden" name="id" value="">
+                              <input type="hidden" name="id" value="<?php echo $value->id; ?>">
                             </form>
                           </div>
                         </div>
                       </div>
                     </td>
                   </tr>
+                  <?php
+                    }
+                  }
+                  ?>
                 </tbody>
               </table>
             </div>
@@ -67,3 +99,8 @@
     <script src="../plugins/jquery-ui-1.10.3.custom.min.js"></script>
     <script src="js/snippet.js"></script>
   </body>
+  <?php
+  $_SESSION['msg'] = "hide";
+  $_SESSION['msg_desc'] = "";
+  $msg_type = "succesfull";
+  ?>
