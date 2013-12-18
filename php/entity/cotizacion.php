@@ -46,14 +46,14 @@ class cotizacion{
 
     global $database;
 
-    $sql = "INSERT INTO " . self::$table_name . " ('nombre','descripcion','id_cliente','id_flota','cr_time') VALUES (
+    $sql = "INSERT INTO " . self::$table_name . " (nombre,descripcion,id_cliente,id_flota,cr_time) VALUES (
                                                 '{$database->escape_value($this->nombre)}',
                                                 '{$database->escape_value($this->descripcion)}',
                                                 '{$database->escape_value($this->id_cliente)}',
                                                 '{$database->escape_value($this->id_flota)}',
                                                  NOW())";
 
-
+echo $sql;
     if ($database->query($sql)) {
       $this->id = $database->insert_id();
       return true;
