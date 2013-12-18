@@ -13,20 +13,22 @@ var AON = {
   },
   setScrollListHeight: function(windowHeight) {
     var list = $(".scrollable-list");
-    list.css("height", windowHeight - 215);
+    list.css("height", windowHeight - 230);
   },
   setMenuHeight: function(windowHeight){
     var menu = $("#left-nav");
     menu.css("height", windowHeight -127);
   },
   windowResize: function() {
+    var self = AON;
     var windowWidth = $(window).width();
     var windowHeight = $(window).height();
-    var self = AON;
+    //setup and fix size 
     self.setMainWidth(windowWidth);
     self.setScrollHeight(windowHeight);
     self.setContentHeight(windowHeight);
     self.setMenuHeight(windowHeight);
+    self.setScrollListHeight(windowHeight);
   },
   init: function() {
     var self = AON;
@@ -147,6 +149,9 @@ $(function(e) {
       excel.val(fleet.val());
     });
   });
+  
+  //suggestion load promp
+  $()
 
   // set width and height size
   $(window).resize(function() {

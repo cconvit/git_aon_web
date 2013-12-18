@@ -3,7 +3,6 @@ session_start();
 require_once("../php/db/config.php");
 require_once ('../php/db/database.php');
 
-
 $msg = "hide";
 $msg_desc = "";
 $msg_type = "succesfull";
@@ -15,7 +14,6 @@ if (isset($_SESSION['msg'])) {
     $msg_type = $_SESSION['msg_type'];
   }
 }
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -34,7 +32,7 @@ if (isset($_SESSION['msg'])) {
         <div id="top-nav"></div>
       </div>
       <div id="content">
-         <div class="message <?php echo $msg . " " . $msg_type; ?>"><?php echo $msg_desc; ?></div>
+        <div class="message <?php echo $msg . " " . $msg_type; ?>"><?php echo $msg_desc; ?></div>
         <div id="left-nav">
           <ul>
             <li><a href="clientes.php">Clientes</a></li>
@@ -62,10 +60,14 @@ if (isset($_SESSION['msg'])) {
                     <thead id="errors">
                     <th class="no-padding" style="width: 32px; background-color: #FFFFFF; padding-left: "></th>
                     <th class="no-padding" style="width: 32px; background-color: #FFFFFF;"></th>
+                    <th>rif/ci</th>
+                    <th>Asegurado</th>
+                    <th>placa</th>
                     <th>Marca</th>
                     <th>Modelo</th>
                     <th>Versión</th>
                     <th>Año</th>
+                    <th>inma</th>
                     <th>Uso</th>
                     <th>Ocupantes</th>
                     <th>Cobertura</th>
@@ -75,12 +77,16 @@ if (isset($_SESSION['msg'])) {
                     </thead>
                     <tbody>
                       <tr>
-                        <td class="no-padding no-border"><a class="img-common icon-edit icon-actions"></a></td>
-                        <td class="no-padding no-border"><a class="img-common icon-remove icon-actions"></a></td>
+                        <td class="no-padding no-border"><a class="img-common icon-edit icon-actions suggestion" data='1'></a></td>
+                        <td class="no-padding no-border"><a class="img-common icon-remove icon-actions" data='1'></a></td>
+                        <td>V0006817841</td>
+                        <td>GARCIA JESUS ARMANDO</td>
+                        <td>AB717FM</td>
                         <td>TOYOTA</td>
                         <td>COROLLA</td>
                         <td>1.8 XGE</td>
                         <td>2010</td>
+                        <td>54,800.00</td>
                         <td>PARTICULAR</td>
                         <td>5</td>
                         <td>AMPLIA</td>
@@ -91,143 +97,201 @@ if (isset($_SESSION['msg'])) {
                       <tr>
                         <td class="no-padding no-border"><a class="img-common icon-edit icon-actions"></a></td>
                         <td class="no-padding no-border"><a class="img-common icon-remove icon-actions"></a></td>
+                        <td>V0006817841</td>
+                        <td>GARCIA JESUS ARMANDO</td>
+                        <td>AB717FM</td>
                         <td>TOYOTA</td>
                         <td>COROLLA</td>
                         <td>1.8 XGE</td>
                         <td>2010</td>
+                        <td>54,800.00</td>
                         <td>PARTICULAR</td>
                         <td>5</td>
                         <td>AMPLIA</td>
                         <td>29</td>
                         <td>M</td>
                         <td>SOLTERO</td>
-                      </tr>                     
+                      </tr>                        
                       <tr>
                         <td class="no-padding no-border"><a class="img-common icon-edit icon-actions"></a></td>
                         <td class="no-padding no-border"><a class="img-common icon-remove icon-actions"></a></td>
+                        <td>V0006817841</td>
+                        <td>GARCIA JESUS ARMANDO</td>
+                        <td>AB717FM</td>
                         <td>TOYOTA</td>
                         <td>COROLLA</td>
                         <td>1.8 XGE</td>
                         <td>2010</td>
+                        <td>54,800.00</td>
                         <td>PARTICULAR</td>
                         <td>5</td>
                         <td>AMPLIA</td>
                         <td>29</td>
                         <td>M</td>
                         <td>SOLTERO</td>
-                      </tr>                      
+                      </tr>
                       <tr>
                         <td class="no-padding no-border"><a class="img-common icon-edit icon-actions"></a></td>
                         <td class="no-padding no-border"><a class="img-common icon-remove icon-actions"></a></td>
+                        <td>V0006817841</td>
+                        <td>GARCIA JESUS ARMANDO</td>
+                        <td>AB717FM</td>
                         <td>TOYOTA</td>
                         <td>COROLLA</td>
                         <td>1.8 XGE</td>
                         <td>2010</td>
+                        <td>54,800.00</td>
                         <td>PARTICULAR</td>
                         <td>5</td>
                         <td>AMPLIA</td>
                         <td>29</td>
                         <td>M</td>
                         <td>SOLTERO</td>
-                      </tr>                     
+                      </tr>
                       <tr>
                         <td class="no-padding no-border"><a class="img-common icon-edit icon-actions"></a></td>
                         <td class="no-padding no-border"><a class="img-common icon-remove icon-actions"></a></td>
+                        <td>V0006817841</td>
+                        <td>GARCIA JESUS ARMANDO</td>
+                        <td>AB717FM</td>
                         <td>TOYOTA</td>
                         <td>COROLLA</td>
                         <td>1.8 XGE</td>
                         <td>2010</td>
+                        <td>54,800.00</td>
                         <td>PARTICULAR</td>
                         <td>5</td>
                         <td>AMPLIA</td>
                         <td>29</td>
                         <td>M</td>
                         <td>SOLTERO</td>
-                      </tr>                      
+                      </tr>
                       <tr>
                         <td class="no-padding no-border"><a class="img-common icon-edit icon-actions"></a></td>
                         <td class="no-padding no-border"><a class="img-common icon-remove icon-actions"></a></td>
+                        <td>V0006817841</td>
+                        <td>GARCIA JESUS ARMANDO</td>
+                        <td>AB717FM</td>
                         <td>TOYOTA</td>
                         <td>COROLLA</td>
                         <td>1.8 XGE</td>
                         <td>2010</td>
+                        <td>54,800.00</td>
                         <td>PARTICULAR</td>
                         <td>5</td>
                         <td>AMPLIA</td>
                         <td>29</td>
                         <td>M</td>
                         <td>SOLTERO</td>
-                      </tr>                      
+                      </tr>                        
                       <tr>
                         <td class="no-padding no-border"><a class="img-common icon-edit icon-actions"></a></td>
                         <td class="no-padding no-border"><a class="img-common icon-remove icon-actions"></a></td>
+                        <td>V0006817841</td>
+                        <td>GARCIA JESUS ARMANDO</td>
+                        <td>AB717FM</td>
                         <td>TOYOTA</td>
                         <td>COROLLA</td>
                         <td>1.8 XGE</td>
                         <td>2010</td>
+                        <td>54,800.00</td>
                         <td>PARTICULAR</td>
                         <td>5</td>
                         <td>AMPLIA</td>
                         <td>29</td>
                         <td>M</td>
                         <td>SOLTERO</td>
-                      </tr>                      
+                      </tr>
                       <tr>
                         <td class="no-padding no-border"><a class="img-common icon-edit icon-actions"></a></td>
                         <td class="no-padding no-border"><a class="img-common icon-remove icon-actions"></a></td>
+                        <td>V0006817841</td>
+                        <td>GARCIA JESUS ARMANDO</td>
+                        <td>AB717FM</td>
                         <td>TOYOTA</td>
                         <td>COROLLA</td>
                         <td>1.8 XGE</td>
                         <td>2010</td>
+                        <td>54,800.00</td>
                         <td>PARTICULAR</td>
                         <td>5</td>
                         <td>AMPLIA</td>
                         <td>29</td>
                         <td>M</td>
                         <td>SOLTERO</td>
-                      </tr>                      
+                      </tr>                       
                       <tr>
                         <td class="no-padding no-border"><a class="img-common icon-edit icon-actions"></a></td>
                         <td class="no-padding no-border"><a class="img-common icon-remove icon-actions"></a></td>
+                        <td>V0006817841</td>
+                        <td>GARCIA JESUS ARMANDO</td>
+                        <td>AB717FM</td>
                         <td>TOYOTA</td>
                         <td>COROLLA</td>
                         <td>1.8 XGE</td>
                         <td>2010</td>
+                        <td>54,800.00</td>
                         <td>PARTICULAR</td>
                         <td>5</td>
                         <td>AMPLIA</td>
                         <td>29</td>
                         <td>M</td>
                         <td>SOLTERO</td>
-                      </tr>                      
+                      </tr>
                       <tr>
                         <td class="no-padding no-border"><a class="img-common icon-edit icon-actions"></a></td>
                         <td class="no-padding no-border"><a class="img-common icon-remove icon-actions"></a></td>
+                        <td>V0006817841</td>
+                        <td>GARCIA JESUS ARMANDO</td>
+                        <td>AB717FM</td>
                         <td>TOYOTA</td>
                         <td>COROLLA</td>
                         <td>1.8 XGE</td>
                         <td>2010</td>
+                        <td>54,800.00</td>
                         <td>PARTICULAR</td>
                         <td>5</td>
                         <td>AMPLIA</td>
                         <td>29</td>
                         <td>M</td>
                         <td>SOLTERO</td>
-                      </tr>                      
+                      </tr>                        
                       <tr>
                         <td class="no-padding no-border"><a class="img-common icon-edit icon-actions"></a></td>
                         <td class="no-padding no-border"><a class="img-common icon-remove icon-actions"></a></td>
+                        <td>V0006817841</td>
+                        <td>GARCIA JESUS ARMANDO</td>
+                        <td>AB717FM</td>
                         <td>TOYOTA</td>
                         <td>COROLLA</td>
                         <td>1.8 XGE</td>
                         <td>2010</td>
+                        <td>54,800.00</td>
                         <td>PARTICULAR</td>
                         <td>5</td>
                         <td>AMPLIA</td>
                         <td>29</td>
                         <td>M</td>
                         <td>SOLTERO</td>
-                      </tr>                      
+                      </tr>
+                      <tr>
+                        <td class="no-padding no-border"><a class="img-common icon-edit icon-actions"></a></td>
+                        <td class="no-padding no-border"><a class="img-common icon-remove icon-actions"></a></td>
+                        <td>V0006817841</td>
+                        <td>GARCIA JESUS ARMANDO</td>
+                        <td>AB717FM</td>
+                        <td>TOYOTA</td>
+                        <td>COROLLA</td>
+                        <td>1.8 XGE</td>
+                        <td>2010</td>
+                        <td>54,800.00</td>
+                        <td>PARTICULAR</td>
+                        <td>5</td>
+                        <td>AMPLIA</td>
+                        <td>29</td>
+                        <td>M</td>
+                        <td>SOLTERO</td>
+                      </tr>                       
                     </tbody>                    
                   </table>
                 </div>
@@ -606,14 +670,6 @@ if (isset($_SESSION['msg'])) {
   <script src="../plugins/jquery-1.10.2.min.js"></script>
   <script src="../plugins/jquery-ui-1.10.3.custom.min.js"></script>
   <script src="js/snippet.js"></script>
-  <script type="text/javascript">
-                $(function(e) {
-                  $(window).resize(function() {
-                    AON.setScrollListHeight();
-                 });
-                });
-                AON.setScrollListHeight();
-  </script>
 </body>
 </html>
 <?php
