@@ -26,6 +26,7 @@ if (isset($_SESSION['msg'])) {
     <link href="css/style.css" rel="stylesheet" type="text/css">
   </head>
   <body>
+    <div id="vehicle"></div>
     <div id="container">
       <div id="header">
         <a href="index.php"><img id="logo" src="img/logo.png"></a>
@@ -666,11 +667,10 @@ if (isset($_SESSION['msg'])) {
         </div>
       </div>
     </div>
-  </div>
-  <script src="../plugins/jquery-1.10.2.min.js"></script>
-  <script src="../plugins/jquery-ui-1.10.3.custom.min.js"></script>
-  <script src="js/snippet.js"></script>
-</body>
+    <script src="../plugins/jquery-1.10.2.min.js"></script>
+    <script src="../plugins/jquery-ui-1.10.3.custom.min.js"></script>
+    <script src="js/snippet.js"></script>
+  </body>
 </html>
 <?php
 $_SESSION['msg'] = "hide";
