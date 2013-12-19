@@ -53,7 +53,7 @@ class cotizacion{
                                                 '{$database->escape_value($this->id_flota)}',
                                                  NOW())";
 
-echo $sql;
+
     if ($database->query($sql)) {
       $this->id = $database->insert_id();
       return true;
