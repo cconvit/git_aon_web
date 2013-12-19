@@ -41,10 +41,47 @@ class cotizacion_carro {
     }
 
     // Common Database Methods
-    public static function find_by_id_cotizacion() {
-        return self::find_by_sql("SELECT * FROM " . self::$table_name);
+    public  function find_by_id_cotizacion() {
+        
+        global $database;
+        
+        return self::find_by_sql("SELECT * FROM " . self::$table_name. " WHERE `id_cotizacion`='{$database->escape_value($this->id_cotizacion)}'");
     }
 
+    // Common Database Methods
+    public  function find_by_id_cotizacion_error() {
+        
+        global $database;
+        
+        return self::find_by_sql("SELECT * FROM `tbl_cotizacion_carros` 
+                                  WHERE (`is_car_marca`=0 
+                                  OR `is_car_modelo`=0 
+                                  OR `is_car_ocupantes`=0 
+                                  OR `is_edad`=0 
+                                  OR`is_sexo`=0 
+                                  OR`is_estado_civil`=0 
+                                  OR `is_tipo_carros`=0 
+                                  OR `is_tipo_cobertura`=0) 
+                                  AND `id_cotizacion`='{$database->escape_value($this->id_cotizacion)}'");
+    }
+    
+    // Common Database Methods
+    public  function find_by_id_cotizacion_success() {
+        
+        global $database;
+        
+        return self::find_by_sql("SELECT * FROM `tbl_cotizacion_carros`  
+                                  WHERE (`is_car_marca`=1 
+                                  AND `is_car_modelo`=1
+                                  AND `is_car_ocupantes`=1 
+                                  AND `is_edad`=1 
+                                  AND`is_sexo`=1 
+                                  AND`is_estado_civil`=1 
+                                  AND `is_tipo_carros`=1 
+                                  AND `is_tipo_cobertura`=1) 
+                                  AND `id_cotizacion`='{$database->escape_value($this->id_cotizacion)}'");
+    }
+    
     public static function find_by_sql($sql = "") {
 
         global $database;
@@ -57,7 +94,7 @@ class cotizacion_carro {
     }
 
     public function create() {
-echo "pepe";
+
         global $database;
 
         $sql = "INSERT INTO " . self::$table_name . " (`asegurado`, `identificacion`, `edad`, `sexo`, 

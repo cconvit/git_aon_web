@@ -489,19 +489,19 @@ function newCotizacion($nombre, $descripcion, $cliente, $flota, $tmp_name) {
 
         $validar_carros = new validar_carro_cotizacion();
         $result = $validar_carros->processFile($tmp_name,$cotizacion->id);
-        
-/*
+        $_SESSION["id_cotizacion"]=$cotizacion->id;
+
         if ($result)
             header('Location: ' . $_GET["target"]);
         else
             header('Location: ' . $_GET["target_fail"]);
- * 
- */
+ 
+ 
     }else {
         $_SESSION["msg"] = "show";
         $_SESSION["msg_desc"] = "Ocurrio un error al tratar de crear una nueva cotización. Por favor intente mas tarde. Si el error persiste, comuniquese con el administrador del sistema.";
         $_SESSION["msg_type"] = "error";
-       // header('Location: ' . $_GET["target_fail"]);
+        header('Location: ' . $_GET["target_fail"]);
     }
 }
 

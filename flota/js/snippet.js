@@ -184,7 +184,7 @@ $(function(e) {
   $("a.suggestion").click(function(e) {
     var option = this.parent().attr("role");
     
-    if()
+    
     util.loadDialog("load/loadVehicle.php?", $(this), vehicle);
     return false;
   });

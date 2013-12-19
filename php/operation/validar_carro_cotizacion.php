@@ -17,7 +17,9 @@ class validar_carro_cotizacion {
             $highestColumn = $worksheet->getHighestColumn(); // e.g 'F'
             $highestColumnIndex = PHPExcel_Cell::columnIndexFromString($highestColumn);
             $nrColumns = ord($highestColumn) - 64;
-            $this->validarRegistros($worksheet, $nrColumns, $highestRow, $highestColumnIndex, $id_cotizacion);
+            return $this->validarRegistros($worksheet, $nrColumns, $highestRow, $highestColumnIndex, $id_cotizacion);
+        
+            
         }
     }
 
@@ -29,10 +31,10 @@ class validar_carro_cotizacion {
         $inma = new inma();
         $result = false;
 
-        echo $nrColumns . " ROW: " . $highestRow;
+       
         //Verificamos que el archivo tenga las columnas determinadas para esta importacion
         if (($nrColumns >= 14) && ($highestRow > 1)) {
-            echo "Entramos";
+         
             //Iteramos sobre las filas
             for ($row = 2; $row <= $highestRow; ++$row) {
 
@@ -96,9 +98,9 @@ class validar_carro_cotizacion {
                             $carro->tipo_carro = $this->isTipoCarro($val);
 
                             if ($carro->tipo_carro != 0)
-                                $carro->is_tipo_carro = 1;
+                                $carro->is_tipo_carros = 1;
                             else
-                                $carro->is_tipo_carro = 0;
+                                $carro->is_tipo_carros = 0;
                             break;
                         case 9:
                             $reg_valido = $this->isValidType("n", $dataType);
@@ -120,6 +122,10 @@ class validar_carro_cotizacion {
                         case 11:
                             $reg_valido = $this->isValidType("n", $dataType);
                             $carro->edad = $val;
+                            if ($reg_valido)
+                                $carro->is_edad = 1;
+                            else
+                                $carro->is_edad = 0;
                             break;
                         case 12:
                             $reg_valido = $this->isValidType("s", $dataType);
@@ -193,10 +199,51 @@ class validar_carro_cotizacion {
             default : return 0;
         }
     }
+    
+    public function getCobertura($cobertura) {
+
+        switch ($cobertura) {
+
+            case 2: return "TOTAL";
+            case 1: return "AMPLIA";
+            case 3: return "RCV";
+            default : return "";
+        }
+    }
+
+    public function getSexo($sexo) {
+
+        switch ($sexo) {
+
+            case 2: return "M";
+            case 1: return "F";
+            default : return "";
+        }
+    }
+
+    public function getEstadoCivil($estado_civil) {
+
+        switch ($estado_civil) {
+
+            case 1: return "CASADO";
+            default : return "SOLTERO";
+        }
+    }
+
+    public function getTipoCarro($tipo_carro) {
+
+        switch ($tipo_carro) {
+
+            case 1: return "PARTICULAR";
+            case 2: return "RUSTICO";
+            case 3: return "PICKUP";
+            default : return "";
+        }
+    }
 
     public function isNumOcupantes($ocupantes) {
 
-        if (2 << $ocupantes >> 18)
+        if (2 <= $ocupantes &&  $ocupantes <= 17)
             return true;
         else
             return false;
