@@ -16,16 +16,16 @@
     <tbody>
       <tr>
         <td>
-          <ul class="vehicle-suggestion-list">
+          <ul class="vehicle-suggestion-list" role="marca">
             <li name="ACURI" data="1" role="error" class="text-error">
               <span class="img-common icon-mini icon-error"></span>ACURI
             </li>
-            <li name="ACURA">
+            <li name="ACURA" data="1">
               <span class="icon-mini icon-clear"></span>ACURA
             </li>
-            <li><span class="icon-mini icon-clear"></span>VENIRAUTO</span></li>
-            <li><span class="icon-mini icon-clear"></span>HAIMA</li>
-            <li><span class="icon-mini icon-clear"></span>CAN_AM</li>
+            <li data="2"><span class="icon-mini icon-clear"></span>VENIRAUTO</span></li>
+            <li data="3"><span class="icon-mini icon-clear"></span>HAIMA</li>
+            <li data="4"><span class="icon-mini icon-clear"></span>CAN_AM</li>
             <li><span class="icon-mini icon-clear"></span>HOWO</li>
             <li><span class="icon-mini icon-clear"></span>JINLUN</li>
             <li><span class="icon-mini icon-clear"></span>POWERPLUS</li>
@@ -40,35 +40,23 @@
           </ul>
         </td>
         <td>
-          <ul class="vehicle-suggestion-list">
+          <ul id="modelo" class="vehicle-suggestion-list" role="modelo">
             <li>No hay modelos</li>
           </ul>
         </td>
         <td>
           <ul class="vehicle-suggestion-list">
-            <li>CL Base</li>
-            <li>CL Con Sist. de Navegaci</li>
-            <li>CL Premium</li>
-            <li>CL Premium</li>
-            <li>CL Premium</li>
-            <li>CL Type S</li>
-            <li>CL Type S con Sist. de Navegaci</li>
-            <li>CL Versi</li>
-            <li>CL Versi</li>
-            <li>CL Versi</li>
+            <li>No hay versiones</li>
           </ul>
         </td>
         <td>
           <ul class="vehicle-suggestion-list">
-            <li>1998</li>
-            <li>1997</li>
-            <li>1996</li>
-            <li>1995</li>
+             <li>No hay años</li>
           </ul>
         </td>
         <td>
           <ul class="vehicle-suggestion-list">
-            <li>135.000,00</li>
+            <li>No hay inma</li>
           </ul>
         </td>
         <td>

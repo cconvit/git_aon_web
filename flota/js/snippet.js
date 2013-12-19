@@ -78,6 +78,23 @@ var UTIL = {
   getSelectedItem: function(item) {
     return {item: item.find("li[role='selected']"), span: item.find("li[role='selected'] span")};
   },
+  setSuggestionList: function(item) {
+    var ul = item.parent(),
+        data = item.attr("data"),
+        role = ul.attr("role");
+
+    switch (role) {
+      case "marca":
+        var modelo = $("#modelo");
+        $.getJSON("../inma/json.php?ot=2&ma=" + data, function(data) {
+          modelo.empty()
+          $.each(data, function(index, value) {
+            modelo.append("<li data=\"" + data.codigo + "\"><span class=\"icon-mini icon-clear\"></span>" + value.modelo + "</span></li>");
+          });
+        });
+        break;
+    }
+  },
   init: function() {
     UTIL.initDialogs(400);
   }
@@ -182,16 +199,15 @@ $(function(e) {
 
   //suggestion load promp
   $("a.suggestion").click(function(e) {
-    var option = this.parent().attr("role");
-    
-    if()
     util.loadDialog("load/loadVehicle.php?", $(this), vehicle);
     return false;
   });
 
   //select a list suggestion element
   $("#vehicle").on("click", "#vehicle-suggestion ul li", function(e) {
-    util.selectedItem($(this));
+    var item = $(this);
+    util.setSuggestionList(item);
+    util.selectedItem(item);
     return false;
   });
 });
@@ -199,7 +215,7 @@ $(function(e) {
 function URLSendAgreements() {
   var data = [], input = $("input[name='data']");
   $(".checkbox").each(function(index, value) {
-   var checkbox = $(this);
+    var checkbox = $(this);
     if (checkbox.attr("is-checked") === "true") {
       data.push(checkbox.attr("data"));
     }
