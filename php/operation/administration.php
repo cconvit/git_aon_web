@@ -80,6 +80,10 @@ if (isset($_REQUEST["operation_type"])) {
         case 21:
             deleteCotizacion($_REQUEST["id"]);
             break;
+
+        case 22:
+            proccessCotizacion();
+            break;
     }
 }
 
@@ -488,15 +492,13 @@ function newCotizacion($nombre, $descripcion, $cliente, $flota, $tmp_name) {
         $resultado = $cotizacion->create();
 
         $validar_carros = new validar_carro_cotizacion();
-        $result = $validar_carros->processFile($tmp_name,$cotizacion->id);
-        $_SESSION["id_cotizacion"]=$cotizacion->id;
+        $result = $validar_carros->processFile($tmp_name, $cotizacion->id);
+        $_SESSION["id_cotizacion"] = $cotizacion->id;
 
         if ($result)
             header('Location: ' . $_GET["target"]);
         else
             header('Location: ' . $_GET["target_fail"]);
- 
- 
     }else {
         $_SESSION["msg"] = "show";
         $_SESSION["msg_desc"] = "Ocurrio un error al tratar de crear una nueva cotización. Por favor intente mas tarde. Si el error persiste, comuniquese con el administrador del sistema.";
@@ -523,5 +525,78 @@ function deleteCotizacion($id) {
     }
     header('Location: ' . $_GET["target"]);
 }
+
+function proccessCotizacion() {
+
+    require_once ('../entity/clasificacion.php');
+    require_once ('find_aseguradora.php');
+    require_once ('../entity/cotizacion_carro.php');
+    require_once ('../entity/cotizacion.php');
+    require_once ('../entity/flota.php');
+    require_once ('../entity/re_tipo_cobertura_aseguradora.php');
+    require_once ('../entity/parametros.php');
+    require_once ('solicitud.php');
+
+    $parametros=new parametros();
+    $array_parametros=$parametros->find_all();
+            
+    $cotizacion = new cotizacion();
+    $cotizacion->id = $_SESSION["id_cotizacion"];
+    $cotizacion_aux = $cotizacion->find_by_id();
+    var_dump($cotizacion_aux);
+    $flota_aux = new flota();
+    $flota_aux->id = $cotizacion_aux[0]->id_flota;
+    $flota = $flota_aux->find_by_id_flota();
+
+    $carro = new cotizacion_carro();
+    $carro->id_cotizacion = $_SESSION["id_cotizacion"];
+    $carros = $carro->find_by_id_cotizacion_success();
+
+    if (sizeof($carros) > 0) {
+        foreach ($carros as $value) {
+
+            $find_aseguradora = new find_aseguradora();
+            $clasificacion = new clasificacion();
+            $clasificacion->marca = $value->car_marca;
+            $clasificacion->modelo = $value->car_modelo;
+            $clasificacion->ano = $value->car_ano;
+            $clasificacion->tipo_carro = $value->tipo_carro;
+
+            //Calculamos la suma asegurada
+            $suma_asegurada = $value->valor_INMA + $value->valor_INMA * $flota[0]->porcentaje_INMA;
+            $res_clasificacion = $find_aseguradora->get_clasificacion($value->tipo_cobertura, $cotizacion_aux[0]->id_flota, $clasificacion, $suma_asegurada);
+
+            //Obtenemos las coberturas asociadas a cada registro de la clasificacion
+            $find_aseguradora->get_coberturas($value->tipo_cobertura, $res_clasificacion);
+            
+                $cotizacion2 = new cotizacion();
+                $cotizacion2->id= $value->id;
+    $cotizacion2->nombre= $value->nombre;
+    $cotizacion2->descripcion= $value->descripcion;
+    $cotizacion2->id_cliente= $value->id_cliente;
+    $cotizacion2->id_flota= $value->id_flota;
+    $cotizacion2->empresa_flota= $value->empresa_flota;
+    $cotizacion2->nombre_cliente= $value->nombre_cliente;
+    $cotizacion2->cr_time= $value->cr_time;
+    $cotizacion2->ut_time= $value->ut_time;
+    
+            $solicitud=new solicitud();
+            $solicitud->cotizacion=$cotizacion;
+            $solicitud->res_clasificacion=$res_clasificacion;
+            $solicitud->flota=$flota;
+            $solicitud->parametros=$array_parametros;
+            $solicitud->calcular_primas($aseguradoras,1);
+        }
+    }
+    
+           
+            
+
+    //////////////
+    
+    
+    
+    
+        }
 
 ?>

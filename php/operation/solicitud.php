@@ -16,7 +16,7 @@ class solicitud{
         
     }
     
-    public function calcular_primas($aseguradoras){
+    public function calcular_primas($aseguradoras, $todas){
         
         //Creamos el objeto para calcular las primas y seteamos campos requeridos para los calculos
         $calcular_primas=new calcular_primas();
@@ -39,7 +39,7 @@ class solicitud{
             for($x=0;$x<sizeof($this->res_clasificacion);$x++){
                 
              
-                if($this->res_clasificacion[$x]->id_aseguradora == $item){
+                if($this->res_clasificacion[$x]->id_aseguradora == $item OR $todas == 1){
                    
                     
                     foreach ($this->res_clasificacion[$x]->coberturas as $cobertura){
