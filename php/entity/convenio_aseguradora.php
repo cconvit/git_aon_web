@@ -23,7 +23,7 @@ class convenio_aseguradora {
   }
   
   public static function find_by_sql($sql = "") {
-
+      
     global $database;
     $result_set = $database->query($sql);
     $object_array = array();
