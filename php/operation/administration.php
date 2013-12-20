@@ -530,27 +530,38 @@ function proccessCotizacion() {
 
     require_once ('../entity/clasificacion.php');
     require_once ('find_aseguradora.php');
+    require_once ('generarExcelCotizacion.php');
     require_once ('../entity/cotizacion_carro.php');
     require_once ('../entity/cotizacion.php');
+    require_once ('../entity/segmentacion.php');
+    require_once ('../entity/grua.php');
     require_once ('../entity/flota.php');
     require_once ('../entity/re_tipo_cobertura_aseguradora.php');
     require_once ('../entity/parametros.php');
     require_once ('solicitud.php');
+    require_once ('./calcular_primas.php');
+    require_once ('../entity/re_flota_co_as.php');
 
-    $parametros=new parametros();
-    $array_parametros=$parametros->find_all();
-            
+    $parametros = new parametros();
+    $array_parametros = $parametros->find_all();
+
     $cotizacion = new cotizacion();
     $cotizacion->id = $_SESSION["id_cotizacion"];
     $cotizacion_aux = $cotizacion->find_by_id();
-    var_dump($cotizacion_aux);
+    //var_dump($cotizacion_aux);
     $flota_aux = new flota();
     $flota_aux->id = $cotizacion_aux[0]->id_flota;
     $flota = $flota_aux->find_by_id_flota();
-
+    $flota = $flota[0];
     $carro = new cotizacion_carro();
     $carro->id_cotizacion = $_SESSION["id_cotizacion"];
     $carros = $carro->find_by_id_cotizacion_success();
+
+    $re_flota_co_as = new re_flota_co_as();
+    $re_flota_co_as->id_flota = $flota->id;
+    $re_flota_co_as_aux = $re_flota_co_as->find_all();
+    $solicitudes_procesadas = Array();
+
 
     if (sizeof($carros) > 0) {
         foreach ($carros as $value) {
@@ -563,40 +574,34 @@ function proccessCotizacion() {
             $clasificacion->tipo_carro = $value->tipo_carro;
 
             //Calculamos la suma asegurada
-            $suma_asegurada = $value->valor_INMA + $value->valor_INMA * $flota[0]->porcentaje_INMA;
+            $suma_asegurada = $value->valor_INMA + $value->valor_INMA * $flota->porcentaje_INMA;
             $res_clasificacion = $find_aseguradora->get_clasificacion($value->tipo_cobertura, $cotizacion_aux[0]->id_flota, $clasificacion, $suma_asegurada);
 
             //Obtenemos las coberturas asociadas a cada registro de la clasificacion
             $find_aseguradora->get_coberturas($value->tipo_cobertura, $res_clasificacion);
-            
-                $cotizacion2 = new cotizacion();
-                $cotizacion2->id= $value->id;
-    $cotizacion2->nombre= $value->nombre;
-    $cotizacion2->descripcion= $value->descripcion;
-    $cotizacion2->id_cliente= $value->id_cliente;
-    $cotizacion2->id_flota= $value->id_flota;
-    $cotizacion2->empresa_flota= $value->empresa_flota;
-    $cotizacion2->nombre_cliente= $value->nombre_cliente;
-    $cotizacion2->cr_time= $value->cr_time;
-    $cotizacion2->ut_time= $value->ut_time;
-    
-            $solicitud=new solicitud();
-            $solicitud->cotizacion=$cotizacion;
-            $solicitud->res_clasificacion=$res_clasificacion;
-            $solicitud->flota=$flota;
-            $solicitud->parametros=$array_parametros;
-            $solicitud->calcular_primas($aseguradoras,1);
+
+
+            $solicitud = new solicitud();
+            $solicitud->cotizacion = $value;
+            $solicitud->res_clasificacion = $res_clasificacion;
+            $solicitud->flota = $flota;
+            $solicitud->parametros = $array_parametros;
+
+            $aseguradoras = Array();
+            foreach ($re_flota_co_as_aux as $aseguradora)
+                array_push($aseguradoras, $aseguradora->id_aseguradora);
+
+            $solicitud->calcular_primas($aseguradoras, 1);
+            array_push($solicitudes_procesadas, $solicitud);
         }
+        
+        $generador=new generarExcelCotizacion();
+        $generador->createFilesCotizacion($solicitudes_procesadas, $aseguradoras);
     }
-    
-           
-            
+
+
+
 
     //////////////
-    
-    
-    
-    
-        }
-
+}
 ?>
