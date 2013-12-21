@@ -13,20 +13,22 @@ var AON = {
   },
   setScrollListHeight: function(windowHeight) {
     var list = $(".scrollable-list");
-    list.css("height", windowHeight - 215);
+    list.css("height", windowHeight - 230);
   },
-  setMenuHeight: function(windowHeight){
+  setMenuHeight: function(windowHeight) {
     var menu = $("#left-nav");
-    menu.css("height", windowHeight -127);
+    menu.css("height", windowHeight - 127);
   },
   windowResize: function() {
+    var self = AON;
     var windowWidth = $(window).width();
     var windowHeight = $(window).height();
-    var self = AON;
+    //setup and fix size 
     self.setMainWidth(windowWidth);
     self.setScrollHeight(windowHeight);
     self.setContentHeight(windowHeight);
     self.setMenuHeight(windowHeight);
+    self.setScrollListHeight(windowHeight);
   },
   init: function() {
     var self = AON;
@@ -45,8 +47,8 @@ var UTIL = {
     });
   },
   loadDialog: function(page, button, dialog) {
-    id = $(button).attr("data");
-    url = page + "?id=" + id;
+    var id = $(button).attr("data"),
+        url = page + "?id=" + id;
     dialog.load(url, function(e) {
       dialog.dialog("open");
     });
@@ -55,6 +57,26 @@ var UTIL = {
     dialog.load(page, function(e) {
       dialog.dialog("open");
     });
+  },
+  selectedItem: function(item) {
+    if (item.attr("role") !== "error") {
+      var self_item = item,
+          self_span = item.find("span");
+
+      var selected_object = UTIL.getSelectedItem(self_item.parent()),
+          selected_item = selected_object.item,
+          selected_span = selected_object.span;
+
+      if (selected_item.length > 0) {
+        selected_item.removeAttr("role");
+        selected_span.removeClass("img-common icon-selected");
+      }
+      self_item.attr("role", "selected");
+      self_span.addClass("img-common icon-selected");
+    }
+  },
+  getSelectedItem: function(item) {
+    return {item: item.find("li[role='selected']"), span: item.find("li[role='selected'] span")};
   },
   init: function() {
     UTIL.initDialogs(400);
@@ -85,6 +107,8 @@ $(function(e) {
 
   //next: all event Jquery functions
 
+  var util = UTIL;
+
   //init jquery-UI elements
   var load = $("#load");
   load.dialog({
@@ -102,6 +126,15 @@ $(function(e) {
     "border": "none"
   });
 
+  var vehicle = $("#vehicle");
+  vehicle.dialog({
+    modal: true,
+    autoOpen: false,
+    width: 900,
+    resizable: false,
+    position: "center"
+  });
+
   //throw click input file event
   $("input[id='input-file']").on("click", function(e) {
     $(this).next().trigger("click").change(function(e) {
@@ -113,9 +146,9 @@ $(function(e) {
 
   //send next step form
   $("input[id='next']").on("click", function(e) {
-    wizard = WIZARD;
-    role = $(this).attr("role");
-    form = $("body").find("form");
+    var wizard = WIZARD,
+        role = $(this).attr("role"),
+        form = $("body").find("form");
     switch (role) {
       case "create":
         wizard.create(form);
@@ -128,7 +161,7 @@ $(function(e) {
 
   //check and uncheck list
   $("#load").on("click", ".checkbox", function(e) {
-    check = $(this);
+    var check = $(this);
     if (check.attr("is-checked") === "true") {
       check.removeClass("is-checked").attr("is-checked", "false");
     }
@@ -139,28 +172,34 @@ $(function(e) {
   });
 
   //throw upload method excel flota
-  var flag = false;
   $(".upload").click(function(e) {
-    fleet = $("#fleet");
-    excel = $("#name");
+    var fleet = $("#fleet"),
+        excel = $("#name");
     fleet.trigger("click").change(function(e) {
       excel.val(fleet.val());
     });
   });
 
-  // set width and height size
-  $(window).resize(function() {
-    AON.windowResize();
+  //suggestion load promp
+  $("a.suggestion").click(function(e) {
+    var option = this.parent().attr("role");
+    
+    
+    util.loadDialog("load/loadVehicle.php?", $(this), vehicle);
+    return false;
   });
-  // init all
-  AON.init();
-  UTIL.init();
+
+  //select a list suggestion element
+  $("#vehicle").on("click", "#vehicle-suggestion ul li", function(e) {
+    util.selectedItem($(this));
+    return false;
+  });
 });
 
 function URLSendAgreements() {
   var data = [], input = $("input[name='data']");
   $(".checkbox").each(function(index, value) {
-    checkbox = $(this);
+   var checkbox = $(this);
     if (checkbox.attr("is-checked") === "true") {
       data.push(checkbox.attr("data"));
     }
@@ -203,8 +242,8 @@ function isValidateSubmit(form) {
 }
 
 function isFileSelected(form) {
-  message = form.find("div.required");
-  fileName = $("#fleet").val();
+  var message = form.find("div.required"),
+      fileName = $("#fleet").val();
   if (fileName === "") {
     message.show();
     return false;
@@ -213,3 +252,11 @@ function isFileSelected(form) {
     return true;
   }
 }
+
+$(function(e) {
+  AON.init();
+  UTIL.init();
+  $(window).resize(function() {
+    AON.windowResize();
+  });
+});

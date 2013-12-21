@@ -39,7 +39,7 @@ class solicitud{
             for($x=0;$x<sizeof($this->res_clasificacion);$x++){
                 
              
-                if($this->res_clasificacion[$x]->id_aseguradora == $item){
+                if($this->res_clasificacion[$x]->id_aseguradora == $item ){
                    
                     
                     foreach ($this->res_clasificacion[$x]->coberturas as $cobertura){

@@ -490,6 +490,15 @@ body, html{
   padding-top: 4px;
   text-align: left;
   padding-left: 25px;
+  white-space: nowrap;
+}
+#list-fleet tr td{
+  padding: 22px 0px 22px 25px;
+  font-style: italic;
+  color: #E61E17;
+  border-bottom: solid 1px #ACACAC;
+  white-space: nowrap;
+  text-align: center;
 }
 #errors{
   background-color: #E61E17;
@@ -500,11 +509,24 @@ body, html{
 #alls{
   background-color: #54B5E7;
 }
-#list-fleet tr td{
-  padding: 22px 0px 22px 25px;
-  font-style: italic;
-  color: #E61E17;
-  border-bottom: solid 1px #ACACAC;
+#vehicle-suggestion{
+  margin-top: 20px;
+}
+#vehicle-suggestion thead th{
+  text-transform: uppercase;
+  padding: 0px 15px 15px 15px;
+  text-align: center;
+  border-right: solid 1px #ACACAC;
+  border-collapse: collapse;
+  vertical-align: top;
+  white-space: nowrap;
+}
+#vehicle-suggestion tr td{
+  text-transform: uppercase;
+  padding: 0px 15px 15px 15px;
+  vertical-align: top;
+    border-right: solid 1px #ACACAC;
+  border-collapse: collapse;
 }
 #footer{
   height: 42px;
@@ -719,6 +741,18 @@ a.access-title{
   height: 24px;
   margin-right: 10px;
 }
+.icon-mini{
+  width: 12px;
+  height: 13px;
+  display: inline-block;
+  padding-right: 5px;
+}
+.icon-selected{
+  background-position: -103px -173px;
+}
+.icon-error{
+  background-position: -127px -173px;
+}
 .icon-edit{
   background-position: -357px -67px;
 }
@@ -797,11 +831,25 @@ a.access-title{
 .modal{
   padding-top: 30px;
 }
+.vehicle-suggestion-list{
+  max-height: 235px;
+  overflow: hidden;
+}
+.vehicle-suggestion-list li{
+  margin-bottom: 12px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 150px;
+  cursor: pointer;
+}
 
 /* Misscelaneus */
 
 .text-center{
   text-align: center;
+}
+.text-error{
+  color:#E61E17;
 }
 .pull-left{
   float: left;

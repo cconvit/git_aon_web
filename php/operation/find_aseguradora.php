@@ -10,7 +10,7 @@ class find_aseguradora{
     public function get_clasificacion($tipo_cobertura,$id_flota,$clasificacion,$suma_asegurada){
         
             $res_clasificacion=array();//Objeto con todas las clasificaciones posibles de las aseguradoras
-            
+            $qry_clasificacion="";
             //Obtenemos el primer grupo de clasificacion basado en Marca y Modelo
             if($tipo_cobertura == 3)
                 $res_clasificacion_1=$clasificacion->find_clasificacion_by_marca_modelo_carro_ano_RCV($id_flota);
