@@ -37,6 +37,7 @@
             <li><span class="icon-mini icon-clear"></span>OTTAWA</li>
             <li><span class="icon-mini icon-clear"></span>HAOJIN</li>
             <li><span class="icon-mini icon-clear"></span>XCMG</li>
+            <li><input type="hidden" id="marca-select"value=""></li>
           </ul>
         </td>
         <td>
@@ -45,36 +46,36 @@
           </ul>
         </td>
         <td>
-          <ul class="vehicle-suggestion-list">
+          <ul id="version" class="vehicle-suggestion-list" role="version">
             <li>No hay versiones</li>
           </ul>
         </td>
         <td>
-          <ul class="vehicle-suggestion-list">
+          <ul id="ano" class="vehicle-suggestion-list" role="ano">
              <li>No hay años</li>
           </ul>
         </td>
         <td>
-          <ul class="vehicle-suggestion-list">
+          <ul id="inma" class="vehicle-suggestion-list">
             <li>No hay inma</li>
           </ul>
         </td>
         <td>
-          <ul class="vehicle-suggestion-list">
+          <ul class="vehicle-suggestion-list" role="select">
             <li>TOTAL</li>
             <li>AMPLIA</li>
             <li>RCV</li>
           </ul>
         </td>
         <td>
-          <ul class="vehicle-suggestion-list">
+          <ul class="vehicle-suggestion-list" role="select">
             <li>PARTICULAR</li>
             <li>RÚSTICO</li>
             <li>PICKUP/VAN</li>
           </ul>
         </td>
         <td>
-          <ul class="vehicle-suggestion-list">
+          <ul class="vehicle-suggestion-list" role="select">
             <li>2</li>
             <li>3</li>
             <li>4</li>
@@ -87,7 +88,7 @@
           </ul>
         </td>
         <td>
-          <ul class="vehicle-suggestion-list">
+          <ul class="vehicle-suggestion-list"role="select">
             <li>18</li>
             <li>19</li>
             <li>20</li>
@@ -169,13 +170,13 @@
           </ul>
         </td>
         <td>
-          <ul class="vehicle-suggestion-list">
+          <ul class="vehicle-suggestion-list" role="select">
             <li>MASCULINO</li>
             <li>FEMENINO</li>
           </ul>
         </td>
         <td class="no-border">
-          <ul class="vehicle-suggestion-list">
+          <ul class="vehicle-suggestion-list" role="select">
             <li>CASADO</li>
             <li>SOLTERO</li>
           </ul>

@@ -41,6 +41,7 @@ switch ($_REQUEST['ot']) {
         array_push($json, $array);
       }
     }
+    echo json_encode($json);
     break;
 }
 ?>

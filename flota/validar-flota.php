@@ -2,6 +2,8 @@
 session_start();
 require_once("../php/db/config.php");
 require_once ('../php/db/database.php');
+require_once ('../php/entity/cotizacion_carro.php');
+require_once ('../php/operation/validar_carro_cotizacion.php');
 
 $msg = "hide";
 $msg_desc = "";
@@ -14,6 +16,10 @@ if (isset($_SESSION['msg'])) {
     $msg_type = $_SESSION['msg_type'];
   }
 }
+
+$validar = new validar_carro_cotizacion();
+$cotizacion_carro = new cotizacion_carro();
+$cotizacion_carro->id_cotizacion = $_SESSION["id_cotizacion"];
 ?>
 <!DOCTYPE html>
 <html>
@@ -51,13 +57,13 @@ if (isset($_SESSION['msg'])) {
             </div>
             <div id="tabs">
               <ul>
-                <li style="padding-bottom: 0px;"><a id="errors" class="img-common tab" href="#tabs-1" style="padding-bottom: 0px;">Errores</a></li>
-                <li style="padding-bottom: 0px;"><a id="valids" class="img-common tab"  href="#tabs-2">Validos</a></li>
-                <li style="padding-bottom: 0px;"><a id="all" class="img-common tab" href="#tabs-3">Totales</a></li>
+                <li style="padding-bottom: 0px;"><a id="errors-tab" class="img-common tab" href="#tabs-1" style="padding-bottom: 0px;">Errores</a></li>
+                <li style="padding-bottom: 0px;"><a id="valids-tab" class="img-common tab"  href="#tabs-2">Validos</a></li>
+                <li style="padding-bottom: 0px;"><a id="all-tab" class="img-common tab" href="#tabs-3">Totales</a></li>
               </ul>
               <div id="tabs-1" class="tabs-info">
                 <div class="scrollable-list" style="width: 100%; overflow-y: auto;">
-                  <table id="list-fleet" style="width: 100%">
+                  <table id="list-error" class="list-fleet" style="width: 100%">
                     <thead id="errors">
                     <th class="no-padding" style="width: 32px; background-color: #FFFFFF; padding-left: "></th>
                     <th class="no-padding" style="width: 32px; background-color: #FFFFFF;"></th>
@@ -77,236 +83,51 @@ if (isset($_SESSION['msg'])) {
                     <th>Edo. Civil</th>                                   
                     </thead>
                     <tbody>
-                      <tr>
-                        <td class="no-padding no-border"><a class="img-common icon-edit icon-actions suggestion" data='1'></a></td>
-                        <td class="no-padding no-border"><a class="img-common icon-remove icon-actions" data='1'></a></td>
-                        <td>V0006817841</td>
-                        <td>GARCIA JESUS ARMANDO</td>
-                        <td>AB717FM</td>
-                        <td>TOYOTA</td>
-                        <td>COROLLA</td>
-                        <td>1.8 XGE</td>
-                        <td>2010</td>
-                        <td>54,800.00</td>
-                        <td>PARTICULAR</td>
-                        <td>5</td>
-                        <td>AMPLIA</td>
-                        <td>29</td>
-                        <td>M</td>
-                        <td>SOLTERO</td>
-                      </tr>
-                      <tr>
-                        <td class="no-padding no-border"><a class="img-common icon-edit icon-actions"></a></td>
-                        <td class="no-padding no-border"><a class="img-common icon-remove icon-actions"></a></td>
-                        <td>V0006817841</td>
-                        <td>GARCIA JESUS ARMANDO</td>
-                        <td>AB717FM</td>
-                        <td>TOYOTA</td>
-                        <td>COROLLA</td>
-                        <td>1.8 XGE</td>
-                        <td>2010</td>
-                        <td>54,800.00</td>
-                        <td>PARTICULAR</td>
-                        <td>5</td>
-                        <td>AMPLIA</td>
-                        <td>29</td>
-                        <td>M</td>
-                        <td>SOLTERO</td>
-                      </tr>                        
-                      <tr>
-                        <td class="no-padding no-border"><a class="img-common icon-edit icon-actions"></a></td>
-                        <td class="no-padding no-border"><a class="img-common icon-remove icon-actions"></a></td>
-                        <td>V0006817841</td>
-                        <td>GARCIA JESUS ARMANDO</td>
-                        <td>AB717FM</td>
-                        <td>TOYOTA</td>
-                        <td>COROLLA</td>
-                        <td>1.8 XGE</td>
-                        <td>2010</td>
-                        <td>54,800.00</td>
-                        <td>PARTICULAR</td>
-                        <td>5</td>
-                        <td>AMPLIA</td>
-                        <td>29</td>
-                        <td>M</td>
-                        <td>SOLTERO</td>
-                      </tr>
-                      <tr>
-                        <td class="no-padding no-border"><a class="img-common icon-edit icon-actions"></a></td>
-                        <td class="no-padding no-border"><a class="img-common icon-remove icon-actions"></a></td>
-                        <td>V0006817841</td>
-                        <td>GARCIA JESUS ARMANDO</td>
-                        <td>AB717FM</td>
-                        <td>TOYOTA</td>
-                        <td>COROLLA</td>
-                        <td>1.8 XGE</td>
-                        <td>2010</td>
-                        <td>54,800.00</td>
-                        <td>PARTICULAR</td>
-                        <td>5</td>
-                        <td>AMPLIA</td>
-                        <td>29</td>
-                        <td>M</td>
-                        <td>SOLTERO</td>
-                      </tr>
-                      <tr>
-                        <td class="no-padding no-border"><a class="img-common icon-edit icon-actions"></a></td>
-                        <td class="no-padding no-border"><a class="img-common icon-remove icon-actions"></a></td>
-                        <td>V0006817841</td>
-                        <td>GARCIA JESUS ARMANDO</td>
-                        <td>AB717FM</td>
-                        <td>TOYOTA</td>
-                        <td>COROLLA</td>
-                        <td>1.8 XGE</td>
-                        <td>2010</td>
-                        <td>54,800.00</td>
-                        <td>PARTICULAR</td>
-                        <td>5</td>
-                        <td>AMPLIA</td>
-                        <td>29</td>
-                        <td>M</td>
-                        <td>SOLTERO</td>
-                      </tr>
-                      <tr>
-                        <td class="no-padding no-border"><a class="img-common icon-edit icon-actions"></a></td>
-                        <td class="no-padding no-border"><a class="img-common icon-remove icon-actions"></a></td>
-                        <td>V0006817841</td>
-                        <td>GARCIA JESUS ARMANDO</td>
-                        <td>AB717FM</td>
-                        <td>TOYOTA</td>
-                        <td>COROLLA</td>
-                        <td>1.8 XGE</td>
-                        <td>2010</td>
-                        <td>54,800.00</td>
-                        <td>PARTICULAR</td>
-                        <td>5</td>
-                        <td>AMPLIA</td>
-                        <td>29</td>
-                        <td>M</td>
-                        <td>SOLTERO</td>
-                      </tr>                        
-                      <tr>
-                        <td class="no-padding no-border"><a class="img-common icon-edit icon-actions"></a></td>
-                        <td class="no-padding no-border"><a class="img-common icon-remove icon-actions"></a></td>
-                        <td>V0006817841</td>
-                        <td>GARCIA JESUS ARMANDO</td>
-                        <td>AB717FM</td>
-                        <td>TOYOTA</td>
-                        <td>COROLLA</td>
-                        <td>1.8 XGE</td>
-                        <td>2010</td>
-                        <td>54,800.00</td>
-                        <td>PARTICULAR</td>
-                        <td>5</td>
-                        <td>AMPLIA</td>
-                        <td>29</td>
-                        <td>M</td>
-                        <td>SOLTERO</td>
-                      </tr>
-                      <tr>
-                        <td class="no-padding no-border"><a class="img-common icon-edit icon-actions"></a></td>
-                        <td class="no-padding no-border"><a class="img-common icon-remove icon-actions"></a></td>
-                        <td>V0006817841</td>
-                        <td>GARCIA JESUS ARMANDO</td>
-                        <td>AB717FM</td>
-                        <td>TOYOTA</td>
-                        <td>COROLLA</td>
-                        <td>1.8 XGE</td>
-                        <td>2010</td>
-                        <td>54,800.00</td>
-                        <td>PARTICULAR</td>
-                        <td>5</td>
-                        <td>AMPLIA</td>
-                        <td>29</td>
-                        <td>M</td>
-                        <td>SOLTERO</td>
-                      </tr>                       
-                      <tr>
-                        <td class="no-padding no-border"><a class="img-common icon-edit icon-actions"></a></td>
-                        <td class="no-padding no-border"><a class="img-common icon-remove icon-actions"></a></td>
-                        <td>V0006817841</td>
-                        <td>GARCIA JESUS ARMANDO</td>
-                        <td>AB717FM</td>
-                        <td>TOYOTA</td>
-                        <td>COROLLA</td>
-                        <td>1.8 XGE</td>
-                        <td>2010</td>
-                        <td>54,800.00</td>
-                        <td>PARTICULAR</td>
-                        <td>5</td>
-                        <td>AMPLIA</td>
-                        <td>29</td>
-                        <td>M</td>
-                        <td>SOLTERO</td>
-                      </tr>
-                      <tr>
-                        <td class="no-padding no-border"><a class="img-common icon-edit icon-actions"></a></td>
-                        <td class="no-padding no-border"><a class="img-common icon-remove icon-actions"></a></td>
-                        <td>V0006817841</td>
-                        <td>GARCIA JESUS ARMANDO</td>
-                        <td>AB717FM</td>
-                        <td>TOYOTA</td>
-                        <td>COROLLA</td>
-                        <td>1.8 XGE</td>
-                        <td>2010</td>
-                        <td>54,800.00</td>
-                        <td>PARTICULAR</td>
-                        <td>5</td>
-                        <td>AMPLIA</td>
-                        <td>29</td>
-                        <td>M</td>
-                        <td>SOLTERO</td>
-                      </tr>                        
-                      <tr>
-                        <td class="no-padding no-border"><a class="img-common icon-edit icon-actions"></a></td>
-                        <td class="no-padding no-border"><a class="img-common icon-remove icon-actions"></a></td>
-                        <td>V0006817841</td>
-                        <td>GARCIA JESUS ARMANDO</td>
-                        <td>AB717FM</td>
-                        <td>TOYOTA</td>
-                        <td>COROLLA</td>
-                        <td>1.8 XGE</td>
-                        <td>2010</td>
-                        <td>54,800.00</td>
-                        <td>PARTICULAR</td>
-                        <td>5</td>
-                        <td>AMPLIA</td>
-                        <td>29</td>
-                        <td>M</td>
-                        <td>SOLTERO</td>
-                      </tr>
-                      <tr>
-                        <td class="no-padding no-border"><a class="img-common icon-edit icon-actions"></a></td>
-                        <td class="no-padding no-border"><a class="img-common icon-remove icon-actions"></a></td>
-                        <td>V0006817841</td>
-                        <td>GARCIA JESUS ARMANDO</td>
-                        <td>AB717FM</td>
-                        <td>TOYOTA</td>
-                        <td>COROLLA</td>
-                        <td>1.8 XGE</td>
-                        <td>2010</td>
-                        <td>54,800.00</td>
-                        <td>PARTICULAR</td>
-                        <td>5</td>
-                        <td>AMPLIA</td>
-                        <td>29</td>
-                        <td>M</td>
-                        <td>SOLTERO</td>
-                      </tr>                       
+                      <?php
+                      $cotizacion_carros = $cotizacion_carro->find_by_id_cotizacion_error();
+                      if (sizeof($cotizacion_carros) > 0) {
+                        foreach ($cotizacion_carros as $value) {
+                          ?>
+                          <tr>
+                            <td class="no-padding no-border"><a class="img-common icon-edit icon-actions suggestion" data='<?php echo $value->id; ?>'></a></td>
+                            <td class="no-padding no-border"><a class="img-common icon-remove icon-actions" data='<?php echo $value->id; ?>'></a></td>
+                            <td><?php echo $value->identificacion; ?></td>
+                            <td><?php echo $value->asegurado; ?></td>
+                            <td><?php echo $value->placa; ?></td>
+                            <td><?php echo $value->car_marca; ?></td>
+                            <td><?php echo $value->car_modelo; ?></td>
+                            <td><?php echo $value->car_version; ?></td>
+                            <td><?php echo $value->car_ano; ?></td>
+                            <td><?php echo $value->valor_INMA; ?></td>
+                            <td><?php echo $validar->getTipoCarro($value->tipo_carro); ?></td>
+                            <td><?php echo $value->car_ocupantes; ?></td>
+                            <td><?php echo $validar->getCobertura($value->tipo_cobertura); ?></td>
+                            <td><?php echo $value->edad; ?></td>
+                            <td><?php echo $validar->getSexo($value->sexo); ?></td>
+                            <td><?php echo $validar->getEstadoCivil($value->estado_civil); ?></td>
+                          </tr>
+                          <?php
+                        }
+                      }
+                      ?>                    
                     </tbody>                    
                   </table>
                 </div>
               </div>
               <div id="tabs-2" class="tabs-info">
                 <div class="scrollable-list" style="width: 100%; overflow-y: auto;">
-                  <table id="list-fleet" style="width: 100%">
-                    <thead id="valids">
+                  <table id="list-fleet" class="list-fleet"  style="width: 100%">
+                    <thead id="errors">
                     <th class="no-padding" style="width: 32px; background-color: #FFFFFF; padding-left: "></th>
                     <th class="no-padding" style="width: 32px; background-color: #FFFFFF;"></th>
+                    <th>rif/ci</th>
+                    <th>Asegurado</th>
+                    <th>placa</th>
                     <th>Marca</th>
                     <th>Modelo</th>
                     <th>Versión</th>
                     <th>Año</th>
+                    <th>inma</th>
                     <th>Uso</th>
                     <th>Ocupantes</th>
                     <th>Cobertura</th>
@@ -315,174 +136,51 @@ if (isset($_SESSION['msg'])) {
                     <th>Edo. Civil</th>                                   
                     </thead>
                     <tbody>
-                      <tr>
-                        <td class="no-padding no-border"><a class="img-common icon-edit icon-actions"></a></td>
-                        <td class="no-padding no-border"><a class="img-common icon-remove icon-actions"></a></td>
-                        <td>TOYOTA</td>
-                        <td>COROLLA</td>
-                        <td>1.8 XGE</td>
-                        <td>2010</td>
-                        <td>PARTICULAR</td>
-                        <td>5</td>
-                        <td>AMPLIA</td>
-                        <td>29</td>
-                        <td>M</td>
-                        <td>SOLTERO</td>
-                      </tr>
-                      <tr>
-                        <td class="no-padding no-border"><a class="img-common icon-edit icon-actions"></a></td>
-                        <td class="no-padding no-border"><a class="img-common icon-remove icon-actions"></a></td>
-                        <td>TOYOTA</td>
-                        <td>COROLLA</td>
-                        <td>1.8 XGE</td>
-                        <td>2010</td>
-                        <td>PARTICULAR</td>
-                        <td>5</td>
-                        <td>AMPLIA</td>
-                        <td>29</td>
-                        <td>M</td>
-                        <td>SOLTERO</td>
-                      </tr>                     
-                      <tr>
-                        <td class="no-padding no-border"><a class="img-common icon-edit icon-actions"></a></td>
-                        <td class="no-padding no-border"><a class="img-common icon-remove icon-actions"></a></td>
-                        <td>TOYOTA</td>
-                        <td>COROLLA</td>
-                        <td>1.8 XGE</td>
-                        <td>2010</td>
-                        <td>PARTICULAR</td>
-                        <td>5</td>
-                        <td>AMPLIA</td>
-                        <td>29</td>
-                        <td>M</td>
-                        <td>SOLTERO</td>
-                      </tr>                      
-                      <tr>
-                        <td class="no-padding no-border"><a class="img-common icon-edit icon-actions"></a></td>
-                        <td class="no-padding no-border"><a class="img-common icon-remove icon-actions"></a></td>
-                        <td>TOYOTA</td>
-                        <td>COROLLA</td>
-                        <td>1.8 XGE</td>
-                        <td>2010</td>
-                        <td>PARTICULAR</td>
-                        <td>5</td>
-                        <td>AMPLIA</td>
-                        <td>29</td>
-                        <td>M</td>
-                        <td>SOLTERO</td>
-                      </tr>                     
-                      <tr>
-                        <td class="no-padding no-border"><a class="img-common icon-edit icon-actions"></a></td>
-                        <td class="no-padding no-border"><a class="img-common icon-remove icon-actions"></a></td>
-                        <td>TOYOTA</td>
-                        <td>COROLLA</td>
-                        <td>1.8 XGE</td>
-                        <td>2010</td>
-                        <td>PARTICULAR</td>
-                        <td>5</td>
-                        <td>AMPLIA</td>
-                        <td>29</td>
-                        <td>M</td>
-                        <td>SOLTERO</td>
-                      </tr>                      
-                      <tr>
-                        <td class="no-padding no-border"><a class="img-common icon-edit icon-actions"></a></td>
-                        <td class="no-padding no-border"><a class="img-common icon-remove icon-actions"></a></td>
-                        <td>TOYOTA</td>
-                        <td>COROLLA</td>
-                        <td>1.8 XGE</td>
-                        <td>2010</td>
-                        <td>PARTICULAR</td>
-                        <td>5</td>
-                        <td>AMPLIA</td>
-                        <td>29</td>
-                        <td>M</td>
-                        <td>SOLTERO</td>
-                      </tr>                      
-                      <tr>
-                        <td class="no-padding no-border"><a class="img-common icon-edit icon-actions"></a></td>
-                        <td class="no-padding no-border"><a class="img-common icon-remove icon-actions"></a></td>
-                        <td>TOYOTA</td>
-                        <td>COROLLA</td>
-                        <td>1.8 XGE</td>
-                        <td>2010</td>
-                        <td>PARTICULAR</td>
-                        <td>5</td>
-                        <td>AMPLIA</td>
-                        <td>29</td>
-                        <td>M</td>
-                        <td>SOLTERO</td>
-                      </tr>                      
-                      <tr>
-                        <td class="no-padding no-border"><a class="img-common icon-edit icon-actions"></a></td>
-                        <td class="no-padding no-border"><a class="img-common icon-remove icon-actions"></a></td>
-                        <td>TOYOTA</td>
-                        <td>COROLLA</td>
-                        <td>1.8 XGE</td>
-                        <td>2010</td>
-                        <td>PARTICULAR</td>
-                        <td>5</td>
-                        <td>AMPLIA</td>
-                        <td>29</td>
-                        <td>M</td>
-                        <td>SOLTERO</td>
-                      </tr>                      
-                      <tr>
-                        <td class="no-padding no-border"><a class="img-common icon-edit icon-actions"></a></td>
-                        <td class="no-padding no-border"><a class="img-common icon-remove icon-actions"></a></td>
-                        <td>TOYOTA</td>
-                        <td>COROLLA</td>
-                        <td>1.8 XGE</td>
-                        <td>2010</td>
-                        <td>PARTICULAR</td>
-                        <td>5</td>
-                        <td>AMPLIA</td>
-                        <td>29</td>
-                        <td>M</td>
-                        <td>SOLTERO</td>
-                      </tr>                      
-                      <tr>
-                        <td class="no-padding no-border"><a class="img-common icon-edit icon-actions"></a></td>
-                        <td class="no-padding no-border"><a class="img-common icon-remove icon-actions"></a></td>
-                        <td>TOYOTA</td>
-                        <td>COROLLA</td>
-                        <td>1.8 XGE</td>
-                        <td>2010</td>
-                        <td>PARTICULAR</td>
-                        <td>5</td>
-                        <td>AMPLIA</td>
-                        <td>29</td>
-                        <td>M</td>
-                        <td>SOLTERO</td>
-                      </tr>                      
-                      <tr>
-                        <td class="no-padding no-border"><a class="img-common icon-edit icon-actions"></a></td>
-                        <td class="no-padding no-border"><a class="img-common icon-remove icon-actions"></a></td>
-                        <td>TOYOTA</td>
-                        <td>COROLLA</td>
-                        <td>1.8 XGE</td>
-                        <td>2010</td>
-                        <td>PARTICULAR</td>
-                        <td>5</td>
-                        <td>AMPLIA</td>
-                        <td>29</td>
-                        <td>M</td>
-                        <td>SOLTERO</td>
-                      </tr>                      
+                      <?php
+                      $cotizacion_carros = $cotizacion_carro->find_by_id_cotizacion_success();
+                      if (sizeof($cotizacion_carros) > 0) {
+                        foreach ($cotizacion_carros as $value) {
+                          ?>
+                          <tr>
+                            <td class="no-padding no-border"><a class="img-common icon-edit icon-actions suggestion" data='<?php echo $value->id; ?>'></a></td>
+                            <td class="no-padding no-border"><a class="img-common icon-remove icon-actions" data='<?php echo $value->id; ?>'></a></td>
+                            <td><?php echo $value->identificacion; ?></td>
+                            <td><?php echo $value->asegurado; ?></td>
+                            <td><?php echo $value->placa; ?></td>
+                            <td><?php echo $value->car_marca; ?></td>
+                            <td><?php echo $value->car_modelo; ?></td>
+                            <td><?php echo $value->car_version; ?></td>
+                            <td><?php echo $value->car_ano; ?></td>
+                            <td><?php echo $value->valor_INMA; ?></td>
+                            <td><?php echo $validar->getTipoCarro($value->tipo_carro); ?></td>
+                            <td><?php echo $value->car_ocupantes; ?></td>
+                            <td><?php echo $validar->getCobertura($value->tipo_cobertura); ?></td>
+                            <td><?php echo $value->edad; ?></td>
+                            <td><?php echo $validar->getSexo($value->sexo); ?></td>
+                            <td><?php echo $validar->getEstadoCivil($value->estado_civil); ?></td>
+                          </tr>
+                          <?php
+                        }
+                      }
+                      ?>                   
                     </tbody>                    
                   </table>
                 </div>
               </div>
               <div id="tabs-3" class="tabs-info">
                 <div class="scrollable-list" style="width: 100%; overflow-y: auto;">
-                  <table id="list-fleet" style="width: 100%">
-                    <thead id="alls">
+                  <table id="list-fleet" class="list-fleet" style="width: 100%">
+                    <thead id="errors">
                     <th class="no-padding" style="width: 32px; background-color: #FFFFFF; padding-left: "></th>
                     <th class="no-padding" style="width: 32px; background-color: #FFFFFF;"></th>
+                    <th>rif/ci</th>
+                    <th>Asegurado</th>
+                    <th>placa</th>
                     <th>Marca</th>
                     <th>Modelo</th>
                     <th>Versión</th>
                     <th>Año</th>
+                    <th>inma</th>
                     <th>Uso</th>
                     <th>Ocupantes</th>
                     <th>Cobertura</th>
@@ -491,160 +189,33 @@ if (isset($_SESSION['msg'])) {
                     <th>Edo. Civil</th>                                   
                     </thead>
                     <tbody>
-                      <tr>
-                        <td class="no-padding no-border"><a class="img-common icon-edit icon-actions"></a></td>
-                        <td class="no-padding no-border"><a class="img-common icon-remove icon-actions"></a></td>
-                        <td>TOYOTA</td>
-                        <td>COROLLA</td>
-                        <td>1.8 XGE</td>
-                        <td>2010</td>
-                        <td>PARTICULAR</td>
-                        <td>5</td>
-                        <td>AMPLIA</td>
-                        <td>29</td>
-                        <td>M</td>
-                        <td>SOLTERO</td>
-                      </tr>
-                      <tr>
-                        <td class="no-padding no-border"><a class="img-common icon-edit icon-actions"></a></td>
-                        <td class="no-padding no-border"><a class="img-common icon-remove icon-actions"></a></td>
-                        <td>TOYOTA</td>
-                        <td>COROLLA</td>
-                        <td>1.8 XGE</td>
-                        <td>2010</td>
-                        <td>PARTICULAR</td>
-                        <td>5</td>
-                        <td>AMPLIA</td>
-                        <td>29</td>
-                        <td>M</td>
-                        <td>SOLTERO</td>
-                      </tr>                     
-                      <tr>
-                        <td class="no-padding no-border"><a class="img-common icon-edit icon-actions"></a></td>
-                        <td class="no-padding no-border"><a class="img-common icon-remove icon-actions"></a></td>
-                        <td>TOYOTA</td>
-                        <td>COROLLA</td>
-                        <td>1.8 XGE</td>
-                        <td>2010</td>
-                        <td>PARTICULAR</td>
-                        <td>5</td>
-                        <td>AMPLIA</td>
-                        <td>29</td>
-                        <td>M</td>
-                        <td>SOLTERO</td>
-                      </tr>                      
-                      <tr>
-                        <td class="no-padding no-border"><a class="img-common icon-edit icon-actions"></a></td>
-                        <td class="no-padding no-border"><a class="img-common icon-remove icon-actions"></a></td>
-                        <td>TOYOTA</td>
-                        <td>COROLLA</td>
-                        <td>1.8 XGE</td>
-                        <td>2010</td>
-                        <td>PARTICULAR</td>
-                        <td>5</td>
-                        <td>AMPLIA</td>
-                        <td>29</td>
-                        <td>M</td>
-                        <td>SOLTERO</td>
-                      </tr>                     
-                      <tr>
-                        <td class="no-padding no-border"><a class="img-common icon-edit icon-actions"></a></td>
-                        <td class="no-padding no-border"><a class="img-common icon-remove icon-actions"></a></td>
-                        <td>TOYOTA</td>
-                        <td>COROLLA</td>
-                        <td>1.8 XGE</td>
-                        <td>2010</td>
-                        <td>PARTICULAR</td>
-                        <td>5</td>
-                        <td>AMPLIA</td>
-                        <td>29</td>
-                        <td>M</td>
-                        <td>SOLTERO</td>
-                      </tr>                      
-                      <tr>
-                        <td class="no-padding no-border"><a class="img-common icon-edit icon-actions"></a></td>
-                        <td class="no-padding no-border"><a class="img-common icon-remove icon-actions"></a></td>
-                        <td>TOYOTA</td>
-                        <td>COROLLA</td>
-                        <td>1.8 XGE</td>
-                        <td>2010</td>
-                        <td>PARTICULAR</td>
-                        <td>5</td>
-                        <td>AMPLIA</td>
-                        <td>29</td>
-                        <td>M</td>
-                        <td>SOLTERO</td>
-                      </tr>                      
-                      <tr>
-                        <td class="no-padding no-border"><a class="img-common icon-edit icon-actions"></a></td>
-                        <td class="no-padding no-border"><a class="img-common icon-remove icon-actions"></a></td>
-                        <td>TOYOTA</td>
-                        <td>COROLLA</td>
-                        <td>1.8 XGE</td>
-                        <td>2010</td>
-                        <td>PARTICULAR</td>
-                        <td>5</td>
-                        <td>AMPLIA</td>
-                        <td>29</td>
-                        <td>M</td>
-                        <td>SOLTERO</td>
-                      </tr>                      
-                      <tr>
-                        <td class="no-padding no-border"><a class="img-common icon-edit icon-actions"></a></td>
-                        <td class="no-padding no-border"><a class="img-common icon-remove icon-actions"></a></td>
-                        <td>TOYOTA</td>
-                        <td>COROLLA</td>
-                        <td>1.8 XGE</td>
-                        <td>2010</td>
-                        <td>PARTICULAR</td>
-                        <td>5</td>
-                        <td>AMPLIA</td>
-                        <td>29</td>
-                        <td>M</td>
-                        <td>SOLTERO</td>
-                      </tr>                      
-                      <tr>
-                        <td class="no-padding no-border"><a class="img-common icon-edit icon-actions"></a></td>
-                        <td class="no-padding no-border"><a class="img-common icon-remove icon-actions"></a></td>
-                        <td>TOYOTA</td>
-                        <td>COROLLA</td>
-                        <td>1.8 XGE</td>
-                        <td>2010</td>
-                        <td>PARTICULAR</td>
-                        <td>5</td>
-                        <td>AMPLIA</td>
-                        <td>29</td>
-                        <td>M</td>
-                        <td>SOLTERO</td>
-                      </tr>                      
-                      <tr>
-                        <td class="no-padding no-border"><a class="img-common icon-edit icon-actions"></a></td>
-                        <td class="no-padding no-border"><a class="img-common icon-remove icon-actions"></a></td>
-                        <td>TOYOTA</td>
-                        <td>COROLLA</td>
-                        <td>1.8 XGE</td>
-                        <td>2010</td>
-                        <td>PARTICULAR</td>
-                        <td>5</td>
-                        <td>AMPLIA</td>
-                        <td>29</td>
-                        <td>M</td>
-                        <td>SOLTERO</td>
-                      </tr>                      
-                      <tr>
-                        <td class="no-padding no-border"><a class="img-common icon-edit icon-actions"></a></td>
-                        <td class="no-padding no-border"><a class="img-common icon-remove icon-actions"></a></td>
-                        <td>TOYOTA</td>
-                        <td>COROLLA</td>
-                        <td>1.8 XGE</td>
-                        <td>2010</td>
-                        <td>PARTICULAR</td>
-                        <td>5</td>
-                        <td>AMPLIA</td>
-                        <td>29</td>
-                        <td>M</td>
-                        <td>SOLTERO</td>
-                      </tr>                      
+                      <?php
+                      $cotizacion_carros = $cotizacion_carro->find_by_id_cotizacion();
+                      if (sizeof($cotizacion_carros) > 0) {
+                        foreach ($cotizacion_carros as $value) {
+                          ?>
+                          <tr>
+                            <td class="no-padding no-border"><a class="img-common icon-edit icon-actions suggestion" data='<?php echo $value->id; ?>'></a></td>
+                            <td class="no-padding no-border"><a class="img-common icon-remove icon-actions" data='<?php echo $value->id; ?>'></a></td>
+                            <td><?php echo $value->identificacion; ?></td>
+                            <td><?php echo $value->asegurado; ?></td>
+                            <td><?php echo $value->placa; ?></td>
+                            <td><?php echo $value->car_marca; ?></td>
+                            <td><?php echo $value->car_modelo; ?></td>
+                            <td><?php echo $value->car_version; ?></td>
+                            <td><?php echo $value->car_ano; ?></td>
+                            <td><?php echo $value->valor_INMA; ?></td>
+                            <td><?php echo $validar->getTipoCarro($value->tipo_carro); ?></td>
+                            <td><?php echo $value->car_ocupantes; ?></td>
+                            <td><?php echo $validar->getCobertura($value->tipo_cobertura); ?></td>
+                            <td><?php echo $value->edad; ?></td>
+                            <td><?php echo $validar->getSexo($value->sexo); ?></td>
+                            <td><?php echo $validar->getEstadoCivil($value->estado_civil); ?></td>
+                          </tr>
+                          <?php
+                        }
+                      }
+                      ?>                  
                     </tbody>                    
                   </table>
                 </div>                

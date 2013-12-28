@@ -463,6 +463,7 @@ body, html{
   float: right;
   width: 171px;
   border: none;
+  margin-left: 1px;
 }
 #tabs ul li a{
   width: 171px;
@@ -474,31 +475,17 @@ body, html{
   color: #FFFFFF;
   font-weight: normal;
 }
-#all{
+#list-error{
+  color: #E61E17;
+} 
+#all-tab{
   background-position: -4px -100px;
 }
-#valids{
+#valids-tab{
   background-position: -181px -100px;
 }
-#errors{
+#errors-tab{
   background-position: -356px -100px;
-}
-#list-fleet thead th{
-  color: #FFFFFF;
-  text-transform: uppercase;
-  font-weight: normal;
-  padding-top: 4px;
-  text-align: left;
-  padding-left: 25px;
-  white-space: nowrap;
-}
-#list-fleet tr td{
-  padding: 22px 0px 22px 25px;
-  font-style: italic;
-  color: #E61E17;
-  border-bottom: solid 1px #ACACAC;
-  white-space: nowrap;
-  text-align: center;
 }
 #errors{
   background-color: #E61E17;
@@ -841,6 +828,23 @@ a.access-title{
   text-overflow: ellipsis;
   max-width: 150px;
   cursor: pointer;
+}
+.list-fleet thead th{
+  color: #FFFFFF;
+  text-transform: uppercase;
+  font-weight: normal;
+  padding-top: 4px;
+  text-align: left;
+  padding-left: 25px;
+  white-space: nowrap;
+}
+.list-fleet tr td{
+  padding: 22px 0px 22px 25px;
+  font-style: italic;
+  border-bottom: solid 1px #ACACAC;
+  white-space: nowrap;
+  text-align: center;
+  text-transform: uppercase;
 }
 
 /* Misscelaneus */
