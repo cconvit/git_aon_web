@@ -63,7 +63,7 @@ if (isset($_SESSION['msg'])) {
     </div>
     <div id="container">
       <div id="header">
-         <a href="index.php"><img id="logo" src="img/logo.png"></a>
+        <a href="index.php"><img id="logo" src="img/logo.png"></a>
         <div id="top-nav"></div>
       </div>
       <div id="content">
@@ -102,8 +102,7 @@ if (isset($_SESSION['msg'])) {
                               <p class="item-info">Última modificación: <span><?php echo $value->ut_time; ?></span></p>
                               <div class="options">
                                 <form method="post" action="../php/operation/administration.php?operation_type=9&target=../../flota/coberturas.php" onsubmit="return formOperation()">
-                                  <input type="button" data="<?php echo $value->id; ?>" class="img-common icon-operation icon-modified" onclick="UTIL.loadDialog('load/loadCoverage.php', this, $('#modify'));
-                                          return false;">
+                                  <input type="button" data="<?php echo $value->id; ?>" class="img-common icon-operation icon-modified" onclick="UTIL.loadDialog('load/loadCoverage.php', this, $('#modify'))">
                                   <input type="submit" class="img-common icon-operation icon-delete" value="">
                                   <input type="hidden" name="id" value="<?php echo $value->id; ?>">
                                 </form>
@@ -127,7 +126,6 @@ if (isset($_SESSION['msg'])) {
     <script src="../plugins/jquery-1.10.2.min.js"></script>
     <script src="../plugins/jquery-ui-1.10.3.custom.min.js"></script>
     <script src="js/snippet.js"></script>
-    <script src="js/function.js"></script>
   </body>
 </html>
 <?php

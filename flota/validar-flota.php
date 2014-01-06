@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once("../php/db/config.php");
+require_once ("../php/db/config.php");
 require_once ('../php/db/database.php');
 require_once ('../php/entity/cotizacion_carro.php');
 require_once ('../php/operation/validar_carro_cotizacion.php');

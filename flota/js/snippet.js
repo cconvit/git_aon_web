@@ -80,10 +80,15 @@ var UTIL = {
 	},
 	setSuggestionList: function(item) {
 		var ul = item.parent(),
+				ul_selected = ul.attr("selected"),
 				data = item.attr("data"),
 				role = ul.attr("role");
+		
 		switch (role) {
 			case "marca":
+				if(ul_selected === "selected"){
+					
+				}]
 				var modelo = $("#modelo");
 				VEHICLE.marca = data;
 				$.getJSON("../inma/json.php?ot=2&ma=" + data, function(data) {
@@ -92,6 +97,7 @@ var UTIL = {
 						modelo.append("<li data=\"" + value.codigo + "\"><span class=\"icon-mini icon-clear\"></span>" + value.modelo + "</span></li>");
 					});
 				});
+				ul.attr("selected", "selected");
 				break;
 			case "modelo":
 				var version = $("#version");
@@ -117,7 +123,8 @@ var UTIL = {
 				var inma = $("#inma");
 				VEHICLE.ano = item.attr("data-text");
 				VEHICLE.inma = data;
-				inma.empty().append("<li data=\"" + VEHICLE.inma  + "\" role=\"selected\"><span class=\"icon-mini icon-clear img-common icon-selected\"></span>" + VEHICLE.inma + "</span></li>")
+				inma.empty().append("<li data=\"" + VEHICLE.inma + "\" role=\"selected\"><span class=\"icon-mini icon-clear img-common icon-selected\"></span>" + VEHICLE.inma + "</span></li>");
+				break;
 		}
 	},
 	init: function() {
@@ -145,7 +152,11 @@ var WIZARD = {
 	}
 };
 
-var VEHICLE = {};
+var VEHICLE = {
+	send: function(form) {
+		console.log(VEHICLE.marca + "\n" + VEHICLE.modelo);
+	}
+};
 
 $(function(e) {
 
@@ -223,7 +234,7 @@ $(function(e) {
 
 	//suggestion load promp
 	$("a.suggestion").click(function(e) {
-		util.loadDialog("load/loadVehicle.php?", $(this), vehicle);
+		util.loadDialog("load/loadVehicle.php", $(this), vehicle);
 		return false;
 	});
 

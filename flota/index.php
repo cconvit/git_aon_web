@@ -11,7 +11,7 @@
   <body>
     <div id="container">
       <div id="header">
-         <a href="index.php"><img id="logo" src="img/logo.png"></a>
+        <a href="index.php"><img id="logo" src="img/logo.png"></a>
         <div id="top-nav"></div>
       </div>
       <div id="content">
@@ -47,7 +47,4 @@
     <script src="../plugins/jquery-1.10.2.min.js"></script>  
     <script src="../plugins/jquery-ui-1.10.3.custom.min.js"></script>
     <script src="js/snippet.js"></script>
-    <script>
-      alert($(window).width())
-    </script>
   </body>

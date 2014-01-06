@@ -515,6 +515,9 @@ body, html{
     border-right: solid 1px #ACACAC;
   border-collapse: collapse;
 }
+#vehicle{
+  overflow: hidden;
+}
 #footer{
   height: 42px;
   width: 100%;
