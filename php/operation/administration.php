@@ -491,8 +491,10 @@ function newCotizacion($nombre, $descripcion, $cliente, $flota, $tmp_name) {
         $cotizacion->ut_time = "NOW()";
         $cotizacion->cr_time = "NOW()";
         $resultado = $cotizacion->create();
+        if($resultado)$_SESSION["id_cotizacion"]=$cotizacion->id;
 
-        $objPHPExcel = PHPExcel_IOFactory::load($path);
+       
+        $objPHPExcel = PHPExcel_IOFactory::load($tmp_name);
         foreach ($objPHPExcel->getWorksheetIterator() as $worksheet) {
 
 
