@@ -87,7 +87,8 @@ if (isset($_REQUEST["operation_type"])) {
     }
 }
 
-    switch ($operation_type) {
+
+function updateClient($id, $nombre, $razon_social) {
 
     require_once ('../entity/cliente.php');
     $cliente = new cliente();
@@ -108,7 +109,7 @@ if (isset($_REQUEST["operation_type"])) {
     header('Location: ' . $_GET["target"]);
 }
 
-function updateClient($id, $nombre, $razon_social) {
+function newClient($nombre, $razon_social) {
 
     require_once ('../entity/cliente.php');
     $cliente = new cliente();
@@ -116,7 +117,6 @@ function updateClient($id, $nombre, $razon_social) {
     $cliente->nombre = $nombre;
     $cliente->razon_social = $razon_social;
 
-function newClient($nombre, $razon_social) {
 
     $_SESSION["msg"] = "show";
 
@@ -554,25 +554,7 @@ function newCotizacion($nombre, $descripcion, $cliente, $flota, $tmp_name) {
     }
 }
 
-    function deleteCotizacion($id) {
 
-        require_once ('../entity/cotizacion.php');
-        $cotizacion = new cotizacion();
-        $cotizacion->id = $id;
-        $result = $validar_carros->processFile($tmp_name, $cotizacion->id);
-        $_SESSION["id_cotizacion"] = $cotizacion->id;
-
-        if ($result)
-            header('Location: ' . $_GET["target"]);
-        else
-            header('Location: ' . $_GET["target_fail"]);
-    }else {
-        $_SESSION["msg"] = "show";
-        $_SESSION["msg_desc"] = "Ocurrio un error al tratar de crear una nueva cotización. Por favor intente mas tarde. Si el error persiste, comuniquese con el administrador del sistema.";
-        $_SESSION["msg_type"] = "error";
-        header('Location: ' . $_GET["target_fail"]);
-    }
-}
 
 function deleteCotizacion($id) {
 

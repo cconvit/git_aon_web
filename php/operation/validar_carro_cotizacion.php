@@ -157,8 +157,7 @@ class validar_carro_cotizacion {
             $this->set_msg("Error al importar el archivo. El archivo tiene datos errados para la importacion", "error");
 
         return $result;
-    }
-  }
+    } 
 
   public function isSexo($sexo) {
 
@@ -169,6 +168,16 @@ class validar_carro_cotizacion {
       default : return 0;
     }
   }
+  
+  public function getSexo($sexo) {
+
+        switch ($sexo) {
+
+            case 2: return "M";
+            case 1: return "F";
+            default : return "";
+        }
+    }
 
   public function isEstadoCivil($estado_civil) {
 
@@ -178,6 +187,16 @@ class validar_carro_cotizacion {
       default : return 2;
     }
   }
+  
+  public function getEstadoCivil($estado_civil) {
+
+        switch ($estado_civil) {
+
+            case 1: return "CASADO";
+            default : return "SOLTERO";
+        }
+    }
+    
 
   public function isTipoCarro($tipo_carro) {
 
@@ -189,17 +208,28 @@ class validar_carro_cotizacion {
       default : return 0;
     }
   }
+  
+  public function getTipoCarro($tipo_carro) {
 
-  public function getCobertura($cobertura) {
+        switch ($tipo_carro) {
+
+            case 1: return "PARTICULAR";
+            case 2: return "RUSTICO";
+            case 3: return "PICKUP";
+            default : return "";
+        }
+    }
+
+  public function isCobertura($cobertura) {
 
     switch ($cobertura) {
 
-      case 2: return "TOTAL";
-      case 1: return "AMPLIA";
-      case 3: return "RCV";
-      default : return "";
+      case "TOTAL": return 2;
+      case "AMPLIA": return 1;
+      case "RCV": return 3;
+      default : return 0;
     }
-    
+  } 
     public function getCobertura($cobertura) {
 
         switch ($cobertura) {
@@ -211,64 +241,6 @@ class validar_carro_cotizacion {
         }
     }
 
-    public function getSexo($sexo) {
-
-        switch ($sexo) {
-
-            case 2: return "M";
-            case 1: return "F";
-            default : return "";
-        }
-    }
-
-    public function getEstadoCivil($estado_civil) {
-
-        switch ($estado_civil) {
-
-            case 1: return "CASADO";
-            default : return "SOLTERO";
-        }
-    }
-
-    public function getTipoCarro($tipo_carro) {
-
-        switch ($tipo_carro) {
-
-            case 1: return "PARTICULAR";
-            case 2: return "RUSTICO";
-            case 3: return "PICKUP";
-            default : return "";
-        }
-    }
-
-    switch ($sexo) {
-
-        if (2 <= $ocupantes &&  $ocupantes <= 17)
-            return true;
-        else
-            return false;
-    }
-  }
-
-  public function getEstadoCivil($estado_civil) {
-
-    switch ($estado_civil) {
-
-      case 1: return "CASADO";
-      default : return "SOLTERO";
-    }
-  }
-
-  public function getTipoCarro($tipo_carro) {
-
-    switch ($tipo_carro) {
-
-      case 1: return "PARTICULAR";
-      case 2: return "RUSTICO";
-      case 3: return "PICKUP";
-      default : return "";
-    }
-  }
 
   public function isNumOcupantes($ocupantes) {
 
