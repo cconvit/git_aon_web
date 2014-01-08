@@ -243,8 +243,7 @@ $cotizacion_carro->id_cotizacion = $_SESSION["id_cotizacion"];
     <script src="js/main.js"></script>
     <script>
       UTIL.suggestionClick();
-      var SUGGESTION = {};
-      SUGGESTION.flag = true;
+      var SUGGESTION = {vehicle: {}, flag: true}
     </script>
   </body>
 </html>

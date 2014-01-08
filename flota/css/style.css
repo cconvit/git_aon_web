@@ -823,7 +823,8 @@ a.access-title{
 }
 .vehicle-suggestion-list{
   max-height: 235px;
-  overflow: hidden;
+  overflow: auto;
+  padding-right: 20px;
 }
 .vehicle-suggestion-list li{
   margin-bottom: 12px;

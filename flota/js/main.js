@@ -87,46 +87,47 @@ var UTIL = {
 	},
 	setSuggestionList: function(item) {	
 		if(SUGGESTION.flag){			
-			SUGGESTION.append = { marca: $("#marca"), modelo: $("#modelo"), version: $("#version"), ano: $("#ano"), inma: $("#inma")};
+			SUGGESTION.tag = { marca: $("#marca"), modelo: $("#modelo"), version: $("#version"), ano: $("#ano"), inma: $("#inma")};
 				SUGGESTION.flag = false;
 		}
 		var ul = item.parent(),
 				data = item.attr("data"),
-				role = ul.attr("role");
+				role = ul.attr("role"),
+				tag = SUGGESTION.tag;
+		
 		switch (role) {
 			case "marca":
 				SUGGESTION.marca = data;
 				$.getJSON("../inma/json.php?ot=2&ma=" + data, function(data) {
-					SUGGESTION.append.modelo.empty();
+					tag.modelo.empty();
 					$.each(data, function(index, value) {
-						SUGGESTION.append.modelo.append("<li data=\"" + value.codigo + "\"><span class=\"icon-mini icon-clear\"></span>" + value.modelo + "</span></li>");
+						tag.modelo.append("<li data=\"" + value.codigo + "\"><span class=\"icon-mini icon-clear\"></span>" + value.modelo + "</span></li>");
 					});
 				});
-
 				ul.attr("selected", "selected");
 				break;
 			case "modelo":
-				SUGGESTION.modelo = data;
+				SUGGESTION.vehicle.modelo = data;
 				$.getJSON("../inma/json.php?ot=3&ma=" + SUGGESTION.marca + "&mo=" + data, function(data) {
-					SUGGESTION.append.version.empty();
+					tag.version.empty();
 					$.each(data, function(index, value) {
-						SUGGESTION.append.version.append("<li data=\"" + value.codigo + "\"><span class=\"icon-mini icon-clear\"></span>" + value.version + "</span></li>");
+						tag.version.append("<li data=\"" + value.codigo + "\"><span class=\"icon-mini icon-clear\"></span>" + value.version + "</span></li>");
 					});
 				});
 				break;
 			case "version":
 				SUGGESTION.version = data;
 				$.getJSON("../inma/json.php?ot=4&co=" + data, function(data) {
-					ano.empty();
+					tag.ano.empty();
 					$.each(data, function(index, value) {
-						ano.append("<li data=\"" + value.inma + "\" data-text=\"" + value.ano + "\" ><span class=\"icon-mini icon-clear\"></span>" + value.ano + "</span></li>");
+						tag.ano.append("<li data=\"" + value.inma + "\" data-text=\"" + value.ano + "\" ><span class=\"icon-mini icon-clear\"></span>" + value.ano + "</span></li>");
 					});
 				});
 				break;
 			case "ano":
 				SUGGESTION.ano = item.attr("data-text");
 				SUGGESTION.inma = data;
-				inma.empty().append("<li data=\"" + SUGGESTION.inma + "\" role=\"selected\"><span class=\"icon-mini icon-clear img-common icon-selected\"></span>" + SUGGESTION.inma + "</span></li>");
+				tag.inma.empty().append("<li data=\"" + SUGGESTION.inma + "\" role=\"selected\"><span class=\"icon-mini icon-clear img-common icon-selected\"></span>" + SUGGESTION.inma + "</span></li>");
 				break;
 		}
 	},
