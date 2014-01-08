@@ -1,5 +1,4 @@
 /* HTML5 Boilerplate*/
-
 article, aside, details, figcaption, figure, footer, header, hgroup, nav, section {
   display: block;
 }
@@ -454,6 +453,7 @@ body, html{
 }
 #tabs{
   padding: 10px 0px 0px  0px;
+  background-color: red;
 }
 #tabs ul{
   height: 24px;
@@ -482,9 +482,6 @@ body, html{
 }
 #valids-tab{
   background-position: -181px -100px;
-}
-#errors-tab{
-  background-position: -356px -100px;
 }
 #errors{
   background-color: #E61E17;
@@ -831,6 +828,9 @@ a.access-title{
   text-overflow: ellipsis;
   max-width: 150px;
   cursor: pointer;
+}
+.list-fleet{
+  background-color: black;
 }
 .list-fleet thead th{
   color: #FFFFFF;

@@ -10,11 +10,11 @@ $msg_desc = "";
 $msg_type = "succesfull";
 
 if (isset($_SESSION['msg'])) {
-    if ($_SESSION['msg'] == "show") {
-        $msg = "show";
-        $msg_desc = $_SESSION['msg_desc'];
-        $msg_type = $_SESSION['msg_type'];
-    }
+  if ($_SESSION['msg'] == "show") {
+    $msg = "show";
+    $msg_desc = $_SESSION['msg_desc'];
+    $msg_type = $_SESSION['msg_type'];
+  }
 }
 
 $validar = new validar_carro_cotizacion();
@@ -221,16 +221,16 @@ $cotizacion_carro->id_cotizacion = $_SESSION["id_cotizacion"];
                 </div>                
               </div>
             </div>
+          </div>
         </div>
       </div>
-    </div>
-    <script src="../plugins/jquery-1.10.2.min.js"></script>
-    <script src="../plugins/jquery-ui-1.10.3.custom.min.js"></script>
-    <script src="js/main.js"></script>
-    <script>
-      UTIL.suggestionClick();
-      var SUGGESTION = {vehicle: {}, flag: true}
-    </script>
+      <script src="../plugins/jquery-1.10.2.min.js"></script>
+      <script src="../plugins/jquery-ui-1.10.3.custom.min.js"></script>
+      <script src="js/main.js"></script>
+      <script>
+        UTIL.suggestionClick();
+        var SUGGESTION = {vehicle: {}, flag: true}
+      </script>
   </body>
 </html>
 <?php
