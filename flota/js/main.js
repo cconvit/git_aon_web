@@ -20,8 +20,8 @@ var AON = {
 		menu.css("height", windowHeight - 127);
 	},
 	windowResize: function() {
-		var self = AON;
-		var windowWidth = $(window).width(),
+		var self = this,
+				windowWidth = $(window).width(),
 				windowHeight = $(window).height();
 		self.setMainWidth(windowWidth);
 		self.setScrollHeight(windowHeight);
@@ -80,21 +80,21 @@ var UTIL = {
 	suggestionClick: function() {
 		var vehicle = $("#vehicle");
 		var self = this;
-		$("#list-error").on("click", ".suggestion", function(e) {
+		$(".list-fleet").on("click", ".suggestion", function(e) {
 			self.loadDialog("load/loadVehicle.php", $(this), vehicle);
 			return false;
 		});
 	},
-	setSuggestionList: function(item) {	
-		if(SUGGESTION.flag){			
-			SUGGESTION.tag = { marca: $("#marca"), modelo: $("#modelo"), version: $("#version"), ano: $("#ano"), inma: $("#inma")};
-				SUGGESTION.flag = false;
+	setSuggestionList: function(item) {
+		if (SUGGESTION.flag) {
+			SUGGESTION.tag = {marca: $("#marca"), modelo: $("#modelo"), version: $("#version"), ano: $("#ano"), inma: $("#inma")};
+			SUGGESTION.flag = false;
 		}
 		var ul = item.parent(),
 				data = item.attr("data"),
 				role = ul.attr("role"),
 				tag = SUGGESTION.tag;
-		
+
 		switch (role) {
 			case "marca":
 				SUGGESTION.marca = data;
@@ -229,7 +229,7 @@ $(function(e) {
 			excel.val(fleet.val());
 		});
 	});
-	
+
 	//select a list suggestion element
 	$("#vehicle").on("click", "#vehicle-suggestion ul li", function(e) {
 		var item = $(this);
