@@ -10,11 +10,11 @@ $msg_desc = "";
 $msg_type = "succesfull";
 
 if (isset($_SESSION['msg'])) {
-  if ($_SESSION['msg'] == "show") {
-    $msg = "show";
-    $msg_desc = $_SESSION['msg_desc'];
-    $msg_type = $_SESSION['msg_type'];
-  }
+    if ($_SESSION['msg'] == "show") {
+        $msg = "show";
+        $msg_desc = $_SESSION['msg_desc'];
+        $msg_type = $_SESSION['msg_type'];
+    }
 }
 
 $validar = new validar_carro_cotizacion();
@@ -221,20 +221,6 @@ $cotizacion_carro->id_cotizacion = $_SESSION["id_cotizacion"];
                 </div>                
               </div>
             </div>
-          </div>
-        </div>
-        <div id="footer">
-          <div id="nav-step">
-            <ul>
-              <li><input type="button" class="img-common icon-step icon-exit" onclick="WIZARD.exit('flotas.php');"></li>
-              <li><a class='current-step' href="cotizar.php">Cotizar</a></li>
-              <li><span class="img-common arrow"></span></li>                      
-              <li>Validar flota</li>
-              <li><span class="img-common arrow"></span></li>  
-              <li>Descargar cotización</li>
-              <li><input id="next" type="button" class="img-common icon-step icon-next" role="create"></li>               
-            </ul>
-          </div>
         </div>
       </div>
     </div>

@@ -31,14 +31,25 @@ class cotizacion{
                               INNER JOIN tbl_cliente cl ON cl.id=cot.id_cliente");
   }
   
-  public static function find_by_sql($sql="") {
+  public function find_by_id() {
+      global $database;
       
+    return self::find_by_sql("SELECT cot.id as 'id',cot.nombre as 'nombre',cot.descripcion as 'descripcion',fl.empresa as 'empresa_flota',cl.nombre as 'nombre_cliente',cot.id_flota as 'id_flota',cot.id_cliente as 'id_cliente',cot.cr_time as 'cr_time',cot.ut_time as 'ut_time' 
+                              FROM `tbl_cotizacion` cot
+                              INNER JOIN tbl_flota fl ON fl.id=cot.id_flota 
+                              INNER JOIN tbl_cliente cl ON cl.id=cot.id_cliente
+                              WHERE cot.id='{$database->escape_value($this->id)}'");
+  }
+  
+  public static function find_by_sql($sql="") {
+    
     global $database;
     $result_set = $database->query($sql);
     $object_array = array();
     while ($row = $database->fetch_array($result_set)) {
       $object_array[] = self::instantiate($row);
     }
+   
     return $object_array;
   }
   
