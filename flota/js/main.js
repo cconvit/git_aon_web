@@ -30,7 +30,7 @@ var AON = {
 		self.setScrollListHeight(windowHeight);
 	},
 	init: function() {
-		var self = AON;
+		var self = this;
 		self.windowResize();
 	}
 };
@@ -46,7 +46,7 @@ var UTIL = {
 		});
 	},
 	loadDialog: function(page, button, dialog) {
-		var id = $(button).attr("data"),
+		var id = button.attr("data"),
 				url = page + "?id=" + id;
 		dialog.load(url, function(e) {
 			dialog.dialog("open");
@@ -60,9 +60,8 @@ var UTIL = {
 	selectedItem: function(item) {
 		if (item.attr("role") !== "error") {
 			var self_item = item,
-					self_span = item.find("span");
-
-			var selected_object = UTIL.getSelectedItem(self_item.parent()),
+					self_span = item.find("span"),
+					selected_object = this.getSelectedItem(self_item.parent()),
 					selected_item = selected_object.item,
 					selected_span = selected_object.span;
 
@@ -78,40 +77,45 @@ var UTIL = {
 		var selected = item.find("li[role='selected']");
 		return {item: selected, data: selected.attr("data"), span: selected.find("span")};
 	},
-	setSuggestionList: function(item) {
+	suggestionClick: function() {
+		var vehicle = $("#vehicle");
+		var self = this;
+		$("#list-error").on("click", ".suggestion", function(e) {
+			self.loadDialog("load/loadVehicle.php", $(this), vehicle);
+			return false;
+		});
+	},
+	setSuggestionList: function(item) {	
+		if(SUGGESTION.flag){			
+			SUGGESTION.append = { marca: $("#marca"), modelo: $("#modelo"), version: $("#version"), ano: $("#ano"), inma: $("#inma")};
+				SUGGESTION.flag = false;
+		}
 		var ul = item.parent(),
-				ul_selected = ul.attr("selected"),
 				data = item.attr("data"),
 				role = ul.attr("role");
-		
 		switch (role) {
 			case "marca":
-				if(ul_selected === "selected"){
-					
-				}]
-				var modelo = $("#modelo");
-				VEHICLE.marca = data;
+				SUGGESTION.marca = data;
 				$.getJSON("../inma/json.php?ot=2&ma=" + data, function(data) {
-					modelo.empty();
+					SUGGESTION.append.modelo.empty();
 					$.each(data, function(index, value) {
-						modelo.append("<li data=\"" + value.codigo + "\"><span class=\"icon-mini icon-clear\"></span>" + value.modelo + "</span></li>");
+						SUGGESTION.append.modelo.append("<li data=\"" + value.codigo + "\"><span class=\"icon-mini icon-clear\"></span>" + value.modelo + "</span></li>");
 					});
 				});
+
 				ul.attr("selected", "selected");
 				break;
 			case "modelo":
-				var version = $("#version");
-				VEHICLE.modelo = data;
-				$.getJSON("../inma/json.php?ot=3&ma=" + VEHICLE.marca + "&mo=" + data, function(data) {
-					version.empty();
+				SUGGESTION.modelo = data;
+				$.getJSON("../inma/json.php?ot=3&ma=" + SUGGESTION.marca + "&mo=" + data, function(data) {
+					SUGGESTION.append.version.empty();
 					$.each(data, function(index, value) {
-						version.append("<li data=\"" + value.codigo + "\"><span class=\"icon-mini icon-clear\"></span>" + value.version + "</span></li>");
+						SUGGESTION.append.version.append("<li data=\"" + value.codigo + "\"><span class=\"icon-mini icon-clear\"></span>" + value.version + "</span></li>");
 					});
 				});
 				break;
 			case "version":
-				var ano = $("#ano");
-				VEHICLE.version = data;
+				SUGGESTION.version = data;
 				$.getJSON("../inma/json.php?ot=4&co=" + data, function(data) {
 					ano.empty();
 					$.each(data, function(index, value) {
@@ -120,15 +124,14 @@ var UTIL = {
 				});
 				break;
 			case "ano":
-				var inma = $("#inma");
-				VEHICLE.ano = item.attr("data-text");
-				VEHICLE.inma = data;
-				inma.empty().append("<li data=\"" + VEHICLE.inma + "\" role=\"selected\"><span class=\"icon-mini icon-clear img-common icon-selected\"></span>" + VEHICLE.inma + "</span></li>");
+				SUGGESTION.ano = item.attr("data-text");
+				SUGGESTION.inma = data;
+				inma.empty().append("<li data=\"" + SUGGESTION.inma + "\" role=\"selected\"><span class=\"icon-mini icon-clear img-common icon-selected\"></span>" + SUGGESTION.inma + "</span></li>");
 				break;
 		}
 	},
 	init: function() {
-		UTIL.initDialogs(400);
+		this.initDialogs(400);
 	}
 };
 
@@ -149,12 +152,6 @@ var WIZARD = {
 		if (confirm("Realmente desea salir del asistente?")) {
 			document.location.href = page;
 		}
-	}
-};
-
-var VEHICLE = {
-	send: function(form) {
-		console.log(VEHICLE.marca + "\n" + VEHICLE.modelo);
 	}
 };
 
@@ -231,13 +228,7 @@ $(function(e) {
 			excel.val(fleet.val());
 		});
 	});
-
-	//suggestion load promp
-	$("a.suggestion").click(function(e) {
-		util.loadDialog("load/loadVehicle.php", $(this), vehicle);
-		return false;
-	});
-
+	
 	//select a list suggestion element
 	$("#vehicle").on("click", "#vehicle-suggestion ul li", function(e) {
 		var item = $(this);

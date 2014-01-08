@@ -29,7 +29,7 @@ $cotizacion_carro->id_cotizacion = $_SESSION["id_cotizacion"];
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
     <link href="css/jquery-ui-1.10.3.custom.min.css" rel="stylesheet" type="text/css">
     <link href="css/normalize.css" rel="stylesheet" type="text/css">
-    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <link href="css/style.css" rel="stylesheet" type="text/css">        
   </head>
   <body>
     <div id="vehicle"></div>
@@ -240,7 +240,12 @@ $cotizacion_carro->id_cotizacion = $_SESSION["id_cotizacion"];
     </div>
     <script src="../plugins/jquery-1.10.2.min.js"></script>
     <script src="../plugins/jquery-ui-1.10.3.custom.min.js"></script>
-    <script src="js/snippet.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+      UTIL.suggestionClick();
+      var SUGGESTION = {};
+      SUGGESTION.flag = true;
+    </script>
   </body>
 </html>
 <?php

@@ -144,7 +144,7 @@ $clientes = $cliente->find_all();
     </div>
     <script src="../plugins/jquery-1.10.2.min.js"></script>
     <script src="../plugins/jquery-ui-1.10.3.custom.min.js"></script>
-    <script src="js/snippet.js"></script>
+    <script src="js/main.js"></script>
     <script type="text/javascript">
       document.getElementById("fleet").value = "";
       document.getElementById("name").value = "no ha seleccionado un archivo...";

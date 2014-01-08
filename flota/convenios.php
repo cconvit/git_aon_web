@@ -100,7 +100,7 @@ $aseguradoras = $aseguradora->find_all();
     <div id="footer"></div>
     <script src="../plugins/jquery-1.10.2.min.js"></script>
     <script src="../plugins/jquery-ui-1.10.3.custom.min.js"></script>
-    <script src="js/snippet.js"></script>
+    <script src="js/main.js"></script>
   </body>
   <?php
   $_SESSION['msg'] = "hide";
