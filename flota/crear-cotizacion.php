@@ -58,8 +58,7 @@ $clientes = $cliente->find_all();
             </div>
             <div id="scroll" style="height: 455px;">
               <div style="margin-top: 30px">
-                <form method="post" action="operation" enctype="multipart/form-data">
-                  <!--../php/operation/administration.php?operation_type=20&target=../../flota/validar-flota.php&target_fail=../../flota/crear-cotizacion.php-->
+                <form method="post" action="../php/operation/administration.php?operation_type=20&target=../../flota/validar-flota.php&target_fail=../../flota/crear-cotizacion.php" enctype="multipart/form-data">
                   <table>
                     <tbody>
                       <tr>
