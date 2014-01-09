@@ -471,15 +471,16 @@ function newFlotaConvenios($data) {
         header('Location: ' . $_GET["target"]);
     }
 }
-
 function newCotizacion($nombre, $descripcion, $cliente, $flota, $tmp_name) {
 
-    var_dump($_FILES);
+
     require_once '../Classes/PHPExcel.php';
     require_once '../Classes/PHPExcel/IOFactory.php';
     require_once ('../entity/cotizacion.php');
+    require_once ('validar_carro_cotizacion.php');
 
-    $resultado = false;
+
+
 
     if (isset($nombre) && isset($descripcion) && isset($cliente) && isset($flota)) {
 
@@ -491,71 +492,22 @@ function newCotizacion($nombre, $descripcion, $cliente, $flota, $tmp_name) {
         $cotizacion->ut_time = "NOW()";
         $cotizacion->cr_time = "NOW()";
         $resultado = $cotizacion->create();
-        if($resultado)$_SESSION["id_cotizacion"]=$cotizacion->id;
 
-       
-        $objPHPExcel = PHPExcel_IOFactory::load($tmp_name);
-        foreach ($objPHPExcel->getWorksheetIterator() as $worksheet) {
+        $validar_carros = new validar_carro_cotizacion();
+        $result = $validar_carros->processFile($tmp_name, $cotizacion->id);
+        $_SESSION["id_cotizacion"] = $cotizacion->id;
 
-
-            $highestRow = $worksheet->getHighestRow(); // e.g. 10
-            $highestColumn = $worksheet->getHighestColumn(); // e.g 'F'
-            $highestColumnIndex = PHPExcel_Cell::columnIndexFromString($highestColumn);
-            $nrColumns = ord($highestColumn) - 64;
-
-            //Verificamos que el archivo tenga las columnas determinadas para esta importacion
-            if (($nrColumns == 3) && ($highestRow > 1)) {
-
-                //Iteramos sobre las filas
-                for ($row = 2; $row <= $highestRow; ++$row) {
-                    //Iteramos sobre las columnas
-                    for ($col = 0; $col < $highestColumnIndex; ++$col) {
-                        //Obtenemos la informacion de la celda
-                        $cell = $worksheet->getCellByColumnAndRow($col, $row);
-                        $val = $cell->getValue();
-                        $dataType = PHPExcel_Cell_DataType::dataTypeForValue($val);
-
-                        //Asignamos el valor de la celda en un array
-                        switch ($col) {
-                            case 0:
-                                $reg_valido = isValidType("n", $dataType);
-                                $data[$row]["id_tipo_carro"] = $val;
-                                break;
-                            case 1:
-                                $reg_valido = isValidType("n", $dataType);
-                                $data[$row]["ano"] = $val;
-                                break;
-                            case 2:
-                                $reg_valido = isValidType("n", $dataType);
-                                $data[$row]["valor"] = $val;
-                                break;
-                        }//End switch
-                        //Verificamos si todos los datos estaban correctos
-
-                        if (!$reg_valido) {
-                            $col = $highestColumnIndex;
-                            $row = $highestRow;
-                        }
-                    }//End for COL
-                }//End for ROW
-                //Si todos los registros estan correctos entonces procedemos a guardar en la base de datos
-                if ($reg_valido)
-                    create_grua($data, $id_convenio_as);
-                else
-                    set_msg("Error al importar el archivo. El archivo tiene datos errados para la importacion", "error");
-            }//End IF
-        }
-
-        if (!$resultado) {
-            set_msg("Ocurrio un error al tratar de crear una nueva cotización. Por favor intente mas tarde. Si el error persiste, comuniquese con el administrador del sistema.","error");
-            header('Location: ' . $_GET["target_fail"]);
-        } else {
-            set_msg("La creación de la cotización se realizó exitosamente","succesfull");
+        if ($result)
             header('Location: ' . $_GET["target"]);
-        }
+        else
+            header('Location: ' . $_GET["target_fail"]);
+    }else {
+        $_SESSION["msg"] = "show";
+        $_SESSION["msg_desc"] = "Ocurrio un error al tratar de crear una nueva cotización. Por favor intente mas tarde. Si el error persiste, comuniquese con el administrador del sistema.";
+        $_SESSION["msg_type"] = "error";
+        header('Location: ' . $_GET["target_fail"]);
     }
 }
-
 
 
 function deleteCotizacion($id) {
@@ -666,4 +618,12 @@ function set_msg($msg_desc, $msg_type) {
   $_SESSION["msg_type"] = $msg_type;
     //////////////
 }
+function isValidType($req_dataType, $dataType) {
+
+  if ($dataType == $req_dataType)
+    return true;
+  else
+    return false;
+}
+
 ?>
