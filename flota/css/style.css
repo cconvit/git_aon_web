@@ -453,7 +453,6 @@ body, html{
 }
 #tabs{
   padding: 10px 0px 0px  0px;
-  background-color: red;
 }
 #tabs ul{
   height: 24px;
@@ -482,6 +481,9 @@ body, html{
 }
 #valids-tab{
   background-position: -181px -100px;
+}
+#errors-tab{
+  background-position: -356px -100px;
 }
 #errors{
   background-color: #E61E17;
@@ -821,16 +823,16 @@ a.access-title{
   max-height: 235px;
   overflow: auto;
   padding-right: 20px;
+  min-width: 120px;
 }
 .vehicle-suggestion-list li{
   margin-bottom: 12px;
   white-space: nowrap;
   text-overflow: ellipsis;
-  max-width: 150px;
+  max-width: 160px;
   cursor: pointer;
-}
-.list-fleet{
-  background-color: black;
+  overflow: hidden;
+  text-align: center;
 }
 .list-fleet thead th{
   color: #FFFFFF;
