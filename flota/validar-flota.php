@@ -224,13 +224,22 @@ $cotizacion_carro->id_cotizacion = $_SESSION["id_cotizacion"];
           </div>
         </div>
       </div>
+      <div id="footer">
+        <div id="nav-step">
+          <ul>
+            <li><input type="button" class="img-common icon-step icon-exit" onclick="location.href = 'convenios.php'"></li>
+            <li><a>Crear convenio</a></li>
+            <li><span class="img-common arrow"></span></li>                      
+            <li><a href="cargar-datos.php">Importar datos</a></li>
+            <li><span class="img-common arrow"></span></li>               
+            <li><a class="current-step" href="cargar-condiciones.php">Condiciones y coberturas</a></li>
+            <li><input type="button" class="img-common icon-step icon-end" onclick="location.href = 'convenios.php'"></li>            
+          </ul>
+        </div>
+      </div>
       <script src="../plugins/jquery-1.10.2.min.js"></script>
       <script src="../plugins/jquery-ui-1.10.3.custom.min.js"></script>
       <script src="js/main.js"></script>
-      <script>
-        UTIL.suggestionClick();
-        var SUGGESTION = {vehicle: {}, flag: true}
-      </script>
   </body>
 </html>
 <?php

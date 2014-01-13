@@ -1,4 +1,4 @@
-var AON = {
+var Aon = {
 	setContentHeight: function(windowHeight) {
 		var content = $("#content");
 		content.css("height", windowHeight - 127);
@@ -35,7 +35,7 @@ var AON = {
 	}
 };
 
-var UTIL = {
+var Utils = {
 	initDialogs: function(width) {
 		$(".dialog").dialog({
 			modal: true,
@@ -77,66 +77,14 @@ var UTIL = {
 		var selected = item.find("li[role='selected']");
 		return {item: selected, data: selected.attr("data"), span: selected.find("span")};
 	},
-	suggestionClick: function() {
-		var vehicle = $("#vehicle");
-		var self = this;
-		$(".list-fleet").on("click", ".suggestion", function(e) {
-			self.loadDialog("load/loadVehicle.php", $(this), vehicle);
-			return false;
-		});
-	},
 	setSuggestionList: function(item) {
-		if (SUGGESTION.flag) {
-			SUGGESTION.tag = {marca: $("#marca"), modelo: $("#modelo"), version: $("#version"), ano: $("#ano"), inma: $("#inma")};
-			SUGGESTION.flag = false;
-		}
-		var ul = item.parent(),
-				data = item.attr("data"),
-				role = ul.attr("role"),
-				tag = SUGGESTION.tag;
-
-		switch (role) {
-			case "marca":
-				SUGGESTION.marca = data;
-				$.getJSON("../inma/json.php?ot=2&ma=" + data, function(data) {
-					tag.modelo.empty();
-					$.each(data, function(index, value) {
-						tag.modelo.append("<li data=\"" + value.codigo + "\"><span class=\"icon-mini icon-clear\"></span>" + value.modelo + "</span></li>");
-					});
-				});
-				ul.attr("selected", "selected");
-				break;
-			case "modelo":
-				SUGGESTION.vehicle.modelo = data;
-				$.getJSON("../inma/json.php?ot=3&ma=" + SUGGESTION.marca + "&mo=" + data, function(data) {
-					tag.version.empty();
-					$.each(data, function(index, value) {
-						tag.version.append("<li data=\"" + value.codigo + "\"><span class=\"icon-mini icon-clear\"></span>" + value.version + "</span></li>");
-					});
-				});
-				break;
-			case "version":
-				SUGGESTION.version = data;
-				$.getJSON("../inma/json.php?ot=4&co=" + data, function(data) {
-					tag.ano.empty();
-					$.each(data, function(index, value) {
-						tag.ano.append("<li data=\"" + value.inma + "\" data-text=\"" + value.ano + "\" ><span class=\"icon-mini icon-clear\"></span>" + value.ano + "</span></li>");
-					});
-				});
-				break;
-			case "ano":
-				SUGGESTION.ano = item.attr("data-text");
-				SUGGESTION.inma = data;
-				tag.inma.empty().append("<li data=\"" + SUGGESTION.inma + "\" role=\"selected\"><span class=\"icon-mini icon-clear img-common icon-selected\"></span>" + SUGGESTION.inma + "</span></li>");
-				break;
-		}
 	},
 	init: function() {
 		this.initDialogs(400);
 	}
 };
 
-var WIZARD = {
+var Wizard = {
 	create: function(form) {
 		if (isValidateSubmit(form)) {
 			form.trigger("submit");
@@ -158,8 +106,8 @@ var WIZARD = {
 
 $(function(e) {
 
-	var util = UTIL,
-			wizard = WIZARD;
+	var wizard = Wizard,
+			utils = Utils;
 
 	var load = $("#load");
 	load.dialog({
@@ -230,19 +178,77 @@ $(function(e) {
 		});
 	});
 
-	//select a list suggestion element
-	$("#vehicle").on("click", "#vehicle-suggestion ul li", function(e) {
-		var item = $(this);
-		util.setSuggestionList(item);
-		util.selectedItem(item);
+	// open suggestion dialog
+	var id, marca, modelo, version, ano, inma, cobertura, uso, ocupantes, edad, sexo, civil;
+	$(".list-fleet").on("click", ".suggestion", function(e) {
+		id = $(this).attr("data");
+		vehicle.load("load/loadVehicle.php", function() {
+			marca = $("#marca"), modelo = $("#modelo"), version = $("#version"), ano = $("#ano"), inma = $("#inma"), cobertura = $("#cobertura"), uso = $("#uso"), ocupantes = $("#ocupantes"), edad = $("#edad"), sexo = $(sexo), civil = $("#civil"), $("input[name='id']").val(id)
+			vehicle.dialog("open");
+		});
 		return false;
 	});
+
+	//select a list suggestion element
+	var item, ul, data, role, dinma, input, array = [];
+	$("#vehicle").on("click", "#vehicle-suggestion ul li", function(e) {
+		item = $(this), ul = item.parent(), data = item.attr("data"), role = ul.attr("role"), input = ul.find("input[type=hidden]");
+		switch (role) {
+			case "marca":
+				$.getJSON("../inma/json.php?ot=2&ma=" + data, function(data) {
+					modelo.empty();
+					$.each(data, function(index, value) {
+						modelo.append("<li data=\"" + value.codigo + "\"><span class=\"icon-mini icon-clear\"></span>" + value.modelo + "</span></li>");
+					});
+					modelo.append("<li><input name=\"modelo\" type=\"hidden\"></li>");
+				});
+				break;
+			case "modelo":
+				$.getJSON("../inma/json.php?ot=3&ma=" + array.marca + "&mo=" + data, function(data) {
+					version.empty();
+					$.each(data, function(index, value) {
+						version.append("<li data=\"" + value.codigo + "\"><span class=\"icon-mini icon-clear\"></span>" + value.version + "</span></li>");
+					});
+					version.append("<li><input name=\"version\" type=\"hidden\"></li>");
+				});
+				break;
+			case "version":
+				$.getJSON("../inma/json.php?ot=4&co=" + data, function(data) {
+					ano.empty();
+					$.each(data, function(index, value) {
+						ano.append("<li data-inma=\"" + value.inma + "\" data=\"" + value.ano + "\" ><span class=\"icon-mini icon-clear\"></span>" + value.ano + "</span></li>");
+					});
+					ano.append("<li><input name=\"ano\" type=\"hidden\"></li><li><input name=\"inma\" type=\"hidden\" value=/" + item.attr("data-inma") + "/></li>");
+				});
+				break;
+			case "ano":
+				inma.empty().append("<li data=\"" + item.attr("data-inma") + "\" role=\"selected\"><span class=\"icon-mini icon-clear img-common icon-selected\"></span>" + item.attr("data-inma") + "</span></li><li><input name=\"inma\" type=\"hidden\" value=" + item.attr("data-inma") + "></li>");
+				inma.attr("data", "selected");
+				break;
+		}
+		console.log(ul.attr("id"));
+		array [role] = data;
+		ul.attr("data", "selected");
+		input.val(data);
+		utils.selectedItem(item);
+		return false;
+	});
+	
+	// submit suggestion form
+	$("#vehicle").on("submit", "form", function(e) {
+		if (existUnselected()) {
+			return false;
+		}
+	});
+
 });
 
 function URLSendAgreements() {
-	var data = [], input = $("input[name='data']");
+	var data = [],
+			input = $("input[name='data']"),
+			checkbox;
 	$(".checkbox").each(function(index, value) {
-		var checkbox = $(this);
+		checkbox = $(this);
 		if (checkbox.attr("is-checked") === "true") {
 			data.push(checkbox.attr("data"));
 		}
@@ -284,6 +290,21 @@ function isValidateSubmit(form) {
 	}
 }
 
+function existUnselected() {
+	var unselected = 0,
+			message = $("#vehicle").find("form div.required");
+	$("#vehicle").find("ul").each(function(index, value) {
+		if ($(this).attr("data") === "unselected") {
+			unselected++;
+		}
+	});
+	if (unselected > 0) {
+		message.show();
+		return true;
+	}
+	else
+		return false;
+}
 function isFileSelected(form) {
 	var message = form.find("div.required"),
 			fileName = $("#fleet").val();
@@ -297,9 +318,9 @@ function isFileSelected(form) {
 }
 
 $(function(e) {
-	AON.init();
-	UTIL.init();
+	Aon.init();
+	Utils.init();
 	$(window).resize(function() {
-		AON.windowResize();
+		Aon.windowResize();
 	});
 });

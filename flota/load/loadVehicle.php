@@ -1,4 +1,4 @@
-<form action="operation.php">
+<form action="operation.php" method="post">
   <div style="width: 870px; overflow-x: auto;">
     <table id="vehicle-suggestion">
       <thead>
@@ -17,66 +17,50 @@
       <tbody>
         <tr>
           <td>
-            <ul class="vehicle-suggestion-list" role="marca">
-              <li name="ACURI" data="1" role="error" class="text-error">
-                <span class="img-common icon-mini icon-error"></span>ACURI
-              </li>
-              <li name="ACURA" data="1">
-                <span class="icon-mini icon-clear"></span>ACURA
-              </li>
-              <li data="2"><span class="icon-mini icon-clear"></span>VENIRAUTO</span></li>
-              <li data="3"><span class="icon-mini icon-clear"></span>HAIMA</li>
-              <li data="4"><span class="icon-mini icon-clear"></span>CAN_AM</li>
-              <li><span class="icon-mini icon-clear"></span>HOWO</li>
-              <li><span class="icon-mini icon-clear"></span>JINLUN</li>
-              <li><span class="icon-mini icon-clear"></span>POWERPLUS</li>
-              <li><span class="icon-mini icon-clear"></span>HAOJUE</li>
-              <li><span class="icon-mini icon-clear"></span>ACURA</li>
-              <li><span class="icon-mini icon-clear"></span>ROFERCA</li>
-              <li><span class="icon-mini icon-clear"></span>DAF</li>
-              <li><span class="icon-mini icon-clear"></span>BERA</li>
-              <li><span class="icon-mini icon-clear"></span>OTTAWA</li>
-              <li><span class="icon-mini icon-clear"></span>HAOJIN</li>
-              <li><span class="icon-mini icon-clear"></span>XCMG</li>
-              <li><input type="hidden" id="marca-select"value=""></li>
+            <ul id="marca" class="vehicle-suggestion-list" role="marca" data="unselected">
+              <li><span class="icon-mini icon-clear img-common icon-error"></span>TOTAL</li>
+              <li data="1"><span class="icon-mini icon-clear"></span>ACURA</li>
+              <li><input name="marca" type="hidden"></li>
             </ul>
           </td>
           <td>
-            <ul id="modelo" class="vehicle-suggestion-list" role="modelo">
+            <ul id="modelo" class="vehicle-suggestion-list" role="modelo" data="unselected">
               <li>No hay modelos</li>
             </ul>
           </td>
           <td>
-            <ul id="version" class="vehicle-suggestion-list" role="version">
+            <ul id="version" class="vehicle-suggestion-list" role="version" data="unselected">
               <li>No hay versiones</li>
             </ul>
           </td>
           <td>
-            <ul id="ano" class="vehicle-suggestion-list" role="ano">
+            <ul id="ano" class="vehicle-suggestion-list" role="ano" data="unselected">
               <li>No hay años</li>
             </ul>
           </td>
           <td>
-            <ul id="inma" class="vehicle-suggestion-list">
+            <ul id="inma" class="vehicle-suggestion-list" role="inma" data="unselected">
               <li>No hay inma</li>
             </ul>
           </td>
           <td>
-            <ul class="vehicle-suggestion-list" role="select">
+            <ul class="vehicle-suggestion-list" role="cobertura" data="selected">
               <li role="selected"><span class="icon-mini icon-clear img-common icon-selected"></span>TOTAL</li>
               <li><span class="icon-mini icon-clear"></span>AMPLIA</li>
               <li><span class="icon-mini icon-clear"></span>RCV</li>
+              <li><input name="cobertura" type="hidden" value="1"></li>
             </ul>
           </td>
           <td>
-            <ul class="vehicle-suggestion-list" role="select">
+            <ul class="vehicle-suggestion-list" role="uso" data="selected">
               <li role="selected"><span class="icon-mini icon-clear img-common icon-selected"></span>PARTICULAR</li>
               <li><span class="icon-mini icon-clear"></span>RÚSTICO</li>
               <li><span class="icon-mini icon-clear"></span>PICKUP/VAN</li>
+              <li><input name="uso" type="hidden" value="1"></li>
             </ul>
           </td>
           <td>
-            <ul class="vehicle-suggestion-list" role="select">
+            <ul class="vehicle-suggestion-list" role="ocupantes" data="selected">
               <li><span class="icon-mini icon-clear"></span>2</li>
               <li><span class="icon-mini icon-clear"></span>3</li>
               <li><span class="icon-mini icon-clear"></span>4</li>
@@ -86,10 +70,11 @@
               <li><span class="icon-mini icon-clear"></span>8</li>
               <li><span class="icon-mini icon-clear"></span>13</li>
               <li><span class="icon-mini icon-clear"></span>17</li>
+              <li><input name="ocupantes" type="hidden" value="5"></li>
             </ul>
           </td>
           <td>
-            <ul class="vehicle-suggestion-list"role="select">
+            <ul class="vehicle-suggestion-list" role="edad" data="selected">
               <li><span class="icon-mini icon-clear"></span>18</li>
               <li><span class="icon-mini icon-clear"></span>19</li>
               <li><span class="icon-mini icon-clear"></span>20</li>
@@ -168,27 +153,36 @@
               <li><span class="icon-mini icon-clear"></span>93</li>
               <li><span class="icon-mini icon-clear"></span>94</li>
               <li><span class="icon-mini icon-clear"></span>95</li>
+              <li><input name="edad" type="hidden" value="29"></li>
             </ul>
           </td>
           <td>
-            <ul class="vehicle-suggestion-list" role="select">
+            <ul class="vehicle-suggestion-list" role="sexo" data="selected">
               <li role="selected"><span class="icon-mini icon-clear img-common icon-selected"></span>MASCULINO</li>
               <li><span class="icon-mini icon-clear"></span>FEMENINO</li>
+              <li><input name="sexo" type="hidden" value="1"></li>
             </ul>
           </td>
           <td class="no-border">
-            <ul class="vehicle-suggestion-list" role="select">
+            <ul class="vehicle-suggestion-list" role="civil" data="selected">
               <li><span class="icon-mini icon-clear"></span>CASADO</li>
               <li role="selected"><span class="icon-mini icon-clear img-common icon-selected"></span>SOLTERO</li>
+              <li><input name="civil" type="hidden" value="1"></li>
             </ul>
           </td>
         </tr>
       </tbody>
     </table>
+    <input type="hidden" name="id">
   </div>
-  <div class="buttons-panel">
+  <div class="buttons-panel" style="text-align: left">
     <br>
-    <input type="button" class="common-button img-common" value="Enviar">
-    <input type="button" class="common-button img-common" value="Cancelar" onclick="$('#vehicle').dialog('close');">
+    <span style="display: inline-block">
+      <div class="required hide">Uno o varios campos son invälidos.</div>
+    </span>
+    <div class="pull-rigth">
+      <input type="submit" class="common-button img-common" value="Enviar">
+      <input type="button" class="common-button img-common" value="Cancelar" onclick="$('#vehicle').dialog('close');">
+    </div>
   </div>
 </form>

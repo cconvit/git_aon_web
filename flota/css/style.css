@@ -510,7 +510,7 @@ body, html{
   text-transform: uppercase;
   padding: 0px 15px 15px 15px;
   vertical-align: top;
-    border-right: solid 1px #ACACAC;
+  border-right: solid 1px #ACACAC;
   border-collapse: collapse;
 }
 #vehicle{
