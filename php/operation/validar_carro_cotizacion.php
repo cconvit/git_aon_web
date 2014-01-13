@@ -231,7 +231,7 @@ class validar_carro_cotizacion {
     }
   } 
     public function getCobertura($cobertura) {
-
+       
         switch ($cobertura) {
 
             case 2: return "TOTAL";

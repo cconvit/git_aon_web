@@ -47,6 +47,13 @@ class cotizacion_carro {
         
         return self::find_by_sql("SELECT * FROM " . self::$table_name. " WHERE `id_cotizacion`='{$database->escape_value($this->id_cotizacion)}'");
     }
+    
+    public  function find_by_id_cotizacion_carro() {
+        
+        global $database;
+        
+        return self::find_by_sql("SELECT * FROM " . self::$table_name. " WHERE `id`='{$database->escape_value($this->id)}'");
+    }
 
     // Common Database Methods
     public  function find_by_id_cotizacion_error() {
