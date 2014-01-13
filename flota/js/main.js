@@ -182,7 +182,7 @@ $(function(e) {
 	var id, marca, modelo, version, ano, inma, cobertura, uso, ocupantes, edad, sexo, civil;
 	$(".list-fleet").on("click", ".suggestion", function(e) {
 		id = $(this).attr("data");
-		vehicle.load("load/loadVehicle.php", function() {
+		vehicle.load("load/loadVehicle.php?id=" + id, function() {
 			marca = $("#marca"), modelo = $("#modelo"), version = $("#version"), ano = $("#ano"), inma = $("#inma"), cobertura = $("#cobertura"), uso = $("#uso"), ocupantes = $("#ocupantes"), edad = $("#edad"), sexo = $(sexo), civil = $("#civil"), $("input[name='id']").val(id)
 			vehicle.dialog("open");
 		});
