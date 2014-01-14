@@ -1,5 +1,5 @@
 <div>
-  <form method="post" action="oeration.php" onsubmit="return isValidateSubmit($(this))">
+  <form method="post" action="oeration.php" onsubmit="return checksSelected($(this))">
     <table align="center" width="360">
       <tbody>
         <tr>
@@ -18,19 +18,19 @@
           <td>Particular</td>
         </tr>
         <tr>
-          <td><input type="text" name="particular" class="common-input is-required"></td>
+          <td><input type="text" name="particular" class="common-input"></td>
         </tr>
         <tr>
           <td>Rustico</td>
         </tr>
         <tr>
-          <td><input type="text" name="rustico" class="common-input is-required"></td>
+          <td><input type="text" name="rustico" class="common-input"></td>
         </tr>
         <tr>
           <td>Pickup/Van</td>
         </tr>
         <tr>
-          <td><input type="text" name="pickup" class="common-input is-required"></td>
+          <td><input type="text" name="pickup" class="common-input"></td>
         </tr>
         <tr>
           <td><div class="required hide">Uno o más campos son inválidos.</div></td>

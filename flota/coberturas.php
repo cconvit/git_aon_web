@@ -39,12 +39,6 @@ if (isset($_SESSION['msg'])) {
               <td><input type="text" class="common-input is-required" name="nombre"></td></td>
             </tr>
             <tr>
-              <td>Descripción</td>
-            </tr>
-            <tr>
-              <td><input type="text" class="common-input is-required" name="descripcion"></td></td>
-            </tr>
-            <tr>
               <td><div class="required hide">Uno o más campos son inválidos.</div></td>
             </tr>              
           </tbody>

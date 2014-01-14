@@ -37,13 +37,7 @@ var Aon = {
 
 var Utils = {
 	initDialogs: function(width) {
-		$(".dialog").dialog({
-			modal: true,
-			autoOpen: false,
-			width: width,
-			resizable: false,
-			position: "top+15%"
-		});
+		$(".dialog").dialog({modal: true,autoOpen: false,width: width,resizable: false,position: "top+15%"});
 	},
 	loadDialog: function(page, button, dialog) {
 		var id = button.attr("data"),
@@ -104,35 +98,19 @@ var Wizard = {
 	}
 };
 
+// Jquery events:
 $(function(e) {
 
 	var wizard = Wizard,
-			utils = Utils;
+			utils = Utils,
+			load = $("#load"),
+			tabs = $("#tabs"),
+			vehicle = $("#vehicle");
 
-	var load = $("#load");
-	load.dialog({
-		modal: true,
-		autoOpen: false,
-		width: 400,
-		resizable: false,
-		position: "top+3%"
-	});
-
-	var tabs = $("#tabs");
-	tabs.tabs().find("ul").css({
-		"background-color": "#FFFFFF",
-		"display": "block",
-		"border": "none"
-	});
-
-	var vehicle = $("#vehicle");
-	vehicle.dialog({
-		modal: true,
-		autoOpen: false,
-		width: 900,
-		resizable: false,
-		position: "center"
-	});
+	//init all dialogs and tabs
+	load.dialog({modal: true, autoOpen: false, width: 400, resizable: false, position: "top+3%"});
+	vehicle.dialog({modal: true, autoOpen: false, width: 900, resizable: false, position: "center"});
+	tabs.tabs().find("ul").css({"background-color": "#FFFFFF", "display": "block", "border": "none"});
 
 	//throw click input file event
 	$("input[id='input-file']").on("click", function(e) {
@@ -235,13 +213,13 @@ $(function(e) {
 
 	// submit suggestion form
 	$("#vehicle").on("submit", "form", function(e) {
-		if (existUnselected()) {
+		if (existUnselected($(this))) {
 			return false;
 		}
 	});
-
 });
 
+// generics functions 
 function URLSendAgreements() {
 	var data = [],
 			input = $("input[name='data']"),
@@ -268,6 +246,10 @@ function formOperation() {
 	else {
 		return false;
 	}
+}
+
+function checksSelected(form){
+return form.find("input[type='checkbox']:checked").length > 0;
 }
 
 function isValidateSubmit(form) {
@@ -317,6 +299,7 @@ function isFileSelected(form) {
 	}
 }
 
+// when the DOM load: init tools
 $(function(e) {
 	Aon.init();
 	Utils.init();

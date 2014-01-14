@@ -8,7 +8,6 @@ require_once ('../../php/operation/validar_carro_cotizacion.php');
 if (isset($_REQUEST["id"])) {
   $cotizacion_carro = new cotizacion_carro();
   $cotizacion_carro->id = $_REQUEST["id"];
-
   $cotizacion_carro_aux = $cotizacion_carro->find_by_id_cotizacion_carro();
   $carro = $cotizacion_carro_aux[0];
 

@@ -39,7 +39,7 @@ if (isset($_SESSION['msg'])) {
   </head>
   <body>
     <div id="load">
-      <form method="post" action="../php/operation/administration.php?operation_type=13&target=../../flota/cargar-condiciones.php" onsubmit="return isValidateSubmit($(this))">
+      <form id="add-cooverage" method="post" action="../php/operation/administration.php?operation_type=13&target=../../flota/cargar-condiciones.php" onsubmit="return checksSelected($(this))">
         <table align="center" width="360">
           <tbody>
             <tr>
@@ -180,10 +180,9 @@ if (isset($_SESSION['msg'])) {
                             <p class="separator"></p>
                             <div class="info-down">
                               <div class="options">
-                                <form method="post" action="operation.php" action="">
+                                <form method="post" action="" action="" onsubmit="return formOperation()">
                                   <p>
-                                    <input id="input-file" type="button" class="img-common icon-operation icon-modified" data="1" onclick="Utils.loadDialog('load/loadConditon.php', this, $('#modify'));
-                                            return false;">
+                                    <input id="input-file" type="button" class="img-common icon-operation icon-modified" data="1" onclick="Utils.loadDialog('load/loadConditon.php', this, $('#modify'));">
                                     <input id="input-file" type="button" class="img-common icon-operation icon-delete" data="1">
                                   </p>
                                 </form>
