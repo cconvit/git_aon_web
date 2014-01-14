@@ -226,14 +226,13 @@ $(function(e) {
 				inma.attr("data", "selected");
 				break;
 		}
-		console.log(ul.attr("id"));
 		array [role] = data;
 		ul.attr("data", "selected");
 		input.val(data);
 		utils.selectedItem(item);
 		return false;
 	});
-	
+
 	// submit suggestion form
 	$("#vehicle").on("submit", "form", function(e) {
 		if (existUnselected()) {
