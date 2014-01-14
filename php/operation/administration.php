@@ -196,14 +196,14 @@ function deleteAseguradora($id) {
     require_once ('../entity/aseguradora.php');
     $aseguradora = new aseguradora();
     $aseguradora->id = $id;
-
+        
     $_SESSION["msg"] = "show";
 
     if (!$aseguradora->delete()) {
-        $_SESSION["msg_desc"] = "Ocurrio un error al tratar de crear un seguro. Por favor intente mas tarde. Si el error persiste, comuniquese con el administrador del sistema.";
+        $_SESSION["msg_desc"] = "Ocurrio un error al tratar de eliminar un seguro. Por favor intente mas tarde. Si el error persiste, comuniquese con el administrador del sistema.";
         $_SESSION["msg_type"] = "error";
     } else {
-        $_SESSION["msg_desc"] = "La creación del seguro se realizó exitosamente";
+        $_SESSION["msg_desc"] = "La eliminación del seguro se realizó exitosamente";
         $_SESSION["msg_type"] = "succesfull";
     }
     header('Location: ' . $_GET["target"]);
@@ -350,9 +350,6 @@ function newCondicion() {
         if ($_REQUEST["cobertura_amplia"] == "true")
             createCondicion($condicion, "1");
 
-        if ($_REQUEST["cobertura_amplia"] == "true")
-            createCondicion($condicion, "1");
-
         if ($_REQUEST["perdida_total"] == "true")
             createCondicion($condicion, "2");
 
@@ -373,12 +370,12 @@ function newCondicion() {
     header('Location: ' . $_GET["target"]);
 }
 
-function createCondicion($condicion, $tipo_cob, $valor) {
+function createCondicion($condicion, $tipo_cob) {
 
     for ($x = 1; $x < 4; $x++) {
 
         $condicion->id_tipo_cob = $tipo_cob;
-        $condicion->valor = $valor == "" ? "0" : $valor;
+        //$condicion->valor = $valor == "" ? "0" : $valor;
         $condicion->id_tipo_carro = $x;
 
         switch ($x) {

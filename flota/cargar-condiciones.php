@@ -176,7 +176,7 @@ if (isset($_SESSION['msg'])) {
                       <tr>
                         <td>
                           <div class='item'>
-                            <p><span class="check icon-check"></span><span class="item-title"><?php echo $value->descripcion; ?></span></p>
+                            <p><span class="img-common check icon-check"></span><span class="item-title"><?php echo $value->descripcion; ?></span></p>
                             <p class="separator"></p>
                             <div class="info-down">
                               <div class="options">
