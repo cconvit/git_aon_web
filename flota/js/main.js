@@ -305,6 +305,7 @@ function existUnselected() {
 	else
 		return false;
 }
+
 function isFileSelected(form) {
 	var message = form.find("div.required"),
 			fileName = $("#fleet").val();

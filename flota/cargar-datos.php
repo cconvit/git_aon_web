@@ -28,11 +28,11 @@ if (isset($_SESSION['msg'])) {
   <body>
     <div id="container">
       <div id="header">
-         <a href="index.php"><img id="logo" src="img/logo.png"></a>
+        <a href="index.php"><img id="logo" src="img/logo.png"></a>
         <div id="top-nav"></div>
       </div>
       <div id="content">
-         <div class="message <?php echo $msg . " " . $msg_type; ?>"><?php echo $msg_desc; ?></div>
+        <div class="message <?php echo $msg . " " . $msg_type; ?>"><?php echo $msg_desc; ?></div>
         <div id="left-nav">
           <ul>
             <li><a href="clientes.php">Clientes</a></li>
@@ -53,7 +53,7 @@ if (isset($_SESSION['msg'])) {
                 <tr>
                   <td>
                     <div class='item'>
-                      <p><span class="img-common <?php echo $_SESSION["up_amplia"];?> icon-check"></span><span class="item-title">Cobertura amplia</span></p>
+                      <p><span class="img-common <?php echo $_SESSION["up_amplia"]; ?> icon-check"></span><span class="item-title">Cobertura amplia</span></p>
                       <p class="separator"></p>
                       <div class="info-down">
                         <div class="options">
@@ -71,7 +71,7 @@ if (isset($_SESSION['msg'])) {
                 <tr>
                   <td>
                     <div class='item'>
-                      <p><span class="img-common <?php echo $_SESSION["up_total"];?> icon-check"></span><span class="item-title">Pérdida total</span></p>
+                      <p><span class="img-common <?php echo $_SESSION["up_total"]; ?> icon-check"></span><span class="item-title">Pérdida total</span></p>
                       <p class="separator"></p>
                       <div class="info-down">
                         <div class="options">
@@ -89,7 +89,7 @@ if (isset($_SESSION['msg'])) {
                 <tr>
                   <td>
                     <div class='item'>
-                      <p><span class="img-common <?php echo $_SESSION["up_clasificacion"];?> icon-check"></span><span class="item-title">Clasificación</span></p>
+                      <p><span class="img-common <?php echo $_SESSION["up_clasificacion"]; ?> icon-check"></span><span class="item-title">Clasificación</span></p>
                       <p class="separator"></p>
                       <div class="info-down">
                         <div class="options">
@@ -107,7 +107,7 @@ if (isset($_SESSION['msg'])) {
                 <tr>
                   <td>
                     <div class='item'>
-                      <p><span class="img-common <?php echo $_SESSION["up_segmentacion"];?> icon-check"></span><span class="item-title">Segmentación</span></p>
+                      <p><span class="img-common <?php echo $_SESSION["up_segmentacion"]; ?> icon-check"></span><span class="item-title">Segmentación</span></p>
                       <p class="separator"></p>
                       <div class="info-down">
                         <div class="options">
@@ -125,7 +125,7 @@ if (isset($_SESSION['msg'])) {
                 <tr>
                   <td>
                     <div class='item'>
-                      <p><span class="img-common <?php echo $_SESSION["up_grua"];?> icon-check"></span><span class="item-title">Grúa</span></p>
+                      <p><span class="img-common <?php echo $_SESSION["up_grua"]; ?> icon-check"></span><span class="item-title">Grúa</span></p>
                       <p class="separator"></p>
                       <div class="info-down">
                         <div class="options">
@@ -147,13 +147,13 @@ if (isset($_SESSION['msg'])) {
         <div id="footer">
           <div id="nav-step">
             <ul>
-              <li><input type="button" class="img-common icon-step icon-exit" onclick="WIZARD.exit('convenios.php')"></li>
+              <li><input type="button" class="img-common icon-step icon-exit" onclick="Wizard.exit('convenios.php')"></li>
               <li><a>Crear convenio</a></li>
               <li><span class="img-common arrow"></span></li>                      
               <li><a class='current-step' href="cargar-datos.php">Importar datos</a></li>
               <li><span class="img-common arrow"></span></li>               
               <li><a href="cargar-condiciones.php">Condiciones y coberturas</a></li>
-              <li><input id="next" type="button" class="img-common icon-step icon-next" onclick="location.href='cargar-condiciones.php'"></li>
+              <li><input id="next" type="button" class="img-common icon-step icon-next" onclick="location.href = 'cargar-condiciones.php'"></li>
             </ul>
           </div>
         </div>
@@ -167,8 +167,8 @@ if (isset($_SESSION['msg'])) {
     <script src="js/main.js"></script>
   </body>
 </html>
-  <?php
-  $_SESSION['msg'] = "hide";
-  $_SESSION['msg_desc'] = "";
-  $msg_type = "succesfull";
-  ?>
+<?php
+$_SESSION['msg'] = "hide";
+$_SESSION['msg_desc'] = "";
+$msg_type = "succesfull";
+?>

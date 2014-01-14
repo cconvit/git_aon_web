@@ -36,7 +36,7 @@ $aseguradoras = $aseguradora->find_all();
     <div id="modify" class="dialog"></div>
     <div id="container">
       <div id="header">
-         <a href="index.php"><img id="logo" src="img/logo.png"></a>
+        <a href="index.php"><img id="logo" src="img/logo.png"></a>
         <div id="top-nav"></div>
       </div>
       <div id="content">
@@ -73,17 +73,16 @@ $aseguradoras = $aseguradora->find_all();
                             <p clas="item-sub-title"><?php echo $value->seguro; ?></p>
                             <p class="separator"></p>
                             <div class="info-down">
-                            <p class="item-info">Fecha de creación: <span><?php echo $value->cr_time; ?></span></p>
-                            <p class="item-info">Última modificación: <span><?php echo $value->ut_time; ?></span></p>
-                            <div class="options top-max">
-                              <form method="post" action="../php/operation/administration.php?operation_type=12&target=../../flota/convenios.php" onsubmit="return formOperation()">
-                                <input type="button" data="<?php echo $value->id; ?>" class="img-common icon-operation icon-modified" onclick="UTIL.loadDialog('load/loadAgreement.php', this, $('#modify'));
-                                    return false;">
-                                <input type="submit" type="submit" class="img-common icon-operation icon-delete" value="">
-                                <input type="hidden" name="id" value="<?php echo $value->id; ?>">
-                              </form>
+                              <p class="item-info">Fecha de creación: <span><?php echo $value->cr_time; ?></span></p>
+                              <p class="item-info">Última modificación: <span><?php echo $value->ut_time; ?></span></p>
+                              <div class="options top-max">
+                                <form method="post" action="../php/operation/administration.php?operation_type=12&target=../../flota/convenios.php" onsubmit="return formOperation()">
+                                  <input type="button" data="<?php echo $value->id; ?>" class="img-common icon-operation icon-modified" onclick="Utils.loadDialog('load/loadAgreement.php', $(this), $('#modify')); return false;">
+                                  <input type="submit" type="submit" class="img-common icon-operation icon-delete" value="">
+                                  <input type="hidden" name="id" value="<?php echo $value->id; ?>">
+                                </form>
+                              </div>
                             </div>
-                          </div>
                         </td>
                       </tr>
                       <?php

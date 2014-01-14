@@ -82,7 +82,7 @@ if (isset($_SESSION['msg'])) {
           <div id="footer">
             <div id="nav-step">
               <ul>
-                <li><input type="button" class="img-common icon-step icon-exit" onclick="WIZARD.exit('flotas.php');"></li>
+                <li><input type="button" class="img-common icon-step icon-exit" onclick="Wizard.exit('flotas.php');"></li>
                 <li><a class='current-step' href="crear-flota.php">Crear flota</a></li>
                 <li><span class="img-common arrow"></span></li>                      
                 <li><a>Agregar convenios</a></li>

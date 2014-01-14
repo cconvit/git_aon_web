@@ -420,6 +420,7 @@ body, html{
 #scroll{
   height: 490px;
   overflow-y: auto;
+  overflow-x: hidden;
   min-height: 133px;
 }
 #nav-operations{
@@ -609,7 +610,7 @@ a.access-title{
   margin-top: 5px;
 }
 .message{
-  width: 1277px;
+  width: 100%;
   left: 163px;
   height: 12px;
   position: absolute;

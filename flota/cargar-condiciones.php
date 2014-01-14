@@ -145,7 +145,7 @@ if (isset($_SESSION['msg'])) {
     </div>
     <div id="container">
       <div id="header">
-         <a href="index.php"><img id="logo" src="img/logo.png"></a>
+        <a href="index.php"><img id="logo" src="img/logo.png"></a>
         <div id="top-nav"></div>
       </div>
       <div id="content">
@@ -182,7 +182,7 @@ if (isset($_SESSION['msg'])) {
                               <div class="options">
                                 <form method="post" action="operation.php" action="">
                                   <p>
-                                    <input id="input-file" type="button" class="img-common icon-operation icon-modified" data="1" onclick="UTIL.loadDialog('load/loadConditon.php', this, $('#modify'));
+                                    <input id="input-file" type="button" class="img-common icon-operation icon-modified" data="1" onclick="Utils.loadDialog('load/loadConditon.php', this, $('#modify'));
                                             return false;">
                                     <input id="input-file" type="button" class="img-common icon-operation icon-delete" data="1">
                                   </p>

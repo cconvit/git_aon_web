@@ -129,7 +129,7 @@ $clientes = $cliente->find_all();
           <div id="footer">
             <div id="nav-step">
               <ul>
-                <li><input type="button" class="img-common icon-step icon-exit" onclick="WIZARD.exit('flotas.php');"></li>
+                <li><input type="button" class="img-common icon-step icon-exit" onclick="Wizard.exit('flotas.php');"></li>
                 <li><a class='current-step' href="cotizar.php">Cotizar</a></li>
                 <li><span class="img-common arrow"></span></li>                      
                 <li><a>Validar flota</a></li>

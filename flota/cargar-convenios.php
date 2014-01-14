@@ -5,8 +5,8 @@ require_once("../php/db/config.php");
 require_once ('../php/db/database.php');
 require_once ('../php/entity/convenio_aseguradora.php');
 
-$convenio_aseguradora=new convenio_aseguradora();
-$convenios_aseguradoras=$convenio_aseguradora->find_by_flota($_SESSION["id_flota"]);
+$convenio_aseguradora = new convenio_aseguradora();
+$convenios_aseguradoras = $convenio_aseguradora->find_by_flota($_SESSION["id_flota"]);
 
 $msg = "hide";
 $msg_desc = "";
@@ -34,7 +34,7 @@ if (isset($_SESSION['msg'])) {
     <div id="load" class="dialog"></div>
     <div id="container">
       <div id="header">
-         <a href="index.php"><img id="logo" src="img/logo.png"></a>
+        <a href="index.php"><img id="logo" src="img/logo.png"></a>
         <div id="top-nav"></div>
       </div>
       <div id="content">
@@ -53,7 +53,7 @@ if (isset($_SESSION['msg'])) {
           <div id="main-detail">
             <div id="nav-operations">
               <span class="title">Agregar convenios</span>
-              <input type="button" class="img-common add-button" value="Agregar convenio" onclick="UTIL.loadList('load/loadAgreementsList.php', $('#load'));">
+              <input type="button" class="img-common add-button" value="Agregar convenio" onclick="Utils.loadList('load/loadAgreementsList.php', $('#load'));">
             </div>
             <div id="scroll">
               <table class="tbl-details" cellspacing="0" borderspacing="0">
@@ -95,7 +95,7 @@ if (isset($_SESSION['msg'])) {
                 <li>Crear flota</li>
                 <li><span class="arrow"></span></li>                      
                 <li><a class='current-step' href="cargar-convenios.php">Agregar convenios</a></li>
-                <li><input id="next" type="button" class="img-common icon-step icon-end" onclick="WIZARD.exit('flotas.php');"></li>
+                <li><input id="next" type="button" class="img-common icon-step icon-end" onclick="Wizard.exit('flotas.php');"></li>
               </ul>
             </div>
           </div>
