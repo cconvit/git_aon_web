@@ -67,10 +67,10 @@ $aseguradoras = $aseguradora->find_all();
                       <tr>
                         <td>
                           <div class="item">
-                            <p class="item-title"><?php echo $value->as_nombre; ?></p>
+                            <p class="item-title"><?php echo $value->nombre; ?></p>
                             <p clas="item-sub-title"><?php echo $value->descripcion; ?></p>
-                            <p clas="item-sub-title"><?php echo $value->poliza; ?></p>
-                            <p clas="item-sub-title"><?php echo $value->seguro; ?></p>
+                            <p clas="item-sub-title"><?php echo $value->num_poliza; ?></p>
+                            <p clas="item-sub-title"><?php echo $value->as_nombre; ?></p>
                             <p class="separator"></p>
                           </div>
                           <div class="info-down">

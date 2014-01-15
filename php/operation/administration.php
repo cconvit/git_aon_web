@@ -356,11 +356,17 @@ function newCondicion() {
         if ($_REQUEST["rcv"] == "true")
             createCondicion($condicion, "3");
 
-        $_SESSION["msg_desc"] = "La creación de la cobertura se realizó exitosamente";
-        $_SESSION["msg_type"] = "succesfull";
+        if(($_REQUEST["cobertura_amplia"] == "true") || ($_REQUEST["perdida_total"] == "true") ||  ($_REQUEST["rcv"] == "true")){
+            $_SESSION["msg_desc"] = "La creación de la cobertura se realizó exitosamente";
+            $_SESSION["msg_type"] = "succesfull";
+        }else{
+            
+            $_SESSION["msg_desc"] = "Ocurrio un error al tratar de crear la cobertura al convenio. Por favor intente mas tarde. Si el error persiste, comuniquese con el administrador del sistema.";
+        $_SESSION["msg_type"] = "error";
+        }
     }else {
 
-        $_SESSION["msg_desc"] = "Ocurrio un error al tratar de crear la cobertura al convenio. Por favor intente mas tarde. Si el error persiste, comuniquese con el administrador del sistema.";
+        $_SESSION["msg_desc"] = "Ocurrio un error al tratar de crear la cobertura al convenio debido a que no selecionó ninguna condición. Si el error persiste, comuniquese con el administrador del sistema.";
         $_SESSION["msg_type"] = "error";
     }
 

@@ -274,6 +274,7 @@ function grua($worksheet, $nrColumns, $highestRow, $highestColumnIndex, $id_conv
                         $data[$row]["id_tipo_carro"] = $val;
                         break;
                     case 1:
+                        
                         $reg_valido = isValidType("n", $dataType);
                         if(!$reg_valido)$reg_valido = isValidType("f", $dataType);
                         $data[$row]["ano"] = $val;

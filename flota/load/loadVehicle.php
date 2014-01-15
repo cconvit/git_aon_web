@@ -12,6 +12,25 @@ if (isset($_REQUEST["id"])) {
   $carro = $cotizacion_carro_aux[0];
 
   $convertidor = new validar_carro_cotizacion();
+  
+  //  Initiate curl
+$ch = curl_init();
+// Disable SSL verification
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+// Will return the response, if false it print the response
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+// Set the url
+curl_setopt($ch, CURLOPT_URL,"http://localhost/git_aon_web/inma/json.php?ot=1");
+// Execute
+$result=curl_exec($ch);
+
+// Will dump a beauty json :3
+
+$marcas=json_decode($result, true);
+
+
+
+
   ?>
   <form action="operation.php" method="post">
     <div style="width: 870px; overflow-x: auto;">
@@ -32,19 +51,22 @@ if (isset($_REQUEST["id"])) {
         <tbody>
           <tr>
             <td>
-              <ul id="marca" class="vehicle-suggestion-list" role="marca" data="unselected">
-                <?php if ($carro->is_car_marca == 1) { ?>
-                  <li data="1" role="selected"><span class="icon-mini icon-clear img-common icon-selected"></span><?php echo $carro->car_marca; ?></li>
-                <?php } else { ?>
-                  <li><span class="icon-mini icon-clear img-common icon-error"></span><?php echo $carro->car_marca; ?></li>
-                <?php } ?>
-                <li><input name="marca" type="hidden"></li>
+              <ul id="marca" class="vehicle-suggestion-list" role="marca" data="<?php echo $carro->is_car_marca == "1" ? "selected" : "unselected" ?>">
+                  <?php if ($carro->is_car_marca != 1){ ?>
+                   <li><span class="icon-mini icon-clear img-common icon-error"></span><?php echo $carro->car_marca; ?></li>
+                  <?php
+                    }
+                    foreach ($marcas as $marca){ ?>
+                    <li data="1" role="<?php echo $carro->car_marca == $marca['marca'] ? "selected" : "unselected" ?>"><span class="icon-mini icon-clear<?php echo $carro->car_marca == $marca['marca'] ? " img-common icon-selected" : "" ?>"></span><?php echo $marca['marca']; ?></li>
+                  <?php }?>
+                    <li><input name="marca" type="hidden"></li>
               </ul>
             </td>
             <td>
-              <ul id="modelo" class="vehicle-suggestion-list" role="modelo" data="unselected">
-                <?php if ($carro->is_car_marca == 1) { ?>
-                  <?php if ($carro->is_car_modelo == 1) { ?>
+                <ul id="modelo" class="vehicle-suggestion-list" role="modelo" data="<?php echo (($carro->is_car_modelo == "1") || ($carro->is_car_marca == 1)) ? "selected" : "unselected" ?>">
+                <?php if ($carro->is_car_marca == 1) {?>
+                   
+                  <?php if ($carro->is_car_modelo == 1) {?>
                     <li data="1" role="selected"><span class="icon-mini icon-clear img-common icon-selected"></span><?php echo $carro->car_modelo; ?></li>
                   <?php } else { ?>
                     <li data="1"><span class="icon-mini icon-clear img-common icon-error"></span><?php echo $carro->car_modelo; ?></li>
@@ -55,19 +77,21 @@ if (isset($_REQUEST["id"])) {
               </ul>
             </td>
             <td>
-              <ul id="version" class="vehicle-suggestion-list" role="version" data="unselected">
                 <?php if ($carro->is_car_marca == 1 && $carro->is_car_modelo == 1) { ?>
+                  <ul id="ano" class="vehicle-suggestion-list" role="ano" data="selected">
                   <li data="1" role="selected"><span class="icon-mini icon-clear img-common icon-selected"></span><?php echo $carro->car_version; ?></li>
                 <?php } else { ?>
+                  <ul id="ano" class="vehicle-suggestion-list" role="ano" data="unselected">
                   <li>No hay versiones</li>
                 <?php } ?> 
               </ul>
             </td>
             <td>
-              <ul id="ano" class="vehicle-suggestion-list" role="ano" data="unselected">
                 <?php if ($carro->is_car_marca == 1 && $carro->is_car_modelo == 1) { ?>
+                 <ul id="ano" class="vehicle-suggestion-list" role="ano" data="selected">
                   <li data="1" role="selected"><span class="icon-mini icon-clear img-common icon-selected"></span><?php echo $carro->car_ano; ?></li>
                 <?php } else { ?>
+                   <ul id="ano" class="vehicle-suggestion-list" role="ano" data="unselected">
                   <li>No hay años</li>
                 <?php } ?>
               </ul>
@@ -82,8 +106,8 @@ if (isset($_REQUEST["id"])) {
               </ul>
             </td>
             <td>
-              <ul class="vehicle-suggestion-list" role="cobertura" data="<?php echo $carro->tipo_cobertura == "2" ? "selected" : "unselected" ?>">
-                <?php if ($carro->is_tipo_carros != "1") { ?><li><span class="icon-mini icon-clear img-common icon-error"></span><?php echo $convertidor->getCobertura($carro->tipo_cobertura); ?></li><?php } ?>
+              <ul class="vehicle-suggestion-list" role="cobertura" data="<?php echo $carro->is_tipo_cobertura == "1" ? "selected" : "unselected" ?>">
+                <?php if ($carro->is_tipo_cobertura != "1") { ?><li><span class="icon-mini icon-clear img-common icon-error"></span><?php echo $convertidor->getCobertura($carro->tipo_cobertura); ?></li><?php } ?>
                 <li role="<?php echo $carro->tipo_cobertura == "2" ? "selected" : "unselected" ?>"><span class="icon-mini icon-clear<?php echo $carro->tipo_cobertura == "2" ? " img-common icon-selected" : "" ?>"></span>TOTAL</li>
                 <li role="<?php echo $carro->tipo_cobertura == "1" ? "selected" : "unselected" ?>"><span class="icon-mini icon-clear<?php echo $carro->tipo_cobertura == "1" ? " img-common icon-selected" : "" ?>"></span>AMPLIA</li>
                 <li role="<?php echo $carro->tipo_cobertura == "3" ? "selected" : "unselected" ?>"><span class="icon-mini icon-clear<?php echo $carro->tipo_cobertura == "3" ? " img-common icon-selected" : "" ?>"></span>RCV</li>

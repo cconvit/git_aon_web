@@ -1,6 +1,5 @@
 <?php header('Access-Control-Allow-Origin: *'); ?>  
 <?php
-
 mysql_connect("localhost", "root", "");
 mysql_select_db("inma");
 $json = array();

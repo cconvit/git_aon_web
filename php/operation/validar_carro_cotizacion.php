@@ -175,7 +175,7 @@ class validar_carro_cotizacion {
 
             case 2: return "M";
             case 1: return "F";
-            default : return "";
+            default : return "NO ENCONTRADO";
         }
     }
 
@@ -216,7 +216,7 @@ class validar_carro_cotizacion {
             case 1: return "PARTICULAR";
             case 2: return "RUSTICO";
             case 3: return "PICKUP";
-            default : return "";
+            default : return "NO ENCONTRADO";
         }
     }
 
@@ -237,7 +237,7 @@ class validar_carro_cotizacion {
             case 2: return "TOTAL";
             case 1: return "AMPLIA";
             case 3: return "RCV";
-            default : return "";
+            default : return "NO ENCONTRADO";
         }
     }
 
