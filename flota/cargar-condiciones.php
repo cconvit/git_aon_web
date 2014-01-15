@@ -104,7 +104,7 @@ if (isset($_SESSION['msg'])) {
             </td>
           </tr>
           <tr>
-            <td>Aplica con las siguientes condiciones:</td>
+            <td style="padding-top: 12px;">Aplica con las siguientes condiciones:</td>
           </tr>
           <tr>
             <td>
@@ -163,8 +163,8 @@ if (isset($_SESSION['msg'])) {
         <div id="main">
           <div id="main-detail">
             <div id="nav-operations">
-              <span class="title">Coberturas y Condiciones</span>
-              <input type="button" class="img-common add-button" value="Añadir cobertura" onclick="$('#load').dialog('open');">
+              <span class="title">Condiciones de negocio</span>
+              <input type="button" class="img-common add-button" value="Añadir condición" onclick="$('#load').dialog('open');">
             </div>
             <div id="scroll">
               <table class="tbl-details" cellspacing="0" borderspacing="0">
@@ -208,7 +208,7 @@ if (isset($_SESSION['msg'])) {
               <li><span class="img-common arrow"></span></li>                      
               <li><a href="cargar-datos.php">Importar datos</a></li>
               <li><span class="img-common arrow"></span></li>               
-              <li><a class="current-step" href="cargar-condiciones.php">Condiciones y coberturas</a></li>
+              <li><a class="current-step" href="cargar-condiciones.php">Condiciones de negocio</a></li>
               <li><input type="button" class="img-common icon-step icon-end" onclick="location.href = 'convenios.php'"></li>            
             </ul>
           </div>

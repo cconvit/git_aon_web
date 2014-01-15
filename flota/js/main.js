@@ -37,7 +37,7 @@ var Aon = {
 
 var Utils = {
 	initDialogs: function(width) {
-		$(".dialog").dialog({modal: true,autoOpen: false,width: width,resizable: false,position: "top+15%"});
+		$(".dialog").dialog({modal: true,autoOpen: false,width: width,resizable: false,position: "center"});
 	},
 	loadDialog: function(page, button, dialog) {
 		var id = button.attr("data"),
@@ -108,7 +108,7 @@ $(function(e) {
 			vehicle = $("#vehicle");
 
 	//init all dialogs and tabs
-	load.dialog({modal: true, autoOpen: false, width: 400, resizable: false, position: "top+3%"});
+	load.dialog({modal: true, autoOpen: false, width: 400, resizable: false, position: "top+10%"});
 	vehicle.dialog({modal: true, autoOpen: false, width: 900, resizable: false, position: "center"});
 	tabs.tabs().find("ul").css({"background-color": "#FFFFFF", "display": "block", "border": "none"});
 

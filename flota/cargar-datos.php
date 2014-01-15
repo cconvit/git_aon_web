@@ -53,13 +53,14 @@ if (isset($_SESSION['msg'])) {
                 <tr>
                   <td>
                     <div class='item'>
-                      <p><span class="img-common <?php echo $_SESSION["up_amplia"]; ?> icon-check"></span><span class="item-title">Cobertura amplia</span></p>
+                      <p><span class="img-common <?php echo $_SESSION["up_amplia"]; ?> icon-check"></span><span class="item-title">Tasas de Cobertura Ámplia</span></p>
                       <p class="separator"></p>
                       <div class="info-down">
                         <div class="options">
                           <form method="post" action="../php/operation/operation_upload.php?operation_upload=1&target=../../flota/cargar-datos.php" enctype="multipart/form-data">
                             <p>
                               <input id="input-file" type="button" class="img-common icon-operation icon-upload">
+                              <input type="button" class="img-common icon-operation icon-view">
                               <input type="file" name="file" class="hide">
                             </p>
                           </form>
@@ -71,7 +72,7 @@ if (isset($_SESSION['msg'])) {
                 <tr>
                   <td>
                     <div class='item'>
-                      <p><span class="img-common <?php echo $_SESSION["up_total"]; ?> icon-check"></span><span class="item-title">Pérdida total</span></p>
+                      <p><span class="img-common <?php echo $_SESSION["up_total"]; ?> icon-check"></span><span class="item-title">Tasas de Pérdida Total</span></p>
                       <p class="separator"></p>
                       <div class="info-down">
                         <div class="options">
@@ -103,7 +104,25 @@ if (isset($_SESSION['msg'])) {
                       </div>
                     </div>
                   </td>
-                </tr>                    
+                </tr>
+                <tr>
+                  <td>
+                    <div class='item'>
+                      <p><span class="img-common uncheck icon-check"></span><span class="item-title">Clasificación por Monto asegurado</span></p>
+                      <p class="separator"></p>
+                      <div class="info-down">
+                        <div class="options">
+                          <form method="post" action="../php/operation/operation_upload.php?operation_upload=3&target=../../flota/cargar-datos.php" enctype="multipart/form-data">
+                            <p>
+                              <input id="input-file" type="button" class="img-common icon-operation icon-upload">
+                              <input type="file" name="file" class="hide" value="null">
+                            </p>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                </tr>   
                 <tr>
                   <td>
                     <div class='item'>
@@ -125,7 +144,7 @@ if (isset($_SESSION['msg'])) {
                 <tr>
                   <td>
                     <div class='item'>
-                      <p><span class="img-common <?php echo $_SESSION["up_grua"]; ?> icon-check"></span><span class="item-title">Grúa</span></p>
+                      <p><span class="img-common <?php echo $_SESSION["up_grua"]; ?> icon-check"></span><span class="item-title">AISTENCIA VÍAL</span></p>
                       <p class="separator"></p>
                       <div class="info-down">
                         <div class="options">
@@ -152,7 +171,7 @@ if (isset($_SESSION['msg'])) {
               <li><span class="img-common arrow"></span></li>                      
               <li><a class='current-step' href="cargar-datos.php">Importar datos</a></li>
               <li><span class="img-common arrow"></span></li>               
-              <li><a href="cargar-condiciones.php">Condiciones y coberturas</a></li>
+              <li><a href="cargar-condiciones.php">Condiciones de negocio</a></li>
               <li><input id="next" type="button" class="img-common icon-step icon-next" onclick="location.href = 'cargar-condiciones.php'"></li>
             </ul>
           </div>

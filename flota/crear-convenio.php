@@ -111,7 +111,7 @@ $aseguradoras = $aseguradora->find_all();
                 <li><span class="img-common arrow"></span></li>                      
                 <li><a>Importar datos</a></li>
                 <li><span class="img-common arrow"></span></li>               
-                <li><a>Condiciones y coberturas</a></li>
+                <li><a>Condiciones de negocio</a></li>
                 <li><input id="next" type="button" class="img-common icon-step icon-next" role="create"></li>
               </ul>
             </div>

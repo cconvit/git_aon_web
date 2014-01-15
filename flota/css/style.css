@@ -320,7 +320,7 @@ td {
 
 /* buttons */
 
-input[type="button"], input[type="submit"]  {
+input[type="button"], input[type="submit"], a.button  {
   background-color: transparent;
   border: none;
   background-repeat: no-repeat;
