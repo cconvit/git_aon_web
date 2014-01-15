@@ -859,7 +859,7 @@ a.access-title{
   text-align: center;
 }
 .text-error{
-  color:#E61E17;
+  color:#E61E17 ;
 }
 .pull-left{
   float: left;
@@ -872,4 +872,7 @@ a.access-title{
 }
 .no-border{
   border: none !important;
+}
+.red td{
+  color:#E61E17;
 }
