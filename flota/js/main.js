@@ -91,6 +91,11 @@ var Wizard = {
 			}
 		}
 	},
+	quotation: function() {
+		if(isValidFleet()){
+			
+		}
+	},
 	exit: function(page) {
 		if (confirm("Realmente desea salir del asistente?")) {
 			document.location.href = page;
@@ -131,6 +136,7 @@ $(function(e) {
 				break;
 			case "fleet":
 				wizard.fleet(form);
+				break;
 		}
 		return false;
 	});
@@ -206,9 +212,7 @@ $(function(e) {
 		}
 		array [role] = data;
 		ul.attr("data", "selected");
-		console.log(data)
 		input.val(data);
-		
 		utils.selectedItem(item);
 		return false;
 	});
