@@ -93,7 +93,7 @@ if (isset($_SESSION['msg'])) {
               <ul>
                 <li><input id="next" type="button" class="img-common icon-step icon-exit" ></li>
                 <li>Crear flota</li>
-                <li><span class="arrow"></span></li>                      
+                <li><span class="img-common arrow"></span></li>                      
                 <li><a class='current-step' href="cargar-convenios.php">Agregar convenios</a></li>
                 <li><input id="next" type="button" class="img-common icon-step icon-end" onclick="Wizard.exit('flotas.php');"></li>
               </ul>

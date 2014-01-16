@@ -449,8 +449,7 @@ body, html{
 }
 #agreements-list{
   margin-top: 20px;
-  max-height: 360px;
-  overflow-y: scroll;
+  max-height: 360px;  
 }
 #tabs{
   padding: 10px 0px 0px  0px;
@@ -769,7 +768,7 @@ a.access-title{
 .checkbox{
   width: 35px;
   height: 35px;
-  background-position: -73px -164px;
+  background-position: -68px -164px;
   display: inline-block;
   float: left;
   margin-top: -3px;

@@ -37,7 +37,7 @@ var Aon = {
 
 var Utils = {
 	initDialogs: function(width) {
-		$(".dialog").dialog({modal: true,autoOpen: false,width: width,resizable: false,position: "center"});
+		$(".dialog").dialog({modal: true, autoOpen: false, width: width, resizable: false, position: "center"});
 	},
 	loadDialog: function(page, button, dialog) {
 		var id = button.attr("data"),
@@ -84,7 +84,7 @@ var Wizard = {
 			form.trigger("submit");
 		}
 	},
-	quotation: function(form) {
+	fleet: function(form) {
 		if (isValidateSubmit(form)) {
 			if (isFileSelected(form)) {
 				form.trigger("submit");
@@ -129,8 +129,8 @@ $(function(e) {
 			case "create":
 				wizard.create(form);
 				break;
-			case "quotation":
-				wizard.quotation(form);
+			case "fleet":
+				wizard.fleet(form);
 		}
 		return false;
 	});
@@ -168,7 +168,7 @@ $(function(e) {
 	});
 
 	//select a list suggestion element
-	var item, ul, data, role, dinma, input, array = [];
+	var item, ul, data, role, input, array = [];
 	$("#vehicle").on("click", "#vehicle-suggestion ul li", function(e) {
 		item = $(this), ul = item.parent(), data = item.attr("data"), role = ul.attr("role"), input = ul.find("input[type=hidden]");
 		switch (role) {
@@ -206,16 +206,19 @@ $(function(e) {
 		}
 		array [role] = data;
 		ul.attr("data", "selected");
+		console.log(data)
 		input.val(data);
+		
 		utils.selectedItem(item);
 		return false;
 	});
 
 	// submit suggestion form
 	$("#vehicle").on("submit", "form", function(e) {
-		if (existUnselected($(this))) {
-			return false;
+		if (!existUnselected()) {
+			$(this).trigger("submit");
 		}
+		return false;
 	});
 });
 
@@ -248,8 +251,8 @@ function formOperation() {
 	}
 }
 
-function checksSelected(form){
-return form.find("input[type='checkbox']:checked").length > 0;
+function checksSelected(form) {
+	return form.find("input[type='checkbox']:checked").length > 0;
 }
 
 function isValidateSubmit(form) {

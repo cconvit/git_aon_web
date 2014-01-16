@@ -133,7 +133,7 @@ $clientes = $cliente->find_all();
                 <li><a class='current-step' href="cotizar.php">Crear cotización</a></li>
                 <li><span class="img-common arrow"></span></li>                      
                 <li><a>Validar flota</a></li>
-                <li><input id="next" type="button" class="img-common icon-step icon-next" role="quotation"></li>               
+                <li><input id="next" type="button" class="img-common icon-step icon-next" role="fleet"></li>               
               </ul>
             </div>
           </div>
@@ -144,8 +144,8 @@ $clientes = $cliente->find_all();
     <script src="../plugins/jquery-ui-1.10.3.custom.min.js"></script>
     <script src="js/main.js"></script>
     <script type="text/javascript">
-      document.getElementById("fleet").value = "";
-      document.getElementById("name").value = "no ha seleccionado un archivo...";
+                  document.getElementById("fleet").value = "";
+                  document.getElementById("name").value = "no ha seleccionado un archivo...";
     </script>
   </body>
 </html>
