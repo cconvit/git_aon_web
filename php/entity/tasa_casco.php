@@ -46,6 +46,21 @@ class tasa_casco {
       return false;
     }
   }
+  
+    public function delete_by_convenio_tipo_seguro() {
+
+    global $database;
+
+    $sql = "DELETE FROM " . self::$table_name . " 
+        WHERE id_convenio_as='{$database->escape_value($this->id_convenio_as)}'
+        AND id_tipo_co='{$database->escape_value($this->id_tipo_co)}'";
+        
+    if ($database->query($sql)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
 ///////////////////////////METODOS ESTANDAR//////////////////////////////////
 

@@ -81,6 +81,10 @@ function import_file($path, $operation, $id_convenio_as) {
                 //Segmentacion
                 grua($worksheet, $nrColumns, $highestRow, $highestColumnIndex, $id_convenio_as);
                 break;
+            case 6:
+                //Perdida total
+                clasificacion_ma($worksheet, $nrColumns, $highestRow, $highestColumnIndex, $id_convenio_as);
+                break;
         }
     }
 }
@@ -151,6 +155,62 @@ function clasificacion($worksheet, $nrColumns, $highestRow, $highestColumnIndex,
         for ($row = 2; $row <= $highestRow; ++$row) {
             //Iteramos sobre las columnas
             for ($col = 0; $col < $highestColumnIndex; ++$col) {
+                //Obtenemos la informacion de la celda
+                $cell = $worksheet->getCellByColumnAndRow($col, $row);
+                $val = $cell->getValue();
+                $dataType = PHPExcel_Cell_DataType::dataTypeForValue($val);
+
+                //Asignamos el valor de la celda en un array
+                switch ($col) {
+                    case 0:
+                        $reg_valido = isValidType("s", $dataType);
+                        $data[$row]["marca"] = $val;
+                        break;
+                    case 1:
+
+                        $data[$row]["modelo"] = $val;
+                        break;
+                    case 2:
+
+                        $data[$row]["clasificacion"] = $val;
+                        break;
+                    case 3:
+                        $reg_valido = isValidType("n", $dataType);
+                        $data[$row]["tipo_carro"] = $val;
+                        break;
+                }//End switch
+                //Verificamos si todos los datos estaban correctos
+
+                if (!$reg_valido) {
+                    $col = $highestColumnIndex;
+                    $row = $highestRow;
+                }
+            }//End for COL
+        }//End for ROW
+        //Si todos los registros estan correctos entonces procedemos a guardar en la base de datos
+        if ($reg_valido){
+            create_clasificacion($data, $id_convenio_as);
+        }
+        else{
+            set_msg("Error al importar el archivo. El archivo tiene datos errados para la importacion", "error");
+        }
+    }//End IF
+    else{
+        
+        set_msg("Error al importar el archivo. El archivo tiene datos errados para la importacion", "error");
+    }
+}
+//Metodo para procesar el archivo de la carga de tasa de casco
+function clasificacion_ma($worksheet, $nrColumns, $highestRow, $highestColumnIndex, $id_convenio_as) {
+
+    $reg_valido = true;
+    //Verificamos que el archivo tenga las columnas determinadas para esta importacion
+    if (($nrColumns > 4) && ($highestRow > 1)) {
+
+        //Iteramos sobre las filas
+        for ($row = 2; $row <= $highestRow; ++$row) {
+            //Iteramos sobre las columnas
+            for ($col = 0; $col < 5; ++$col) {
                 //Obtenemos la informacion de la celda
                 $cell = $worksheet->getCellByColumnAndRow($col, $row);
                 $val = $cell->getValue();
@@ -314,7 +374,12 @@ function create_tasa_casco($data, $id_convenio_as, $tipo_seguro) {
 
     //Importamos la clase para crear el objecto
     require_once '../entity/tasa_casco.php';
-
+    
+        $tasa_casco = new tasa_casco();
+        $tasa_casco->id_convenio_as = $id_convenio_as;
+        $tasa_casco->id_tipo_co = $tipo_seguro;
+        $tasa_casco->delete_by_convenio_tipo_seguro();
+        
     foreach ($data as $tasa) {
 
         $tasa_casco = new tasa_casco();
@@ -324,7 +389,7 @@ function create_tasa_casco($data, $id_convenio_as, $tipo_seguro) {
         $tasa_casco->tipo_carro = $tasa["tipo_carro"];
         $tasa_casco->ano = $tasa["ano"];
         $tasa_casco->tasa = $tasa["tasa"];
-
+                    
         if ($tasa_casco->create()) {
             set_msg("La carga del archivo fue exitosa", "succesfull");
             if ($tipo_seguro == 1)
@@ -341,7 +406,11 @@ function create_clasificacion($data, $id_convenio_as) {
 
     //Importamos la clase para crear el objecto
     require_once '../entity/clasificacion.php';
-
+    
+    $clasificacion = new clasificacion();
+    $clasificacion->id_convenio_as = $id_convenio_as;
+    $clasificacion->delete_by_convenio();
+    
     foreach ($data as $cla) {
 
         $clasificacion = new clasificacion();
@@ -365,6 +434,10 @@ function create_segmentacion($data, $id_convenio_as) {
     //Importamos la clase para crear el objecto
     require_once '../entity/segmentacion.php';
 
+    $segmentacion = new segmentacion();
+    $segmentacion->id_convenio_as = $id_convenio_as;
+    $segmentacion->delete_by_convenio();
+    
     foreach ($data as $seg) {
 
         $segmentacion = new segmentacion();
@@ -387,7 +460,10 @@ function create_grua($data, $id_convenio_as) {
 
     //Importamos la clase para crear el objecto
     require_once '../entity/grua.php';
-
+    $grua = new grua();
+    $grua->id_convenio_as = $id_convenio_as;
+    $grua->delete_by_convenio();
+    
     foreach ($data as $gr) {
 
         $grua = new grua();

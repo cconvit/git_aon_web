@@ -14,6 +14,17 @@ if (isset($_SESSION['msg'])) {
     $msg_type = $_SESSION['msg_type'];
   }
 }
+
+if(isset($_REQUEST['id'])){
+    
+    $_SESSION["id_convenio_as"] =$_REQUEST['id'];
+    $_SESSION["up_amplia"] = "uncheck";
+    $_SESSION["up_total"] = "check";
+    $_SESSION["up_segmentacion"] = "uncheck";
+    $_SESSION["up_grua"] = "uncheck";
+    $_SESSION["up_clasificacion"] = "uncheck";
+    
+}
 ?>
 <!DOCTYPE html>
 <html>

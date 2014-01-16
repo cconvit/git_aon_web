@@ -202,7 +202,20 @@ class clasificacion{
             return false;
         }
     }
+    public function delete_by_convenio() {
 
+    global $database;
+
+    $sql = "DELETE FROM " . self::$table_name . " 
+        WHERE id_convenio_as='{$database->escape_value($this->id_convenio_as)}'
+       ";
+        
+    if ($database->query($sql)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
   ///////////////////////////METODOS ESTANDAR//////////////////////////////////
   
   private static function instantiate($record) {
