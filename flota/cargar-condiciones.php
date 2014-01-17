@@ -104,7 +104,7 @@ if (isset($_SESSION['msg'])) {
             </td>
           </tr>
           <tr>
-            <td style="padding-top: 12px;">Aplica con las siguientes condiciones:</td>
+            <td style="padding-top: 12px;">Asociar a las siguientes coberturas:</td>
           </tr>
           <tr>
             <td>
@@ -118,16 +118,21 @@ if (isset($_SESSION['msg'])) {
                 <li>
                   <input type="checkbox" name="rcv" value="true">
                   <label form="rcv">RCV</label>
-                </li>
-                <li>
-                  <input type="checkbox" name="incluida" value="true">
-                  <label form="rcv">Incluida sin costo</label>
-                </li>                  
+                </li>               
               </ul>
             </td>
           </tr>
           <tr>
-            <td><div class="required hide">Uno o más campos son inválidos.</div></td>
+            <td style="padding-top: 10px; padding-bottom: 10px">Aplica en las siguientes condiciones:</td>
+          </tr>
+          <tr>
+            <td>
+              <input type="checkbox" name="incluida" value="true">
+              <label form="rcv">Incluida sin costo</label>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding-top: 10px;"><div class="required hide">Uno o más campos son inválidos.</div></td>
           </tr>
           </tbody>
           <tfoot>

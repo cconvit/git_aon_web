@@ -92,8 +92,8 @@ var Wizard = {
 		}
 	},
 	quotation: function() {
-		if(isValidFleet()){
-			
+		if (isValidFleet()) {
+
 		}
 	},
 	exit: function(page) {
@@ -119,7 +119,7 @@ $(function(e) {
 
 	//throw click input file event
 	$("input[id='input-file']").on("click", function(e) {
-		$(this).next().trigger("click").change(function(e) {
+		$(this).siblings("input[type='file']").trigger("click").change(function(e) {
 			$(this).parents("form").trigger("submit");
 			load.dialog("open");
 		});
@@ -256,7 +256,15 @@ function formOperation() {
 }
 
 function checksSelected(form) {
-	return form.find("input[type='checkbox']:checked").length > 0;
+	var message;
+	if(form.find("input[type='checkbox']:checked").length === 0){
+		message = form.find("div.required");
+		message.show();
+		return false;
+	}
+	else{
+		return true;
+	}
 }
 
 function isValidateSubmit(form) {

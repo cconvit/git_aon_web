@@ -71,8 +71,9 @@ if (isset($_SESSION['msg'])) {
                               <p class="item-info">Última modificación: <span><?php echo $value->ut_time; ?></span></p>
                               <div class="options">
                                 <form method="post" action="../php/operation/administration.php?operation_type=18&target=../../flota/flotas.php" onsubmit="return formOperation()">
-                                  <input type="button" data="<?php echo $value->id; ?>" class="img-common icon-operation icon-modified">
+                                  <a href="crear-flota.php?id=<?php echo $value->id; ?>" class="img-common icon-operation icon-modified"></a>
                                   <input type="submit" type="submit" class="img-common icon-operation icon-delete" value="">
+                                  <a href="../individual/index.php?i=<?php echo $value->id;?>" target="blank" class="img-common icon-operation icon-online"></a>
                                   <input type="hidden" name="id" value="<?php echo $value->id; ?>">
                                 </form>
                               </div>

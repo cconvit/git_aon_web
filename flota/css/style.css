@@ -121,7 +121,7 @@ a {
   text-decoration: none;
 }
 a:visited {
-  color: #4D4F53;
+  color: #C9C9C7;
 }
 a:hover {
   text-decoration: none;
@@ -132,6 +132,7 @@ a:focus {
 a:hover, a:active {
   outline: 0;
 }
+
 
 /* ovelays styles */
 
@@ -516,6 +517,9 @@ body, html{
 #vehicle{
   overflow: hidden;
 }
+#upload-data tr td{
+  padding-bottom: 50px;
+}
 #footer{
   height: 42px;
   width: 100%;
@@ -723,6 +727,12 @@ a.access-title{
 .icon-delete{
   background-position: -4px -36px;
 }
+.icon-view{
+  background-position: -292px -36px;
+}
+.icon-online{
+  background-position: -390px -5px;
+}
 .icon-check{
   display: inline-block;
   width: 24px;
@@ -839,7 +849,7 @@ a.access-title{
   text-transform: uppercase;
   font-weight: normal;
   padding-top: 4px;
-  text-align: left;
+  text-align: center;
   padding-left: 25px;
   white-space: nowrap;
 }

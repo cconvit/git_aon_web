@@ -15,15 +15,14 @@ if (isset($_SESSION['msg'])) {
   }
 }
 
-if(isset($_REQUEST['id'])){
-    
-    $_SESSION["id_convenio_as"] =$_REQUEST['id'];
-    $_SESSION["up_amplia"] = "uncheck";
-    $_SESSION["up_total"] = "check";
-    $_SESSION["up_segmentacion"] = "uncheck";
-    $_SESSION["up_grua"] = "uncheck";
-    $_SESSION["up_clasificacion"] = "uncheck";
-    
+if (isset($_REQUEST['id'])) {
+
+  $_SESSION["id_convenio_as"] = $_REQUEST['id'];
+  $_SESSION["up_amplia"] = "uncheck";
+  $_SESSION["up_total"] = "check";
+  $_SESSION["up_segmentacion"] = "uncheck";
+  $_SESSION["up_grua"] = "uncheck";
+  $_SESSION["up_clasificacion"] = "uncheck";
 }
 ?>
 <!DOCTYPE html>
@@ -60,7 +59,7 @@ if(isset($_REQUEST['id'])){
               <span class="title">Importar datos</span>
             </div>
             <div id="scroll">
-              <table class="tbl-details">
+              <table id="upload-data" class="tbl-details">
                 <tr>
                   <td>
                     <div class='item'>
@@ -90,6 +89,7 @@ if(isset($_REQUEST['id'])){
                           <form method="post" action="../php/operation/operation_upload.php?operation_upload=2&target=../../flota/cargar-datos.php" enctype="multipart/form-data">
                             <p>
                               <input id="input-file" type="button" class="img-common icon-operation icon-upload">
+                              <input type="button" class="img-common icon-operation icon-view">
                               <input type="file" name="file" class="hide" value="null">
                             </p>
                           </form>
@@ -108,6 +108,7 @@ if(isset($_REQUEST['id'])){
                           <form method="post" action="../php/operation/operation_upload.php?operation_upload=3&target=../../flota/cargar-datos.php" enctype="multipart/form-data">
                             <p>
                               <input id="input-file" type="button" class="img-common icon-operation icon-upload">
+                              <input type="button" class="img-common icon-operation icon-view">
                               <input type="file" name="file" class="hide" value="null">
                             </p>
                           </form>
@@ -126,6 +127,7 @@ if(isset($_REQUEST['id'])){
                           <form method="post" action="../php/operation/operation_upload.php?operation_upload=3&target=../../flota/cargar-datos.php" enctype="multipart/form-data">
                             <p>
                               <input id="input-file" type="button" class="img-common icon-operation icon-upload">
+                              <input type="button" class="img-common icon-operation icon-view">
                               <input type="file" name="file" class="hide" value="null">
                             </p>
                           </form>
@@ -144,6 +146,7 @@ if(isset($_REQUEST['id'])){
                           <form method="post" action="../php/operation/operation_upload.php?operation_upload=4&target=../../flota/cargar-datos.php" enctype="multipart/form-data">
                             <p>
                               <input id="input-file" type="button" class="img-common icon-operation icon-upload">
+                              <input type="button" class="img-common icon-operation icon-view">
                               <input type="file" name="file" class="hide" value="null">
                             </p>
                           </form>
@@ -162,6 +165,7 @@ if(isset($_REQUEST['id'])){
                           <form method="post" action="../php/operation/operation_upload.php?operation_upload=5&target=../../flota/cargar-datos.php" enctype="multipart/form-data">
                             <p>
                               <input id="input-file" type="button" class="img-common icon-operation icon-upload">
+                              <input type="button" class="img-common icon-operation icon-view">
                               <input type="file" name="file" class="hide">
                             </p>
                           </form>
