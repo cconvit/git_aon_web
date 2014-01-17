@@ -70,7 +70,6 @@ $aseguradoras = $aseguradora->find_all();
                             <p class="item-title"><?php echo $value->nombre; ?></p>
                             <p clas="item-sub-title"><?php echo $value->descripcion; ?></p>
                             <p clas="item-sub-title"><?php echo $value->num_poliza; ?></p>
-                            <p clas="item-sub-title"><?php echo $value->as_nombre; ?></p>
                             <p class="separator"></p>
                           </div>
                           <div class="info-down">

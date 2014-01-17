@@ -150,7 +150,7 @@ class validar_carro_cotizacion {
                     $carro->create();
             }//End for ROW
             //Si todos los registros estan correctos entonces procedemos a guardar en la base de datos
-            $this->set_msg("La carga del archivo fue exitosa", "succesfull");
+            $this->set_msg("La carga del archivo fue exitosa.", "succesfull");
             $result = true;
         }//End IF
         else

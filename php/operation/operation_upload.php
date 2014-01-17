@@ -35,7 +35,7 @@ if (isset($path) && isset($operation)) {
             set_msg("Ocurrió un error en el proceso de carga de datos. Verifique el formato del archivo excel. Si el error persiste comuniquese con el administrador del sistema.", "error");
         }
     } else
-        set_msg("No existe ningún convenio al cual asociar el archivo", "error");
+        set_msg("No existe ningún convenio al cual asociar el archivo.", "error");
 }else {
 
     set_msg("No se pudo procesar ningún archivo", "error");
@@ -137,10 +137,10 @@ function tasa_casco($worksheet, $nrColumns, $highestRow, $highestColumnIndex, $t
         if ($reg_valido)
             create_tasa_casco($data, $id_convenio_as, $tipo_seguro);
         else
-            set_msg("Error al importar el archivo. El archivo tiene datos errados para la importacion", "error");
+            set_msg("Error al importar el archivo. El archivo tiene datos errados para la importación.", "error");
     }//End IF
     else{
-        set_msg("Error al importar el archivo. El archivo tiene datos errados para la importacion", "error");
+        set_msg("Error al importar el archivo. El archivo tiene datos errados para la importación.", "error");
     }
 }
 
@@ -192,12 +192,12 @@ function clasificacion($worksheet, $nrColumns, $highestRow, $highestColumnIndex,
             create_clasificacion($data, $id_convenio_as);
         }
         else{
-            set_msg("Error al importar el archivo. El archivo tiene datos errados para la importacion", "error");
+            set_msg("Error al importar el archivo. El archivo tiene datos errados para la importación.", "error");
         }
     }//End IF
     else{
         
-        set_msg("Error al importar el archivo. El archivo tiene datos errados para la importacion", "error");
+        set_msg("Error al importar el archivo. El archivo tiene datos errados para la importación.", "error");
     }
 }
 //Metodo para procesar el archivo de la carga de tasa de casco
@@ -248,12 +248,12 @@ function clasificacion_ma($worksheet, $nrColumns, $highestRow, $highestColumnInd
             create_clasificacion($data, $id_convenio_as);
         }
         else{
-            set_msg("Error al importar el archivo. El archivo tiene datos errados para la importacion", "error");
+            set_msg("Error al importar el archivo. El archivo tiene datos errados para la importación.", "error");
         }
     }//End IF
     else{
         
-        set_msg("Error al importar el archivo. El archivo tiene datos errados para la importacion", "error");
+        set_msg("Error al importar el archivo. El archivo tiene datos errados para la importación.", "error");
     }
 }
 
@@ -305,10 +305,10 @@ function segmentacion($worksheet, $nrColumns, $highestRow, $highestColumnIndex, 
         if ($reg_valido)
             create_segmentacion($data, $id_convenio_as);
         else
-            set_msg("Error al importar el archivo. El archivo tiene datos errados para la importacion", "error");
+            set_msg("Error al importar el archivo. El archivo tiene datos errados para la importación.", "error");
     }//End IF
     else {
-        set_msg("Error al importar el archivo. El archivo tiene datos errados para la importacion", "error");
+        set_msg("Error al importar el archivo. El archivo tiene datos errados para la importación.", "error");
     }
 }
 
@@ -358,10 +358,10 @@ function grua($worksheet, $nrColumns, $highestRow, $highestColumnIndex, $id_conv
         if ($reg_valido)
             create_grua($data, $id_convenio_as);
         else
-            set_msg("Error al importar el archivo. El archivo tiene datos errados para la importacion", "error");
+            set_msg("Error al importar el archivo. El archivo tiene datos errados para la importación.", "error");
     }//End IF
     else{
-        set_msg("Error al importar el archivo. El archivo tiene datos errados para la importacion", "error");
+        set_msg("Error al importar el archivo. El archivo tiene datos errados para la importación.", "error");
     }
 }
 
@@ -410,7 +410,7 @@ function create_tasa_casco($data, $id_convenio_as, $tipo_seguro) {
                 $aux[0]->up_total=1;
         $aux[0]->update_flags_by_id();
     }else   
-             set_msg("Error al importar el archivo. El archivo tiene datos errados para la importacion", "error");
+             set_msg("Error al importar el archivo. El archivo tiene datos errados para la importación.", "error");
 }
 
 //Crear los registros de la tasa de casco de un tipo de seguro
@@ -447,7 +447,7 @@ function create_clasificacion($data, $id_convenio_as) {
         $aux[0]->up_clasificacion=1;
         $aux[0]->update_flags_by_id();
     }else   
-             set_msg("Error al importar el archivo. El archivo tiene datos errados para la importacion", "error");
+             set_msg("Error al importar el archivo. El archivo tiene datos errados para la importación.", "error");
 }
 
 //Crear los registros de la tasa de casco de un tipo de seguro
@@ -484,7 +484,7 @@ function create_segmentacion($data, $id_convenio_as) {
         $aux[0]->up_segmentacion=1;
         $aux[0]->update_flags_by_id();
     }else   
-             set_msg("Error al importar el archivo. El archivo tiene datos errados para la importacion", "error");
+             set_msg("Error al importar el archivo. El archivo tiene datos errados para la importación.", "error");
 }
 
 //Crear los registros de la tasa de casco de un tipo de seguro
@@ -520,7 +520,7 @@ function create_grua($data, $id_convenio_as) {
         $aux[0]->up_grua=1;
         $aux[0]->update_flags_by_id();
     }else   
-             set_msg("Error al importar el archivo. El archivo tiene datos errados para la importacion", "error");
+             set_msg("Error al importar el archivo. El archivo tiene datos errados para la importación.", "error");
 }
 
 ################################################################################

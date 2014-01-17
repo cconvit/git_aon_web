@@ -58,7 +58,15 @@ if (isset($_REQUEST["operation_type"])) {
             break;
 
         case 13:
-            newCondicion();
+            newUpdateCondicion($operation_type);
+            break;
+
+        case 14:
+            newUpdateCondicion($operation_type);
+            break;
+
+        case 15:
+            deleteCondicion();
             break;
 
         case 16:
@@ -87,7 +95,6 @@ if (isset($_REQUEST["operation_type"])) {
     }
 }
 
-
 function updateClient($id, $nombre, $razon_social) {
 
     require_once ('../entity/cliente.php');
@@ -103,7 +110,7 @@ function updateClient($id, $nombre, $razon_social) {
         $_SESSION["msg_desc"] = "Ocurrio un error al modificar al cliente. Por favor intente mas tarde. Si el error persiste, comuniquese con el administrador del sistema.";
         $_SESSION["msg_type"] = "error";
     } else {
-        $_SESSION["msg_desc"] = "La modificación del cliente se realizó exitosamente";
+        $_SESSION["msg_desc"] = "La modificación del cliente se realizó exitosamente.";
         $_SESSION["msg_type"] = "succesfull";
     }
     header('Location: ' . $_GET["target"]);
@@ -124,7 +131,7 @@ function newClient($nombre, $razon_social) {
         $_SESSION["msg_desc"] = "Ocurrio un error al tratar de crear al cliente. Por favor intente mas tarde. Si el error persiste, comuniquese con el administrador del sistema.";
         $_SESSION["msg_type"] = "error";
     } else {
-        $_SESSION["msg_desc"] = "La creación del cliente se realizó exitosamente";
+        $_SESSION["msg_desc"] = "La creación del cliente se realizó exitosamente.";
         $_SESSION["msg_type"] = "succesfull";
     }
     header('Location: ' . $_GET["target"]);
@@ -142,7 +149,7 @@ function deleteClient($id) {
         $_SESSION["msg_desc"] = "Ocurrio un error al tratar de eliminar al cliente. Por favor intente mas tarde. Si el error persiste, comuniquese con el administrador del sistema.";
         $_SESSION["msg_type"] = "error";
     } else {
-        $_SESSION["msg_desc"] = "El cliente fue eliminado exitosamente";
+        $_SESSION["msg_desc"] = "El cliente fue eliminado exitosamente.";
         $_SESSION["msg_type"] = "succesfull";
     }
     header('Location: ' . $_GET["target"]);
@@ -164,7 +171,7 @@ function updateAseguradora($id, $nombre, $razon_social) {
         $_SESSION["msg_desc"] = "Ocurrio un error al modificar el seguro. Por favor intente mas tarde. Si el error persiste, comuniquese con el administrador del sistema.";
         $_SESSION["msg_type"] = "error";
     } else {
-        $_SESSION["msg_desc"] = "La modificación del seguro se realizó exitosamente";
+        $_SESSION["msg_desc"] = "La modificación del seguro se realizó exitosamente.";
         $_SESSION["msg_type"] = "succesfull";
     }
     header('Location: ' . $_GET["target"]);
@@ -185,7 +192,7 @@ function newAseguradora($nombre, $razon_social) {
         $_SESSION["msg_desc"] = "Ocurrio un error al tratar de crear un seguro. Por favor intente mas tarde. Si el error persiste, comuniquese con el administrador del sistema.";
         $_SESSION["msg_type"] = "error";
     } else {
-        $_SESSION["msg_desc"] = "La creación del seguro se realizó exitosamente";
+        $_SESSION["msg_desc"] = "La creación del seguro se realizó exitosamente.";
         $_SESSION["msg_type"] = "succesfull";
     }
     header('Location: ' . $_GET["target"]);
@@ -196,14 +203,14 @@ function deleteAseguradora($id) {
     require_once ('../entity/aseguradora.php');
     $aseguradora = new aseguradora();
     $aseguradora->id = $id;
-        
+
     $_SESSION["msg"] = "show";
 
     if (!$aseguradora->delete()) {
         $_SESSION["msg_desc"] = "Ocurrio un error al tratar de eliminar un seguro. Por favor intente mas tarde. Si el error persiste, comuniquese con el administrador del sistema.";
         $_SESSION["msg_type"] = "error";
     } else {
-        $_SESSION["msg_desc"] = "La eliminación del seguro se realizó exitosamente";
+        $_SESSION["msg_desc"] = "La eliminación del seguro se realizó exitosamente.";
         $_SESSION["msg_type"] = "succesfull";
     }
     header('Location: ' . $_GET["target"]);
@@ -222,7 +229,7 @@ function newCobertura($nombre, $descripcion) {
         $_SESSION["msg_desc"] = "Ocurrio un error al tratar de crear una cobertura. Por favor intente mas tarde. Si el error persiste, comuniquese con el administrador del sistema.";
         $_SESSION["msg_type"] = "error";
     } else {
-        $_SESSION["msg_desc"] = "La creación de la cobertura se realizó exitosamente";
+        $_SESSION["msg_desc"] = "La creación de la cobertura se realizó exitosamente.";
         $_SESSION["msg_type"] = "succesfull";
     }
     header('Location: ' . $_GET["target"]);
@@ -242,7 +249,7 @@ function updateCobertura($id, $nombre, $descripcion) {
         $_SESSION["msg_desc"] = "Ocurrio un error al tratar de actualizar una cobertura. Por favor intente mas tarde. Si el error persiste, comuniquese con el administrador del sistema.";
         $_SESSION["msg_type"] = "error";
     } else {
-        $_SESSION["msg_desc"] = "La actualización de la cobertura se realizó exitosamente";
+        $_SESSION["msg_desc"] = "La actualización de la cobertura se realizó exitosamente.";
         $_SESSION["msg_type"] = "succesfull";
     }
     header('Location: ' . $_GET["target"]);
@@ -261,7 +268,7 @@ function deleteCobertura($id) {
         $_SESSION["msg_desc"] = "Ocurrio un error al tratar de eliminar una cobertura. Por favor intente mas tarde. Si el error persiste, comuniquese con el administrador del sistema.";
         $_SESSION["msg_type"] = "error";
     } else {
-        $_SESSION["msg_desc"] = "La eliminación de la cobertura se realizó exitosamente";
+        $_SESSION["msg_desc"] = "La eliminación de la cobertura se realizó exitosamente.";
         $_SESSION["msg_type"] = "succesfull";
     }
     header('Location: ' . $_GET["target"]);
@@ -283,7 +290,7 @@ function newConvenio($nombre, $descripcion, $seguro, $poliza) {
         $_SESSION["msg_type"] = "error";
         header('Location: ' . $_GET["target_fail"]);
     } else {
-        $_SESSION["msg_desc"] = "La creación del convenio se realizó exitosamente";
+        $_SESSION["msg_desc"] = "La creación del convenio se realizó exitosamente.";
         $_SESSION["msg_type"] = "succesfull";
         $_SESSION["id_convenio_as"] = $convenio_aseguradora->id;
         header('Location: ' . $_GET["target"]);
@@ -304,7 +311,7 @@ function updateConvenio($id, $nombre, $seguro, $poliza) {
         $_SESSION["msg_desc"] = "Ocurrio un error al tratar de actualizar el convenio. Por favor intente mas tarde. Si el error persiste, comuniquese con el administrador del sistema.";
         $_SESSION["msg_type"] = "error";
     } else {
-        $_SESSION["msg_desc"] = "La actualización del convenio se realizó exitosamente";
+        $_SESSION["msg_desc"] = "La actualización del convenio se realizó exitosamente.";
         $_SESSION["msg_type"] = "succesfull";
     }
     header('Location: ' . $_GET["target"]);
@@ -322,13 +329,34 @@ function deleteConvenio($id) {
         $_SESSION["msg_desc"] = "Ocurrio un error al tratar de eliminar el convenio. Por favor intente mas tarde. Si el error persiste, comuniquese con el administrador del sistema.";
         $_SESSION["msg_type"] = "error";
     } else {
-        $_SESSION["msg_desc"] = "La eliminación del convenio se realizó exitosamente";
+        $_SESSION["msg_desc"] = "La eliminación del convenio se realizó exitosamente.";
         $_SESSION["msg_type"] = "succesfull";
     }
     header('Location: ' . $_GET["target"]);
 }
 
-function newCondicion() {
+function deleteCondicion() {
+
+    require_once ('../entity/re_tipo_cobertura_aseguradora.php');
+    $condicion = new re_tipo_cobertura_aseguradora();
+
+
+    $condicion->id_cob_as = $_REQUEST["cobertura"];
+    $condicion->id_convenio_as = $_SESSION["id_convenio_as"];
+
+    $_SESSION["msg"] = "show";
+
+    if (!$condicion->delete()) {
+        $_SESSION["msg_desc"] = "Ocurrio un error al tratar de eliminar la condición. Por favor intente mas tarde. Si el error persiste, comuniquese con el administrador del sistema.";
+        $_SESSION["msg_type"] = "error";
+    } else {
+        $_SESSION["msg_desc"] = "La eliminación de la condición se realizó exitosamente.";
+        $_SESSION["msg_type"] = "succesfull";
+    }
+    header('Location: ' . $_GET["target"]);
+}
+
+function newUpdateCondicion($operation_type) {
 
     require_once ('../entity/re_tipo_cobertura_aseguradora.php');
     $condicion = new re_tipo_cobertura_aseguradora();
@@ -342,6 +370,10 @@ function newCondicion() {
         $condicion->incluida = $_REQUEST["incluida"] == "true" ? "1" : "0";
         $condicion->id_convenio_as = $_SESSION["id_convenio_as"];
 
+        if ($operation_type == 14)
+            $condicion->delete();
+
+
         if ($_REQUEST["cobertura_amplia"] == "true")
             createCondicion($condicion, "1");
 
@@ -351,15 +383,15 @@ function newCondicion() {
         if ($_REQUEST["rcv"] == "true")
             createCondicion($condicion, "3");
 
-        if(($_REQUEST["cobertura_amplia"] == "true") || ($_REQUEST["perdida_total"] == "true") ||  ($_REQUEST["rcv"] == "true")){
-            $_SESSION["msg_desc"] = "La creación de la cobertura se realizó exitosamente";
+        if (($_REQUEST["cobertura_amplia"] == "true") || ($_REQUEST["perdida_total"] == "true") || ($_REQUEST["rcv"] == "true")) {
+            $_SESSION["msg_desc"] = "La creación de la cobertura se realizó exitosamente.";
             $_SESSION["msg_type"] = "succesfull";
-        }else{
-            
+        } else {
+
             $_SESSION["msg_desc"] = "Ocurrio un error al tratar de crear la cobertura al convenio. Por favor intente mas tarde. Si el error persiste, comuniquese con el administrador del sistema.";
-        $_SESSION["msg_type"] = "error";
+            $_SESSION["msg_type"] = "error";
         }
-    }else {
+    } else {
 
         $_SESSION["msg_desc"] = "Ocurrio un error al tratar de crear la cobertura al convenio debido a que no selecionó ninguna condición. Si el error persiste, comuniquese con el administrador del sistema.";
         $_SESSION["msg_type"] = "error";
@@ -416,7 +448,7 @@ function newFlota($nombre, $descripcion, $inma) {
         $_SESSION["msg_desc"] = "Ocurrio un error al tratar de crear la flota. Por favor intente mas tarde. Si el error persiste, comuniquese con el administrador del sistema.";
         $_SESSION["msg_type"] = "error";
     } else {
-        $_SESSION["msg_desc"] = "La creación de la flota se realizó exitosamente";
+        $_SESSION["msg_desc"] = "La creación de la flota se realizó exitosamente.";
         $_SESSION["msg_type"] = "succesfull";
         $_SESSION["id_flota"] = $flota->id;
     }
@@ -435,7 +467,7 @@ function deleteFlota($id) {
         $_SESSION["msg_desc"] = "Ocurrio un error al tratar de eliminar la flota. Por favor intente mas tarde. Si el error persiste, comuniquese con el administrador del sistema.";
         $_SESSION["msg_type"] = "error";
     } else {
-        $_SESSION["msg_desc"] = "La eliminación de la flota se realizó exitosamente";
+        $_SESSION["msg_desc"] = "La eliminación de la flota se realizó exitosamente.";
         $_SESSION["msg_type"] = "succesfull";
     }
     header('Location: ' . $_GET["target"]);
@@ -464,11 +496,12 @@ function newFlotaConvenios($data) {
         $_SESSION["msg_type"] = "error";
         header('Location: ' . $_GET["target_fail"]);
     } else {
-        $_SESSION["msg_desc"] = "La asosiación de los convenios a la flota se realizó exitosamente";
+        $_SESSION["msg_desc"] = "La asosiación de los convenios a la flota se realizó exitosamente.";
         $_SESSION["msg_type"] = "succesfull";
         header('Location: ' . $_GET["target"]);
     }
 }
+
 function newCotizacion($nombre, $descripcion, $cliente, $flota, $tmp_name) {
 
 
@@ -507,7 +540,6 @@ function newCotizacion($nombre, $descripcion, $cliente, $flota, $tmp_name) {
     }
 }
 
-
 function deleteCotizacion($id) {
 
     require_once ('../entity/cotizacion.php');
@@ -521,7 +553,7 @@ function deleteCotizacion($id) {
         $_SESSION["msg_desc"] = "Ocurrio un error al tratar de eliminar la cotización. Por favor intente mas tarde. Si el error persiste, comuniquese con el administrador del sistema.";
         $_SESSION["msg_type"] = "error";
     } else {
-        $_SESSION["msg_desc"] = "La eliminación de la cotización se realizó exitosamente";
+        $_SESSION["msg_desc"] = "La eliminación de la cotización se realizó exitosamente.";
         $_SESSION["msg_type"] = "succesfull";
     }
     header('Location: ' . $_GET["target"]);
@@ -595,33 +627,34 @@ function proccessCotizacion() {
             $solicitud->calcular_primas($aseguradoras, 1);
             array_push($solicitudes_procesadas, $solicitud);
         }
-        
-        $generador=new generarExcelCotizacion();
+
+        $generador = new generarExcelCotizacion();
         $generador->createFilesCotizacion($solicitudes_procesadas, $aseguradoras);
     }
 
 
-        if (!$cotizacion->delete()) 
-            set_msg("Ocurrio un error al tratar de eliminar la cotización. Por favor intente mas tarde. Si el error persiste, comuniquese con el administrador del sistema.","error"); 
-         else 
-            set_msg("La eliminación de la cotización se realizó exitosamente","succesfull");
+    if (!$cotizacion->delete())
+        set_msg("Ocurrio un error al tratar de eliminar la cotización. Por favor intente mas tarde. Si el error persiste, comuniquese con el administrador del sistema.", "error");
+    else
+        set_msg("La eliminación de la cotización se realizó exitosamente.", "succesfull");
 
-        header('Location: ' . $_GET["target"]);
-    }
-    
+    header('Location: ' . $_GET["target"]);
+}
+
 function set_msg($msg_desc, $msg_type) {
 
 
-  $_SESSION["msg_desc"] = $msg_desc;
-  $_SESSION["msg_type"] = $msg_type;
+    $_SESSION["msg_desc"] = $msg_desc;
+    $_SESSION["msg_type"] = $msg_type;
     //////////////
 }
+
 function isValidType($req_dataType, $dataType) {
 
-  if ($dataType == $req_dataType)
-    return true;
-  else
-    return false;
+    if ($dataType == $req_dataType)
+        return true;
+    else
+        return false;
 }
 
 ?>

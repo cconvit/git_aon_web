@@ -131,6 +131,27 @@ class re_tipo_cobertura_aseguradora{
       }
   }
   
+     public  function delete() {
+      
+      global $database;
+      
+        $sql="DELETE FROM ".self::$table_name."
+                                  WHERE id_convenio_as='{$database->escape_value($this->id_convenio_as)}',
+                                  AND id_cob_as ='{$database->escape_value($this->id_cob_as)}'";
+
+    
+                                 
+      if($database->query($sql)) {
+         if(mysql_affected_rows() != 0)
+             return true;
+         else
+             return false;
+      } else {
+        return false;
+      }
+      
+  }
+  
   ///////////////////////////METODOS ESTANDAR//////////////////////////////////
   
   private static function instantiate($record) {
