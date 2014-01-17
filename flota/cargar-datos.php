@@ -2,10 +2,12 @@
 session_start();
 require_once("../php/db/config.php");
 require_once ('../php/db/database.php');
+require_once ('../php/entity/convenio_aseguradora.php');
 
 $msg = "hide";
 $msg_desc = "";
 $msg_type = "succesfull";
+
 
 if (isset($_SESSION['msg'])) {
   if ($_SESSION['msg'] == "show") {
@@ -63,7 +65,7 @@ if (isset($_REQUEST['id'])) {
                 <tr>
                   <td>
                     <div class='item'>
-                      <p><span class="img-common <?php echo $_SESSION["up_amplia"]; ?> icon-check"></span><span class="item-title">Tasas de Cobertura Ámplia</span></p>
+                      <p><span class="img-common <?php echo $aux[0]->up_amplia == 1 ? "check":"uncheck"; ?> icon-check"></span><span class="item-title">Tasas de Cobertura Ámplia</span></p>
                       <p class="separator"></p>
                       <div class="info-down">
                         <div class="options">
@@ -82,7 +84,7 @@ if (isset($_REQUEST['id'])) {
                 <tr>
                   <td>
                     <div class='item'>
-                      <p><span class="img-common <?php echo $_SESSION["up_total"]; ?> icon-check"></span><span class="item-title">Tasas de Pérdida Total</span></p>
+                      <p><span class="img-common <?php echo $aux[0]->up_total == 1 ? "check":"uncheck"; ?> icon-check"></span><span class="item-title">Tasas de Pérdida Total</span></p>
                       <p class="separator"></p>
                       <div class="info-down">
                         <div class="options">
@@ -101,7 +103,7 @@ if (isset($_REQUEST['id'])) {
                 <tr>
                   <td>
                     <div class='item'>
-                      <p><span class="img-common <?php echo $_SESSION["up_clasificacion"]; ?> icon-check"></span><span class="item-title">Clasificación</span></p>
+                      <p><span class="img-common <?php echo $aux[0]->up_clasificacion == 1 ? "check":"uncheck"; ?> icon-check"></span><span class="item-title">Clasificación</span></p>
                       <p class="separator"></p>
                       <div class="info-down">
                         <div class="options">
@@ -120,7 +122,7 @@ if (isset($_REQUEST['id'])) {
                 <tr>
                   <td>
                     <div class='item'>
-                      <p><span class="img-common uncheck icon-check"></span><span class="item-title">Clasificación por Monto asegurado</span></p>
+                      <p><span class="img-common <?php echo $aux[0]->up_clasificacion_ma == 1 ? "check":"uncheck"; ?> icon-check"></span><span class="item-title">Clasificación por Monto asegurado</span></p>
                       <p class="separator"></p>
                       <div class="info-down">
                         <div class="options">
@@ -139,7 +141,7 @@ if (isset($_REQUEST['id'])) {
                 <tr>
                   <td>
                     <div class='item'>
-                      <p><span class="img-common <?php echo $_SESSION["up_segmentacion"]; ?> icon-check"></span><span class="item-title">Segmentación</span></p>
+                      <p><span class="img-common <?php echo $aux[0]->up_segmentacion == 1 ? "check":"uncheck"; ?> icon-check"></span><span class="item-title">Segmentación</span></p>
                       <p class="separator"></p>
                       <div class="info-down">
                         <div class="options">
@@ -158,7 +160,7 @@ if (isset($_REQUEST['id'])) {
                 <tr>
                   <td>
                     <div class='item'>
-                      <p><span class="img-common <?php echo $_SESSION["up_grua"]; ?> icon-check"></span><span class="item-title">AISTENCIA VÍAL</span></p>
+                      <p><span class="img-common <?php echo $aux[0]->up_grua == 1 ? "check":"uncheck"; ?> icon-check"></span><span class="item-title">AISTENCIA VÍAL</span></p>
                       <p class="separator"></p>
                       <div class="info-down">
                         <div class="options">

@@ -3,13 +3,19 @@
 class convenio_aseguradora {
 
   protected static $table_name = "tbl_convenio_aseguradora";
-  protected static $db_fields = array('id', 'id_aseguradora', 'nombre', 'descripcion', 'num_poliza', 'as_nombre', 'ut_time', 'cr_time');
+  protected static $db_fields = array('id', 'id_aseguradora', 'nombre', 'descripcion', 'num_poliza', 'as_nombre','up_amplia','up_total','up_segmentacion','up_grua','up_clasificacion','up_clasificacion_ma', 'ut_time', 'cr_time');
   public $id;
   public $id_aseguradora;
   public $nombre;
   public $descripcion;
   public $num_poliza;
   public $as_nombre;
+  public $up_amplia;
+  public $up_total;
+  public $up_segmentacion;
+  public $up_grua;
+  public $up_clasificacion;
+  public $up_clasificacion_ma;
   public $ut_time;
   public $cr_time;
 
@@ -19,7 +25,7 @@ class convenio_aseguradora {
 
 // Common Database Methods
   public static function find_all() {
-    return self::find_by_sql("SELECT ca.id,ca.id_aseguradora,ca.nombre,ca.descripcion,ca.num_poliza,a.nombre as 'as_nombre',ca.cr_time as 'cr_time',ca.ut_time as 'ut_time' FROM `tbl_convenio_aseguradora` ca INNER JOIN tbl_aseguradora a ON ca.id_aseguradora=a.id");
+    return self::find_by_sql("SELECT ca.id,ca.id_aseguradora,ca.nombre,ca.descripcion,ca.num_poliza,ca.up_amplia,ca.up_total,ca.up_segmentacion,ca.up_grua,ca.up_clasificacion,ca.up_clasificacion_ma,a.nombre as 'as_nombre',ca.cr_time as 'cr_time',ca.ut_time as 'ut_time' FROM `tbl_convenio_aseguradora` ca INNER JOIN tbl_aseguradora a ON ca.id_aseguradora=a.id");
   }
   
   public static function find_by_sql($sql = "") {
@@ -37,7 +43,7 @@ class convenio_aseguradora {
 
     global $database;
 
-    return self::find_by_sql("SELECT ca.id,ca.id_aseguradora,ca.nombre,ca.descripcion,ca.num_poliza,a.nombre as 'as_nombre',ca.cr_time as 'cr_time',ca.ut_time as 'ut_time' FROM `tbl_convenio_aseguradora` ca INNER JOIN tbl_aseguradora a ON ca.id_aseguradora=a.id
+    return self::find_by_sql("SELECT ca.id,ca.id_aseguradora,ca.nombre,ca.descripcion,ca.num_poliza,ca.up_amplia,ca.up_total,ca.up_segmentacion,ca.up_grua,ca.up_clasificacion,ca.up_clasificacion_ma,a.nombre as 'as_nombre',ca.cr_time as 'cr_time',ca.ut_time as 'ut_time' FROM `tbl_convenio_aseguradora` ca INNER JOIN tbl_aseguradora a ON ca.id_aseguradora=a.id
                               INNER JOIN tbl_re_flota_co_as re ON re.id_convenio_as=ca.id               
                               WHERE re.id_flota='{$database->escape_value($flota)}'");
   }
@@ -46,7 +52,7 @@ class convenio_aseguradora {
 
     global $database;
 
-    return self::find_by_sql("SELECT ca.id,ca.id_aseguradora,ca.nombre,ca.descripcion,ca.num_poliza,a.nombre as 'as_nombre',ca.cr_time as 'cr_time',ca.ut_time as 'ut_time' FROM `tbl_convenio_aseguradora` ca INNER JOIN tbl_aseguradora a ON ca.id_aseguradora=a.id
+    return self::find_by_sql("SELECT ca.id,ca.id_aseguradora,ca.nombre,ca.descripcion,ca.num_poliza,ca.up_amplia,ca.up_total,ca.up_segmentacion,ca.up_grua,ca.up_clasificacion,ca.up_clasificacion_ma,a.nombre as 'as_nombre',ca.cr_time as 'cr_time',ca.ut_time as 'ut_time' FROM `tbl_convenio_aseguradora` ca INNER JOIN tbl_aseguradora a ON ca.id_aseguradora=a.id
              WHERE ca.id='{$database->escape_value($this->id)}'");
   }
 
@@ -96,6 +102,35 @@ NOW())";
     }
   }
 
+   public function update_flags_by_id() {
+
+    global $database;
+
+    $sql = "UPDATE " . self::$table_name . " SET
+                        up_amplia='{$database->escape_value($this->up_amplia)}',
+                        up_total='{$database->escape_value($this->up_total)}',
+                        up_segmentacion='{$database->escape_value($this->up_segmentacion)}',
+                        up_grua='{$database->escape_value($this->up_grua)}',
+                        up_clasificacion='{$database->escape_value($this->up_clasificacion)}',
+                        up_clasificacion_ma='{$database->escape_value($this->up_clasificacion_ma)}'
+                        WHERE id='{$database->escape_value($this->id)}'";
+
+
+
+    if ($database->query($sql)) {
+
+      if (mysql_affected_rows() != 0) {
+        $this->id_user = $database->insert_id();
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      return false;
+    }
+  }
+
+  
   public function delete() {
 
     global $database;
