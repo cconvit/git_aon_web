@@ -80,7 +80,7 @@
           <td>
             <div class="buttons-panel">
               <input type="submit" class="img-common common-button" value="Guardar">
-              <input type="button" class="img-common common-button" value="Salir" onclick="$('#load').dialog('close');">
+              <input type="button" class="img-common common-button" value="Salir" onclick="$('#modify').dialog('close');">
             </div>
           </td>
         </tr>
