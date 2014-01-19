@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>Aon - Convenios</title>
+    <title>Aon - Flotas</title>
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
     <link href="css/jquery-ui-1.10.3.custom.min.css" rel="stylesheet" type="text/css">
     <link href="css/normalize.css" rel="stylesheet" type="text/css">
@@ -29,65 +29,56 @@
         <div id="main">
           <div id="main-detail">
             <div id="nav-operations">
-              <span class="title">Modificar convenio</span>
+              <span class="title">Modficar flota</span>
             </div>
             <div id="scroll" style="height: 455px;">
               <div style="margin-top: 30px">
-                <div id="create-agreement">
-                  <form method="post" action="../php/operation/administration.php?operation_type=10&target=../../flota/cargar-datos.php&target_fail=../../flota/convenios.php">  
-                    <table>
+                <form method="post" action="../php/operation/administration.php?operation_type=16&target=../../flota/cargar-convenios.php" onsubmit="return isValidateSubmit($(this))">
+                  <table>
+                    <tbody>
                       <tr>
                         <td>Nombre</td>
                       </tr>
                       <tr>
-                        <td><input type="text" name="nombre" class="common-input is-required"></td>
-                      </tr>                  
-                      <tr>
-                        <td>Descripción</td>
-                      </tr>                 
-                      <tr>
-                        <td><textarea name="descripcion" class="common-input is-required" style="height: 66px"></textarea></td>
+                        <td><input type="text" class="common-input is-required" name="nombre"></td></td>
                       </tr>
                       <tr>
-                        <td>Seguro</td>
-                      </tr>                  
+                        <td>Descripción</td>
+                      </tr>
                       <tr>
-                        <td>
-                          <select class="common-input common-select" name="seguro"></select>
-                        </td>
-                      </tr>                                
+                        <td><textarea class="common-input is-required" name="descripcion" style="height: 66px;"></textarea></td>
+                      </tr>
                       <tr>
-                        <td>Número de póliza (opcional)</td>
-                      </tr>                 
+                        <td>INMA (%)</td>
+                      </tr>
                       <tr>
-                        <td><input type="text" name="poliza" class="common-input"></td>
+                        <td><input type="text" class="common-input is-required" name="inma" value="20"></td></td>
                       </tr>
                       <tr>
                         <td><div class="required hide">Uno o más campos son inválidos.</div></td>
                       </tr>
-                    </table>
-                  </form>
-                </div>
+                    </tbody>
+                  </table>
+                </form>
               </div>
             </div>
           </div>
           <div id="footer">
             <div id="nav-step">
               <ul>
-                <li><input type="button" class="img-common icon-step icon-exit" onclick="Wizard.exit('convenios.php');"></li>
-                <li><a class='current-step' href="crear-convenio.php">Modificar convenio</a></li>
+                <li><input type="button" class="img-common icon-step icon-exit" onclick="Wizard.exit('flotas.php');"></li>
+                <li><a class='current-step' href="modificar-flota.php">Modificar flota</a></li>
                 <li><span class="img-common arrow"></span></li>                      
-                <li><a>Moficar datos</a></li>
-                <li><span class="img-common arrow"></span></li>               
-                <li><a>Modificar conndiciones de negocio</a></li>
+                <li><a>Modificar convenios asociados</a></li>
                 <li><input id="next" type="button" class="img-common icon-step icon-next" role="create"></li>
               </ul>
             </div>
           </div>
         </div>
       </div>
-      <script src="../plugins/jquery-1.10.2.min.js"></script>
-      <script src="../plugins/jquery-ui-1.10.3.custom.min.js"></script>
-      <script src="js/main.js"></script>
+    </div>
+    <script src="../plugins/jquery-1.10.2.min.js"></script>
+    <script src="../plugins/jquery-ui-1.10.3.custom.min.js"></script>
+    <script src="js/main.js"></script>
   </body>
 </html>

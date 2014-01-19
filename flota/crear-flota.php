@@ -12,7 +12,6 @@ if (isset($_SESSION['msg'])) {
     $msg_type = $_SESSION['msg_type'];
   }
 }
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -27,7 +26,7 @@ if (isset($_SESSION['msg'])) {
   <body>
     <div id="container">
       <div id="header">
-         <a href="index.php"><img id="logo" src="img/logo.png"></a>
+        <a href="index.php"><img id="logo" src="img/logo.png"></a>
         <div id="top-nav"></div>
       </div>
       <div id="content">
