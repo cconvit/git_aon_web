@@ -31,7 +31,7 @@ if (isset($_SESSION['msg'])) {
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>Aon - Nuevo convenio</title>
+    <title>Aon - ConvenioS</title>
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
     <link href="css/jquery-ui-1.10.3.custom.min.css" rel="stylesheet" type="text/css">
     <link href="css/normalize.css" rel="stylesheet" type="text/css">
@@ -187,7 +187,7 @@ if (isset($_SESSION['msg'])) {
                               <div class="options">
                                 <form method="post" action="" action="" onsubmit="return formOperation()">
                                   <p>
-                                    <input id="input-file" type="button" class="img-common icon-operation icon-modified" data="1" onclick="Utils.loadDialog('load/loadConditon.php', this, $('#modify'));">
+                                    <input id="input-file" type="button" class="img-common icon-operation icon-modified" data="1" onclick="Utils.loadDialog('load/loadCondition.php', $(this), $('#modify'));">
                                     <input id="input-file" type="button" class="img-common icon-operation icon-delete" data="1">
                                   </p>
                                 </form>
