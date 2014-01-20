@@ -58,32 +58,32 @@ $cotizaciones = $cotizacion->find_all();
             <div id="scroll">
               <table class="tbl-details" cellspacing="0" borderspacing="0">
                 <tbody>                                               
-                <?php
+                  <?php
                   if (sizeof($cotizaciones) > 0) {
                     foreach ($cotizaciones as $value) {
                       ?>                 
-                  <tr>
-                    <td>
-                      <div class="item">
-                        <p class="item-title"><?php echo $value->nombre; ?></p>
-                        <p clas="item-sub-title"><?php echo $value->empresa_flota; ?></p>
-                        <p clas="item-sub-title"><?php echo $value->nombre_cliente; ?></p>
-                        <p class="separator"></p>
-                        <div class="info-down">
-                          <p class="item-info">Fecha de creación: <span><?php echo $value->cr_time; ?></span></p>
-                          <p class="item-info">Última modificación: <span><?php echo $value->ut_time; ?></span></p>
-                          <div class="options">
-                            <form method="post" action="../php/operation/administration.php?operation_type=21&target=../../flota/cotizaciones.php" onsubmit="return formOperation()">
-                              <input type="button" data="" class="img-common icon-operation icon-download">
-                              <input type="submit" type="submit" class="img-common icon-operation icon-delete" value="">
-                              <input type="hidden" name="id" value="<?php echo $value->id; ?>">
-                            </form>
+                      <tr>
+                        <td>
+                          <div class="item">
+                            <p class="item-title"><?php echo $value->nombre; ?></p>
+                            <p clas="item-sub-title"><?php echo $value->empresa_flota; ?></p>
+                            <p clas="item-sub-title"><?php echo $value->nombre_cliente; ?></p>
+                            <p class="separator"></p>
+                            <div class="info-down">
+                              <p class="item-info">Fecha de creación: <span><?php echo $value->cr_time; ?></span></p>
+                              <p class="item-info">Última modificación: <span><?php echo $value->ut_time; ?></span></p>
+                              <div class="options">
+                                <form method="post" action="../php/operation/administration.php?operation_type=21&target=../../flota/cotizaciones.php" onsubmit="return formOperation()">
+                                  <input type="button" data="" class="img-common icon-operation icon-download">
+                                  <input type="submit" type="submit" class="img-common icon-operation icon-delete" value="">
+                                  <input type="hidden" name="id" value="<?php echo $value->id; ?>">
+                                </form>
+                              </div>
+                            </div>
                           </div>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <?php
+                        </td>
+                      </tr>
+                      <?php
                     }
                   }
                   ?>

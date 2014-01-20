@@ -18,19 +18,18 @@ if (isset($_SESSION['msg'])) {
   }
 }
 
-$convenio_aseguradora=new convenio_aseguradora();
+$convenio_aseguradora = new convenio_aseguradora();
 
-if(isset($_REQUEST['id'])){
-    
-    $convenio_aseguradora->id=$_REQUEST['id'];
-    $_SESSION["id_convenio_as"] =$_REQUEST['id']; 
-}else
-    $convenio_aseguradora->id=$_SESSION["id_convenio_as"] ;
+if (isset($_REQUEST['id'])) {
 
-$aux=$convenio_aseguradora->find_by_id_convenio();
+  $convenio_aseguradora->id = $_REQUEST['id'];
+  $_SESSION["id_convenio_as"] = $_REQUEST['id'];
+} else
+  $convenio_aseguradora->id = $_SESSION["id_convenio_as"];
+
+$aux = $convenio_aseguradora->find_by_id_convenio();
 $aseguradora = new aseguradora();
 $aseguradoras = $aseguradora->find_all();
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -74,37 +73,37 @@ $aseguradoras = $aseguradora->find_all();
                         <td>Nombre</td>
                       </tr>
                       <tr>
-                          <td><input type="text" name="nombre" id="nombre" class="common-input is-required" value="<?php echo $aux[0]->nombre;?>"></td>
+                        <td><input type="text" name="nombre" id="nombre" class="common-input is-required" value="<?php echo $aux[0]->nombre; ?>"></td>
                       </tr>                  
                       <tr>
                         <td>Descripción</td>
                       </tr>                 
                       <tr>
-                        <td><textarea name="descripcion" class="common-input is-required" style="height: 66px"><?php echo $aux[0]->descripcion;?></textarea></td>
+                        <td><textarea name="descripcion" class="common-input is-required" style="height: 66px"><?php echo $aux[0]->descripcion; ?></textarea></td>
                       </tr>
                       <tr>
                         <td>Seguro</td>
                       </tr>                  
                       <tr>
                         <td>
-                            <select class="common-input common-select" name="seguro">
-                                <?php
+                          <select class="common-input common-select" name="seguro">
+                            <?php
                             if (sizeof($aseguradoras) > 0) {
                               foreach ($aseguradoras as $value) {
                                 ?>
-                                <option <?php echo $value->id==$aux->id_aseguradora ? "selected":"" ?> value="<?php echo $value->id; ?>"><?php echo $value->nombre; ?></option>
+                                <option <?php echo $value->id == $aux->id_aseguradora ? "selected" : "" ?> value="<?php echo $value->id; ?>"><?php echo $value->nombre; ?></option>
                                 <?php
                               }
                             }
                             ?>
-                            </select>
+                          </select>
                         </td>
                       </tr>                                
                       <tr>
                         <td>Número de póliza (opcional)</td>
                       </tr>                 
                       <tr>
-                        <td><input type="text" name="poliza" class="common-input" value="<?php echo $aux[0]->num_poliza;?>"></td>
+                        <td><input type="text" name="poliza" class="common-input" value="<?php echo $aux[0]->num_poliza; ?>"></td>
                       </tr>
                       <tr>
                         <td><div class="required hide">Uno o más campos son inválidos.</div></td>
@@ -118,13 +117,13 @@ $aseguradoras = $aseguradora->find_all();
           <div id="footer">
             <div id="nav-step">
               <ul>
-                <li><input type="button" class="img-common icon-step icon-exit" onclick="Wizard.exit('convenios.php');"></li>
+                <li><input type="button" class="img-common icon-step icon-exit" value="Salir" onclick="Wizard.exit('convenios.php');"></li>
                 <li><a class='current-step' href="modificar-convenio.php">Modificar convenio</a></li>
                 <li><span class="img-common arrow"></span></li>                      
                 <li><a>Moficar datos</a></li>
                 <li><span class="img-common arrow"></span></li>               
                 <li><a>Modificar conndiciones de negocio</a></li>
-                <li><input id="next" type="button" class="img-common icon-step icon-next" role="create"></li>
+                <li><input id="next" type="button" class="img-common icon-step icon-next" value="Siguiente" role="create"></li>
               </ul>
             </div>
           </div>

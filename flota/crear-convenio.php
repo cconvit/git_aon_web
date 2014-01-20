@@ -106,13 +106,13 @@ $aseguradoras = $aseguradora->find_all();
           <div id="footer">
             <div id="nav-step">
               <ul>
-                <li><input type="button" class="img-common icon-step icon-exit" onclick="Wizard.exit('cotizaciones.php');"></li>
+                <li><input type="button" class="img-common icon-step icon-exit" value="Salir" onclick="Wizard.exit('cotizaciones.php');"></li>
                 <li><a class='current-step' href="crear-convenio.php">Crear convenio</a></li>
                 <li><span class="img-common arrow"></span></li>                      
                 <li><a>Importar datos</a></li>
                 <li><span class="img-common arrow"></span></li>               
                 <li><a>Condiciones de negocio</a></li>
-                <li><input id="next" type="button" class="img-common icon-step icon-next" role="create"></li>
+                <li><input id="next" type="button" class="img-common icon-step icon-next" value="Siguiente" role="create"></li>
               </ul>
             </div>
           </div>

@@ -193,7 +193,7 @@ $cotizacion_carro->id_cotizacion = $_SESSION["id_cotizacion"];
                       $cotizacion_carros = $cotizacion_carro->find_by_id_cotizacion();
                       if (sizeof($cotizacion_carros) > 0) {
                         foreach ($cotizacion_carros as $value) {
-                            $result=(($value->is_car_marca != 1) || ($value->is_car_modelo != 1) || ($value->is_car_ocupantes != 1) || ($value->is_edad != 1) || ($value->is_estado_civil != 1) || ($value->is_sexo != 1) || ($value->is_tipo_carros != 1) || ($value->is_tipo_cobertura != 1));
+                          $result = (($value->is_car_marca != 1) || ($value->is_car_modelo != 1) || ($value->is_car_ocupantes != 1) || ($value->is_edad != 1) || ($value->is_estado_civil != 1) || ($value->is_sexo != 1) || ($value->is_tipo_carros != 1) || ($value->is_tipo_cobertura != 1));
                           ?>
                           <tr class="<?php echo $result ? "text-error" : "" ?>">
                             <td class="no-padding no-border"><a class="img-common icon-edit icon-actions suggestion" data='<?php echo $value->id; ?>'></a></td>

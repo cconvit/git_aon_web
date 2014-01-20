@@ -17,17 +17,16 @@ if (isset($_SESSION['msg'])) {
   }
 }
 
-$convenio_aseguradora=new convenio_aseguradora();
+$convenio_aseguradora = new convenio_aseguradora();
 
-if(isset($_REQUEST['id'])){
-    
-    $convenio_aseguradora->id=$_REQUEST['id'];
-    $_SESSION["id_convenio_as"] =$_REQUEST['id']; 
-}else
-    $convenio_aseguradora->id=$_SESSION["id_convenio_as"] ;
+if (isset($_REQUEST['id'])) {
 
-$aux=$convenio_aseguradora->find_by_id_convenio();
+  $convenio_aseguradora->id = $_REQUEST['id'];
+  $_SESSION["id_convenio_as"] = $_REQUEST['id'];
+} else
+  $convenio_aseguradora->id = $_SESSION["id_convenio_as"];
 
+$aux = $convenio_aseguradora->find_by_id_convenio();
 ?>
 <!DOCTYPE html>
 <html>
@@ -67,7 +66,7 @@ $aux=$convenio_aseguradora->find_by_id_convenio();
                 <tr>
                   <td>
                     <div class='item'>
-                      <p><span class="img-common <?php echo $aux[0]->up_amplia == 1 ? "check":"uncheck"; ?> icon-check"></span><span class="item-title">Tasas de Cobertura Ámplia</span></p>
+                      <p><span class="img-common <?php echo $aux[0]->up_amplia == 1 ? "check" : "uncheck"; ?> icon-check"></span><span class="item-title">Tasas de Cobertura Ámplia</span></p>
                       <p class="separator"></p>
                       <div class="info-down">
                         <div class="options">
@@ -86,7 +85,7 @@ $aux=$convenio_aseguradora->find_by_id_convenio();
                 <tr>
                   <td>
                     <div class='item'>
-                      <p><span class="img-common <?php echo $aux[0]->up_total == 1 ? "check":"uncheck"; ?> icon-check"></span><span class="item-title">Tasas de Pérdida Total</span></p>
+                      <p><span class="img-common <?php echo $aux[0]->up_total == 1 ? "check" : "uncheck"; ?> icon-check"></span><span class="item-title">Tasas de Pérdida Total</span></p>
                       <p class="separator"></p>
                       <div class="info-down">
                         <div class="options">
@@ -105,7 +104,7 @@ $aux=$convenio_aseguradora->find_by_id_convenio();
                 <tr>
                   <td>
                     <div class='item'>
-                      <p><span class="img-common <?php echo $aux[0]->up_clasificacion == 1 ? "check":"uncheck"; ?> icon-check"></span><span class="item-title">Clasificación</span></p>
+                      <p><span class="img-common <?php echo $aux[0]->up_clasificacion == 1 ? "check" : "uncheck"; ?> icon-check"></span><span class="item-title">Clasificación</span></p>
                       <p class="separator"></p>
                       <div class="info-down">
                         <div class="options">
@@ -124,7 +123,7 @@ $aux=$convenio_aseguradora->find_by_id_convenio();
                 <tr>
                   <td>
                     <div class='item'>
-                      <p><span class="img-common <?php echo $aux[0]->up_clasificacion_ma == 1 ? "check":"uncheck"; ?> icon-check"></span><span class="item-title">Clasificación por Monto asegurado</span></p>
+                      <p><span class="img-common <?php echo $aux[0]->up_clasificacion_ma == 1 ? "check" : "uncheck"; ?> icon-check"></span><span class="item-title">Clasificación por Monto asegurado</span></p>
                       <p class="separator"></p>
                       <div class="info-down">
                         <div class="options">
@@ -143,7 +142,7 @@ $aux=$convenio_aseguradora->find_by_id_convenio();
                 <tr>
                   <td>
                     <div class='item'>
-                      <p><span class="img-common <?php echo $aux[0]->up_segmentacion == 1 ? "check":"uncheck"; ?> icon-check"></span><span class="item-title">Segmentación</span></p>
+                      <p><span class="img-common <?php echo $aux[0]->up_segmentacion == 1 ? "check" : "uncheck"; ?> icon-check"></span><span class="item-title">Segmentación</span></p>
                       <p class="separator"></p>
                       <div class="info-down">
                         <div class="options">
@@ -162,7 +161,7 @@ $aux=$convenio_aseguradora->find_by_id_convenio();
                 <tr>
                   <td>
                     <div class='item'>
-                      <p><span class="img-common <?php echo $aux[0]->up_grua == 1 ? "check":"uncheck"; ?> icon-check"></span><span class="item-title">AISTENCIA VÍAL</span></p>
+                      <p><span class="img-common <?php echo $aux[0]->up_grua == 1 ? "check" : "uncheck"; ?> icon-check"></span><span class="item-title">AISTENCIA VÍAL</span></p>
                       <p class="separator"></p>
                       <div class="info-down">
                         <div class="options">
@@ -185,13 +184,13 @@ $aux=$convenio_aseguradora->find_by_id_convenio();
         <div id="footer">
           <div id="nav-step">
             <ul>
-              <li><input type="button" class="img-common icon-step icon-exit" onclick="Wizard.exit('convenios.php')"></li>
+              <li><input type="button" class="img-common icon-step icon-exit" value="Salir" onclick="Wizard.exit('convenios.php')"></li>
               <li><a>Crear convenio</a></li>
               <li><span class="img-common arrow"></span></li>                      
               <li><a class='current-step' href="cargar-datos.php">Importar datos</a></li>
               <li><span class="img-common arrow"></span></li>               
               <li><a href="cargar-condiciones.php">Condiciones de negocio</a></li>
-              <li><input id="next" type="button" class="img-common icon-step icon-next" onclick="location.href = 'cargar-condiciones.php'"></li>
+              <li><input id="next" type="button" class="img-common icon-step icon-next" value="Siguiente" onclick="location.href = 'cargar-condiciones.php'"></li>
             </ul>
           </div>
         </div>

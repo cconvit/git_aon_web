@@ -257,12 +257,12 @@ function formOperation() {
 
 function checksSelected(form) {
 	var message;
-	if(form.find("input[type='checkbox']:checked").length === 0){
+	if (form.find("input[type='checkbox']:checked").length === 0) {
 		message = form.find("div.required");
 		message.show();
 		return false;
 	}
-	else{
+	else {
 		return true;
 	}
 }

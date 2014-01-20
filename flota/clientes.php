@@ -103,7 +103,8 @@ if (isset($_SESSION['msg'])) {
                               <p class="item-info">Última modificación: <span><?php echo $value->ut_time; ?></span></p>
                               <div class="options">
                                 <form method="post" action="../php/operation/administration.php?operation_type=3&target=../../flota/clientes.php" onsubmit="return formOperation()">
-                                  <input type="button" data="<?php echo $value->id; ?>" class="img-common icon-operation icon-modified" onclick="Utils.loadDialog('load/loadClient.php', $(this), $('#modify')); return false;">
+                                  <input type="button" data="<?php echo $value->id; ?>" class="img-common icon-operation icon-modified" onclick="Utils.loadDialog('load/loadClient.php', $(this), $('#modify'));
+                                          return false;">
                                   <input type="submit" type="submit" value="" class="img-common icon-operation icon-delete">
                                   <input type="hidden" name="id" value="<?php echo $value->id; ?>">
                                 </form> 

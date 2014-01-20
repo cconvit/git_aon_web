@@ -31,7 +31,7 @@ if (isset($_SESSION['msg'])) {
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>Aon - ConvenioS</title>
+    <title>Aon - Convenios</title>
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
     <link href="css/jquery-ui-1.10.3.custom.min.css" rel="stylesheet" type="text/css">
     <link href="css/normalize.css" rel="stylesheet" type="text/css">
@@ -208,13 +208,13 @@ if (isset($_SESSION['msg'])) {
         <div id="footer">
           <div id="nav-step">
             <ul>
-              <li><input type="button" class="img-common icon-step icon-exit" onclick="location.href = 'convenios.php'"></li>
+              <li><input type="button" class="img-common icon-step icon-exit" value="Salir" onclick="location.href = 'convenios.php'"></li>
               <li><a>Crear convenio</a></li>
               <li><span class="img-common arrow"></span></li>                      
               <li><a href="cargar-datos.php">Importar datos</a></li>
               <li><span class="img-common arrow"></span></li>               
               <li><a class="current-step" href="cargar-condiciones.php">Condiciones de negocio</a></li>
-              <li><input type="button" class="img-common icon-step icon-end" onclick="location.href = 'convenios.php'"></li>            
+              <li><input type="button" class="img-common icon-step icon-end" value="Finalizar" onclick="location.href = 'convenios.php'"></li>            
             </ul>
           </div>
         </div>

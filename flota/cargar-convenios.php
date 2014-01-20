@@ -44,8 +44,8 @@ if (isset($_SESSION['msg'])) {
             <li><a href="clientes.php">Clientes</a></li>
             <li><a href="seguros.php">Seguros</a></li>
             <li><a href="coberturas.php">Coberturas</a></li>
-            <li class="current"><a href="convenios.php">Convenios</a></li>
-            <li><a href="flotas.php">Flotas</a></li>
+            <li><a href="convenios.php">Convenios</a></li>
+            <li class="current"><a href="flotas.php">Flotas</a></li>
             <li style="border: none;"><a href="cotizaciones.php">Cotizaciones</a></li>
           </ul>
         </div>
@@ -91,11 +91,11 @@ if (isset($_SESSION['msg'])) {
           <div id="footer">
             <div id="nav-step">
               <ul>
-                <li><input id="next" type="button" class="img-common icon-step icon-exit" ></li>
+                <li><input id="next" type="button" class="img-common icon-step icon-exit" value="Salir" ></li>
                 <li>Crear flota</li>
                 <li><span class="img-common arrow"></span></li>                      
-                <li><a class='current-step' href="cargar-convenios.php">Agregar convenios</a></li>
-                <li><input id="next" type="button" class="img-common icon-step icon-end" onclick="Wizard.exit('flotas.php');"></li>
+                <li><a class="current-step" href="cargar-convenios.php">Agregar convenios</a></li>
+                <li><input id="next" type="button" class="img-common icon-step icon-end" value="Finalizar"onclick="Wizard.exit('flotas.php');"></li>
               </ul>
             </div>
           </div>
