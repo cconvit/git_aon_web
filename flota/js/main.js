@@ -219,7 +219,7 @@ $(function(e) {
 
 	// submit suggestion form
 	$("#vehicle").on("submit", "form", function(e) {
-		if (!existUnselected()) {
+		if (!existUnselected($(this))) {
 			$(this).trigger("submit");
 		}
 		return false;

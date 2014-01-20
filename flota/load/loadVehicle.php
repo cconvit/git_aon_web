@@ -108,7 +108,7 @@ if (isset($_REQUEST["id"])) {
               </ul>
             </td>
             <td>
-              <ul class="vehicle-suggestion-list" role="uso" data="<?php echo $carro->is_tipo_carros == "1" ? "selected" : "unselected" ?>">
+              <ul id="uso" class="vehicle-suggestion-list" role="uso" data="<?php echo $carro->is_tipo_carros == "1" ? "selected" : "unselected" ?>">
                 <?php if ($carro->is_tipo_carros != "1") { ?><li><span class="icon-mini icon-clear img-common icon-error"></span><?php echo $convertidor->getTipoCarro($carro->tipo_carro); ?></li><?php } ?>
                 <li data="1" role="<?php echo $carro->tipo_carro == "1" ? "selected" : "unselected" ?>"><span class="icon-mini icon-clear<?php echo $carro->tipo_carro == "1" ? " img-common icon-selected" : "" ?>"></span>PARTICULAR</li>
                 <li data="2" role="<?php echo $carro->tipo_carro == "2" ? "selected" : "unselected" ?>"><span class="icon-mini icon-clear<?php echo $carro->tipo_carro == "2" ? " img-common icon-selected" : "" ?>"></span>RÚSTICO</li>
@@ -117,7 +117,7 @@ if (isset($_REQUEST["id"])) {
               </ul>
             </td>
             <td>
-              <ul class="vehicle-suggestion-list" role="ocupantes" data="<?php echo $carro->is_car_ocupantes == "1" ? "selected" : "unselected" ?>">
+              <ul id="ocupantes" class="vehicle-suggestion-list" role="ocupantes" data="<?php echo $carro->is_car_ocupantes == "1" ? "selected" : "unselected" ?>">
                 <?php if ($carro->is_car_ocupantes != "1") { ?><li><span class="icon-mini icon-clear img-common icon-error"></span><?php echo $carro->car_ocupantes; ?></li><?php } ?>
                 <li data="2" role="<?php echo $carro->car_ocupantes == "2" ? "selected" : "unselected" ?>"><span class="icon-mini icon-clear<?php echo $carro->car_ocupantes == "2" ? " img-common icon-selected" : "" ?>"></span>2</li>
                 <li data="3" role="<?php echo $carro->car_ocupantes == "3" ? "selected" : "unselected" ?>"><span class="icon-mini icon-clear<?php echo $carro->car_ocupantes == "3" ? " img-common icon-selected" : "" ?>"></span>3</li>
@@ -132,7 +132,7 @@ if (isset($_REQUEST["id"])) {
               </ul>
             </td>
             <td>
-              <ul class="vehicle-suggestion-list" role="edad" data="<?php echo $carro->is_edad == "1" ? "selected" : "unselected" ?>">
+              <ul id="edad" class="vehicle-suggestion-list" role="edad" data="<?php echo $carro->is_edad == "1" ? "selected" : "unselected" ?>">
                 <?php if ($carro->is_edad != "1") { ?><li><span class="icon-mini icon-clear img-common icon-error"></span><?php echo $carro->edad; ?></li><?php
                 }
                 for ($x = 18; $x < 95; $x++) {
@@ -145,7 +145,7 @@ if (isset($_REQUEST["id"])) {
               </ul>
             </td>
             <td>
-              <ul class="vehicle-suggestion-list" role="sexo" data="<?php echo $carro->is_sexo == "1" ? "selected" : "unselected" ?>">
+              <ul id="sexo" class="vehicle-suggestion-list" role="sexo" data="<?php echo $carro->is_sexo == "1" ? "selected" : "unselected" ?>">
                 <?php if ($carro->is_sexo != "1") { ?><li><span class="icon-mini icon-clear img-common icon-error"></span><?php echo $carro->sexo; ?></li><?php } ?>
                 <li data="1" role="<?php echo $carro->sexo == "1" ? "selected" : "unselected" ?>"><span class="icon-mini icon-clear<?php echo $carro->sexo == "1" ? " img-common icon-selected" : "" ?>"></span>FEMENINO</li>
                 <li data="2" role="<?php echo $carro->sexo == "2" ? "selected" : "unselected" ?>"><span class="icon-mini icon-clear<?php echo $carro->sexo == "2" ? " img-common icon-selected" : "" ?>"></span>MASCULINO</li>
@@ -153,7 +153,7 @@ if (isset($_REQUEST["id"])) {
               </ul>
             </td>
             <td class="no-border">
-              <ul class="vehicle-suggestion-list" role="civil" data="<?php echo $carro->is_estado_civil == "1" ? "selected" : "unselected" ?>">
+              <ul id="civil" class="vehicle-suggestion-list" role="civil" data="<?php echo $carro->is_estado_civil == "1" ? "selected" : "unselected" ?>">
                 <?php if ($carro->is_estado_civil != "1") { ?><li><span class="icon-mini icon-clear img-common icon-error"></span><?php echo $carro->estado_civil; ?></li><?php } ?>
                 <li data="1" role="<?php echo $carro->estado_civil == "1" ? "selected" : "unselected" ?>"><span class="icon-mini icon-clear<?php echo $carro->estado_civil == "1" ? " img-common icon-selected" : "" ?>"></span>CASADO</li>
                 <li data="2" role="<?php echo $carro->estado_civil == "2" ? "selected" : "unselected" ?>"><span class="icon-mini icon-clear<?php echo $carro->estado_civil == "2" ? " img-common icon-selected" : "" ?>"></span>SOLTERO</li>
