@@ -209,7 +209,7 @@ if (isset($_SESSION['msg'])) {
           <div id="nav-step">
             <ul>
               <li><input type="button" class="img-common icon-step icon-exit" onclick="location.href = 'convenios.php'"></li>
-              <li><a>Crear convenio</a></li>
+              <li><a><?php echo $_SESSION['cargar_datos']==1 ? "Crear":"Modificar";?> convenio</a></li>
               <li><span class="img-common arrow"></span></li>                      
               <li><a href="cargar-datos.php">Importar datos</a></li>
               <li><span class="img-common arrow"></span></li>               

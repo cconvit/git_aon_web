@@ -9,7 +9,7 @@ $msg = "hide";
 $msg_desc = "";
 $msg_type = "succesfull";
 
-
+$_SESSION['cargar_datos']=2;
 if (isset($_SESSION['msg'])) {
   if ($_SESSION['msg'] == "show") {
     $msg = "show";

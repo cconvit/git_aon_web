@@ -90,12 +90,8 @@ NOW())";
 
     if ($database->query($sql)) {
 
-      if (mysql_affected_rows() != 0) {
-        $this->id_user = $database->insert_id();
-        return true;
-      } else {
-        return false;
-      }
+      return true;
+      
     } else {
       return false;
     }
