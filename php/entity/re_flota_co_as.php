@@ -64,6 +64,26 @@ class re_flota_co_as {
       return false;
     }
   }
+  
+   public function delete_by_flota_convenio() {
+
+    global $database;
+
+    $sql = "DELETE FROM " . self::$table_name . "
+                                  WHERE id_flota='{$database->escape_value($this->id_flota)}'
+                                  AND id_convenio_as='{$database->escape_value($this->id_convenio_as)}'";
+
+
+
+    if ($database->query($sql)) {
+      if (mysql_affected_rows() != 0)
+        return true;
+      else
+        return false;
+    } else {
+      return false;
+    }
+  }
 
   ///////////////////////////METODOS ESTANDAR//////////////////////////////////
 

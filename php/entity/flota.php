@@ -51,19 +51,14 @@ class flota{
                                   empresa='{$database->escape_value($this->empresa)}',
                                   porcentaje_INMA='{$database->escape_value($this->porcentaje_INMA)}',
                                   avatar='{$database->escape_value($this->avatar)}',
-                                  descripcion='{$database->escape_value($this->descripcion)}',
+                                  descripcion='{$database->escape_value($this->descripcion)}'
                                   WHERE id='{$database->escape_value($this->id)}'";
 
-    
-                                 
+
+                             
       if($database->query($sql)) {
-          
-          if(mysql_affected_rows() != 0){
-             
-          return true;}
-         else{
-             return false;
-         }
+
+          return true;
 
       } else {
         return false;
@@ -82,7 +77,7 @@ class flota{
                             '{$database->escape_value($this->descripcion)}',
                             NOW())";
                                           
-                                          
+                                    
       if($database->query($sql)) {
         $this->id = $database->insert_id();
         return true;

@@ -72,7 +72,7 @@ if (isset($_SESSION['msg'])) {
                             <p class="item-info">Fecha de creación: <span><?php echo $value->cr_time; ?></span></p>
                             <p class="item-info">Última modificación: <span><?php echo $value->ut_time; ?></span></p>
                             <div class="options top-max">
-                              <form method="post" action="../php/operation/administration.php?operation_type=12&target=../../flota/cargar-convenios.php" onsubmit="return formOperation()">
+                              <form method="post" action="../php/operation/administration.php?operation_type=23&target=../../flota/cargar-convenios.php" onsubmit="return formOperation()">
                                 <input type="submit" type="submit" class="img-common icon-operation icon-delete" value="">
                                 <input type="hidden" name="id" value="<?php echo $value->id; ?>">
                               </form>
@@ -92,7 +92,7 @@ if (isset($_SESSION['msg'])) {
             <div id="nav-step">
               <ul>
                 <li><input id="next" type="button" class="img-common icon-step icon-exit" ></li>
-                <li>Crear flota</li>
+                <li><?php echo $_SESSION['cargar_convenios']==1 ? "Crear":"Modificar";?> flota</li>
                 <li><span class="img-common arrow"></span></li>                      
                 <li><a class='current-step' href="cargar-convenios.php">Agregar convenios</a></li>
                 <li><input id="next" type="button" class="img-common icon-step icon-end" onclick="Wizard.exit('flotas.php');"></li>

@@ -30,6 +30,7 @@ class convenio_aseguradora {
   
   public static function find_by_sql($sql = "") {
       
+
     global $database;
     $result_set = $database->query($sql);
     $object_array = array();
@@ -46,6 +47,13 @@ class convenio_aseguradora {
     return self::find_by_sql("SELECT ca.id,ca.id_aseguradora,ca.nombre,ca.descripcion,ca.num_poliza,ca.up_amplia,ca.up_total,ca.up_segmentacion,ca.up_grua,ca.up_clasificacion,ca.up_clasificacion_ma,a.nombre as 'as_nombre',ca.cr_time as 'cr_time',ca.ut_time as 'ut_time' FROM `tbl_convenio_aseguradora` ca INNER JOIN tbl_aseguradora a ON ca.id_aseguradora=a.id
                               INNER JOIN tbl_re_flota_co_as re ON re.id_convenio_as=ca.id               
                               WHERE re.id_flota='{$database->escape_value($flota)}'");
+  }
+  
+  public static function find_distinc_flota($flota) {
+
+    global $database;
+
+    return self::find_by_sql("SELECT ca.id,ca.id_aseguradora,ca.nombre,ca.descripcion,ca.num_poliza,ca.up_amplia,ca.up_total,ca.up_segmentacion,ca.up_grua,ca.up_clasificacion,ca.up_clasificacion_ma,a.nombre as 'as_nombre',ca.cr_time as 'cr_time',ca.ut_time as 'ut_time' FROM `tbl_convenio_aseguradora` ca INNER JOIN tbl_aseguradora a ON ca.id_aseguradora=a.id WHERE ca.id NOT  IN(SELECT re.id_convenio_as FROM tbl_re_flota_co_as re WHERE re.id_flota='{$database->escape_value($flota)}')");
   }
   
   public function find_by_id_convenio() {
