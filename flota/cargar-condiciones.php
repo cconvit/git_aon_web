@@ -209,13 +209,13 @@ if (isset($_SESSION['msg'])) {
         <div id="footer">
           <div id="nav-step">
             <ul>
-              <li><input type="button" class="img-common icon-step icon-exit" onclick="location.href = 'convenios.php'"></li>
+              <li><input type="button" class="img-common icon-step icon-exit" value="Salir" onclick="location.href = 'convenios.php'"></li>
               <li><a><?php echo $_SESSION['cargar_datos']==1 ? "Crear":"Modificar";?> convenio</a></li>
               <li><span class="img-common arrow"></span></li>                      
               <li><a href="cargar-datos.php">Importar datos</a></li>
               <li><span class="img-common arrow"></span></li>               
               <li><a class="current-step" href="cargar-condiciones.php">Condiciones de negocio</a></li>
-              <li><input type="button" class="img-common icon-step icon-end" value="Finalizar" onclick="location.href = 'convenios.php'"></li>            
+              <li><input type="button" class="img-common icon-step icon-end" value="Finalizar" onclick="Wizard.exit('convenios.php')"></li>            
             </ul>
           </div>
         </div>

@@ -184,7 +184,7 @@ $aux = $convenio_aseguradora->find_by_id_convenio();
         <div id="footer">
           <div id="nav-step">
             <ul>
-              <li><input type="button" class="img-common icon-step icon-exit" onclick="Wizard.exit('convenios.php')"></li>
+              <li><input type="button" class="img-common icon-step icon-exit" value="Salir" onclick="Wizard.exit('convenios.php')"></li>
               <li><a><?php echo $_SESSION['cargar_datos']==1 ? "Crear":"Modificar";?> convenio</a></li>
               <li><span class="img-common arrow"></span></li>                      
               <li><a class='current-step' href="cargar-datos.php">Importar datos</a></li>
