@@ -343,7 +343,7 @@ function deleteCondicion() {
     $condicion = new re_tipo_cobertura_aseguradora();
 
 
-    $condicion->id_cob_as = $_REQUEST["cobertura"];
+    $condicion->id_cob_as = $_REQUEST["id"];
     $condicion->id_convenio_as = $_SESSION["id_convenio_as"];
 
     $_SESSION["msg"] = "show";

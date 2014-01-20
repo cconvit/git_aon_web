@@ -185,10 +185,11 @@ if (isset($_SESSION['msg'])) {
                             <p class="separator"></p>
                             <div class="info-down">
                               <div class="options">
-                                <form method="post" action="" onsubmit="return formOperation()">
+                                <form method="post" action="../php/operation/administration.php?operation_type=15&target=../../flota/cargar-condiciones.php" onsubmit="return formOperation()">
                                   <p>
                                     <input type="button" class="img-common icon-operation icon-modified" data="<?php echo $value->id_cob_as; ?>" onclick="Utils.loadDialog('load/loadCondition.php', $(this), $('#modify'));">
                                     <input type="submit" class="img-common icon-operation icon-delete" value="" data="<?php echo $value->id_cob_as; ?>">
+                                    <input type="hidden" name="id" value="<?php echo $value->id_cob_as; ?>">
                                   </p>
                                 </form>
                               </div>
@@ -208,8 +209,8 @@ if (isset($_SESSION['msg'])) {
         <div id="footer">
           <div id="nav-step">
             <ul>
-              <li><input type="button" class="img-common icon-step icon-exit" value="Salir" onclick="location.href = 'convenios.php'"></li>
-              <li><a>Crear convenio</a></li>
+              <li><input type="button" class="img-common icon-step icon-exit" onclick="location.href = 'convenios.php'"></li>
+              <li><a><?php echo $_SESSION['cargar_datos']==1 ? "Crear":"Modificar";?> convenio</a></li>
               <li><span class="img-common arrow"></span></li>                      
               <li><a href="cargar-datos.php">Importar datos</a></li>
               <li><span class="img-common arrow"></span></li>               
