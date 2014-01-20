@@ -187,8 +187,8 @@ if (isset($_SESSION['msg'])) {
                               <div class="options">
                                 <form method="post" action="" action="" onsubmit="return formOperation()">
                                   <p>
-                                    <input id="input-file" type="button" class="img-common icon-operation icon-modified" data="1" onclick="Utils.loadDialog('load/loadCondition.php', $(this), $('#modify'));">
-                                    <input id="input-file" type="button" class="img-common icon-operation icon-delete" data="1">
+                                    <input id="input-file" type="button" class="img-common icon-operation icon-modified" data="<?php echo $value->id_cob_as; ?>" onclick="Utils.loadDialog('load/loadCondition.php', $(this), $('#modify'));">
+                                    <input id="input-file" type="button" class="img-common icon-operation icon-delete" data="<?php echo $value->id_cob_as; ?>">
                                   </p>
                                 </form>
                               </div>

@@ -88,7 +88,6 @@ NOW())";
   WHERE id='{$database->escape_value($this->id)}'";
 
 
-
     if ($database->query($sql)) {
 
       if (mysql_affected_rows() != 0) {

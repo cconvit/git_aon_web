@@ -80,11 +80,67 @@ class re_tipo_cobertura_aseguradora{
       global $database;
       
       return self::find_by_sql("SELECT re.id_convenio_as as 'id_convenio_as',
-                                       de.desc_cobertura as 'descripcion',re.id_cob_as as 'id_cob_as'
+                                       de.desc_cobertura as 'descripcion',re.id_cob_as as 'id_cob_as',re.tipo_calculo as 'tipo_calculo',re.tasa as 'tasa',re.incluida as 'incluida'
                                FROM  tbl_re_tipo_cob_as re
                                INNER JOIN tbl_cob_as de ON (de.id=re.id_cob_as)
                                WHERE re.id_convenio_as='{$database->escape_value($this->id_convenio_as)}' 
                                GROUP BY re.id_cob_as
+                              ");
+  }
+  
+  public function find_re_by_convenio_id_cobertura() {
+	
+      global $database;
+      
+      return self::find_by_sql("SELECT re.id_convenio_as as 'id_convenio_as',
+                                       de.desc_cobertura as 'descripcion',re.id_cob_as as 'id_cob_as',re.tipo_calculo as 'tipo_calculo',re.tasa as 'tasa',re.incluida as 'incluida',re.limite as 'limite'
+                               FROM  tbl_re_tipo_cob_as re
+                               INNER JOIN tbl_cob_as de ON (de.id=re.id_cob_as)
+                               WHERE re.id_convenio_as='{$database->escape_value($this->id_convenio_as)}' 
+                               AND re.id_cob_as='{$database->escape_value($this->id_cob_as)}' 
+                               GROUP BY re.id_cob_as
+                              ");
+  }
+  
+    public function find_re_by_convenio_id_cobertura_group_by_tipo_cob() {
+	
+      global $database;
+      
+      return self::find_by_sql("SELECT re.id_convenio_as as 'id_convenio_as',
+                                       de.desc_cobertura as 'descripcion',re.id_cob_as as 'id_cob_as',re.id_tipo_cob as 'id_tipo_cob',re.id_tipo_carro as 'id_tipo_carro', re.tipo_calculo as 'tipo_calculo',re.valor as 'valor', re.limite as 'limite', re.tasa as 'tasa',re.incluida as 'incluida'
+                               FROM  tbl_re_tipo_cob_as re
+                               INNER JOIN tbl_cob_as de ON (de.id=re.id_cob_as)
+                               WHERE re.id_convenio_as='{$database->escape_value($this->id_convenio_as)}' 
+                               AND re.id_cob_as='{$database->escape_value($this->id_cob_as)}' 
+                               GROUP BY re.id_tipo_cob
+                              ");
+  }
+  
+      public function find_re_by_convenio_id_cobertura_group_by_tipo_carro() {
+	
+      global $database;
+      
+      return self::find_by_sql("SELECT re.id_convenio_as as 'id_convenio_as',
+                                       de.desc_cobertura as 'descripcion',re.id_cob_as as 'id_cob_as',re.id_tipo_cob as 'id_tipo_cob',re.id_tipo_carro as 'id_tipo_carro', re.tipo_calculo as 'tipo_calculo',re.valor as 'valor', re.limite as 'limite', re.tasa as 'tasa',re.incluida as 'incluida'
+                               FROM  tbl_re_tipo_cob_as re
+                               INNER JOIN tbl_cob_as de ON (de.id=re.id_cob_as)
+                               WHERE re.id_convenio_as='{$database->escape_value($this->id_convenio_as)}' 
+                               AND re.id_cob_as='{$database->escape_value($this->id_cob_as)}' 
+                               GROUP BY re.id_tipo_carro
+                              ");
+  }
+  
+  
+    public function find_re_by_convenio_cobertura_all() {
+	
+      global $database;
+      
+      return self::find_by_sql("SELECT re.id_convenio_as as 'id_convenio_as',
+                                       de.desc_cobertura as 'descripcion',re.id_cob_as as 'id_cob_as',re.id_tipo_cob as 'id_tipo_cob',re.id_tipo_carro as 'id_tipo_carro', re.tipo_calculo as 'tipo_calculo',re.valor as 'valor', re.limite as 'limite', re.tasa as 'tasa',re.incluida as 'incluida'
+                               FROM  tbl_re_tipo_cob_as re
+                               INNER JOIN tbl_cob_as de ON (de.id=re.id_cob_as)
+                               WHERE re.id_convenio_as='{$database->escape_value($this->id_convenio_as)}' 
+                               
                               ");
   }
 
@@ -122,7 +178,7 @@ class re_tipo_cobertura_aseguradora{
                             '{$database->escape_value($this->incluida)}'
                             )";
                                           
-                                          
+         // echo $sql." \n";                                
       if($database->query($sql)) {
         $this->id = $database->insert_id();
         return true;
@@ -136,11 +192,11 @@ class re_tipo_cobertura_aseguradora{
       global $database;
       
         $sql="DELETE FROM ".self::$table_name."
-                                  WHERE id_convenio_as='{$database->escape_value($this->id_convenio_as)}',
+                                  WHERE id_convenio_as='{$database->escape_value($this->id_convenio_as)}'
                                   AND id_cob_as ='{$database->escape_value($this->id_cob_as)}'";
 
     
-                                 
+                              
       if($database->query($sql)) {
          if(mysql_affected_rows() != 0)
              return true;
