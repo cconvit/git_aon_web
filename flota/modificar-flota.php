@@ -1,3 +1,31 @@
+<?php
+session_start();
+require_once("../php/db/config.php");
+require_once ('../php/db/database.php');
+require_once ('../php/entity/flota.php');
+
+$msg = "hide";
+$msg_desc = "";
+$msg_type = "succesfull";
+
+$_SESSION['cargar_convenios']=2;
+if (isset($_SESSION['msg'])) {
+  if ($_SESSION['msg'] == "show") {
+    $msg = "show";
+    $msg_desc = $_SESSION['msg_desc'];
+    $msg_type = $_SESSION['msg_type'];
+  }
+}
+
+$flota = new flota();
+
+if(isset($_REQUEST['id'])){
+ 
+    $_SESSION["id_flota"] = $_REQUEST['id'];
+    $flota->id=$_REQUEST['id'];
+    $aux = $flota->find_by_id_flota();
+}
+?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -33,26 +61,26 @@
             </div>
             <div id="scroll" style="height: 455px;">
               <div style="margin-top: 30px">
-                <form method="post" action="../php/operation/administration.php?operation_type=16&target=../../flota/cargar-convenios.php" onsubmit="return isValidateSubmit($(this))">
+                <form method="post" action="../php/operation/administration.php?operation_type=17&target=../../flota/cargar-convenios.php&target_fail=../../flota/modificar-flota.php?id=<?php echo $_REQUEST['id'];?>" onsubmit="return isValidateSubmit($(this))">
                   <table>
                     <tbody>
                       <tr>
                         <td>Nombre</td>
                       </tr>
                       <tr>
-                        <td><input type="text" class="common-input is-required" name="nombre"></td></td>
+                        <td><input type="text" class="common-input is-required" name="nombre" value="<?php echo $aux[0]->empresa;?>"></td></td>
                       </tr>
                       <tr>
                         <td>Descripción</td>
                       </tr>
                       <tr>
-                        <td><textarea class="common-input is-required" name="descripcion" style="height: 66px;"></textarea></td>
+                        <td><textarea class="common-input is-required" name="descripcion" style="height: 66px;"><?php echo $aux[0]->descripcion;?></textarea></td>
                       </tr>
                       <tr>
                         <td>INMA (%)</td>
                       </tr>
                       <tr>
-                        <td><input type="text" class="common-input is-required" name="inma" value="20"></td></td>
+                        <td><input type="text" class="common-input is-required" name="inma"  value="<?php echo $aux[0]->porcentaje_INMA*100;?>"></td></td>
                       </tr>
                       <tr>
                         <td><div class="required hide">Uno o más campos son inválidos.</div></td>
@@ -82,3 +110,8 @@
     <script src="js/main.js"></script>
   </body>
 </html>
+<?php
+$_SESSION['msg'] = "hide";
+$_SESSION['msg_desc'] = "";
+$msg_type = "succesfull";
+?>

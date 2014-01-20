@@ -5,7 +5,7 @@ require_once ('../../php/db/database.php');
 require_once ('../../php/entity/convenio_aseguradora.php');
 
 $convenio_aseguradora = new convenio_aseguradora();
-$convenios_aseguradoras = $convenio_aseguradora->find_all();
+$convenios_aseguradoras = $convenio_aseguradora->find_distinc_flota($_SESSION['id_flota']);
 ?>
 <div id="agreements-list">
   <table class="tbl-details tbl-check-list" cellspacin="0" borderspacing="0">
@@ -28,6 +28,10 @@ $convenios_aseguradoras = $convenio_aseguradora->find_all();
           </tr>
           <?php
         }
+      }else{
+          ?>
+          <div class="title-list">Noy hay convenios a asociar</div>
+          <?php
       }
       ?>       
     </tbody>

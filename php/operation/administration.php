@@ -73,6 +73,10 @@ if (isset($_REQUEST["operation_type"])) {
             newFlota($_REQUEST["nombre"], $_REQUEST["descripcion"], $_REQUEST["inma"]);
             break;
 
+        case 17:
+            updateFlota($_REQUEST["nombre"], $_REQUEST["descripcion"], $_REQUEST["inma"]);
+            break;
+        
         case 18:
             deleteFlota($_REQUEST["id"]);
             break;
@@ -91,6 +95,10 @@ if (isset($_REQUEST["operation_type"])) {
 
         case 22:
             proccessCotizacion();
+            break;
+        
+        case 23:
+            deleteConvenioFlota($_REQUEST["id"]);
             break;
     }
 }
@@ -312,11 +320,14 @@ function updateConvenio($nombre, $seguro, $poliza,$descripcion) {
     if (!$convenio_aseguradora->update_by_id()) {
         $_SESSION["msg_desc"] = "Ocurrio un error al tratar de actualizar el convenio. Por favor intente mas tarde. Si el error persiste, comuniquese con el administrador del sistema.";
         $_SESSION["msg_type"] = "error";
+        header('Location: ' . $_GET["target_fail"]);
     } else {
         $_SESSION["msg_desc"] = "La actualización del convenio se realizó exitosamente.";
         $_SESSION["msg_type"] = "succesfull";
+        header('Location: ' . $_GET["target"]);
     }
-    header('Location: ' . $_GET["target"]);
+    
+    
 }
 
 function deleteConvenio($id) {
@@ -455,6 +466,30 @@ function newFlota($nombre, $descripcion, $inma) {
         $_SESSION["id_flota"] = $flota->id;
     }
     header('Location: ' . $_GET["target"]);
+}
+
+function updateFlota($nombre, $descripcion, $inma) {
+
+    require_once ('../entity/flota.php');
+    $flota = new flota();
+    $flota->empresa = $nombre;
+    $flota->descripcion = $descripcion;
+    $flota->porcentaje_INMA = $inma / 100;
+    $flota->id=$_SESSION['id_flota'];
+
+
+    $_SESSION["msg"] = "show";
+
+    if (!$flota->update_by_id()) {
+        $_SESSION["msg_desc"] = "Ocurrio un error al tratar de actualizar la flota. Por favor intente mas tarde. Si el error persiste, comuniquese con el administrador del sistema.";
+        $_SESSION["msg_type"] = "error";
+        header('Location: ' . $_GET["target_fail"]);
+    } else {
+        $_SESSION["msg_desc"] = "La actualización de la flota se realizó exitosamente.";
+        $_SESSION["msg_type"] = "succesfull";
+        header('Location: ' . $_GET["target"]);
+    }
+    
 }
 
 function deleteFlota($id) {
@@ -642,6 +677,27 @@ function proccessCotizacion() {
 
     header('Location: ' . $_GET["target"]);
 }
+
+function deleteConvenioFlota($id) {
+
+    require_once ('../entity/re_flota_co_as.php');
+    $re_flota_co_as = new re_flota_co_as();
+    $re_flota_co_as->id_flota= $_SESSION['id_flota'];
+    $re_flota_co_as->id_convenio_as=$id;
+    
+
+    $_SESSION["msg"] = "show";
+
+    if (!$re_flota_co_as->delete_by_flota_convenio()) {
+        $_SESSION["msg_desc"] = "Ocurrio un error al tratar de eliminar el convenio. Por favor intente mas tarde. Si el error persiste, comuniquese con el administrador del sistema.";
+        $_SESSION["msg_type"] = "error";
+    } else {
+        $_SESSION["msg_desc"] = "La eliminación del convenio se realizó exitosamente.";
+        $_SESSION["msg_type"] = "succesfull";
+    }
+    header('Location: ' . $_GET["target"]);
+}
+
 
 function set_msg($msg_desc, $msg_type) {
 
