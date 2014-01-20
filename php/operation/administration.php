@@ -49,8 +49,8 @@ if (isset($_REQUEST["operation_type"])) {
             newConvenio($_REQUEST["nombre"], $_REQUEST["descripcion"], $_REQUEST["seguro"], $_REQUEST["poliza"]);
             break;
 
-        case 11:
-            updateConvenio($_REQUEST["id"], $_REQUEST["nombre"], $_REQUEST["seguro"], $_REQUEST["poliza"]);
+        case 11: 
+            updateConvenio($_REQUEST["nombre"], $_REQUEST["seguro"], $_REQUEST["poliza"],$_REQUEST["descripcion"]);
             break;
 
         case 12:
@@ -297,13 +297,15 @@ function newConvenio($nombre, $descripcion, $seguro, $poliza) {
     }
 }
 
-function updateConvenio($id, $nombre, $seguro, $poliza) {
+function updateConvenio($nombre, $seguro, $poliza,$descripcion) {
 
     require_once ('../entity/convenio_aseguradora.php');
     $convenio_aseguradora = new convenio_aseguradora();
-    $convenio_aseguradora->id = $id;
-    $convenio_aseguradora->descripcion = $nombre;
+    $convenio_aseguradora->id = $_SESSION["id_convenio_as"];
+    $convenio_aseguradora->nombre = $nombre;
     $convenio_aseguradora->id_aseguradora = $seguro;
+    $convenio_aseguradora->num_poliza = $poliza;
+    $convenio_aseguradora->descripcion = $descripcion;
 
     $_SESSION["msg"] = "show";
 
@@ -384,11 +386,11 @@ function newUpdateCondicion($operation_type) {
             createCondicion($condicion, "3");
 
         if (($_REQUEST["cobertura_amplia"] == "true") || ($_REQUEST["perdida_total"] == "true") || ($_REQUEST["rcv"] == "true")) {
-            $_SESSION["msg_desc"] = "La creación de la cobertura se realizó exitosamente.";
+            $_SESSION["msg_desc"] = "La ".($operation_type == 14 ? "modificación":"creación")." de la cobertura se realizó exitosamente.";
             $_SESSION["msg_type"] = "succesfull";
         } else {
 
-            $_SESSION["msg_desc"] = "Ocurrio un error al tratar de crear la cobertura al convenio. Por favor intente mas tarde. Si el error persiste, comuniquese con el administrador del sistema.";
+            $_SESSION["msg_desc"] = "Ocurrio un error al tratar de ".($operation_type == 14 ? "modificar":"crear")." la cobertura al convenio. Por favor intente mas tarde. Si el error persiste, comuniquese con el administrador del sistema.";
             $_SESSION["msg_type"] = "error";
         }
     } else {

@@ -1,3 +1,37 @@
+<?php
+session_start();
+require_once("../php/db/config.php");
+require_once ('../php/db/database.php');
+require_once ('../php/entity/convenio_aseguradora.php');
+require_once ('../php/entity/aseguradora.php');
+
+$msg = "hide";
+$msg_desc = "";
+$msg_type = "succesfull";
+
+
+if (isset($_SESSION['msg'])) {
+  if ($_SESSION['msg'] == "show") {
+    $msg = "show";
+    $msg_desc = $_SESSION['msg_desc'];
+    $msg_type = $_SESSION['msg_type'];
+  }
+}
+
+$convenio_aseguradora=new convenio_aseguradora();
+
+if(isset($_REQUEST['id'])){
+    
+    $convenio_aseguradora->id=$_REQUEST['id'];
+    $_SESSION["id_convenio_as"] =$_REQUEST['id']; 
+}else
+    $convenio_aseguradora->id=$_SESSION["id_convenio_as"] ;
+
+$aux=$convenio_aseguradora->find_by_id_convenio();
+$aseguradora = new aseguradora();
+$aseguradoras = $aseguradora->find_all();
+
+?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -34,33 +68,43 @@
             <div id="scroll" style="height: 455px;">
               <div style="margin-top: 30px">
                 <div id="create-agreement">
-                  <form method="post" action="../php/operation/administration.php?operation_type=10&target=../../flota/cargar-datos.php&target_fail=../../flota/convenios.php">  
+                  <form method="post" action="../php/operation/administration.php?operation_type=11&target=../../flota/cargar-datos.php&target_fail=../../flota/convenios.php">  
                     <table>
                       <tr>
                         <td>Nombre</td>
                       </tr>
                       <tr>
-                        <td><input type="text" name="nombre" class="common-input is-required"></td>
+                          <td><input type="text" name="nombre" id="nombre" class="common-input is-required" value="<?php echo $aux[0]->nombre;?>"></td>
                       </tr>                  
                       <tr>
                         <td>Descripción</td>
                       </tr>                 
                       <tr>
-                        <td><textarea name="descripcion" class="common-input is-required" style="height: 66px"></textarea></td>
+                        <td><textarea name="descripcion" class="common-input is-required" style="height: 66px"><?php echo $aux[0]->descripcion;?></textarea></td>
                       </tr>
                       <tr>
                         <td>Seguro</td>
                       </tr>                  
                       <tr>
                         <td>
-                          <select class="common-input common-select" name="seguro"></select>
+                            <select class="common-input common-select" name="seguro">
+                                <?php
+                            if (sizeof($aseguradoras) > 0) {
+                              foreach ($aseguradoras as $value) {
+                                ?>
+                                <option <?php echo $value->id==$aux->id_aseguradora ? "selected":"" ?> value="<?php echo $value->id; ?>"><?php echo $value->nombre; ?></option>
+                                <?php
+                              }
+                            }
+                            ?>
+                            </select>
                         </td>
                       </tr>                                
                       <tr>
                         <td>Número de póliza (opcional)</td>
                       </tr>                 
                       <tr>
-                        <td><input type="text" name="poliza" class="common-input"></td>
+                        <td><input type="text" name="poliza" class="common-input" value="<?php echo $aux[0]->num_poliza;?>"></td>
                       </tr>
                       <tr>
                         <td><div class="required hide">Uno o más campos son inválidos.</div></td>
@@ -75,7 +119,7 @@
             <div id="nav-step">
               <ul>
                 <li><input type="button" class="img-common icon-step icon-exit" onclick="Wizard.exit('convenios.php');"></li>
-                <li><a class='current-step' href="crear-convenio.php">Modificar convenio</a></li>
+                <li><a class='current-step' href="modificar-convenio.php">Modificar convenio</a></li>
                 <li><span class="img-common arrow"></span></li>                      
                 <li><a>Moficar datos</a></li>
                 <li><span class="img-common arrow"></span></li>               
@@ -91,3 +135,8 @@
       <script src="js/main.js"></script>
   </body>
 </html>
+<?php
+$_SESSION['msg'] = "hide";
+$_SESSION['msg_desc'] = "";
+$msg_type = "succesfull";
+?>

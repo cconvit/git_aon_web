@@ -17,15 +17,17 @@ if (isset($_SESSION['msg'])) {
   }
 }
 
-if (isset($_REQUEST['id'])) {
+$convenio_aseguradora=new convenio_aseguradora();
 
-  $_SESSION["id_convenio_as"] = $_REQUEST['id'];
-  $_SESSION["up_amplia"] = "uncheck";
-  $_SESSION["up_total"] = "check";
-  $_SESSION["up_segmentacion"] = "uncheck";
-  $_SESSION["up_grua"] = "uncheck";
-  $_SESSION["up_clasificacion"] = "uncheck";
-}
+if(isset($_REQUEST['id'])){
+    
+    $convenio_aseguradora->id=$_REQUEST['id'];
+    $_SESSION["id_convenio_as"] =$_REQUEST['id']; 
+}else
+    $convenio_aseguradora->id=$_SESSION["id_convenio_as"] ;
+
+$aux=$convenio_aseguradora->find_by_id_convenio();
+
 ?>
 <!DOCTYPE html>
 <html>
