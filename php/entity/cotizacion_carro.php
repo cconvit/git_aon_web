@@ -179,6 +179,22 @@ class cotizacion_carro {
         }
     }
     
+      public function delete() {
+
+    global $database;
+
+    $sql = "DELETE FROM " . self::$table_name . " WHERE id='{$database->escape_value($this->id)}'";
+
+    if ($database->query($sql)) {
+      if (mysql_affected_rows() != 0)
+        return true;
+      else
+        return false;
+    } else {
+      return false;
+    }
+  }
+  
     ///////////////////////////METODOS ESTANDAR//////////////////////////////////
 
     private static function instantiate($record) {

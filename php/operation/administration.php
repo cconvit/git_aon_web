@@ -103,6 +103,8 @@ if (isset($_REQUEST["operation_type"])) {
         case 24:
             updateCarro($_REQUEST["id"], $_REQUEST["marca"], $_REQUEST["modelo"],$_REQUEST["version"],$_REQUEST["ano"],$_REQUEST["inma"],$_REQUEST["cobertura"],$_REQUEST["uso"],$_REQUEST["ocupantes"],$_REQUEST["edad"],$_REQUEST["sexo"],$_REQUEST["civil"]);
             break;
+         case 25:
+            deleteCarro($_REQUEST["id"]);
     }
 }
 
@@ -735,7 +737,24 @@ function updateCarro($id, $marca,$modelo,$version,$ano,$inma,$cobertura,$uso,$oc
     }
     header('Location: ' . $_GET["target"]);
 }
+function deleteCarro($id) {
 
+    require_once ('../entity/cotizacion_carro.php');
+    $carro = new cotizacion_carro();
+    $carro->id = $id;
+
+
+    $_SESSION["msg"] = "show";
+
+    if (!$carro->delete()) {
+        $_SESSION["msg_desc"] = "Ocurrio un error al tratar de eliminar el carro. Por favor intente mas tarde. Si el error persiste, comuniquese con el administrador del sistema.";
+        $_SESSION["msg_type"] = "error";
+    } else {
+        $_SESSION["msg_desc"] = "La eliminación del carro en la cotización se realizó exitosamente.";
+        $_SESSION["msg_type"] = "succesfull";
+    }
+    header('Location: ' . $_GET["target"]);
+}
 
 function set_msg($msg_desc, $msg_type) {
 
