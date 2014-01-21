@@ -19,13 +19,13 @@ if (isset($_REQUEST["id"])) {
   // Will return the response, if false it print the response
   curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
   // Set the url
-  curl_setopt($ch, CURLOPT_URL, "http://localhost/AON/git_aon_web/inma/json.php?ot=1");
+  curl_setopt($ch, CURLOPT_URL, "http://localhost/git_aon_web/inma/json.php?ot=1");
   // Execute
   $result = curl_exec($ch);
   // Will dump a beauty json :3
   $marcas = json_decode($result, true);
   ?>
-  <form action="operation.php" method="post">
+  <form action="../php/operation/administration.php?operation_type=24&target=../../flota/validar-flota.php" method="post">
     <div style="width: 870px; overflow-x: auto;">
       <table id="vehicle-suggestion">
         <thead>
@@ -54,7 +54,7 @@ if (isset($_REQUEST["id"])) {
                 foreach ($marcas as $marca) {
                     if($carro->car_marca == $marca['marca'])$id_marca=$carro->car_marca;
                   ?>
-                  <li data="<?php echo $carro->id;?>" <?php echo $carro->car_marca == $marca['marca'] ? "role='selected' tab-index='1'" : "" ?>><span class="icon-mini icon-clear<?php echo $carro->car_marca == $marca['marca'] ? " img-common icon-selected" : "" ?>"></span><?php echo $marca['marca']; ?></li>
+                  <li data="<?php echo $marca['marca'];?>" <?php echo $carro->car_marca == $marca['marca'] ? "role='selected' tab-index='1'" : "" ?>><span class="icon-mini icon-clear<?php echo $carro->car_marca == $marca['marca'] ? " img-common icon-selected" : "" ?>"></span><?php echo $marca['marca']; ?></li>
                 <?php } ?>
                 <li><input name="marca" type="hidden" value="<?php echo $id_marca;?>"></li>
               </ul>
@@ -98,7 +98,7 @@ if (isset($_REQUEST["id"])) {
                   <ul id="ano" class="vehicle-suggestion-list" role="ano">
                     <li>No hay años</li>
                   <?php } ?>
-                 <li><input name="version" type="hidden" value="<?php echo $id_ano;?>"></li>
+                 <li><input name="ano" type="hidden" value="<?php echo $id_ano;?>"></li>
                 </ul>
             </td>
             <td>

@@ -100,6 +100,9 @@ if (isset($_REQUEST["operation_type"])) {
         case 23:
             deleteConvenioFlota($_REQUEST["id"]);
             break;
+        case 24:
+            updateCarro($_REQUEST["id"], $_REQUEST["marca"], $_REQUEST["modelo"],$_REQUEST["version"],$_REQUEST["ano"],$_REQUEST["inma"],$_REQUEST["cobertura"],$_REQUEST["uso"],$_REQUEST["ocupantes"],$_REQUEST["edad"],$_REQUEST["sexo"],$_REQUEST["civil"]);
+            break;
     }
 }
 
@@ -693,6 +696,41 @@ function deleteConvenioFlota($id) {
         $_SESSION["msg_type"] = "error";
     } else {
         $_SESSION["msg_desc"] = "La eliminación del convenio se realizó exitosamente.";
+        $_SESSION["msg_type"] = "succesfull";
+    }
+    header('Location: ' . $_GET["target"]);
+}
+
+function updateCarro($id, $marca,$modelo,$version,$ano,$inma,$cobertura,$uso,$ocupantes,$edad,$sexo,$civil) {
+
+    require_once ('../entity/cotizacion_carro.php');
+    require_once ('../operation/validar_carro_cotizacion.php');
+    
+    $carro=new cotizacion_carro();
+    $carro->id=$id;
+    $carro->car_marca=$marca;
+    $carro->car_modelo=$modelo;
+    $carro->car_version=$version;
+    $carro->car_ano=$ano;
+    $carro->valor_INMA=$inma;
+    $carro->tipo_cobertura=$cobertura;
+    $carro->tipo_carro=$uso;
+    $carro->car_ocupantes=$ocupantes;
+    $carro->edad=$edad;
+    $carro->sexo=$sexo;
+    $carro->estado_civil=$civil;
+    
+    
+    $validar=new validar_carro_cotizacion();
+
+    $_SESSION["msg"] = "show";
+
+    if (!$validar->validarRegistro($carro)) {
+        $_SESSION["msg_desc"] = "Error al actualizar los datos del carro. Por favor intente mas tarde. Si el error persiste, comuniquese con el administrador del sistema.";
+        $_SESSION["msg_type"] = "error";
+              
+    } else {
+        $_SESSION["msg_desc"] = "La actualización de los datos del carro fue exitosa..";
         $_SESSION["msg_type"] = "succesfull";
     }
     header('Location: ' . $_GET["target"]);

@@ -2,15 +2,15 @@
 
 class validar_carro_cotizacion {
 
-  public function validar_carro_cotizacion() {
-    
-  }
+    public function validar_carro_cotizacion() {
+        
+    }
 
-  public function processFile($path, $id_cotizacion) {
+    public function processFile($path, $id_cotizacion) {
 
-    $objPHPExcel = PHPExcel_IOFactory::load($path);
+        $objPHPExcel = PHPExcel_IOFactory::load($path);
 
-    foreach ($objPHPExcel->getWorksheetIterator() as $worksheet) {
+        foreach ($objPHPExcel->getWorksheetIterator() as $worksheet) {
 
 
             $highestRow = $worksheet->getHighestRow(); // e.g. 10
@@ -18,8 +18,6 @@ class validar_carro_cotizacion {
             $highestColumnIndex = PHPExcel_Cell::columnIndexFromString($highestColumn);
             $nrColumns = ord($highestColumn) - 64;
             return $this->validarRegistros($worksheet, $nrColumns, $highestRow, $highestColumnIndex, $id_cotizacion);
-        
-            
         }
     }
 
@@ -31,10 +29,10 @@ class validar_carro_cotizacion {
         $inma = new inma();
         $result = false;
 
-       
+
         //Verificamos que el archivo tenga las columnas determinadas para esta importacion
         if (($nrColumns >= 14) && ($highestRow > 1)) {
-         
+
             //Iteramos sobre las filas
             for ($row = 2; $row <= $highestRow; ++$row) {
 
@@ -113,7 +111,7 @@ class validar_carro_cotizacion {
 
                         case 10:
                             $reg_valido = $this->isValidType("n", $dataType);
-                            $carro->tipo_cobertura =$this->isCobertura($val);
+                            $carro->tipo_cobertura = $this->isCobertura($val);
                             if ($carro->tipo_cobertura != 0)
                                 $carro->is_tipo_cobertura = 1;
                             else
@@ -129,7 +127,7 @@ class validar_carro_cotizacion {
                             break;
                         case 12:
                             $reg_valido = $this->isValidType("s", $dataType);
-                            $carro->sexo =$this->isSexo($val);
+                            $carro->sexo = $this->isSexo($val);
                             if ($carro->sexo != 0)
                                 $carro->is_sexo = 1;
                             else
@@ -157,19 +155,81 @@ class validar_carro_cotizacion {
             $this->set_msg("Error al importar el archivo. El archivo tiene datos errados para la importacion", "error");
 
         return $result;
-    } 
-
-  public function isSexo($sexo) {
-
-    switch ($sexo) {
-
-      case "M": return 2;
-      case "F": return 1;
-      default : return 0;
     }
-  }
-  
-  public function getSexo($sexo) {
+
+    function validarRegistro($carro) {
+
+        require_once '../entity/inma.php';
+        require_once '../entity/cotizacion_carro.php';
+        try {
+            $inma = new inma();
+            $result = false;
+
+            $marca = $inma->isMarca($carro->car_marca);
+            if ($marca != 0)
+                $carro->is_car_marca = 1;
+            else
+                $carro->is_car_marca = 0;
+
+            if ($inma->isModelo($marca, $carro->car_modelo))
+                $carro->is_car_modelo = 1;
+            else
+                $carro->is_car_modelo = 0;
+
+
+            if ($this->isValidTipoCarro($carro->tipo_carro))
+                $carro->is_tipo_carros = 1;
+            else
+                $carro->is_tipo_carros = 0;
+
+            if ($this->isNumOcupantes($carro->car_ocupantes))
+                $carro->is_car_ocupantes = 1;
+            else
+                $carro->is_car_ocupantes = 0;
+
+            if ($this->isValidCobertura($carro->tipo_cobertura))
+                $carro->is_tipo_cobertura = 1;
+            else
+                $carro->is_tipo_cobertura = 0;
+
+            if ($this->isValidEdad($carro->edad))
+                $carro->is_edad = 1;
+            else
+                $carro->is_edad = 0;
+
+
+            if ($this->isValidSexo($carro->sexo))
+                $carro->is_sexo = 1;
+            else
+                $carro->is_sexo = 0;
+
+
+            if ($this->isValidEstadoCivil($carro->estado_civil))
+                $carro->is_estado_civil = 1;
+            else
+                $carro->is_estado_civil = 0;
+
+            if ($carro->update())
+                return true;
+            else
+                return false;
+        }//End IF
+        catch (Exception $e) {
+            return false;
+        }
+    }
+
+    public function isSexo($sexo) {
+
+        switch ($sexo) {
+
+            case "M": return 2;
+            case "F": return 1;
+            default : return 0;
+        }
+    }
+
+    public function getSexo($sexo) {
 
         switch ($sexo) {
 
@@ -179,16 +239,26 @@ class validar_carro_cotizacion {
         }
     }
 
-  public function isEstadoCivil($estado_civil) {
+    public function isValidSexo($sexo) {
 
-    switch ($estado_civil) {
+        switch ($sexo) {
 
-      case "CASADO": return 1;
-      default : return 2;
+            case 2: return true;
+            case 1: return true;
+            default : return false;
+        }
     }
-  }
-  
-  public function getEstadoCivil($estado_civil) {
+
+    public function isEstadoCivil($estado_civil) {
+
+        switch ($estado_civil) {
+
+            case "CASADO": return 1;
+            default : return 2;
+        }
+    }
+
+    public function getEstadoCivil($estado_civil) {
 
         switch ($estado_civil) {
 
@@ -196,20 +266,29 @@ class validar_carro_cotizacion {
             default : return "SOLTERO";
         }
     }
-    
 
-  public function isTipoCarro($tipo_carro) {
+    public function isValidEstadoCivil($estado_civil) {
 
-    switch ($tipo_carro) {
+        switch ($estado_civil) {
 
-      case "PARTICULAR": return 1;
-      case "RUSTICO": return 2;
-      case "PICKUP": return 3;
-      default : return 0;
+            case 1: return true;
+            case 2: return true;
+            default : return false;
+        }
     }
-  }
-  
-  public function getTipoCarro($tipo_carro) {
+
+    public function isTipoCarro($tipo_carro) {
+
+        switch ($tipo_carro) {
+
+            case "PARTICULAR": return 1;
+            case "RUSTICO": return 2;
+            case "PICKUP": return 3;
+            default : return 0;
+        }
+    }
+
+    public function getTipoCarro($tipo_carro) {
 
         switch ($tipo_carro) {
 
@@ -220,18 +299,41 @@ class validar_carro_cotizacion {
         }
     }
 
-  public function isCobertura($cobertura) {
+    public function isValidTipoCarro($tipo_carro) {
 
-    switch ($cobertura) {
+        switch ($tipo_carro) {
 
-      case "TOTAL": return 2;
-      case "AMPLIA": return 1;
-      case "RCV": return 3;
-      default : return 0;
+            case 1: return true;
+            case 2: return true;
+            case 3: return true;
+            default : return false;
+        }
     }
-  } 
+
+    public function isCobertura($cobertura) {
+
+        switch ($cobertura) {
+
+            case "TOTAL": return 2;
+            case "AMPLIA": return 1;
+            case "RCV": return 3;
+            default : return 0;
+        }
+    }
+
+    public function isValidCobertura($cobertura) {
+
+        switch ($cobertura) {
+
+            case 2: return true;
+            case 1: return true;
+            case 3: return true;
+            default : return false;
+        }
+    }
+
     public function getCobertura($cobertura) {
-       
+
         switch ($cobertura) {
 
             case 2: return "TOTAL";
@@ -241,30 +343,37 @@ class validar_carro_cotizacion {
         }
     }
 
+    public function isNumOcupantes($ocupantes) {
 
-  public function isNumOcupantes($ocupantes) {
+        if (2 <= $ocupantes && $ocupantes <= 17)
+            return true;
+        else
+            return false;
+    }
 
-    if (2 <= $ocupantes && $ocupantes <= 17)
-      return true;
-    else
-      return false;
-  }
+    public function isValidEdad($edad) {
 
-  function set_msg($msg_desc, $msg_type) {
+        if (18 <= $edad && $edad <= 94)
+            return true;
+        else
+            return false;
+    }
 
-    $_SESSION["msg"] = "show";
+    function set_msg($msg_desc, $msg_type) {
 
-    $_SESSION["msg_desc"] = $msg_desc;
-    $_SESSION["msg_type"] = $msg_type;
-  }
+        $_SESSION["msg"] = "show";
 
-  function isValidType($req_dataType, $dataType) {
+        $_SESSION["msg_desc"] = $msg_desc;
+        $_SESSION["msg_type"] = $msg_type;
+    }
 
-    if ($dataType == $req_dataType)
-      return true;
-    else
-      return false;
-  }
+    function isValidType($req_dataType, $dataType) {
+
+        if ($dataType == $req_dataType)
+            return true;
+        else
+            return false;
+    }
 
 }
 

@@ -144,6 +144,41 @@ class cotizacion_carro {
         }
     }
 
+    public  function update() {
+        
+        global $database;
+        
+        $qry="UPDATE ". self::$table_name." SET 
+                                    edad='{$database->escape_value($this->edad)}',
+                                    sexo='{$database->escape_value($this->sexo)}',
+                                    estado_civil='{$database->escape_value($this->estado_civil)}',
+                                    tipo_carro='{$database->escape_value($this->tipo_carro)}',
+                                    car_marca='{$database->escape_value($this->car_marca)}',
+                                    car_modelo='{$database->escape_value($this->car_modelo)}',
+                                    car_ano='{$database->escape_value($this->car_ano)}',
+                                    car_version='{$database->escape_value($this->car_version)}',
+                                    car_ocupantes='{$database->escape_value($this->car_ocupantes)}',
+                                    tipo_cobertura='{$database->escape_value($this->tipo_cobertura)}',
+                                    valor_INMA='{$database->escape_value($this->valor_INMA)}',
+                                    is_car_marca='{$database->escape_value($this->is_car_marca)}',
+                                    is_car_modelo='{$database->escape_value($this->is_car_modelo)}',
+                                    is_car_ocupantes='{$database->escape_value($this->is_car_ocupantes)}',
+                                    is_edad='{$database->escape_value($this->is_edad)}',
+                                    is_sexo='{$database->escape_value($this->is_sexo)}',
+                                    is_tipo_carros='{$database->escape_value($this->is_tipo_carros)}',
+                                    is_tipo_cobertura='{$database->escape_value($this->is_tipo_cobertura)}',
+                                    is_estado_civil='{$database->escape_value($this->is_estado_civil)}'
+                                  WHERE id='{$database->escape_value($this->id)}'
+";
+                       
+       if ($database->query($qry)) {
+            
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
     ///////////////////////////METODOS ESTANDAR//////////////////////////////////
 
     private static function instantiate($record) {
