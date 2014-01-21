@@ -56,9 +56,9 @@ if (isset($_REQUEST["id"])) {
                   if ($carro->car_marca == $marca['marca'])
                     $id_marca = $carro->car_marca;
                   ?>
-                  <li data="<?php echo $marca['marca']; ?>" <?php echo $carro->car_marca == $marca['marca'] ? "role='selected' tab-index='1'" : "" ?>><span class="icon-mini icon-clear<?php echo $carro->car_marca == $marca['marca'] ? " img-common icon-selected" : "" ?>"></span><?php echo $marca['marca']; ?></li>
-  <?php } ?>
-                <li><input name="marca" type="hidden" value="<?php echo $id_marca; ?>"></li>
+                  <li data-id="<?php echo $marca['codigo'];?>" data="<?php echo $marca['marca'];?>" <?php echo $carro->car_marca == $marca['marca'] ? "role='selected' tab-index='1'" : "" ?>><span class="icon-mini icon-clear<?php echo $carro->car_marca == $marca['marca'] ? " img-common icon-selected" : "" ?>"></span><?php echo $marca['marca']; ?></li>
+                <?php } ?>
+                <li><input name="marca" type="hidden" value="<?php echo $id_marca;?>"></li>
               </ul>
             </td>
             <td>
