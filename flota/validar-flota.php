@@ -90,7 +90,7 @@ $cotizacion_carro->id_cotizacion = $_SESSION["id_cotizacion"];
                           ?>
                           <tr>
                             <td class="no-padding no-border"><a class="img-common icon-edit icon-actions suggestion" data='<?php echo $value->id; ?>'></a></td>
-                            <td class="no-padding no-border"><a class="img-common icon-remove icon-actions" data='<?php echo $value->id; ?>'></a></td>
+                            <td class="no-padding no-border"><form action="operation.php" method="post" onsubmit="return formOperation()"><input type="submit" class="img-common icon-remove icon-actions remove" value=""><input type="hidden" name="id" value="<?php echo $value->id; ?>"></form></td>
                             <td><?php echo $value->identificacion; ?></td>
                             <td><?php echo $value->asegurado; ?></td>
                             <td><?php echo $value->placa; ?></td>
@@ -143,7 +143,7 @@ $cotizacion_carro->id_cotizacion = $_SESSION["id_cotizacion"];
                           ?>
                           <tr>
                             <td class="no-padding no-border"><a class="img-common icon-edit icon-actions suggestion" data='<?php echo $value->id; ?>'></a></td>
-                            <td class="no-padding no-border"><a class="img-common icon-remove icon-actions" data='<?php echo $value->id; ?>'></a></td>
+                            <td class="no-padding no-border"><form action="operation.php" method="post" onsubmit="return formOperation()"><input type="submit" class="img-common icon-remove icon-actions remove" value=""><input type="hidden" name="id" value="<?php echo $value->id; ?>"></form></td>
                             <td><?php echo $value->identificacion; ?></td>
                             <td><?php echo $value->asegurado; ?></td>
                             <td><?php echo $value->placa; ?></td>
@@ -197,7 +197,7 @@ $cotizacion_carro->id_cotizacion = $_SESSION["id_cotizacion"];
                           ?>
                           <tr class="<?php echo $result ? "text-error" : "" ?>">
                             <td class="no-padding no-border"><a class="img-common icon-edit icon-actions suggestion" data='<?php echo $value->id; ?>'></a></td>
-                            <td class="no-padding no-border"><a class="img-common icon-remove icon-actions" data='<?php echo $value->id; ?>'></a></td>
+                            <td class="no-padding no-border"><form action="operation.php" method="post" onsubmit="return formOperation()"><input type="submit" class="img-common icon-remove icon-actions remove" value=""><input type="hidden" name="id" value="<?php echo $value->id; ?>"></form></td>
                             <td><?php echo $value->identificacion; ?></td>
                             <td><?php echo $value->asegurado; ?></td>
                             <td><?php echo $value->placa; ?></td>
