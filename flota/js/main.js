@@ -167,37 +167,37 @@ $(function(e) {
 	$(".list-fleet").on("click", ".suggestion", function(e) {
 		id = $(this).attr("data");
 		vehicle.load("load/loadVehicle.php?id=" + id, function() {
-			marca = $("#marca"), modelo = $("#modelo"), version = $("#version"), ano = $("#ano"), inma = $("#inma"), cobertura = $("#cobertura"), uso = $("#uso"), ocupantes = $("#ocupantes"), edad = $("#edad"), sexo = $(sexo), civil = $("#civil"), $("input[name='id']").val(id)
+			marca = $("#marca"), modelo = $("#modelo"), version = $("#version"), ano = $("#ano"), inma = $("#inma"), cobertura = $("#cobertura"), uso = $("#uso"), ocupantes = $("#ocupantes"), edad = $("#edad"), sexo = $(sexo), civil = $("#civil"), $("input[name='id']").val(id);
 			vehicle.dialog("open");
 		});
 		return false;
 	});
 
 	//select a list suggestion element
-	var item, ul, data, role, input, array = [];
+	var item, ul, id, role, text, input, array = [];
 	$("#vehicle").on("click", "#vehicle-suggestion ul li", function(e) {
-		item = $(this), ul = item.parent(), data = item.attr("data"), role = ul.attr("role"), input = ul.find("input[type=hidden]");
+		item = $(this), ul = item.parent(), id = item.attr("data-id"), role = ul.attr("role"), input = ul.siblings("input[type=hidden]"), text = item.attr("data");
 		switch (role) {
 			case "marca":
-				$.getJSON("../inma/json.php?ot=2&ma=" + data, function(data) {
+				$.getJSON("../inma/json.php?ot=2&ma=" + id, function(data) {
 					modelo.empty();
 					$.each(data, function(index, value) {
-						modelo.append("<li data=\"" + value.codigo + "\"><span class=\"icon-mini icon-clear\"></span>" + value.modelo + "</span></li>");
+						modelo.append("<li data-id=\"" + value.codigo + "\" data=\"" + value.modelo + "\"><span class=\"icon-mini icon-clear\"></span>" + value.modelo + "</span></li>");
 					});
 					modelo.append("<li><input name=\"modelo\" type=\"hidden\"></li>");
 				});
 				break;
 			case "modelo":
-				$.getJSON("../inma/json.php?ot=3&ma=" + array.marca + "&mo=" + data, function(data) {
+				$.getJSON("../inma/json.php?ot=3&ma=" + array.marca + "&mo=" + id, function(data) {
 					version.empty();
 					$.each(data, function(index, value) {
-						version.append("<li data=\"" + value.codigo + "\"><span class=\"icon-mini icon-clear\"></span>" + value.version + "</span></li>");
+						version.append("<li data-id=\"" + value.codigo + "\" data=\"" + value.version + "\"><span class=\"icon-mini icon-clear\"></span>" + value.version + "</span></li>");
 					});
 					version.append("<li><input name=\"version\" type=\"hidden\"></li>");
 				});
 				break;
 			case "version":
-				$.getJSON("../inma/json.php?ot=4&co=" + data, function(data) {
+				$.getJSON("../inma/json.php?ot=4&co=" + id, function(data) {
 					ano.empty();
 					$.each(data, function(index, value) {
 						ano.append("<li data-inma=\"" + value.inma + "\" data=\"" + value.ano + "\" ><span class=\"icon-mini icon-clear\"></span>" + value.ano + "</span></li>");
@@ -210,9 +210,9 @@ $(function(e) {
 				inma.attr("data", "selected");
 				break;
 		}
-		array [role] = data;
+		array [role] = id;
 		ul.attr("data", "selected");
-		input.val(data);
+		input.val(text);
 		utils.selectedItem(item);
 		return false;
 	});
