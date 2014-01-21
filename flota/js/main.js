@@ -172,12 +172,7 @@ $(function(e) {
 		});
 		return false;
 	});
-
-	// remove a item
-	$(".list-fleet").on("click", ".remove", function(e) {
-		
-	});
-
+	
 	//select a list suggestion element
 	var item, ul, id, role, text, input, array = [];
 	$("#vehicle").on("click", "#vehicle-suggestion ul li", function(e) {
