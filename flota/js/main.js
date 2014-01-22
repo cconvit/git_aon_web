@@ -92,8 +92,12 @@ var Wizard = {
 		}
 	},
 	quotation: function() {
-		if (true) {
+		var errors = $("#list-errors >tbody >tr").length;
+		if (errors === 0) {
 				location.href = "descargar-cotizacion.php";
+		}
+		else{
+			alert("Aún existen vehículos con errores.")
 		}
 	},
 	exit: function(page) {
@@ -313,6 +317,7 @@ function isFileSelected(form) {
 		return true;
 	}
 }
+
 
 // when the DOM load: init tools
 $(function(e) {
