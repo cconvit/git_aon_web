@@ -92,8 +92,8 @@ var Wizard = {
 		}
 	},
 	quotation: function() {
-		if (isValidFleet()) {
-
+		if (true) {
+				location.href = "descargar-cotizacion.php";
 		}
 	},
 	exit: function(page) {

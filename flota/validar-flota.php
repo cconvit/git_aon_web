@@ -232,7 +232,7 @@ $cotizacion_carro->id_cotizacion = $_SESSION["id_cotizacion"];
             <li><a>Crear cotización</a></li>
             <li><span class="img-common arrow"></span></li>                      
             <li><a class='current-step' href="cargar-datos.php">Validar flota</a></li>
-            <li><a href="descargar-cotizacion.php" class="img-common icon-step icon-end icon-href">Cotizar</a>           
+            <li><input type="button" class="img-common icon-step icon-end" value="Cotizar" role="quotation" onclick="Wizard.quotation()"></li>            
           </ul>
         </div>
       </div>
