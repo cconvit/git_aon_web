@@ -110,7 +110,7 @@ class validar_carro_cotizacion {
                             break;
 
                         case 10:
-                            $reg_valido = $this->isValidType("n", $dataType);
+                            $reg_valido = $this->isValidType("s", $dataType);
                             $carro->tipo_cobertura = $this->isCobertura($val);
                             if ($carro->tipo_cobertura != 0)
                                 $carro->is_tipo_cobertura = 1;
