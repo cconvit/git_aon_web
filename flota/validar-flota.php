@@ -232,7 +232,7 @@ $cotizacion_carro->id_cotizacion = $_SESSION["id_cotizacion"];
             <li><a>Crear cotización</a></li>
             <li><span class="img-common arrow"></span></li>                      
             <li><a class='current-step' href="cargar-datos.php">Validar flota</a></li>
-            <li><a href="../php/operation/administration.php?operation_type=22&target=../../flota/descargar-cotizacion.php" class="img-common icon-step icon-end icon-href">Cotizar</a>           
+            <li><a href="../php/operation/administration.php?operation_type=22&target=../../flota/descargar-cotizacion.php?id=<?php echo  $_SESSION["id_cotizacion"];?>" class="img-common icon-step icon-end icon-href">Cotizar</a>           
           </ul>
         </div>
       </div>

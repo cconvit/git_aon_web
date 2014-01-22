@@ -675,7 +675,7 @@ function proccessCotizacion() {
     }
 
 
-   // header('Location: ' . $_GET["target"]);
+    header('Location: ' . $_GET["target"]);
 }
 
 function deleteConvenioFlota($id) {

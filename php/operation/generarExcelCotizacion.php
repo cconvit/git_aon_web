@@ -13,6 +13,7 @@ class generarExcelCotizacion {
     require_once '../Classes/PHPExcel/IOFactory.php';
     require_once '../entity/convenio_aseguradora.php';
     require_once '../entity/cotizacion.php';
+    require_once '../entity/descarga_cotizacion.php';
 
     $convenio_aseguradora = new convenio_aseguradora();
     $cotizacion_aux = new cotizacion();
@@ -63,6 +64,13 @@ class generarExcelCotizacion {
         $nombre=str_replace(" " , "_",$nombre );
         $objWriter = new PHPExcel_Writer_Excel2007($objPHPExcel);
         $objWriter->save("/Applications/XAMPP/xamppfiles/htdocs/git_aon_web/flota/files/".$nombre.".xlsx");
+        
+        $descarga_cotizacion=new descarga_cotizacion();
+        $descarga_cotizacion->id_cotizacion=$cotizacion[0]->id;
+        $descarga_cotizacion->nombre=$cotizacion[0]->nombre;
+        $descarga_cotizacion->seguro=$convenio[0]->nombre;
+        $descarga_cotizacion->link="http://localhost/git_aon_web/flota/files/".$nombre.".xlsx";
+        $descarga_cotizacion->create();
       
       }
     }
