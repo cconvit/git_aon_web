@@ -140,6 +140,9 @@ $clientes = $cliente->find_all();
         </div>
       </div>
     </div>
+    <div id="load" class="modal">
+      <div class="modal"><p>Estamos procesando el archivo. Esta operación puede tardar unos minutos. Por favor, espere</p></div>
+    </div>
     <script src="../plugins/jquery-1.10.2.min.js"></script>
     <script src="../plugins/jquery-ui-1.10.3.custom.min.js"></script>
     <script src="js/main.js"></script>

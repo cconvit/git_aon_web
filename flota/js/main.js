@@ -87,6 +87,7 @@ var Wizard = {
 	fleet: function(form) {
 		if (isValidateSubmit(form)) {
 			if (isFileSelected(form)) {
+				$("#load").dialog("open");
 				form.trigger("submit");
 			}
 		}
@@ -117,7 +118,7 @@ $(function(e) {
 			vehicle = $("#vehicle");
 
 	//init all dialogs and tabs
-	load.dialog({modal: true, autoOpen: false, width: 400, resizable: false, position: "top+10%"});
+	load.dialog({modal: true, autoOpen: false, width: 400, resizable: false, position: "top+15%"});
 	vehicle.dialog({modal: true, autoOpen: false, width: 900, resizable: false, position: "center"});
 	tabs.tabs().find("ul").css({"background-color": "#FFFFFF", "display": "block", "border": "none"});
 
@@ -167,11 +168,11 @@ $(function(e) {
 	});
 
 	// open suggestion dialog
-	var id, marca, modelo, version, ano, inma, cobertura, uso, ocupantes, edad, sexo, civil;
+	var id, marca, modelo, version, ano, inma, reset, cobertura, uso, ocupantes, edad, sexo, civil;
 	$(".list-fleet").on("click", ".suggestion", function(e) {
 		id = $(this).attr("data");
 		vehicle.load("load/loadVehicle.php?id=" + id, function() {
-			marca = $("#marca"), modelo = $("#modelo"), version = $("#version"), ano = $("#ano"), inma = $("#inma"), cobertura = $("#cobertura"), uso = $("#uso"), ocupantes = $("#ocupantes"), edad = $("#edad"), sexo = $(sexo), civil = $("#civil"), $("input[name='id']").val(id);
+			marca = $("#marca"), modelo = $("#modelo"), version = $("#version"), ano = $("#ano"), inma = $("#inma"), cobertura = $("#cobertura"), uso = $("#uso"), ocupantes = $("#ocupantes"), edad = $("#edad"), sexo = $(sexo), civil = $("#civil"), $("input[name='id']").val(id), reset = $("#vehicle").find(".reset");
 			vehicle.dialog("open");
 		});
 		return false;
@@ -185,6 +186,7 @@ $(function(e) {
 			case "marca":
 				$.getJSON("../inma/json.php?ot=2&ma=" + id, function(data) {
 					modelo.empty();
+					reset.empty().append("<li>NO CARGADO<li>");
 					$.each(data, function(index, value) {
 						modelo.append("<li data-id=\"" + value.codigo + "\" data=\"" + value.modelo + "\"><span class=\"icon-mini icon-clear\"></span>" + value.modelo + "</span></li>");
 					});
