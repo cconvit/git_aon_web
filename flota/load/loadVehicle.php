@@ -99,7 +99,7 @@ if (isset($_REQUEST["id"])) {
                                         $id_ano = $carro->car_ano;
                                         ?>
                                         <ul id="ano" class="vehicle-suggestion-list" role="ano" data="selected">
-                                            <li data="<?php echo $carro->car_ano; ?>" role="selected" tab-index='1'><span class="icon-mini icon-clear img-common icon-selected"></span><?php echo $carro->car_ano; ?></li>
+                                            <li data="<?php echo $carro->car_ano; ?>" data-inma="<?php echo $carro->valor_INMA; ?>" role="selected" tab-index='1'><span class="icon-mini icon-clear img-common icon-selected"></span><?php echo $carro->car_ano; ?></li>
                                         <?php } else { ?>
                                             <ul id="ano" class="vehicle-suggestion-list" role="ano">
                                                 <li>No hay años</li>
@@ -113,7 +113,7 @@ if (isset($_REQUEST["id"])) {
                                                 $id_inma = $carro->valor_INMA;
                                                 ?>
                                                 <ul id="inma" class="vehicle-suggestion-list" role="inma" data="selected">
-                                                    <li data="<?php echo $carro->valor_INMA; ?>" role="selected" tab-index='1'><span class="icon-mini icon-clear img-common icon-selected"></span><?php echo $carro->valor_INMA; ?></li>
+                                                    <li data="<?php echo $carro->valor_INMA; ?>"  role="selected" tab-index='1'><span class="icon-mini icon-clear img-common icon-selected"></span><?php echo $carro->valor_INMA; ?></li>
                                                 <?php } else { ?>
                                                     <ul id="inma" class="vehicle-suggestion-list" role="inma">
                                                         <li>No hay inma</li>
