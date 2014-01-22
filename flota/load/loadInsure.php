@@ -44,6 +44,6 @@ if (isset($_REQUEST["id"])) {
   </div>
   <?php
 } else {
-  echo "Pepe";
+  
 }
 ?>

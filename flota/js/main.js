@@ -87,13 +87,18 @@ var Wizard = {
 	fleet: function(form) {
 		if (isValidateSubmit(form)) {
 			if (isFileSelected(form)) {
+				$("#load").dialog("open");
 				form.trigger("submit");
 			}
 		}
 	},
 	quotation: function() {
-		if (isValidFleet()) {
-
+		var errors = $("#list-errors >tbody >tr").length;
+		if (errors === 0) {
+				location.href = "descargar-cotizacion.php";
+		}
+		else{
+			alert("Aún existen vehículos con errores.")
 		}
 	},
 	exit: function(page) {
@@ -113,7 +118,7 @@ $(function(e) {
 			vehicle = $("#vehicle");
 
 	//init all dialogs and tabs
-	load.dialog({modal: true, autoOpen: false, width: 400, resizable: false, position: "top+10%"});
+	load.dialog({modal: true, autoOpen: false, width: 400, resizable: false, position: "top+15%"});
 	vehicle.dialog({modal: true, autoOpen: false, width: 900, resizable: false, position: "center"});
 	tabs.tabs().find("ul").css({"background-color": "#FFFFFF", "display": "block", "border": "none"});
 
@@ -181,7 +186,7 @@ $(function(e) {
 			case "marca":
 				$.getJSON("../inma/json.php?ot=2&ma=" + id, function(data) {
 					modelo.empty();
-					reset.empty().append("<li>NO CARGADO</li>");
+					reset.empty().append("<li>NO CARGADO<li>");
 					$.each(data, function(index, value) {
 						modelo.append("<li data-id=\"" + value.codigo + "\" data=\"" + value.modelo + "\"><span class=\"icon-mini icon-clear\"></span>" + value.modelo + "</span></li>");
 					});
@@ -314,6 +319,7 @@ function isFileSelected(form) {
 		return true;
 	}
 }
+
 
 // when the DOM load: init tools
 $(function(e) {
