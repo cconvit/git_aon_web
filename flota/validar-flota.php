@@ -63,7 +63,7 @@ $cotizacion_carro->id_cotizacion = $_SESSION["id_cotizacion"];
               </ul>
               <div id="tabs-1" class="tabs-info">
                 <div class="scrollable-list" style="width: 100%; overflow-y: auto;">
-                  <table id="list-errors" class="list-fleet" style="width: 100%">
+                  <table id="list-error" class="list-fleet" style="width: 100%">
                     <thead id="errors">
                     <th class="no-padding" style="width: 32px; background-color: #FFFFFF; padding-left: "></th>
                     <th class="no-padding" style="width: 32px; background-color: #FFFFFF;"></th>
@@ -169,7 +169,7 @@ $cotizacion_carro->id_cotizacion = $_SESSION["id_cotizacion"];
               </div>
               <div id="tabs-3" class="tabs-info">
                 <div class="scrollable-list" style="width: 100%; overflow-y: auto;">
-                  <table id="list-all" class="list-fleet" style="width: 100%">
+                  <table id="list-fleet" class="list-fleet" style="width: 100%">
                     <thead id="errors">
                     <th class="no-padding" style="width: 32px; background-color: #FFFFFF; padding-left: "></th>
                     <th class="no-padding" style="width: 32px; background-color: #FFFFFF;"></th>
@@ -232,7 +232,7 @@ $cotizacion_carro->id_cotizacion = $_SESSION["id_cotizacion"];
             <li><a>Crear cotización</a></li>
             <li><span class="img-common arrow"></span></li>                      
             <li><a class='current-step' href="cargar-datos.php">Validar flota</a></li>
-            <li><input type="button" class="img-common icon-step icon-end" value="Cotizar" role="quotation" onclick="Wizard.quotation()"></li>            
+            <li><a href="../php/operation/administration.php?operation_type=22&target=../../flota/descargar-cotizacion.php" class="img-common icon-step icon-end icon-href">Cotizar</a>           
           </ul>
         </div>
       </div>
