@@ -710,6 +710,10 @@ a.access-title{
 .icon-step{
   width: 82px;
   height: 25px;
+  display: block;
+}
+.icon-href{
+  padding-top: 5px;
 }
 .icon-next{
   background-position: -104px -5px;
