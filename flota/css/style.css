@@ -110,6 +110,9 @@ button::-moz-focus-inner, input::-moz-focus-inner {
 .common-value{
   width: 105px;
 }
+.common-short{
+  width: 50px;
+}
 .common-select{
   width: 370px;
 }
@@ -449,7 +452,8 @@ body, html{
 }
 #agreements-list{
   margin-top: 20px;
-  max-height: 360px;  
+  height: 360px;
+  overflow: auto;
 }
 #tabs{
   padding: 10px 0px 0px  0px;

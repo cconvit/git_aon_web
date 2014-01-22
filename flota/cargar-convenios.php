@@ -24,7 +24,7 @@ if (isset($_SESSION['msg'])) {
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>Aon - Agregar convenios</title>
+    <title>Aon - Asociar convenios</title>
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
     <link href="css/jquery-ui-1.10.3.custom.min.css" rel="stylesheet" type="text/css">
     <link href="css/normalize.css" rel="stylesheet" type="text/css">
@@ -94,7 +94,7 @@ if (isset($_SESSION['msg'])) {
                 <li><input id="next" type="button" class="img-common icon-step icon-exit" value="Salir"></li>
                 <li><?php echo $_SESSION['cargar_convenios']==1 ? "Crear":"Modificar";?> flota</li>
                 <li><span class="img-common arrow"></span></li>                      
-                <li><a class="current-step" href="cargar-convenios.php">Agregar convenios</a></li>
+                <li><a class="current-step" href="cargar-convenios.php">Asociar convenios</a></li>
                 <li><input id="next" type="button" class="img-common icon-step icon-end" value="Finalizar"onclick="Wizard.exit('flotas.php');"></li>
               </ul>
             </div>

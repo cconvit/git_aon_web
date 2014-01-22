@@ -57,7 +57,7 @@ if(isset($_REQUEST['id'])){
         <div id="main">
           <div id="main-detail">
             <div id="nav-operations">
-              <span class="title">Modficar flota</span>
+              <span class="title">Modificar flota</span>
             </div>
             <div id="scroll" style="height: 455px;">
               <div style="margin-top: 30px">
@@ -97,7 +97,7 @@ if(isset($_REQUEST['id'])){
                 <li><input type="button" class="img-common icon-step icon-exit" value="Salir" onclick="Wizard.exit('flotas.php');"></li>
                 <li><a class='current-step' href="modificar-flota.php">Modificar flota</a></li>
                 <li><span class="img-common arrow"></span></li>                      
-                <li><a>Modificar convenios asociados</a></li>
+                <li><a>Asociar convenios</a></li>
                 <li><input id="next" type="button" class="img-common icon-step icon-next" value="Siguiente" role="create"></li>
               </ul>
             </div>
