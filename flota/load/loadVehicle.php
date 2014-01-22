@@ -19,7 +19,7 @@ if (isset($_REQUEST["id"])) {
     // Will return the response, if false it print the response
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     // Set the url
-    curl_setopt($ch, CURLOPT_URL, "http://localhost//git_aon_web/inma/json.php?ot=1");
+    curl_setopt($ch, CURLOPT_URL, "http://localhost/AON/git_aon_web/inma/json.php?ot=1");
     // Execute
     $result = curl_exec($ch);
     // Will dump a beauty json :3
@@ -84,7 +84,7 @@ if (isset($_REQUEST["id"])) {
                             if ($carro->is_car_marca == 1 && $carro->is_car_modelo == 1) {
                                 $id_version = $carro->car_version;
                                 ?>
-                                <ul id="version" class="vehicle-suggestion-list" role="version" data="selected">
+                                <ul id="version" class="vehicle-suggestion-list reset" role="version" data="selected">
                                     <li data="<?php echo $carro->car_version; ?>" role="selected" tab-index='1'><span class="icon-mini icon-clear img-common icon-selected"></span><?php echo $carro->car_version; ?></li>
                                 <?php } else { ?>
                                     <ul id="version" class="vehicle-suggestion-list" role="version">
@@ -98,7 +98,7 @@ if (isset($_REQUEST["id"])) {
                                     if ($carro->is_car_marca == 1 && $carro->is_car_modelo == 1) {
                                         $id_ano = $carro->car_ano;
                                         ?>
-                                        <ul id="ano" class="vehicle-suggestion-list" role="ano" data="selected">
+                                        <ul id="ano" class="vehicle-suggestion-list reset" role="ano" data="selected">
                                             <li data="<?php echo $carro->car_ano; ?>" data-inma="<?php echo $carro->valor_INMA; ?>" role="selected" tab-index='1'><span class="icon-mini icon-clear img-common icon-selected"></span><?php echo $carro->car_ano; ?></li>
                                         <?php } else { ?>
                                             <ul id="ano" class="vehicle-suggestion-list" role="ano">
@@ -112,7 +112,7 @@ if (isset($_REQUEST["id"])) {
                                             if ($carro->is_car_marca == 1 && $carro->is_car_modelo == 1) {
                                                 $id_inma = $carro->valor_INMA;
                                                 ?>
-                                                <ul id="inma" class="vehicle-suggestion-list" role="inma" data="selected">
+                                                <ul id="inma" class="vehicle-suggestion-list reset" role="inma" data="selected">
                                                     <li data="<?php echo $carro->valor_INMA; ?>"  role="selected" tab-index='1'><span class="icon-mini icon-clear img-common icon-selected"></span><?php echo $carro->valor_INMA; ?></li>
                                                 <?php } else { ?>
                                                     <ul id="inma" class="vehicle-suggestion-list" role="inma">
