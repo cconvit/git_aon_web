@@ -63,7 +63,7 @@ $cotizacion_carro->id_cotizacion = $_SESSION["id_cotizacion"];
               </ul>
               <div id="tabs-1" class="tabs-info">
                 <div class="scrollable-list" style="width: 100%; overflow-y: auto;">
-                  <table id="list-error" class="list-fleet" style="width: 100%">
+                  <table id="list-errors" class="list-fleet" style="width: 100%">
                     <thead id="errors">
                     <th class="no-padding" style="width: 32px; background-color: #FFFFFF; padding-left: "></th>
                     <th class="no-padding" style="width: 32px; background-color: #FFFFFF;"></th>
