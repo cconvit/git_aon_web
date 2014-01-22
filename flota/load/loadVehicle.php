@@ -19,7 +19,7 @@ if (isset($_REQUEST["id"])) {
     // Will return the response, if false it print the response
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     // Set the url
-    curl_setopt($ch, CURLOPT_URL, "http://localhost//git_aon_web/inma/json.php?ot=1");
+    curl_setopt($ch, CURLOPT_URL, "http://localhost/AON/git_aon_web/inma/json.php?ot=1");
     // Execute
     $result = curl_exec($ch);
     // Will dump a beauty json :3
@@ -84,7 +84,7 @@ if (isset($_REQUEST["id"])) {
                             if ($carro->is_car_marca == 1 && $carro->is_car_modelo == 1) {
                                 $id_version = $carro->car_version;
                                 ?>
-                                <ul id="version" class="vehicle-suggestion-list" role="version" data="selected">
+                                <ul id="version" class="vehicle-suggestion-list reset" role="version" data="selected">
                                     <li data="<?php echo $carro->car_version; ?>" role="selected" tab-index='1'><span class="icon-mini icon-clear img-common icon-selected"></span><?php echo $carro->car_version; ?></li>
                                 <?php } else { ?>
                                     <ul id="version" class="vehicle-suggestion-list" role="version">
@@ -112,8 +112,13 @@ if (isset($_REQUEST["id"])) {
                                             if ($carro->is_car_marca == 1 && $carro->is_car_modelo == 1) {
                                                 $id_inma = $carro->valor_INMA;
                                                 ?>
+<<<<<<< HEAD
                                                 <ul id="inma" class="vehicle-suggestion-list" role="inma" data="selected">
                                                     <li data="<?php echo $carro->valor_INMA; ?>"  role="selected" tab-index='1'><span class="icon-mini icon-clear img-common icon-selected"></span><?php echo $carro->valor_INMA; ?></li>
+=======
+                                                <ul id="inma" class="vehicle-suggestion-list reset" role="inma" data="selected">
+                                                    <li data="<?php echo $carro->valor_INMA; ?>" role="selected" tab-index='1'><span class="icon-mini icon-clear img-common icon-selected"></span><?php echo $carro->valor_INMA; ?></li>
+>>>>>>> fa299823ff09fdc239fa2c7f811acc795e132242
                                                 <?php } else { ?>
                                                     <ul id="inma" class="vehicle-suggestion-list" role="inma">
                                                         <li>No hay inma</li>
