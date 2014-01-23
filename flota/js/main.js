@@ -118,7 +118,7 @@ $(function(e) {
 			vehicle = $("#vehicle");
 
 	//init all dialogs and tabs
-	load.dialog({modal: true, autoOpen: false, width: 400, resizable: false, position: "top+15%"});
+	load.dialog({modal: true, autoOpen: false, width: 400, resizable: false, position: "top+5%"});
 	vehicle.dialog({modal: true, autoOpen: false, width: 900, resizable: false, position: "center"});
 	tabs.tabs().find("ul").css({"background-color": "#FFFFFF", "display": "block", "border": "none"});
 

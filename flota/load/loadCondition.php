@@ -88,7 +88,6 @@ if (isset($_SESSION["id_convenio_as"]) && isset($_REQUEST["id"])) {
             </table>
           </td>
         </tr>
-
         <tr>
           <td>
             <table>

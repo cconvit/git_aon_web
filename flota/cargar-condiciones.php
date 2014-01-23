@@ -76,64 +76,75 @@ if (isset($_SESSION['msg'])) {
                 </select>
               </td>
             </tr>
-          <td>Limite</td>
-          </tr>
-          <tr>
-            <td><input type="text" name="limite" class="common-input"></td>
-          </tr>
-          <tr>
-            <td>Tasa</td>
-          </tr>
-          <tr>
-            <td><input type="text" name="tasa" class="common-input"></td>
-          </tr>                          
-          <tr>
-            <td>
-              <table>
-                <tr>
-                  <td><div class="common-value">Particular</div></td>
-                  <td><div class="common-value text-center">Rustico</div></td>
-                  <td><div class="common-value text-center">Pickup/Van</div></td>
-                </tr>
-                <tr>
-                  <td><input type="text" name="particular" class="common-input common-value is-required" style="margin-right: 10px;"></td>
-                  <td><input type="text" name="rustico" class="common-input common-value is-required" style="margin-right: 10px;"></td>
-                  <td><input type="text" name="pickup" class="common-input common-value is-required"></td>
-                </tr>                  
-              </table>
-            </td>
-          </tr>
-          <tr>
-            <td style="padding-top: 12px;">Asociar a las siguientes coberturas:</td>
-          </tr>
-          <tr>
-            <td>
-              <ul id="check-list" style="margin-top: 7px;">
-                <li>
-                  <input type="checkbox" name="cobertura_amplia" value="true">
-                  <label form="cobertura_amplia">Cobertura amplia</label></li>
-                <li>
-                  <input type="checkbox" name="perdida_total" value="true">
-                  <label form="perdida_total">Pérdida total</label></li>
-                <li>
-                  <input type="checkbox" name="rcv" value="true">
-                  <label form="rcv">RCV</label>
-                </li>               
-              </ul>
-            </td>
-          </tr>
-          <tr>
-            <td style="padding-top: 10px; padding-bottom: 10px">Aplica en las siguientes condiciones:</td>
-          </tr>
-          <tr>
-            <td>
-              <input type="checkbox" name="incluida" value="true">
-              <label form="rcv">Incluida sin costo</label>
-            </td>
-          </tr>
-          <tr>
-            <td style="padding-top: 10px;"><div class="required hide">Uno o más campos son inválidos.</div></td>
-          </tr>
+            <tr>
+              <td>Tasa</td>
+            </tr>
+            <tr>
+              <td><input type="text" name="tasa" class="common-input"></td>
+            </tr>     
+            <tr>
+              <td>
+                <table>
+                  <tr>
+                    <td><div class="common-value">Lte. Particular</div></td>
+                    <td><div class="common-value text-center">Lte. Rustico</div></td>
+                    <td><div class="common-value text-center">Lte. Pickup/Van</div></td>
+                  </tr>
+                  <tr>
+                    <td><input type="text" name="limite_particular" class="common-input common-value is-required" style="margin-right: 10px;" value=""></td>
+                    <td><input type="text" name="limite_rustico" class="common-input common-value is-required" style="margin-right: 10px;" value=""></td>
+                    <td><input type="text" name="limite_pickup" class="common-input common-value is-required" value=""></td>
+                  </tr>                  
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <table>
+                  <tr>
+                    <td><div class="common-value">Val. Particular</div></td>
+                    <td><div class="common-value text-center">Val. Rustico</div></td>
+                    <td><div class="common-value text-center">Val. Pickup/Van</div></td>
+                  </tr>
+                  <tr>
+                    <td><input type="text" name="valor_particular" class="common-input common-value is-required" style="margin-right: 10px;" value=""></td>
+                    <td><input type="text" name="valor_rustico" class="common-input common-value is-required" style="margin-right: 10px;" value=""></td>
+                    <td><input type="text" name="valor_pickup" class="common-input common-value is-required" value=""></td>
+                  </tr>                  
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding-top: 12px;">Asociar a las siguientes coberturas:</td>
+            </tr>
+            <tr>
+              <td>
+                <ul id="check-list" style="margin-top: 7px;">
+                  <li>
+                    <input type="checkbox" name="cobertura_amplia" value="true">
+                    <label form="cobertura_amplia">Cobertura amplia</label></li>
+                  <li>
+                    <input type="checkbox" name="perdida_total" value="true">
+                    <label form="perdida_total">Pérdida total</label></li>
+                  <li>
+                    <input type="checkbox" name="rcv" value="true">
+                    <label form="rcv">RCV</label>
+                  </li>               
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding-top: 10px; padding-bottom: 10px">Aplica en las siguientes condiciones:</td>
+            </tr>
+            <tr>
+              <td>
+                <input type="checkbox" name="incluida" value="true">
+                <label form="rcv">Incluida sin costo</label>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding-top: 10px;"><div class="required hide">Uno o más campos son inválidos.</div></td>
+            </tr>
           </tbody>
           <tfoot>
             <tr>
@@ -210,7 +221,7 @@ if (isset($_SESSION['msg'])) {
           <div id="nav-step">
             <ul>
               <li><input type="button" class="img-common icon-step icon-exit" value="Salir" onclick="location.href = 'convenios.php'"></li>
-              <li><a><?php echo $_SESSION['cargar_datos']==1 ? "Crear":"Modificar";?> convenio</a></li>
+              <li><a><?php echo $_SESSION['cargar_datos'] == 1 ? "Crear" : "Modificar"; ?> convenio</a></li>
               <li><span class="img-common arrow"></span></li>                      
               <li><a href="cargar-datos.php">Importar datos</a></li>
               <li><span class="img-common arrow"></span></li>               

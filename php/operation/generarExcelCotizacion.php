@@ -20,11 +20,11 @@ class generarExcelCotizacion {
 
     $array = array("O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "AA", "AB", "AC", "AD", "AE", "AF", "AG", "AH", "AI", "AJ", "AK", "AL", "AM", "AN", "AO", "AP", "AQ", "AR", "AS", "AT", "AU", "AV", "AW", "AX", "AY", "AZ");
 
-    
+
     foreach ($aseguradoras as $aseguradora) {
 
-     
-        
+
+
       $objPHPExcel = new PHPExcel();
       $objPHPExcel->getProperties()->setCreator("Maarten Balliauw");
       $objPHPExcel->getProperties()->setLastModifiedBy("Maarten Balliauw");
@@ -39,7 +39,7 @@ class generarExcelCotizacion {
       $cotizacion_aseguradora = $this->setHeaderCoberturas($objPHPExcel, $solicitudes, $aseguradora, $array);
 
       if ($cotizacion_aseguradora != null) {
-         
+
         $datos_header = $this->saveCarros($objPHPExcel, $solicitudes, $aseguradora, $array);
         //var_dump($cotizacion_aseguradora);
 
@@ -59,19 +59,18 @@ class generarExcelCotizacion {
 
 
         // Save Excel 2007 file
-       
-        $nombre=$cotizacion[0]->nombre."_".$cotizacion[0]->id."_".$convenio[0]->nombre;
-        $nombre=str_replace(" " , "_",$nombre );
+
+        $nombre = $cotizacion[0]->nombre . "_" . $cotizacion[0]->id . "_" . $convenio[0]->nombre;
+        $nombre = str_replace(" ", "_", $nombre);
         $objWriter = new PHPExcel_Writer_Excel2007($objPHPExcel);
-        $objWriter->save("/Applications/XAMPP/xamppfiles/htdocs/git_aon_web/flota/files/".$nombre.".xlsx");
-        
-        $descarga_cotizacion=new descarga_cotizacion();
-        $descarga_cotizacion->id_cotizacion=$cotizacion[0]->id;
-        $descarga_cotizacion->nombre=$cotizacion[0]->nombre;
-        $descarga_cotizacion->seguro=$convenio[0]->nombre;
-        $descarga_cotizacion->link="http://localhost/git_aon_web/flota/files/".$nombre.".xlsx";
+        $objWriter->save("/Users/crivera/Sites/AON/git_aon_web/flota/files/" . $nombre . ".xlsx");
+
+        $descarga_cotizacion = new descarga_cotizacion();
+        $descarga_cotizacion->id_cotizacion = $cotizacion[0]->id;
+        $descarga_cotizacion->nombre = $cotizacion[0]->nombre;
+        $descarga_cotizacion->seguro = $convenio[0]->nombre;
+        $descarga_cotizacion->link = "http://localhost/AON/git_aon_web/flota/files/" . $nombre . ".xlsx";
         $descarga_cotizacion->create();
-      
       }
     }
   }
@@ -119,7 +118,7 @@ class generarExcelCotizacion {
   function setHeaderCoberturas($objPHPExcel, $solicitudes, $aseguradora, $array) {
 
     $cotizacion_aseguradora_aux = null;
-    $tasa_casco=false;
+    $tasa_casco = false;
     for ($y = 0; $y < sizeof($solicitudes); $y++) {
 
       foreach ($solicitudes[$y]->re_aseguradora_cotizacion as $cotizacion_aseguradora) {
@@ -129,30 +128,29 @@ class generarExcelCotizacion {
 
           $coberturas = $cotizacion_aseguradora->coberturas;
           $end = "S";
-          
-          
-          $index_array=0;
+
+
+          $index_array = 0;
           for ($x = 0; $x < sizeof($coberturas); $x++) {
-             
-            if(($coberturas[$x]->id_tipo_cob == 1 || $coberturas[$x]->id_tipo_cob == 2 ) && !$tasa_casco){
-                
-                $objPHPExcel->getActiveSheet()->SetCellValue('O11', html_entity_decode("TASA CASCO"));
-                $objPHPExcel->getActiveSheet()->getColumnDimension($array[$x])->setAutoSize(true);
-                $objPHPExcel->getActiveSheet()->getStyle('O11')->getFont()->setBold(true);
-                $tasa_casco=true;
-                $index_array=1;
-            
+
+            if (($coberturas[$x]->id_tipo_cob == 1 || $coberturas[$x]->id_tipo_cob == 2 ) && !$tasa_casco) {
+
+              $objPHPExcel->getActiveSheet()->SetCellValue('O11', html_entity_decode("TASA CASCO"));
+              $objPHPExcel->getActiveSheet()->getColumnDimension($array[$x])->setAutoSize(true);
+              $objPHPExcel->getActiveSheet()->getStyle('O11')->getFont()->setBold(true);
+              $tasa_casco = true;
+              $index_array = 1;
             }
-            
-            
-            $objPHPExcel->getActiveSheet()->SetCellValue($array[$x+$index_array] . '11', html_entity_decode($coberturas[$x]->descripcion));
-            $objPHPExcel->getActiveSheet()->getColumnDimension($array[$x+$index_array])->setAutoSize(true);
-            $objPHPExcel->getActiveSheet()->getStyle($array[$x+$index_array] . '11')->getFont()->setBold(true);
+
+
+            $objPHPExcel->getActiveSheet()->SetCellValue($array[$x + $index_array] . '11', html_entity_decode($coberturas[$x]->descripcion));
+            $objPHPExcel->getActiveSheet()->getColumnDimension($array[$x + $index_array])->setAutoSize(true);
+            $objPHPExcel->getActiveSheet()->getStyle($array[$x + $index_array] . '11')->getFont()->setBold(true);
           }
 
-          $objPHPExcel->getActiveSheet()->SetCellValue($array[sizeof($coberturas)+$index_array] . '11', "TOTAL");
-          $objPHPExcel->getActiveSheet()->getColumnDimension($array[sizeof($coberturas)+$index_array])->setAutoSize(true);
-          $objPHPExcel->getActiveSheet()->getStyle($array[sizeof($coberturas)+$index_array] . '11')->getFont()->setBold(true);
+          $objPHPExcel->getActiveSheet()->SetCellValue($array[sizeof($coberturas) + $index_array] . '11', "TOTAL");
+          $objPHPExcel->getActiveSheet()->getColumnDimension($array[sizeof($coberturas) + $index_array])->setAutoSize(true);
+          $objPHPExcel->getActiveSheet()->getStyle($array[sizeof($coberturas) + $index_array] . '11')->getFont()->setBold(true);
           $y = sizeof($solicitudes);
           $cotizacion_aseguradora_aux = $cotizacion_aseguradora;
 
@@ -173,7 +171,7 @@ class generarExcelCotizacion {
     $row = 12;
     $suma_cotizacion = 0;
     $datos_header = Array();
-    $index_array=0;
+    $index_array = 0;
     for ($y = 0; $y < sizeof($solicitudes); $y++) {
 
       foreach ($solicitudes[$y]->re_aseguradora_cotizacion as $cotizacion_aseguradora) {
@@ -182,17 +180,17 @@ class generarExcelCotizacion {
 
           $coberturas = $cotizacion_aseguradora->coberturas;
           $suma_primas_coberturas = 0;
-         
+
 
           for ($x = 0; $x < sizeof($coberturas); $x++) {
 
-             if($coberturas[$x]->id_cob_as == 1 || $coberturas[$x]->id_cob_as == 2 ) {
-         
-                $objPHPExcel->getActiveSheet()->SetCellValue('O'.($row + $y),$coberturas[$x]->tasa);
-                $objPHPExcel->getActiveSheet()->getColumnDimension('O')->setAutoSize(true);
-                 $index_array=1;
+            if ($coberturas[$x]->id_cob_as == 1 || $coberturas[$x]->id_cob_as == 2) {
+
+              $objPHPExcel->getActiveSheet()->SetCellValue('O' . ($row + $y), $coberturas[$x]->tasa);
+              $objPHPExcel->getActiveSheet()->getColumnDimension('O')->setAutoSize(true);
+              $index_array = 1;
             }
-           
+
             if ($coberturas[$x]->prima != 0) {
               $prima = formatMoney($coberturas[$x]->prima, true);
               $suma_primas_coberturas = $suma_primas_coberturas + $prima;
@@ -201,16 +199,16 @@ class generarExcelCotizacion {
             if ($coberturas[$x]->incluida == 1)
               $prima = "INCLUIDA";
 
-            $objPHPExcel->getActiveSheet()->SetCellValue($array[$x+$index_array] . ($row + $y), html_entity_decode($prima));
-            $objPHPExcel->getActiveSheet()->getColumnDimension($array[$x+$index_array])->setAutoSize(true);
+            $objPHPExcel->getActiveSheet()->SetCellValue($array[$x + $index_array] . ($row + $y), html_entity_decode($prima));
+            $objPHPExcel->getActiveSheet()->getColumnDimension($array[$x + $index_array])->setAutoSize(true);
 
             if ($coberturas[$x]->id_cob_as == 5)
               $objPHPExcel->getActiveSheet()->SetCellValue('J' . ($row + $y), html_entity_decode($coberturas[$x]->valor));
           }
 
           $suma_cotizacion = $suma_cotizacion + $suma_primas_coberturas;
-          
-          $objPHPExcel->getActiveSheet()->SetCellValue($array[sizeof($coberturas)+1] . ($row + $y), formatMoney($suma_primas_coberturas, true));
+
+          $objPHPExcel->getActiveSheet()->SetCellValue($array[sizeof($coberturas) + 1] . ($row + $y), formatMoney($suma_primas_coberturas, true));
           $objPHPExcel->getActiveSheet()->getColumnDimension($array[sizeof($coberturas)])->setAutoSize(true);
 
           $objPHPExcel->getActiveSheet()->SetCellValue('A' . ($row + $y), $solicitudes[$y]->cotizacion->identificacion);

@@ -40,12 +40,12 @@ if (isset($_SESSION['msg'])) {
         <div class="message hide"></div>
         <div id="left-nav">
           <ul>
-            <li class="current"><a href="clientes.php">Clientes</a></li>
+            <li><a href="clientes.php">Clientes</a></li>
             <li><a href="seguros.php">Seguros</a></li>
             <li><a href="coberturas.php">Coberturas</a></li>
             <li><a href="convenios.php">Convenios</a></li>
             <li><a href="flotas.php">Flotas</a></li>
-            <li style="border: none;"><a href="cotizaciones.php">Cotizaciones</a></li>
+            <li class="current" style="border: none;"><a href="cotizaciones.php">Cotizaciones</a></li>
           </ul>
         </div>
         <div id="main">

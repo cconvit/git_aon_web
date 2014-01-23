@@ -49,6 +49,7 @@ class descarga_cotizacion{
                                                 '{$database->escape_value($this->seguro)}',
                                                 '{$database->escape_value($this->link)}'
                                                  )";
+                                                echo $sql;
 
 
     if ($database->query($sql)) {
