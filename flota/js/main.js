@@ -16,7 +16,14 @@ var Aon = {
 		list.css("height", windowHeight - 230);
 	},
 	setMenuHeight: function(windowHeight) {
-		var menu = $("#left-nav");
+		var menu = $("#left-nav"),
+				li = menu.find("ul li");
+		if (windowHeight -42 < 615) {
+			li.css("height", "73px");
+		}
+		else {
+			li.css("height", "93px");
+		}
 		menu.css("height", windowHeight - 127);
 	},
 	windowResize: function() {
@@ -95,9 +102,9 @@ var Wizard = {
 	quotation: function() {
 		var errors = $("#list-errors >tbody >tr").length;
 		if (errors === 0) {
-				location.href = "descargar-cotizacion.php";
+			location.href = "descargar-cotizacion.php";
 		}
-		else{
+		else {
 			alert("Aún existen vehículos con errores.")
 		}
 	},
@@ -177,7 +184,7 @@ $(function(e) {
 		});
 		return false;
 	});
-	
+
 	//select a list suggestion element
 	var item, ul, id, role, text, input, array = [];
 	$("#vehicle").on("click", "#vehicle-suggestion ul li", function(e) {
