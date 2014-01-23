@@ -676,11 +676,11 @@ function proccessCotizacion() {
 
 
     if (!$cotizacion->delete())
-        set_msg("Ocurrio un error al tratar de eliminar la cotización. Por favor intente mas tarde. Si el error persiste, comuniquese con el administrador del sistema.", "error");
+        set_msg("Ocurrio un error al tratar de generar los archivos de la cotización. Por favor intente mas tarde. Si el error persiste, comuniquese con el administrador del sistema.", "error");
     else
-        set_msg("La eliminación de la cotización se realizó exitosamente.", "succesfull");
+        set_msg("La generación de los archivos de la cotización se realizó exitosamente.", "succesfull");
 
-    header('Location: ' . $_GET["target"]);
+   // header('Location: ' . $_GET["target"]);
 }
 
 function deleteConvenioFlota($id) {

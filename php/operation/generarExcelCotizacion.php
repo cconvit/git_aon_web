@@ -29,17 +29,16 @@ class generarExcelCotizacion {
       $objPHPExcel->getProperties()->setDescription("Test document for Office 2007 XLSX, generated using PHP classes.");
 
 // Add some data
-      echo date('H:i:s') . " Add some data\n";
+    //  echo date('H:i:s') . " Add some data\n";
       $objPHPExcel->setActiveSheetIndex(0);
       $this->setHeader($objPHPExcel);
       $cotizacion_aseguradora = $this->setHeaderCoberturas($objPHPExcel, $solicitudes, $aseguradora, $array);
 
       if ($cotizacion_aseguradora != null) {
         $datos_header = $this->saveCarros($objPHPExcel, $solicitudes, $aseguradora, $array);
-        //var_dump($cotizacion_aseguradora);
 
-        $convenio_aseguradora->id = $cotizacion_aseguradora[0]->id_convenio;
-
+        $convenio_aseguradora->id = $cotizacion_aseguradora->convenio;
+       
         $cotizacion_aux->id = $solicitudes[0]->cotizacion->id_cotizacion;
         $cotizacion = $cotizacion_aux->find_by_id();
 
@@ -49,14 +48,14 @@ class generarExcelCotizacion {
         $objPHPExcel->getActiveSheet()->getStyle('A11:AZ11')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
 
         // Rename sheet
-        echo date('H:i:s') . " Rename sheet\n";
-        $objPHPExcel->getActiveSheet()->setTitle('Simple');
+     //   echo date('H:i:s') . " Rename sheet\n";
+        $objPHPExcel->getActiveSheet()->setTitle('Cotizacion');
 
 
         // Save Excel 2007 file
-        echo date('H:i:s') . " Write to Excel2007 format\n";
+    //    echo date('H:i:s') . " Write to Excel2007 format\n";
         $objWriter = new PHPExcel_Writer_Excel2007($objPHPExcel);
-        $objWriter->save("/tmp/pepe" . $aseguradora . ".xlsx");
+        $objWriter->save("/tmp/Cotizacion_" .$cotizacion_aux->id."_". $convenio[0]->nombre . ".xlsx");
       }
     }
   }
