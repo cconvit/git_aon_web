@@ -74,7 +74,7 @@ $cotizaciones = $cotizacion->find_all();
                               <p class="item-info">Última modificación: <span><?php echo $value->ut_time; ?></span></p>
                               <div class="options">
                                 <form method="post" action="../php/operation/administration.php?operation_type=21&target=../../flota/cotizaciones.php" onsubmit="return formOperation()">
-                                  <input type="button" data="" class="img-common icon-operation icon-download">
+                                  <a href="descargar-cotizacion.php?id=<?php echo $value->id;?>" class="img-common icon-operation icon-download"></a>
                                   <input type="submit" type="submit" class="img-common icon-operation icon-delete" value="">
                                   <input type="hidden" name="id" value="<?php echo $value->id; ?>">
                                 </form>

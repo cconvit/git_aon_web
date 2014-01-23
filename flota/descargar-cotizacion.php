@@ -1,3 +1,24 @@
+<?php
+session_start();
+require_once("../php/db/config.php");
+require_once ('../php/db/database.php');
+require_once ('../php/entity/descarga_cotizacion.php');
+
+$descarga_cotizacion = new descarga_cotizacion();
+$descarga_cotizacion->id_cotizacion=$_REQUEST["id"];
+$aux = $descarga_cotizacion->find_by_id();
+$msg = "hide";
+$msg_desc = "";
+$msg_type = "succesfull";
+
+if (isset($_SESSION['msg'])) {
+  if ($_SESSION['msg'] == "show") {
+    $msg = "show";
+    $msg_desc = $_SESSION['msg_desc'];
+    $msg_type = $_SESSION['msg_type'];
+  }
+}
+?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -35,34 +56,27 @@
             <div id="scroll">
               <table class="tbl-details" cellspacing="0" borderspacing="0">
                 <tbody>
+                  <?php
+                        foreach ($aux as $value) {
+                          ?>
                   <tr>
                     <td>
                       <div class="item">
-                        <p class="item-title">Nombre del convenio</p>
-                        <p clas="item-sub-title">Seguro</p>
+                        <p class="item-title"><?php echo $value->seguro;?></p>
+                        <p clas="item-sub-title"><?php echo $value->nombre;?></p>
                         <p class="separator"></p>
                         <div class="info-down">
                           <div class="options">
-                            <a class="img-common icon-operation icon-download"  href="#">f</a>
+                            <a class="img-common icon-operation icon-download"  href="<?php echo $value->link;?>">f</a>
                           </div>
                         </div>
                       </div>
                     </td>
                   </tr>
-                  <tr>
-                    <td>
-                      <div class="item">
-                        <p class="item-title">Nombre del convenio</p>
-                        <p clas="item-sub-title">Seguro</p>
-                        <p class="separator"></p>
-                        <div class="info-down">
-                          <div class="options">
-                            <a class="img-common icon-operation icon-download"  href="#">f</a>
-                          </div>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>                  
+                    <?php
+                        }
+                      
+                      ?>
                 </tbody>
               </table>
             </div>
@@ -75,3 +89,8 @@
     <script src="../plugins/jquery-ui-1.10.3.custom.min.js"></script>
     <script src="js/main.js"></script>
   </body>
+  <?php
+  $_SESSION['msg'] = "hide";
+  $_SESSION['msg_desc'] = "";
+  $msg_type = "succesfull";
+  ?>

@@ -8,6 +8,7 @@ $convenio_aseguradora = new convenio_aseguradora();
 $convenios_aseguradoras = $convenio_aseguradora->find_distinc_flota($_SESSION['id_flota']);
 ?>
 <div id="agreements-list">
+<div id="agreements-checks">
   <table class="tbl-details tbl-check-list" cellspacin="0" borderspacing="0">
     <tbody>
       <?php
@@ -28,14 +29,15 @@ $convenios_aseguradoras = $convenio_aseguradora->find_distinc_flota($_SESSION['i
           </tr>
           <?php
         }
-      }else{
-          ?>
-          <div class="title-list">Noy hay convenios a asociar</div>
-          <?php
-      }
-      ?>       
+      } else {
+        ?>
+      <div class="title-list">Noy hay convenios a asociar</div>
+      <?php
+    }
+    ?>       
     </tbody>
   </table>
+</div>
 </div>
 <form action="../php/operation/administration.php?operation_type=19&target=../../flota/cargar-convenios.php" method="post" onsubmit="return URLSendAgreements();">
   <div class="buttons-panel" style="margin-top: 20px;">
