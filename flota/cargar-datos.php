@@ -127,7 +127,7 @@ $aux = $convenio_aseguradora->find_by_id_convenio();
                       <p class="separator"></p>
                       <div class="info-down">
                         <div class="options">
-                          <form method="post" action="../php/operation/operation_upload.php?operation_upload=3&target=../../flota/cargar-datos.php" enctype="multipart/form-data">
+                          <form method="post" action="../php/operation/operation_upload.php?operation_upload=6&target=../../flota/cargar-datos.php" enctype="multipart/form-data">
                             <p>
                               <input id="input-file" type="button" class="img-common icon-operation icon-upload">
                               <input type="button" class="img-common icon-operation icon-view">

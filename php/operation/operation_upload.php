@@ -205,12 +205,12 @@ function clasificacion_ma($worksheet, $nrColumns, $highestRow, $highestColumnInd
 
     $reg_valido = true;
     //Verificamos que el archivo tenga las columnas determinadas para esta importacion
-    if (($nrColumns > 4) && ($highestRow > 1)) {
+    if (($nrColumns > 3) && ($highestRow > 1)) {
 
         //Iteramos sobre las filas
         for ($row = 2; $row <= $highestRow; ++$row) {
             //Iteramos sobre las columnas
-            for ($col = 0; $col < 5; ++$col) {
+            for ($col = 0; $col < 4; ++$col) {
                 //Obtenemos la informacion de la celda
                 $cell = $worksheet->getCellByColumnAndRow($col, $row);
                 $val = $cell->getValue();
@@ -219,12 +219,12 @@ function clasificacion_ma($worksheet, $nrColumns, $highestRow, $highestColumnInd
                 //Asignamos el valor de la celda en un array
                 switch ($col) {
                     case 0:
-                        $reg_valido = isValidType("s", $dataType);
-                        $data[$row]["marca"] = $val;
+                        $reg_valido = isValidType("n", $dataType);
+                        $data[$row]["monto_min"] = $val;
                         break;
                     case 1:
-
-                        $data[$row]["modelo"] = $val;
+                        $reg_valido = isValidType("n", $dataType);
+                        $data[$row]["monto_max"] = $val;
                         break;
                     case 2:
 
@@ -238,6 +238,7 @@ function clasificacion_ma($worksheet, $nrColumns, $highestRow, $highestColumnInd
                 //Verificamos si todos los datos estaban correctos
 
                 if (!$reg_valido) {
+                   
                     $col = $highestColumnIndex;
                     $row = $highestRow;
                 }
@@ -245,7 +246,7 @@ function clasificacion_ma($worksheet, $nrColumns, $highestRow, $highestColumnInd
         }//End for ROW
         //Si todos los registros estan correctos entonces procedemos a guardar en la base de datos
         if ($reg_valido){
-            create_clasificacion($data, $id_convenio_as);
+            create_clasificacion_ma($data, $id_convenio_as);
         }
         else{
             set_msg("Error al importar el archivo. El archivo tiene datos errados para la importación.", "error");
@@ -348,7 +349,6 @@ function grua($worksheet, $nrColumns, $highestRow, $highestColumnIndex, $id_conv
                 //Verificamos si todos los datos estaban correctos
 
                 if (!$reg_valido) {
-                    echo "cual";
                     $col = $highestColumnIndex;
                     $row = $highestRow;
                 }
@@ -445,6 +445,43 @@ function create_clasificacion($data, $id_convenio_as) {
         set_msg("La carga del archivo fue exitosa", "succesfull");
         
         $aux[0]->up_clasificacion=1;
+        $aux[0]->update_flags_by_id();
+    }else   
+             set_msg("Error al importar el archivo. El archivo tiene datos errados para la importación.", "error");
+}
+
+//Crear los registros de la tasa de casco de un tipo de seguro
+function create_clasificacion_ma($data, $id_convenio_as) {
+
+    //Importamos la clase para crear el objecto
+    require_once '../entity/clasificacion_ma.php';
+    require_once '../entity/convenio_aseguradora.php';
+    $carga_exitosa=true;
+    $clasificacion_ma = new clasificacion_ma();
+    $clasificacion_ma->id_convenio_as = $id_convenio_as;
+    $clasificacion_ma->delete_by_convenio();
+    
+    foreach ($data as $cla) {
+
+        $clasificacion_ma = new clasificacion_ma();
+        $clasificacion_ma->id_convenio_as = $id_convenio_as;
+        $clasificacion_ma->monto_min = $cla["monto_min"];
+        $clasificacion_ma->monto_max = $cla["monto_max"];
+        $clasificacion_ma->clasificacion = $cla["clasificacion"];
+        $clasificacion_ma->tipo_carro = $cla["tipo_carro"];
+
+        if (!$clasificacion_ma->create()) {
+            $carga_exitosa=false;
+    }
+    }
+    if($carga_exitosa){
+        $convenio_aseguradora=new convenio_aseguradora();
+        $convenio_aseguradora->id=$id_convenio_as;
+        $aux=$convenio_aseguradora->find_by_id_convenio();
+        
+        set_msg("La carga del archivo fue exitosa", "succesfull");
+        
+        $aux[0]->up_clasificacion_ma=1;
         $aux[0]->update_flags_by_id();
     }else   
              set_msg("Error al importar el archivo. El archivo tiene datos errados para la importación.", "error");

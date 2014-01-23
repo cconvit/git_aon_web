@@ -91,7 +91,7 @@ $aseguradoras = $aseguradora->find_all();
                             if (sizeof($aseguradoras) > 0) {
                               foreach ($aseguradoras as $value) {
                                 ?>
-                                <option <?php echo $value->id == $aux->id_aseguradora ? "selected" : "" ?> value="<?php echo $value->id; ?>"><?php echo $value->nombre; ?></option>
+                                <option <?php echo $value->id == $aux[0]->id_aseguradora ? "selected" : "" ?> value="<?php echo $value->id; ?>"><?php echo $value->nombre; ?></option>
                                 <?php
                               }
                             }
