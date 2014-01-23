@@ -374,21 +374,22 @@ function deleteCondicion() {
 
 function newUpdateCondicion($operation_type) {
 
-  require_once ('../entity/re_tipo_cobertura_aseguradora.php');
-  $condicion = new re_tipo_cobertura_aseguradora();
+    require_once ('../entity/re_tipo_cobertura_aseguradora.php');
+    $condicion = new re_tipo_cobertura_aseguradora();
+    
+    if (isset($_REQUEST["cobertura"]) && isset($_REQUEST["calculo"]) && isset($_REQUEST["tasa"]) && isset($_SESSION["id_convenio_as"])) {
 
-  if (isset($_REQUEST["cobertura"]) && isset($_REQUEST["calculo"]) && isset($_REQUEST["limite"]) && isset($_REQUEST["tasa"]) && isset($_SESSION["id_convenio_as"])) {
+        $condicion->id_cob_as = $_REQUEST["cobertura"];
+        $condicion->tipo_calculo = $_REQUEST["calculo"];
+        $condicion->tasa = $_REQUEST["tasa"];
+        $condicion->incluida = $_REQUEST["incluida"] == "true" ? "1" : "0";
+        $condicion->id_convenio_as = $_SESSION["id_convenio_as"];
+        
+        if ($operation_type == 14)
+            $condicion->delete();
 
-    $condicion->id_cob_as = $_REQUEST["cobertura"];
-    $condicion->tipo_calculo = $_REQUEST["calculo"];
-    $condicion->limite = $_REQUEST["limite"];
-    $condicion->tasa = $_REQUEST["tasa"];
-    $condicion->incluida = $_REQUEST["incluida"] == "true" ? "1" : "0";
-    $condicion->id_convenio_as = $_SESSION["id_convenio_as"];
-
-    if ($operation_type == 14)
-      $condicion->delete();
-
+        if ($_REQUEST["cobertura_amplia"] == "true")
+            createCondicion($condicion, "1");
 
     if ($_REQUEST["cobertura_amplia"] == "true")
       createCondicion($condicion, "1");
@@ -429,17 +430,20 @@ function createCondicion($condicion, $tipo_cob) {
 
     switch ($x) {
 
-      case 1:
-        $condicion->valor = $_REQUEST["particular"];
-        break;
+            case 1:
+                $condicion->valor = $_REQUEST["valor_particular"];
+                $condicion->limite = $_REQUEST["limite_particular"];
+                break;
 
-      case 2:
-        $condicion->valor = $_REQUEST["rustico"];
-        break;
+            case 2:
+                $condicion->valor = $_REQUEST["valor_rustico"];
+                $condicion->limite = $_REQUEST["limite_rustico"];
+                break;
 
-      case 3:
-        $condicion->valor = $_REQUEST["pickup"];
-        break;
+            case 3:
+                $condicion->valor = $_REQUEST["valor_pickup"];
+                $condicion->limite = $_REQUEST["limite_pickup"];
+                break;
 
       default:
         $condicion->valor = 0;

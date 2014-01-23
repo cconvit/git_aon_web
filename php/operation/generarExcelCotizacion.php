@@ -45,6 +45,8 @@ class generarExcelCotizacion {
 
         $convenio_aseguradora->id = $cotizacion_aseguradora->convenio;
 
+        $convenio_aseguradora->id = $cotizacion_aseguradora->convenio;
+       
         $cotizacion_aux->id = $solicitudes[0]->cotizacion->id_cotizacion;
         $cotizacion = $cotizacion_aux->find_by_id();
 
@@ -60,8 +62,9 @@ class generarExcelCotizacion {
 
         // Save Excel 2007 file
 
-        $nombre = $cotizacion[0]->nombre . "_" . $cotizacion[0]->id . "_" . $convenio[0]->nombre;
-        $nombre = str_replace(" ", "_", $nombre);
+       
+        $nombre=$cotizacion[0]->nombre."_".$cotizacion[0]->id."_".$convenio[0]->nombre;
+        $nombre=str_replace(" " , "_",$nombre );
         $objWriter = new PHPExcel_Writer_Excel2007($objPHPExcel);
         $objWriter->save("/Users/crivera/Sites/AON/git_aon_web/flota/files/" . $nombre . ".xlsx");
 

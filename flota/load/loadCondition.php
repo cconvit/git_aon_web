@@ -70,19 +70,28 @@ if (isset($_SESSION["id_convenio_as"]) && isset($_REQUEST["id"])) {
               </tr>
               <tr>
                 <td><input type="text" name="limite_particular" class="common-input common-value is-required" style="margin-right: 10px;" value="<?php
-                  foreach ($aux_tp as $tp)
-                    if ($tp->id_tipo_carro == 1)
-                      echo $tp->valor;
+                foreach ($aux_tp as $tp){
+                    if ($tp->id_tipo_carro == 1){
+                         echo $tp->limite;
+                         break;
+                    }
+                  }
                   ?>"></td>
                 <td><input type="text" name="limite_rustico" class="common-input common-value is-required" style="margin-right: 10px;" value="<?php
-                  foreach ($aux_tp as $tp)
-                    if ($tp->id_tipo_carro == 2)
-                      echo $tp->valor;
+                   foreach ($aux_tp as $tp){
+                    if ($tp->id_tipo_carro == 2){
+                         echo $tp->limite;
+                         break;
+                    }
+                  }
                   ?>"></td>
                 <td><input type="text" name="limite_pickup" class="common-input common-value is-required" value="<?php
-                  foreach ($aux_tp as $tp)
-                    if ($tp->id_tipo_carro == 3)
-                      echo $tp->valor;
+                   foreach ($aux_tp as $tp){
+                    if ($tp->id_tipo_carro == 3){
+                         echo $tp->limite;
+                         break;
+                    }
+                  }
                   ?>"></td>
               </tr>                  
             </table>
@@ -98,19 +107,28 @@ if (isset($_SESSION["id_convenio_as"]) && isset($_REQUEST["id"])) {
               </tr>
               <tr>
                 <td><input type="text" name="valor_particular" class="common-input common-value is-required" style="margin-right: 10px;" value="<?php
-                  foreach ($aux_tp as $tp)
-                    if ($tp->id_tipo_carro == 1)
-                      echo $tp->valor;
+                  foreach ($aux_tp as $tp){
+                    if ($tp->id_tipo_carro == 1){
+                         echo $tp->valor;
+                         break;
+                    }
+                  }
                   ?>"></td>
                 <td><input type="text" name="valor_rustico" class="common-input common-value is-required" style="margin-right: 10px;" value="<?php
-                  foreach ($aux_tp as $tp)
-                    if ($tp->id_tipo_carro == 2)
-                      echo $tp->valor;
+                  foreach ($aux_tp as $tp){
+                    if ($tp->id_tipo_carro == 2){
+                         echo $tp->valor;
+                         break;
+                    }
+                  }
                   ?>"></td>
                 <td><input type="text" name="valor_pickup" class="common-input common-value is-required" value="<?php
-                  foreach ($aux_tp as $tp)
-                    if ($tp->id_tipo_carro == 3)
-                      echo $tp->valor;
+                  foreach ($aux_tp as $tp){
+                    if ($tp->id_tipo_carro == 3){
+                         echo $tp->valor;
+                         break;
+                    }
+                  }
                   ?>"></td>
               </tr>                  
             </table>

@@ -178,7 +178,7 @@ class re_tipo_cobertura_aseguradora{
                             '{$database->escape_value($this->incluida)}'
                             )";
                                           
-         // echo $sql." \n";                                
+         //echo $sql." \n";                                
       if($database->query($sql)) {
         $this->id = $database->insert_id();
         return true;
