@@ -76,11 +76,6 @@ if (isset($_SESSION['msg'])) {
                 </select>
               </td>
             </tr>
-          <td>Limite</td>
-          </tr>
-          <tr>
-            <td><input type="text" name="limite" class="common-input"></td>
-          </tr>
           <tr>
             <td>Tasa</td>
           </tr>
