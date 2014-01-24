@@ -102,6 +102,7 @@ var Wizard = {
 	quotation: function() {
 		var errors = $("#list-errors >tbody >tr").length;
 		if (errors === 0) {
+			$("#load").dialog("open");
 			location.href = "descargar-cotizacion.php";
 		}
 		else {
@@ -127,7 +128,7 @@ $(function(e) {
 	//init all dialogs and tabs
 	load.dialog({modal: true, autoOpen: false, width: 400, resizable: false, position: "top+5%"});
 	vehicle.dialog({modal: true, autoOpen: false, width: 900, resizable: false, position: "center"});
-	tabs.tabs().find("ul").css({"background-color": "#FFFFFF", "display": "block", "border": "none"});
+	tabs.tabs({ active: 2 }).find("ul").css({"background-color": "#FFFFFF", "display": "block", "border": "none"});
 
 	//throw click input file event
 	$("input[id='input-file']").on("click", function(e) {

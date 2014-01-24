@@ -57,116 +57,10 @@ $cotizacion_carro->id_cotizacion = $_SESSION["id_cotizacion"];
             </div>
             <div id="tabs">
               <ul>
-                <li style="padding-bottom: 0px;"><a id="errors-tab" class="img-common tab" href="#tabs-1" style="padding-bottom: 0px;">Errores</a></li>
+                <li style="padding-bottom: 0px;"><a id="errors-tab" class="img-common tab" href="#tabs-3" style="padding-bottom: 0px;">Errores</a></li>
                 <li style="padding-bottom: 0px;"><a id="valids-tab" class="img-common tab"  href="#tabs-2">Validos</a></li>
-                <li style="padding-bottom: 0px;"><a id="all-tab" class="img-common tab" href="#tabs-3">Totales</a></li>
+                <li style="padding-bottom: 0px;"><a id="all-tab" class="img-common tab" href="#tabs-1">Totales</a></li>
               </ul>
-              <div id="tabs-1" class="tabs-info">
-                <div class="scrollable-list" style="width: 100%; overflow-y: auto;">
-                  <table id="list-errors" class="list-fleet" style="width: 100%">
-                    <thead id="errors">
-                    <th class="no-padding" style="width: 32px; background-color: #FFFFFF; padding-left: "></th>
-                    <th class="no-padding" style="width: 32px; background-color: #FFFFFF;"></th>
-                    <th>rif/ci</th>
-                    <th>Asegurado</th>
-                    <th>placa</th>
-                    <th>Marca</th>
-                    <th>Modelo</th>
-                    <th>Versión</th>
-                    <th>Año</th>
-                    <th>inma</th>
-                    <th>Uso</th>
-                    <th>Ocupantes</th>
-                    <th>Cobertura</th>
-                    <th>Edad</th>
-                    <th>Sexo</th>
-                    <th>Edo. Civil</th>                                   
-                    </thead>
-                    <tbody>
-                      <?php
-                      $cotizacion_carros = $cotizacion_carro->find_by_id_cotizacion_error();
-                      if (sizeof($cotizacion_carros) > 0) {
-                        foreach ($cotizacion_carros as $value) {
-                          ?>
-                          <tr>
-                            <td class="no-padding no-border"><a class="img-common icon-edit icon-actions suggestion" data='<?php echo $value->id; ?>'></a></td>
-                            <td class="no-padding no-border"><form action="../php/operation/administration.php?operation_type=25&target=../../flota/validar-flota.php" method="post" onsubmit="return formOperation()"><input type="submit" class="img-common icon-remove icon-actions remove" value=""><input type="hidden" name="id" value="<?php echo $value->id; ?>"></form></td>
-                            <td><?php echo $value->identificacion; ?></td>
-                            <td><?php echo $value->asegurado; ?></td>
-                            <td><?php echo $value->placa; ?></td>
-                            <td><?php echo $value->car_marca; ?></td>
-                            <td><?php echo $value->car_modelo; ?></td>
-                            <td><?php echo $value->car_version; ?></td>
-                            <td><?php echo $value->car_ano; ?></td>
-                            <td><?php echo $value->valor_INMA; ?></td>
-                            <td><?php echo $validar->getTipoCarro($value->tipo_carro); ?></td>
-                            <td><?php echo $value->car_ocupantes; ?></td>
-                            <td><?php echo $validar->getCobertura($value->tipo_cobertura); ?></td>
-                            <td><?php echo $value->edad; ?></td>
-                            <td><?php echo $validar->getSexo($value->sexo); ?></td>
-                            <td><?php echo $validar->getEstadoCivil($value->estado_civil); ?></td>
-                          </tr>
-                          <?php
-                        }
-                      }
-                      ?>                    
-                    </tbody>                    
-                  </table>
-                </div>
-              </div>
-              <div id="tabs-2" class="tabs-info">
-                <div class="scrollable-list" style="width: 100%; overflow-y: auto;">
-                  <table id="list-fleet" class="list-fleet"  style="width: 100%">
-                    <thead id="errors">
-                    <th class="no-padding" style="width: 32px; background-color: #FFFFFF; padding-left: "></th>
-                    <th class="no-padding" style="width: 32px; background-color: #FFFFFF;"></th>
-                    <th>rif/ci</th>
-                    <th>Asegurado</th>
-                    <th>placa</th>
-                    <th>Marca</th>
-                    <th>Modelo</th>
-                    <th>Versión</th>
-                    <th>Año</th>
-                    <th>inma</th>
-                    <th>Uso</th>
-                    <th>Ocupantes</th>
-                    <th>Cobertura</th>
-                    <th>Edad</th>
-                    <th>Sexo</th>
-                    <th>Edo. Civil</th>                                   
-                    </thead>
-                    <tbody>
-                      <?php
-                      $cotizacion_carros = $cotizacion_carro->find_by_id_cotizacion_success();
-                      if (sizeof($cotizacion_carros) > 0) {
-                        foreach ($cotizacion_carros as $value) {
-                          ?>
-                          <tr>
-                            <td class="no-padding no-border"><a class="img-common icon-edit icon-actions suggestion" data='<?php echo $value->id; ?>'></a></td>
-                            <td class="no-padding no-border"><form action="../php/operation/administration.php?operation_type=25&target=../../flota/validar-flota.php" method="post" onsubmit="return formOperation()"><input type="submit" class="img-common icon-remove icon-actions remove" value=""><input type="hidden" name="id" value="<?php echo $value->id; ?>"></form></td>
-                            <td><?php echo $value->identificacion; ?></td>
-                            <td><?php echo $value->asegurado; ?></td>
-                            <td><?php echo $value->placa; ?></td>
-                            <td><?php echo $value->car_marca; ?></td>
-                            <td><?php echo $value->car_modelo; ?></td>
-                            <td><?php echo $value->car_version; ?></td>
-                            <td><?php echo $value->car_ano; ?></td>
-                            <td><?php echo $value->valor_INMA; ?></td>
-                            <td><?php echo $validar->getTipoCarro($value->tipo_carro); ?></td>
-                            <td><?php echo $value->car_ocupantes; ?></td>
-                            <td><?php echo $validar->getCobertura($value->tipo_cobertura); ?></td>
-                            <td><?php echo $value->edad; ?></td>
-                            <td><?php echo $validar->getSexo($value->sexo); ?></td>
-                            <td><?php echo $validar->getEstadoCivil($value->estado_civil); ?></td>
-                          </tr>
-                          <?php
-                        }
-                      }
-                      ?>                   
-                    </tbody>                    
-                  </table>
-                </div>
-              </div>
               <div id="tabs-3" class="tabs-info">
                 <div class="scrollable-list" style="width: 100%; overflow-y: auto;">
                   <table id="list-fleet" class="list-fleet" style="width: 100%">
@@ -221,6 +115,112 @@ $cotizacion_carro->id_cotizacion = $_SESSION["id_cotizacion"];
                   </table>
                 </div>                
               </div>
+              <div id="tabs-2" class="tabs-info">
+                <div class="scrollable-list" style="width: 100%; overflow-y: auto;">
+                  <table id="list-fleet" class="list-fleet"  style="width: 100%">
+                    <thead id="errors">
+                    <th class="no-padding" style="width: 32px; background-color: #FFFFFF; padding-left: "></th>
+                    <th class="no-padding" style="width: 32px; background-color: #FFFFFF;"></th>
+                    <th>rif/ci</th>
+                    <th>Asegurado</th>
+                    <th>placa</th>
+                    <th>Marca</th>
+                    <th>Modelo</th>
+                    <th>Versión</th>
+                    <th>Año</th>
+                    <th>inma</th>
+                    <th>Uso</th>
+                    <th>Ocupantes</th>
+                    <th>Cobertura</th>
+                    <th>Edad</th>
+                    <th>Sexo</th>
+                    <th>Edo. Civil</th>                                   
+                    </thead>
+                    <tbody>
+                      <?php
+                      $cotizacion_carros = $cotizacion_carro->find_by_id_cotizacion_success();
+                      if (sizeof($cotizacion_carros) > 0) {
+                        foreach ($cotizacion_carros as $value) {
+                          ?>
+                          <tr>
+                            <td class="no-padding no-border"><a class="img-common icon-edit icon-actions suggestion" data='<?php echo $value->id; ?>'></a></td>
+                            <td class="no-padding no-border"><form action="../php/operation/administration.php?operation_type=25&target=../../flota/validar-flota.php" method="post" onsubmit="return formOperation()"><input type="submit" class="img-common icon-remove icon-actions remove" value=""><input type="hidden" name="id" value="<?php echo $value->id; ?>"></form></td>
+                            <td><?php echo $value->identificacion; ?></td>
+                            <td><?php echo $value->asegurado; ?></td>
+                            <td><?php echo $value->placa; ?></td>
+                            <td><?php echo $value->car_marca; ?></td>
+                            <td><?php echo $value->car_modelo; ?></td>
+                            <td><?php echo $value->car_version; ?></td>
+                            <td><?php echo $value->car_ano; ?></td>
+                            <td><?php echo $value->valor_INMA; ?></td>
+                            <td><?php echo $validar->getTipoCarro($value->tipo_carro); ?></td>
+                            <td><?php echo $value->car_ocupantes; ?></td>
+                            <td><?php echo $validar->getCobertura($value->tipo_cobertura); ?></td>
+                            <td><?php echo $value->edad; ?></td>
+                            <td><?php echo $validar->getSexo($value->sexo); ?></td>
+                            <td><?php echo $validar->getEstadoCivil($value->estado_civil); ?></td>
+                          </tr>
+                          <?php
+                        }
+                      }
+                      ?>                   
+                    </tbody>                    
+                  </table>
+                </div>
+              </div>
+              <div id="tabs-1" class="tabs-info">
+                <div class="scrollable-list" style="width: 100%; overflow-y: auto;">
+                  <table id="list-errors" class="list-fleet" style="width: 100%">
+                    <thead id="errors">
+                    <th class="no-padding" style="width: 32px; background-color: #FFFFFF; padding-left: "></th>
+                    <th class="no-padding" style="width: 32px; background-color: #FFFFFF;"></th>
+                    <th>rif/ci</th>
+                    <th>Asegurado</th>
+                    <th>placa</th>
+                    <th>Marca</th>
+                    <th>Modelo</th>
+                    <th>Versión</th>
+                    <th>Año</th>
+                    <th>inma</th>
+                    <th>Uso</th>
+                    <th>Ocupantes</th>
+                    <th>Cobertura</th>
+                    <th>Edad</th>
+                    <th>Sexo</th>
+                    <th>Edo. Civil</th>                                   
+                    </thead>
+                    <tbody>
+                      <?php
+                      $cotizacion_carros = $cotizacion_carro->find_by_id_cotizacion_error();
+                      if (sizeof($cotizacion_carros) > 0) {
+                        foreach ($cotizacion_carros as $value) {
+                          ?>
+                          <tr>
+                            <td class="no-padding no-border"><a class="img-common icon-edit icon-actions suggestion" data='<?php echo $value->id; ?>'></a></td>
+                            <td class="no-padding no-border"><form action="../php/operation/administration.php?operation_type=25&target=../../flota/validar-flota.php" method="post" onsubmit="return formOperation()"><input type="submit" class="img-common icon-remove icon-actions remove" value=""><input type="hidden" name="id" value="<?php echo $value->id; ?>"></form></td>
+                            <td><?php echo $value->identificacion; ?></td>
+                            <td><?php echo $value->asegurado; ?></td>
+                            <td><?php echo $value->placa; ?></td>
+                            <td><?php echo $value->car_marca; ?></td>
+                            <td><?php echo $value->car_modelo; ?></td>
+                            <td><?php echo $value->car_version; ?></td>
+                            <td><?php echo $value->car_ano; ?></td>
+                            <td><?php echo $value->valor_INMA; ?></td>
+                            <td><?php echo $validar->getTipoCarro($value->tipo_carro); ?></td>
+                            <td><?php echo $value->car_ocupantes; ?></td>
+                            <td><?php echo $validar->getCobertura($value->tipo_cobertura); ?></td>
+                            <td><?php echo $value->edad; ?></td>
+                            <td><?php echo $validar->getSexo($value->sexo); ?></td>
+                            <td><?php echo $validar->getEstadoCivil($value->estado_civil); ?></td>
+                          </tr>
+                          <?php
+                        }
+                      }
+                      ?>                    
+                    </tbody>                    
+                  </table>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -232,9 +232,12 @@ $cotizacion_carro->id_cotizacion = $_SESSION["id_cotizacion"];
             <li><a>Crear cotización</a></li>
             <li><span class="img-common arrow"></span></li>                      
             <li><a class='current-step' href="cargar-datos.php">Validar flota</a></li>
-            <li><a href="../php/operation/administration.php?operation_type=22&target=../../flota/descargar-cotizacion.php?id=<?php echo  $_SESSION["id_cotizacion"];?>" class="img-common icon-step icon-end icon-href">Cotizar</a>           
+            <li><a href="../php/operation/administration.php?operation_type=22&target=../../flota/descargar-cotizacion.php?id=<?php echo $_SESSION["id_cotizacion"]; ?>" class="img-common icon-step icon-end icon-href">Cotizar</a>           
           </ul>
         </div>
+      </div>
+      <div id="load" class="modal">
+        <div class="modal"><p>Estamos procesando la flota. Esta operación puede tardar unos minutos. Por favor, espere</p></div>
       </div>
       <script src="../plugins/jquery-1.10.2.min.js"></script>
       <script src="../plugins/jquery-ui-1.10.3.custom.min.js"></script>
