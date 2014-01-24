@@ -124,6 +124,7 @@ class generarExcelCotizacion {
 
     $cotizacion_aseguradora_aux = null;
     $tasa_casco = false;
+    $coberturas=null;
     for ($y = 0; $y < sizeof($solicitudes); $y++) {
 
       foreach ($solicitudes[$y]->re_aseguradora_cotizacion as $cotizacion_aseguradora) {
@@ -131,12 +132,17 @@ class generarExcelCotizacion {
 
         if ($cotizacion_aseguradora->id_aseguradora == $aseguradora) {
 
-          $coberturas = $cotizacion_aseguradora->coberturas;
-          $end = "S";
-
-
-        
-          for ($x = 0; $x < sizeof($coberturas); $x++) {
+          if($solicitudes[$y]->cotizacion->tipo_cobertura == 1 ||  $solicitudes[$y]->cotizacion->tipo_cobertura == 2){
+              $coberturas = $cotizacion_aseguradora->coberturas;
+              $y=sizeof($solicitudes);
+              break;
+          }else{
+           $coberturas = $cotizacion_aseguradora->coberturas;
+        }
+      }
+    }
+    }
+    for ($x = 0; $x < sizeof($coberturas); $x++) {
 
             $GLOBALS["array_cob_id"][0][$x]=$coberturas[$x]->id_cob_as;
             $GLOBALS["array_cob_id"][1][$x]=$array[$x];
@@ -152,11 +158,7 @@ class generarExcelCotizacion {
           $y = sizeof($solicitudes);
           $cotizacion_aseguradora_aux = $cotizacion_aseguradora;
 
-          break;
-        }
-      }
-    }
-
+          
     return $cotizacion_aseguradora_aux;
   }
 
