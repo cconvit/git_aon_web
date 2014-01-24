@@ -575,6 +575,8 @@ function newCotizacion($nombre, $descripcion, $cliente, $flota, $tmp_name) {
       header('Location: ' . $_GET["target"]);
     else
       header('Location: ' . $_GET["target_fail"]);
+
+
   }else {
     $_SESSION["msg"] = "show";
     $_SESSION["msg_desc"] = "Ocurrio un error al tratar de crear una nueva cotización. Por favor intente mas tarde. Si el error persiste, comuniquese con el administrador del sistema.";
@@ -676,7 +678,7 @@ function proccessCotizacion() {
   }
 
 
-  //header('Location: ' . $_GET["target"]);
+  header('Location: ' . $_GET["target"]);
 }
 
 function deleteConvenioFlota($id) {

@@ -144,6 +144,12 @@ class validar_carro_cotizacion {
                     }//End switch
                     //Verificamos si todos los datos estaban correctos
                 }//End for COL
+                
+                
+                 if ($carro->tipo_cobertura == 3)
+                      $carro->is_car_modelo = 1;
+                
+                
                 if ($carro->identificacion != "")
                     $carro->create();
             }//End for ROW
@@ -171,7 +177,7 @@ class validar_carro_cotizacion {
             else
                 $carro->is_car_marca = 0;
 
-            if ($inma->isModelo($marca, $carro->car_modelo))
+            if ($inma->isModelo($marca, $carro->car_modelo) || $this->isCobertura($carro->tipo_cobertura) == 3)
                 $carro->is_car_modelo = 1;
             else
                 $carro->is_car_modelo = 0;
