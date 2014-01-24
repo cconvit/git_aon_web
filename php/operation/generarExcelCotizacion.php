@@ -181,7 +181,7 @@ class generarExcelCotizacion {
 
           $objPHPExcel->getActiveSheet()->SetCellValue('O' . ($row + $y), $coberturas[0]->tasa);
           $objPHPExcel->getActiveSheet()->getColumnDimension('O')->setAutoSize(true);
-
+        
           for ($x = 0; $x < sizeof($coberturas); $x++) {
 
 
