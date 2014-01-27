@@ -190,7 +190,10 @@ class generarExcelCotizacion {
 
             if ($coberturas[$x]->prima != 0) {
               $prima = formatMoney($coberturas[$x]->prima, true);
-              $suma_primas_coberturas = $suma_primas_coberturas + $prima;
+              $prinma_aux= str_replace(".","",$prima);
+              $prinma_aux= str_replace(",",".",$prinma_aux);
+              
+              $suma_primas_coberturas = $suma_primas_coberturas +$prinma_aux;
             }
 
             if ($coberturas[$x]->incluida == 1)
