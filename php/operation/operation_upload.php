@@ -97,45 +97,55 @@ function tasa_casco($worksheet, $nrColumns, $highestRow, $highestColumnIndex, $t
     //Verificamos que el archivo tenga las columnas determinadas para esta importacion
     if (($nrColumns == 4) && ($highestRow > 1)) {
 
+   
         //Iteramos sobre las filas
         for ($row = 2; $row <= $highestRow; ++$row) {
             //Iteramos sobre las columnas
+   
             for ($col = 0; $col < $highestColumnIndex; ++$col) {
                 //Obtenemos la informacion de la celda
                 $cell = $worksheet->getCellByColumnAndRow($col, $row);
                 $val = $cell->getValue();
+               
                 $dataType = PHPExcel_Cell_DataType::dataTypeForValue($val);
 
                 //Asignamos el valor de la celda en un array
                 switch ($col) {
                     case 0:
-                        $reg_valido = isValidType("s", $dataType);
+                        //$reg_valido = isValidType("s", $dataType);
                         $data[$row]["clasificacion"] = $val;
                         break;
                     case 1:
+                 
                         $reg_valido = isValidType("n", $dataType);
                         $data[$row]["tipo_carro"] = $val;
                         break;
                     case 2:
                         $reg_valido = isValidType("n", $dataType);
+                        if (!$reg_valido)  echo "ano";
                         $data[$row]["ano"] = $val;
                         break;
                     case 3:
                         $reg_valido = isValidType("n", $dataType);
+                        if (!$reg_valido)  echo "tasa";
                         $data[$row]["tasa"] = $val;
                         break;
                 }//End switch
                 //Verificamos si todos los datos estaban correctos
 
                 if (!$reg_valido) {
+                    
                     $col = $highestColumnIndex;
                     $row = $highestRow;
                 }
             }//End for COL
         }//End for ROW
         //Si todos los registros estan correctos entonces procedemos a guardar en la base de datos
-        if ($reg_valido)
+      
+        if ($reg_valido){
+
             create_tasa_casco($data, $id_convenio_as, $tipo_seguro);
+        }
         else
             set_msg("Error al importar el archivo. El archivo tiene datos errados para la importación.", "error");
     }//End IF

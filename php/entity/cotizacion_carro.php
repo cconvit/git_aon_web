@@ -64,9 +64,6 @@ class cotizacion_carro {
                                   WHERE (`is_car_marca`=0 
                                   OR `is_car_modelo`=0 
                                   OR `is_car_ocupantes`=0 
-                                  OR `is_edad`=0 
-                                  OR`is_sexo`=0 
-                                  OR`is_estado_civil`=0 
                                   OR `is_tipo_carros`=0 
                                   OR `is_tipo_cobertura`=0) 
                                   AND `id_cotizacion`='{$database->escape_value($this->id_cotizacion)}'");
@@ -81,9 +78,6 @@ class cotizacion_carro {
                                   WHERE (`is_car_marca`=1 
                                   AND `is_car_modelo`=1
                                   AND `is_car_ocupantes`=1 
-                                  AND `is_edad`=1 
-                                  AND`is_sexo`=1 
-                                  AND`is_estado_civil`=1 
                                   AND `is_tipo_carros`=1 
                                   AND `is_tipo_cobertura`=1) 
                                   AND `id_cotizacion`='{$database->escape_value($this->id_cotizacion)}'");
