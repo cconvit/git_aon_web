@@ -91,7 +91,7 @@ if (isset($_SESSION['msg'])) {
           <div id="footer">
             <div id="nav-step">
               <ul>
-                <li><input id="next" type="button" class="img-common icon-step icon-exit" value="Salir"></li>
+                <li><input id="next" type="button" class="img-common icon-step icon-exit" value="Salir" onclick="Wizard.exit('convenios.php');"></li>
                 <li><?php echo $_SESSION['cargar_convenios']==1 ? "Crear":"Modificar";?> flota</li>
                 <li><span class="img-common arrow"></span></li>                      
                 <li><a class="current-step" href="cargar-convenios.php">Asociar convenios</a></li>

@@ -95,7 +95,7 @@ if(isset($_REQUEST['id'])){
             <div id="nav-step">
               <ul>
                 <li><input type="button" class="img-common icon-step icon-exit" value="Salir" onclick="Wizard.exit('flotas.php');"></li>
-                <li><a class='current-step' href="modificar-flota.php">Modificar flota</a></li>
+                <li><a class='current-step' href="modificar-flota.php?id=<?php echo $flota->id ?>">Modificar flota</a></li>
                 <li><span class="img-common arrow"></span></li>                      
                 <li><a>Asociar convenios</a></li>
                 <li><input id="next" type="button" class="img-common icon-step icon-next" value="Siguiente" role="create"></li>
