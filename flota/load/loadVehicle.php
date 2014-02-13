@@ -19,7 +19,7 @@ if (isset($_REQUEST["id"])) {
   // Will return the response, if false it print the response
   curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
   // Set the url
-  curl_setopt($ch, CURLOPT_URL, "http://localhost/AON/git_aon_web/inma/json.php?ot=1");
+  curl_setopt($ch, CURLOPT_URL, "http://localhost/git_aon_web/inma/json.php?ot=1");
   // Execute
   $result = curl_exec($ch);
   // Will dump a beauty json :3

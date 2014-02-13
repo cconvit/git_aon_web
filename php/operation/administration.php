@@ -571,9 +571,10 @@ function newCotizacion($nombre, $descripcion, $cliente, $flota, $tmp_name) {
     $result = $validar_carros->processFile($tmp_name, $cotizacion->id);
     $_SESSION["id_cotizacion"] = $cotizacion->id;
 
-    if ($result)
+    if ($result){
+     //echo "";
       header('Location: ' . $_GET["target"]);
-    else
+    }else
       header('Location: ' . $_GET["target_fail"]);
 
 
@@ -637,7 +638,7 @@ function proccessCotizacion() {
 
   $re_flota_co_as = new re_flota_co_as();
   $re_flota_co_as->id_flota = $flota->id;
-  $re_flota_co_as_aux = $re_flota_co_as->find_all();
+  $re_flota_co_as_aux = $re_flota_co_as->find_by_id();
   $solicitudes_procesadas = Array();
 
 

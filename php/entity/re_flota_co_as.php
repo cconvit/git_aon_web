@@ -17,6 +17,11 @@ class re_flota_co_as {
     return self::find_by_sql("SELECT * FROM " . self::$table_name);
   }
 
+  public  function find_by_id() {
+    global $database;
+    return self::find_by_sql("SELECT * FROM " . self::$table_name." WHERE id_flota='{$database->escape_value($this->id_flota)}'");
+  }
+  
   public static function find_by_sql($sql = "") {
 
     global $database;

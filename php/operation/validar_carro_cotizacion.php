@@ -50,7 +50,7 @@ class validar_carro_cotizacion {
                     //Asignamos el valor de la celda en un array
                     switch ($col) {
                         case 0:
-                            $reg_valido = $this->isValidType("s", $dataType);
+                            //$reg_valido = $this->isValidType("s", $dataType);
                             $carro->identificacion = $val;
                             break;
                         case 1:
@@ -58,7 +58,7 @@ class validar_carro_cotizacion {
                             $carro->asegurado = $val;
                             break;
                         case 2:
-                            $reg_valido = $this->isValidType("s", $dataType);
+                           // $reg_valido = $this->isValidType("s", $dataType);
                             $carro->placa = $val;
                             break;
                         case 3:
@@ -74,17 +74,18 @@ class validar_carro_cotizacion {
                             $reg_valido = $this->isValidType("s", $dataType);
                             $carro->car_modelo = $val;
 
-                            if ($inma->isModelo($marca, $val))
+                            if ($inma->isModelo($marca, $val)){
                                 $carro->is_car_modelo = 1;
-                            else
+                            }else{
                                 $carro->is_car_modelo = 0;
+                            }
                             break;
                         case 5:
                             $reg_valido = $this->isValidType("s", $dataType);
                             $carro->car_version = $val;
                             break;
                         case 6:
-                            $reg_valido = $this->isValidType("n", $dataType);
+                           // $reg_valido = $this->isValidType("n", $dataType);
                             $carro->car_ano = $val;
                             break;
                         case 7:
@@ -118,7 +119,7 @@ class validar_carro_cotizacion {
                                 $carro->is_tipo_cobertura = 0;
                             break;
                         case 11:
-                            $reg_valido = $this->isValidType("n", $dataType);
+                          //  $reg_valido = $this->isValidType("n", $dataType);
                             $carro->edad = $val;
                             if ($reg_valido)
                                 $carro->is_edad = 1;
@@ -126,7 +127,7 @@ class validar_carro_cotizacion {
                                 $carro->is_edad = 0;
                             break;
                         case 12:
-                            $reg_valido = $this->isValidType("s", $dataType);
+                           // $reg_valido = $this->isValidType("s", $dataType);
                             $carro->sexo = $this->isSexo($val);
                             if ($carro->sexo != 0)
                                 $carro->is_sexo = 1;
@@ -134,7 +135,7 @@ class validar_carro_cotizacion {
                                 $carro->is_sexo = 0;
                             break;
                         case 13:
-                            $reg_valido = $this->isValidType("s", $dataType);
+                           // $reg_valido = $this->isValidType("s", $dataType);
                             $carro->estado_civil = $this->isEstadoCivil($val);
                             if ($carro->estado_civil != 0)
                                 $carro->is_estado_civil = 1;
@@ -145,10 +146,10 @@ class validar_carro_cotizacion {
                     //Verificamos si todos los datos estaban correctos
                 }//End for COL
                 
-                
+                /*
                  if ($carro->tipo_cobertura == 3)
                       $carro->is_car_modelo = 1;
-                
+                */
                 
                 if ($carro->identificacion != "")
                     $carro->create();
