@@ -5,7 +5,6 @@ session_start();
 $id_flota = $_GET['i'];
 
 if (isset($id_flota)) {
-  echo "flota";
   require_once("../php/db/config.php");
   require_once ('../php/db/database.php');
   require_once ('../php/entity/flota.php');
@@ -32,9 +31,9 @@ if (isset($id_flota)) {
           <div id="header">
             <div class="center">
               <p class="menu"><a class="current" href="index.php">Inicio</a><span> │ </span><a href="terminos.html" target="_blank" onClick="window.open(this.href, this.target, 'width=500, height=400, resizable=0');
-                      return false;">Términos de Uso</a></p>
+                  return false;">Términos de Uso</a></p>
               <p><a href="index.php"><img src="img/logo.png"></a></p>
-              <p><span>Aon Risk Services Venezuela Corretaje de Seguros, C.A. | RIF J-00067607-0 | Inscripción SAA N 102.</span>></p>
+              <p><span>Aon Risk Services Venezuela Corretaje de Seguros, C.A. | RIF J-00067607-0 | Inscripción SAA N 102.</span></p>
               <div class="exclusivo"></div>
             </div>
           </div>
@@ -295,13 +294,13 @@ if (isset($id_flota)) {
                 <ul>
                   <li>Al sistema que ud. está ingresando le son aplicables las disposiciones contenidas en la Ley sobre Mensajes de Datos y Firmas Electrónicas, así como también aquellas previstas en</li>
                   <li>los <a href="terminos.html" class="destacado" target="_blank" onClick="window.open(this.href, this.target, 'width=500, height=400, resizable=0');
-                          return false;">Términos de Uso</a> publicados en esta página.  Operar con el cotizador en línea implica aceptar los <a href="terminos.html" class="destacado" target="_blank" onClick="window.open(this.href, this.target, 'width=500, height=400, resizable=0');
-                              return false;">Términos de Uso</a> en los que se ofrece el servicio.</li>
+                      return false;">Términos de Uso</a> publicados en esta página.  Operar con el cotizador en línea implica aceptar los <a href="terminos.html" class="destacado" target="_blank" onClick="window.open(this.href, this.target, 'width=500, height=400, resizable=0');
+                          return false;">Términos de Uso</a> en los que se ofrece el servicio.</li>
                   <li style="width: 220px;">
                     <input type="checkbox" id="acepto" name="acepto">
                     <label for="acepto" style="padding-left: 5px;">He leído y aceptado los <a href="terminos.html" class="destacado" target="_blank" onClick="window.open(this.href, this.target, 'width=500, height=400, resizable=0');
-                            return false;">Términos de Uso</a> y la <a href="legal.html" class="destacado" target="_blank" onClick="window.open(this.href, this.target, 'width=500, height=300, resizable=0');
-                                return false;">Información Legal</a></label>
+                        return false;">Términos de Uso</a> y la <a href="legal.html" class="destacado" target="_blank" onClick="window.open(this.href, this.target, 'width=500, height=300, resizable=0');
+                            return false;">Información Legal</a></label>
                   </li>
                 </ul>
                 <input type="button" id="datos-submit" class="boton boton-footer" value="Siguiente">
@@ -309,7 +308,8 @@ if (isset($id_flota)) {
             </div>
           </div>
         </div>
-        <script src="../plugins/jquery-1.10.2.min.js"></script> 
+        <script src="../plugins/jquery-1.10.2.min.js"></script>
+        <script src="../plugins/jquery-ui-1.10.3.custom.min.js"></script>
         <script src="js/main.js"></script>
       </body>
     </html>
@@ -318,7 +318,6 @@ if (isset($id_flota)) {
     
   }
 } else {
-
-  //Redireccionar a una pagina de error
+  
 }
 ?>

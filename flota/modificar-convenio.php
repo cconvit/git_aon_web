@@ -9,7 +9,7 @@ $msg = "hide";
 $msg_desc = "";
 $msg_type = "succesfull";
 
-$_SESSION['cargar_datos']=2;
+$_SESSION['cargar_datos'] = 2;
 if (isset($_SESSION['msg'])) {
   if ($_SESSION['msg'] == "show") {
     $msg = "show";
@@ -118,7 +118,7 @@ $aseguradoras = $aseguradora->find_all();
             <div id="nav-step">
               <ul>
                 <li><input type="button" class="img-common icon-step icon-exit" value="Salir" onclick="Wizard.exit('convenios.php');"></li>
-                <li><a class='current-step' href="modificar-convenio.php">Modificar convenio</a></li>
+                <li><a class='current-step' href="modificar-convenio.php?id=<?php echo $convenio_aseguradora->id ?>">Modificar convenio</a></li>
                 <li><span class="img-common arrow"></span></li>                      
                 <li><a>Moficar datos</a></li>
                 <li><span class="img-common arrow"></span></li>               

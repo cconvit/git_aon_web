@@ -691,6 +691,7 @@ a.access-title{
   position: absolute;
   right: 5px;
   top: 0px;
+  z-index: 999;
 }
 .icon-square{
   width: 29px;
@@ -891,4 +892,7 @@ a.access-title{
 }
 .red td{
   color:#E61E17;
+}
+.top-min{
+  top: -25px;
 }
