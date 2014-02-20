@@ -574,8 +574,10 @@ function newCotizacion($nombre, $descripcion, $cliente, $flota, $tmp_name) {
     if ($result){
      //echo "";
       header('Location: ' . $_GET["target"]);
-    }else
+    }else{
+        $cotizacion->delete();
       header('Location: ' . $_GET["target_fail"]);
+    }
 
 
   }else {
