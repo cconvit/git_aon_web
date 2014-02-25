@@ -388,9 +388,6 @@ function newUpdateCondicion($operation_type) {
         if ($operation_type == 14)
             $condicion->delete();
 
-        if ($_REQUEST["cobertura_amplia"] == "true")
-            createCondicion($condicion, "1");
-
     if ($_REQUEST["cobertura_amplia"] == "true")
       createCondicion($condicion, "1");
 

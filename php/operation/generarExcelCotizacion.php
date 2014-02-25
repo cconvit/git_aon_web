@@ -62,15 +62,15 @@ class generarExcelCotizacion {
         $nombre = $cotizacion[0]->nombre . "_" . $cotizacion[0]->id . "_" . $convenio[0]->nombre;
         $nombre = str_replace(" ", "_", $nombre);
         $objWriter = new PHPExcel_Writer_Excel2007($objPHPExcel);
+        $objWriter->save("/Applications/XAMPP/xamppfiles/htdocs/git_aon_web/flota/files/" . $nombre . ".xlsx");
         //$objWriter->save("/Users/crivera/Sites/AON/git_aon_web/flota/files/" . $nombre . ".xlsx");
-        $objWriter->save("/Users/crivera/Sites/AON/git_aon_web/flota/files/" . $nombre . ".xlsx");
 
         $descarga_cotizacion = new descarga_cotizacion();
         $descarga_cotizacion->id_cotizacion = $cotizacion[0]->id;
         $descarga_cotizacion->nombre = $cotizacion[0]->nombre;
         $descarga_cotizacion->seguro = $convenio[0]->nombre;
+        $descarga_cotizacion->link = "http://localhost/git_aon_web/flota/files/" . $nombre . ".xlsx";
         //$descarga_cotizacion->link = "http://localhost/AON/git_aon_web/flota/files/" . $nombre . ".xlsx";
-        $descarga_cotizacion->link = "http://localhost/AON/git_aon_web/flota/files/" . $nombre . ".xlsx";
         $descarga_cotizacion->create();
       }
     }
@@ -172,35 +172,17 @@ class generarExcelCotizacion {
 
     for ($y = 0; $y < sizeof($solicitudes); $y++) {
 
-      if(sizeof($solicitudes[$y]->re_aseguradora_cotizacion) == 0) {
-          
-          $objPHPExcel->getActiveSheet()->SetCellValue('A' . ($row + $y), $solicitudes[$y]->cotizacion->identificacion);
-          $objPHPExcel->getActiveSheet()->SetCellValue('B' . ($row + $y), $solicitudes[$y]->cotizacion->asegurado);
-          $objPHPExcel->getActiveSheet()->SetCellValue('C' . ($row + $y), $validar_carro_cotizacion->getCobertura($solicitudes[$y]->cotizacion->tipo_cobertura)); //Cambiar por descripcion
-          $objPHPExcel->getActiveSheet()->SetCellValue('D' . ($row + $y), $solicitudes[$y]->cotizacion->car_marca);
-          $objPHPExcel->getActiveSheet()->SetCellValue('E' . ($row + $y), $solicitudes[$y]->cotizacion->car_modelo);
-          $objPHPExcel->getActiveSheet()->SetCellValue('F' . ($row + $y), $solicitudes[$y]->cotizacion->car_version);
-          $objPHPExcel->getActiveSheet()->SetCellValue('G' . ($row + $y), $solicitudes[$y]->cotizacion->placa);
-          $objPHPExcel->getActiveSheet()->SetCellValue('H' . ($row + $y), $solicitudes[$y]->cotizacion->car_ocupantes);
-          $objPHPExcel->getActiveSheet()->SetCellValue('I' . ($row + $y), $validar_carro_cotizacion->getTipoCarro($solicitudes[$y]->cotizacion->tipo_carro));
-          $objPHPExcel->getActiveSheet()->SetCellValue('K' . ($row + $y), $solicitudes[$y]->parametros[0]->valor);
-          $objPHPExcel->getActiveSheet()->SetCellValue('M' . ($row + $y), $solicitudes[$y]->cotizacion->car_ano);
-          $objPHPExcel->getActiveSheet()->SetCellValue('N' . ($row + $y), formatMoney($solicitudes[$y]->cotizacion->valor_INMA, true));
-          $inma=$solicitudes[$y]->cotizacion->valor_INMA;
-          $por_inma=$solicitudes[$y]->flota->porcentaje_INMA;
-          $suma_asegurada=$inma+($inma*$por_inma);
-          $objPHPExcel->getActiveSheet()->SetCellValue('O' . ($row + $y), formatMoney($suma_asegurada, true));
-          $objPHPExcel->getActiveSheet()->getStyle('A' . ($row + $y) . ':AZ' . ($row + $y))->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-          $objPHPExcel->getActiveSheet()->SetCellValue('P' . ($row + $y), "No se pudo cotizar");
-          
-          
-      }else{
+      
         
-        
-      foreach ($solicitudes[$y]->re_aseguradora_cotizacion as $cotizacion_aseguradora) {
+      $contador=false;  
+      for ($z = 0; $z < sizeof($solicitudes[$y]->re_aseguradora_cotizacion); $z++) {
+          
+      $cotizacion_aseguradora=$solicitudes[$y]->re_aseguradora_cotizacion[$z];
+      
+    //  foreach ($solicitudes[$y]->re_aseguradora_cotizacion as $cotizacion_aseguradora) {
 
         if ($cotizacion_aseguradora->id_aseguradora == $aseguradora) {
-
+          $contador=true;
           $coberturas = $cotizacion_aseguradora->coberturas;
           $suma_primas_coberturas = 0;
 
@@ -265,7 +247,31 @@ class generarExcelCotizacion {
           break;
         }
       }
-    }//ENd else
+      
+      if(!$contador) {
+          
+          $objPHPExcel->getActiveSheet()->SetCellValue('A' . ($row + $y), $solicitudes[$y]->cotizacion->identificacion);
+          $objPHPExcel->getActiveSheet()->SetCellValue('B' . ($row + $y), $solicitudes[$y]->cotizacion->asegurado);
+          $objPHPExcel->getActiveSheet()->SetCellValue('C' . ($row + $y), $validar_carro_cotizacion->getCobertura($solicitudes[$y]->cotizacion->tipo_cobertura)); //Cambiar por descripcion
+          $objPHPExcel->getActiveSheet()->SetCellValue('D' . ($row + $y), $solicitudes[$y]->cotizacion->car_marca);
+          $objPHPExcel->getActiveSheet()->SetCellValue('E' . ($row + $y), $solicitudes[$y]->cotizacion->car_modelo);
+          $objPHPExcel->getActiveSheet()->SetCellValue('F' . ($row + $y), $solicitudes[$y]->cotizacion->car_version);
+          $objPHPExcel->getActiveSheet()->SetCellValue('G' . ($row + $y), $solicitudes[$y]->cotizacion->placa);
+          $objPHPExcel->getActiveSheet()->SetCellValue('H' . ($row + $y), $solicitudes[$y]->cotizacion->car_ocupantes);
+          $objPHPExcel->getActiveSheet()->SetCellValue('I' . ($row + $y), $validar_carro_cotizacion->getTipoCarro($solicitudes[$y]->cotizacion->tipo_carro));
+          $objPHPExcel->getActiveSheet()->SetCellValue('K' . ($row + $y), $solicitudes[$y]->parametros[0]->valor);
+          $objPHPExcel->getActiveSheet()->SetCellValue('M' . ($row + $y), $solicitudes[$y]->cotizacion->car_ano);
+          $objPHPExcel->getActiveSheet()->SetCellValue('N' . ($row + $y), formatMoney($solicitudes[$y]->cotizacion->valor_INMA, true));
+          $inma=$solicitudes[$y]->cotizacion->valor_INMA;
+          $por_inma=$solicitudes[$y]->flota->porcentaje_INMA;
+          $suma_asegurada=$inma+($inma*$por_inma);
+          $objPHPExcel->getActiveSheet()->SetCellValue('O' . ($row + $y), formatMoney($suma_asegurada, true));
+          $objPHPExcel->getActiveSheet()->getStyle('A' . ($row + $y) . ':AZ' . ($row + $y))->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+          $objPHPExcel->getActiveSheet()->SetCellValue('P' . ($row + $y), "No se pudo cotizar");
+          
+          
+      }
+      
     }
     $datos_header["total_vehiculos"] = sizeof($solicitudes);
     $datos_header["total_cotizacion"] = formatMoney($suma_cotizacion, true);
