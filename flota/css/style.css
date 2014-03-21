@@ -523,6 +523,17 @@ body, html{
 #upload-data tr td{
   padding-bottom: 50px;
 }
+#checkbox-wrapper{
+	width: 280px;
+	margin-top: 10px;
+}
+#checkbox-wrapper label{
+	margin: 5px 20px 0px 5px;
+	width: 50px;
+	height: 15px;
+	display: inline-block;
+	vertical-align: baseline;
+}
 #footer{
   height: 42px;
   width: 100%;
@@ -692,6 +703,13 @@ a.access-title{
   right: 5px;
   top: 0px;
   z-index: 999;
+}
+.icon-calendar{
+	width: 13px;
+	height: 14px;
+	background-image: url('../img/icon-calendar.png');
+	display: inline-block;
+	margin: 0px 5px 10px 5px;
 }
 .icon-square{
   width: 29px;
@@ -868,6 +886,9 @@ a.access-title{
   white-space: nowrap;
   text-align: center;
   text-transform: uppercase;
+}
+.input-date{
+	width: 100px !important;
 }
 
 /* Misscelaneus */
