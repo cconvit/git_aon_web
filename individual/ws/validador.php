@@ -81,7 +81,7 @@ if (isset($_POST["nombre"]) && isset($_POST["cedula"]) && isset($_POST["telefono
 
   $_SESSION['solicitud'] = serialize($solicitud);
 
-  if (sizeof($solicitud->res_clasificacion) > 0)
+ if (sizeof($solicitud->res_clasificacion) > 0)
     header("Location: ../aseguradoras.php");
   else
     header("Location: ../contactanos.php");

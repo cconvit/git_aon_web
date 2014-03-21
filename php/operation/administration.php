@@ -453,6 +453,7 @@ function createCondicion($condicion, $tipo_cob) {
 function newFlota($nombre, $descripcion, $inma) {
 
   require_once ('../entity/flota.php');
+  require_once ('../entity/re_plantilla_flota.php');
   $flota = new flota();
   $flota->empresa = $nombre;
   $flota->descripcion = $descripcion;
@@ -465,6 +466,19 @@ function newFlota($nombre, $descripcion, $inma) {
     $_SESSION["msg_desc"] = "Ocurrio un error al tratar de crear la flota. Por favor intente mas tarde. Si el error persiste, comuniquese con el administrador del sistema.";
     $_SESSION["msg_type"] = "error";
   } else {
+      
+    $re_plantilla_flota=new re_plantilla_flota();
+    $re_plantilla_flota->id_flota=$flota->id;
+    $re_plantilla_flota->id_plantilla="1";
+    $re_plantilla_flota->id_tipo_seguro="1";
+    $re_plantilla_flota->create();
+    $re_plantilla_flota->id_plantilla="2";
+    $re_plantilla_flota->id_tipo_seguro="2";
+    $re_plantilla_flota->create();
+    $re_plantilla_flota->id_plantilla="3";
+    $re_plantilla_flota->id_tipo_seguro="3";
+    $re_plantilla_flota->create();
+    
     $_SESSION["msg_desc"] = "La creación de la flota se realizó exitosamente.";
     $_SESSION["msg_type"] = "succesfull";
     $_SESSION["id_flota"] = $flota->id;
