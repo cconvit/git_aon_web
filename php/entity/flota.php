@@ -3,12 +3,14 @@
 class flota{
     
     protected static $table_name="tbl_flota";
-    protected static $db_fields=array('id','empresa','porcentaje_INMA','descripcion','cr_time','ut_time','avatar');
+    protected static $db_fields=array('id','empresa','porcentaje_INMA','descripcion','validez_inicio','validez_fin','cr_time','ut_time','avatar');
     
     public $id;
     public $empresa;
     public $porcentaje_INMA;
     public $descripcion;
+    public $validez_inicio;
+    public $validez_fin;
     public $cr_time;
     public $ut_time;
     public $avatar;
@@ -52,6 +54,8 @@ class flota{
                                   porcentaje_INMA='{$database->escape_value($this->porcentaje_INMA)}',
                                   avatar='{$database->escape_value($this->avatar)}',
                                   descripcion='{$database->escape_value($this->descripcion)}'
+                                  validez_inicio='{$database->escape_value($this->validez_inicio)}',
+                                  validez_fin='{$database->escape_value($this->validez_fin)}',
                                   WHERE id='{$database->escape_value($this->id)}'";
 
 
@@ -70,11 +74,13 @@ class flota{
       
       global $database;
       
-        $sql="INSERT INTO ".self::$table_name." (empresa,porcentaje_INMA,avatar,descripcion,cr_time) VALUES (
+        $sql="INSERT INTO ".self::$table_name." (empresa,porcentaje_INMA,avatar,descripcion,validez_inicio,validez_fin,cr_time) VALUES (
                             '{$database->escape_value($this->empresa)}',
                             '{$database->escape_value($this->porcentaje_INMA)}',
                             '{$database->escape_value($this->avatar)}',
                             '{$database->escape_value($this->descripcion)}',
+                            '{$database->escape_value($this->validez_inicio)}',
+                            '{$database->escape_value($this->validez_fin)}',
                             NOW())";
                                           
                                     

@@ -38,15 +38,16 @@ class generarExcelCotizacion {
       $cotizacion_aseguradora = $this->setHeaderCoberturas($objPHPExcel, $solicitudes, $aseguradora, $array);
 
       if ($cotizacion_aseguradora != null) {
-        $datos_header = $this->saveCarros($objPHPExcel, $solicitudes, $aseguradora, $array);
+          
+        $cotizacion_aux->id = $solicitudes[0]->cotizacion->id_cotizacion;
+        $cotizacion = $cotizacion_aux->find_by_id();
+        
+        $datos_header = $this->saveCarros($objPHPExcel, $solicitudes, $aseguradora, $array,$cotizacion[0]);
         //var_dump($cotizacion_aseguradora);
 
         $convenio_aseguradora->id = $cotizacion_aseguradora->convenio;
 
         $convenio_aseguradora->id = $cotizacion_aseguradora->convenio;
-
-        $cotizacion_aux->id = $solicitudes[0]->cotizacion->id_cotizacion;
-        $cotizacion = $cotizacion_aux->find_by_id();
 
         $convenio = $convenio_aseguradora->find_by_id_convenio();
 
@@ -91,9 +92,19 @@ class generarExcelCotizacion {
     $objPHPExcel->getActiveSheet()->SetCellValue('B6', $datos_header["total_vehiculos"]);
     $objPHPExcel->getActiveSheet()->SetCellValue('A7', 'Total cotizacion');
     $objPHPExcel->getActiveSheet()->SetCellValue('B7', $datos_header["total_cotizacion"]);
-    $objPHPExcel->getActiveSheet()->SetCellValue('A8', 'Fecha de la cotizacion');
-    $objPHPExcel->getActiveSheet()->SetCellValue('B8', date("d-m-y"));
+    //$objPHPExcel->getActiveSheet()->SetCellValue('B7', $datos_header["total_cotizacion"]);
+    //$objPHPExcel->getActiveSheet()->SetCellValue('C7', 'Total cotizacion prorrateo');
+    //$objPHPExcel->getActiveSheet()->SetCellValue('D7', $datos_header["total_cotizacion_prorrateo"]);
+    $objPHPExcel->getActiveSheet()->SetCellValue('A8', 'Fecha de la cotización');
+    $objPHPExcel->getActiveSheet()->SetCellValue('B8',  date("d-m-y")." al ".$datos_header["validez_fin"]);
+    //$objPHPExcel->getActiveSheet()->SetCellValue('C8', 'Fechas de validez de la cotización');
+    //$objPHPExcel->getActiveSheet()->SetCellValue('D8', date("d-m-y")." al ".$datos_header["validez_fin"]);
     $objPHPExcel->getActiveSheet()->getStyle('A2:A8')->getFont()->setBold(true);
+    $objPHPExcel->getActiveSheet()->getStyle('C7:C8')->getFont()->setBold(true);
+    $objPHPExcel->getActiveSheet()->getColumnDimension('A')->setAutoSize(true);
+    $objPHPExcel->getActiveSheet()->getColumnDimension('B')->setAutoSize(true);
+    $objPHPExcel->getActiveSheet()->getColumnDimension('C')->setAutoSize(true);
+    $objPHPExcel->getActiveSheet()->getColumnDimension('D')->setAutoSize(true);
   }
 
   function setHeader($objPHPExcel) {
@@ -149,10 +160,13 @@ class generarExcelCotizacion {
       $objPHPExcel->getActiveSheet()->getStyle($array[$x] . '11')->getFont()->setBold(true);
     }
 
-    $GLOBALS["index_total"] = $array[sizeof($coberturas)];
+    $GLOBALS["index_total"] = sizeof($coberturas);
     $objPHPExcel->getActiveSheet()->SetCellValue($array[sizeof($coberturas)] . '11', "TOTAL");
+    //$objPHPExcel->getActiveSheet()->SetCellValue($array[sizeof($coberturas)+1] . '11', "TOTAL PRORATEO");
     $objPHPExcel->getActiveSheet()->getColumnDimension($array[sizeof($coberturas)])->setAutoSize(true);
+    //$objPHPExcel->getActiveSheet()->getColumnDimension($array[sizeof($coberturas)+1])->setAutoSize(true);
     $objPHPExcel->getActiveSheet()->getStyle($array[sizeof($coberturas)] . '11')->getFont()->setBold(true);
+    //$objPHPExcel->getActiveSheet()->getStyle($array[sizeof($coberturas)+1] . '11')->getFont()->setBold(true);
     $y = sizeof($solicitudes);
     $cotizacion_aseguradora_aux = $cotizacion_aseguradora;
 
@@ -169,6 +183,7 @@ class generarExcelCotizacion {
     $row = 12;
     $suma_cotizacion = 0;
     $datos_header = Array();
+    $dias=0;
 
     for ($y = 0; $y < sizeof($solicitudes); $y++) {
 
@@ -217,8 +232,16 @@ class generarExcelCotizacion {
           }
 
           $suma_cotizacion = $suma_cotizacion + $suma_primas_coberturas;
-
-          $objPHPExcel->getActiveSheet()->SetCellValue($GLOBALS["index_total"] . ($row + $y), formatMoney($suma_primas_coberturas, true));
+          //Prorrateo
+          $fecha_fin=$solicitudes[$y]->flota->validez_fin;
+          $dias = (strtotime(date('Y-m-d'))-strtotime($fecha_fin))/86400;
+          $dias = abs($dias); $dias = floor($dias);
+          $total_fechas=($suma_primas_coberturas/365)*$dias;
+          $datos_header["validez_fin"]=$fecha_fin;
+          
+          //$objPHPExcel->getActiveSheet()->SetCellValue($array[$GLOBALS["index_total"]] . ($row + $y), formatMoney($suma_primas_coberturas, true));
+          $objPHPExcel->getActiveSheet()->SetCellValue($array[$GLOBALS["index_total"]] . ($row + $y), formatMoney($total_fechas, true));
+          
           $objPHPExcel->getActiveSheet()->getColumnDimension($array[sizeof($coberturas)])->setAutoSize(true);
 
           $objPHPExcel->getActiveSheet()->SetCellValue('A' . ($row + $y), $solicitudes[$y]->cotizacion->identificacion);
@@ -274,7 +297,10 @@ class generarExcelCotizacion {
       
     }
     $datos_header["total_vehiculos"] = sizeof($solicitudes);
-    $datos_header["total_cotizacion"] = formatMoney($suma_cotizacion, true);
+    $datos_header["total_cotizacion"] = formatMoney(($suma_cotizacion/365)*$dias, true);
+    //$datos_header["total_cotizacion"] = formatMoney($suma_cotizacion, true);
+    //$datos_header["total_cotizacion_prorrateo"] = formatMoney(($suma_cotizacion/365)*$dias, true);
+    
 
     return $datos_header;
   }

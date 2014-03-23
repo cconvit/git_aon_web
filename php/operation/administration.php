@@ -70,11 +70,11 @@ if (isset($_REQUEST["operation_type"])) {
       break;
 
     case 16:
-      newFlota($_REQUEST["nombre"], $_REQUEST["descripcion"], $_REQUEST["inma"]);
+      newFlota($_REQUEST["nombre"], $_REQUEST["descripcion"], $_REQUEST["inma"], $_REQUEST["inicio"], $_REQUEST["fin"]);
       break;
 
     case 17:
-      updateFlota($_REQUEST["nombre"], $_REQUEST["descripcion"], $_REQUEST["inma"]);
+      updateFlota($_REQUEST["nombre"], $_REQUEST["descripcion"], $_REQUEST["inma"], $_REQUEST["inicio"], $_REQUEST["fin"]);
       break;
 
     case 18:
@@ -450,7 +450,7 @@ function createCondicion($condicion, $tipo_cob) {
   }
 }
 
-function newFlota($nombre, $descripcion, $inma) {
+function newFlota($nombre, $descripcion, $inma,$validez_inicio,$validez_fin) {
 
   require_once ('../entity/flota.php');
   require_once ('../entity/re_plantilla_flota.php');
@@ -458,6 +458,8 @@ function newFlota($nombre, $descripcion, $inma) {
   $flota->empresa = $nombre;
   $flota->descripcion = $descripcion;
   $flota->porcentaje_INMA = $inma / 100;
+  $flota->validez_inicio=date('Y-m-d');
+  $flota->validez_fin="2014-12-31";
 
 
   $_SESSION["msg"] = "show";
@@ -486,7 +488,7 @@ function newFlota($nombre, $descripcion, $inma) {
   header('Location: ' . $_GET["target"]);
 }
 
-function updateFlota($nombre, $descripcion, $inma) {
+function updateFlota($nombre, $descripcion, $inma,$validez_inicio,$validez_fin) {
 
   require_once ('../entity/flota.php');
   $flota = new flota();
@@ -494,6 +496,8 @@ function updateFlota($nombre, $descripcion, $inma) {
   $flota->descripcion = $descripcion;
   $flota->porcentaje_INMA = $inma / 100;
   $flota->id = $_SESSION['id_flota'];
+  $flota->validez_inicio=$validez_inicio;
+  $flota->validez_fin=$validez_fin;
 
 
   $_SESSION["msg"] = "show";
@@ -576,12 +580,15 @@ function newCotizacion($nombre, $descripcion, $cliente, $flota, $tmp_name) {
     $cotizacion->id_flota = $flota;
     $cotizacion->ut_time = "NOW()";
     $cotizacion->cr_time = "NOW()";
+    
+    //TODO Agregar los campos nuevos para las fechas de prorateo
+    //$cotizacion->validez_inicio="01/08/2014";
+    //$cotizacion->validez_fin="31/12/2014";
     $resultado = $cotizacion->create();
 
     $validar_carros = new validar_carro_cotizacion();
     $result = $validar_carros->processFile($tmp_name, $cotizacion->id);
     $_SESSION["id_cotizacion"] = $cotizacion->id;
-
     if ($result){
      //echo "";
       header('Location: ' . $_GET["target"]);
@@ -675,6 +682,7 @@ function proccessCotizacion() {
 
       $solicitud = new solicitud();
       $solicitud->cotizacion = $value;
+      //$solicitud->cotizacion = $cotizacion_aux[0];
       $solicitud->res_clasificacion = $res_clasificacion;
       $solicitud->flota = $flota;
       $solicitud->parametros = $array_parametros;

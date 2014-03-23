@@ -18,6 +18,7 @@ require_once ('../../php/mail/class.phpmailer.php');
 require_once ('../../php/mail/class.smtp.php');
 require_once ('../../php/mail/sendMail.php');
 
+$flota = unserialize($_SESSION['flota']);
 $id_aseguradora_cotizar = $_POST['cotizacion']; //Cargamos el id de la aseguradora que se quiere la cotizacion final
 $solicitud = unserialize($_SESSION['solicitud']); //Se deserializa el objeto de solicitud
 //LLenamos las variables para el envio del correo
@@ -94,7 +95,12 @@ foreach ($grupos as $grupo) {
   $body_html = $body_html . '<tr class="sub-total"><td class="gm">&nbsp;</td><td colspan="2" class="sub bold">Sub-total</td><td class="total-cobertura bold" style="text-align: right">' . formatMoney($suma_primas, true) . '</td></tr>';
   $suma_total = $suma_total + $suma_primas;
 }//End foreach plantilla grupo
-$body_html = $body_html . '</tbody><tfoot class="gt"><tr><td colspan="2">Prima Total ' . $cobertura_seguro[0]->nombre . '</td><td colspan="2" class="right">Bs. <span class="total-prima" style="text-align: right">' . formatMoney($suma_total, true) . '</span></td></tr></tfoot></table></td></tr></tbody></table>';
+
+    $dias = (strtotime(date('Y-m-d'))-strtotime($flota->validez_fin))/86400;
+    $dias = abs($dias); $dias = floor($dias);
+    $total_fechas=($suma_total/365)*$dias;
+                                
+$body_html = $body_html . '</tbody><tfoot class="gt"><tr><td colspan="2">Prima Total ' . $cobertura_seguro[0]->nombre . '</td><td colspan="2" class="right">Bs. <span class="total-prima" style="text-align: right">' . formatMoney($total_fechas, true) . '</span></td></tr></tfoot></table></td></tr></tbody></table>';
 
 try {
 

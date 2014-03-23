@@ -84,7 +84,7 @@ class calcular_primas{
                     $rcv_cob->id_tipo_carro=$cobertura->id_tipo_carro;
                     $rcv_cob->id_tipo_cob=$this->tipo_seguro;
                     $result=$rcv_cob->find_re_by_convenio_cobertura_tipo_carro_id_cob_as();
-                    echo $cobertura->valor. " ". $result[0]->valor;
+                   // echo $cobertura->valor. " ". $result[0]->valor;
                     if(sizeof($result) > 0)$cobertura->prima=($cobertura->valor)*($result[0]->valor*$this->UT);
                     break;
                 
