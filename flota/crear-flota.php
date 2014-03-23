@@ -21,7 +21,7 @@ if (isset($_SESSION['msg'])) {
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>Aon - Crear flota</title>
 	<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
-	<link href="css/jquery-ui-1.10.3.custom.min.css" rel="stylesheet" type="text/css">
+	<link href="css/jquery-ui-1.10.4.custom.min.css" rel="stylesheet" type="text/css">
 	<link href="css/normalize.css" rel="stylesheet" type="text/css">
 	<link href="css/style.css" rel="stylesheet" type="text/css">
 </head>
@@ -85,23 +85,30 @@ if (isset($_SESSION['msg'])) {
 											</td>
 										</tr>
 										<tr>
-											<td>Fecha de vigencia</td>
+											<td>Fecha de inicio</td>
 										</tr>
 										<tr>
 											<td>
-												Desde
-												<input type="text" class="common-input input-date">
-												<span class="icon-calendar"></span>
-												Hasta
-												<input type="text" class="common-input input-date">
-												<span class="icon-calendar"></span>
+												<input type="text" class="common-input input-date datepicker">
+												<span class="icon-calendar" style="margin-right: 10px"></span>
+											</td>
 										</tr>
+										<tr>
+											<td>Fecha de vencimiento</td>
+										</tr>
+										<tr>
+											<td>
+												<input type="text" class="common-input input-date datepicker">
+												<span class="icon-calendar" style="margin-right: 10px"></span>
+											</td>
+										</tr>										
 										<tr>
 											<td>INMA (%)</td>
 										</tr>
 										<tr>
 											<td>
 												<div id="checkbox-wrapper">
+													<div id="checkbox-list">
 													<input type="checkbox" name="-15"><label>-15</label>
 													<input type="checkbox" name="-10"><label>-10</label>
 													<input type="checkbox"><label>-5</label>
@@ -111,6 +118,7 @@ if (isset($_SESSION['msg'])) {
 													<input type="checkbox"><label>20</label>
 													<input type="checkbox"><label>30</label>
 												</div>
+													</div>
 											</td>
 										</tr>
 										<tr>
@@ -149,8 +157,11 @@ if (isset($_SESSION['msg'])) {
 		</div>
 	</div>
 	<script src="../plugins/jquery-1.10.2.min.js"></script>
-	<script src="../plugins/jquery-ui-1.10.3.custom.min.js"></script>
+	<script src="../plugins/jquery-ui-1.10.4.custom.min.js"></script>
 	<script src="js/main.js"></script>
+	<script>
+		$(".datepicker").datepicker();
+	</script>
 </body>
 
 </html>
