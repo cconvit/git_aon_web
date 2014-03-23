@@ -26,12 +26,12 @@ $clientes = $cliente->find_all();
 <!DOCTYPE html>
 <html>
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>Aon - Crear flota</title>
-    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
-    <link href="css/jquery-ui-1.10.3.custom.min.css" rel="stylesheet" type="text/css">
-    <link href="css/normalize.css" rel="stylesheet" type="text/css">
-    <link href="css/style.css" rel="stylesheet" type="text/css">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>Aon - Crear flota</title>
+		<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+		<link href="../plugins/css/jquery-ui-1.10.4.custom.min.css" rel="stylesheet" type="text/css">
+		<link href="../plugins/css/normalize.css" rel="stylesheet" type="text/css">
+		<link href="css/style.css" rel="stylesheet" type="text/css">
   </head>
   <body>
     <div id="container">
@@ -113,7 +113,7 @@ $clientes = $cliente->find_all();
                         <td>
                           <div class="pull-left">
                             <div class="button-red upload">explorar archivos</div>
-                            <input type="text" id="name" class="common-input is-required" style="margin-top: 5px" value="no ha seleccionado un archivo..." readonly="true">
+                            <input type="text" id="name" class="common-input is-required" style="margin-top: 5px" value="no ha seleccionado un archivo..." readonly>
                             <input type="file" id="fleet" name="file" class="hide">
                           </div>
                           <div class="img-common icon-excel pull-rigth upload"></div>
@@ -142,9 +142,8 @@ $clientes = $cliente->find_all();
     </div>
     <div id="load" class="modal">
       <div class="modal"><p>Estamos procesando el archivo. Esta operación puede tardar unos minutos. Por favor, espere</p></div>
-    </div>
-    <script src="../plugins/jquery-1.10.2.min.js"></script>
-    <script src="../plugins/jquery-ui-1.10.3.custom.min.js"></script>
+    </div>    <script src="../plugins/js/jquery-1.10.2.min.js"></script>  
+    <script src="../plugins/js/jquery-ui-1.10.4.custom.min.js"></script>
     <script src="js/main.js"></script>
     <script type="text/javascript">
                   document.getElementById("fleet").value = "";

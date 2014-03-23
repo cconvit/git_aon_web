@@ -140,18 +140,15 @@ a:hover, a:active {
 }
 
 
-/* ovelays styles 
+/* jquery ui styles */
 
-.ui-widget-overlay{
-  background-color: #4f4f4f; 
-}
 .ui-front{
   z-index: 1000;
 }
-.ui-widget-header{
-  display: block;
+.ui-dialog .ui-widget-header{
+  display: none;
 }
-.ui-widget-content{
+.ui.dialog .ui-widget-content{
   border: none;
   background-color: #FFFFFF;
   padding: 10px 14px;
@@ -167,8 +164,6 @@ a:hover, a:active {
 .ui-widget{
   font-family: Arial, Helvetica, sans-serif;
 }
-
-*/
 
 /* tabs */
 

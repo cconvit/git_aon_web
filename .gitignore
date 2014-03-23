@@ -10,7 +10,7 @@ _notes/
 .mno
 ico
 .dwsync.xml
-nbproject
+/nbproject
 nbproject/project.properties
 nbproject/project.xml
 /nbproject/private/

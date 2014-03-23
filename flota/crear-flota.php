@@ -21,8 +21,8 @@ if (isset($_SESSION['msg'])) {
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>Aon - Crear flota</title>
 	<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
-	<link href="css/jquery-ui-1.10.4.custom.min.css" rel="stylesheet" type="text/css">
-	<link href="css/normalize.css" rel="stylesheet" type="text/css">
+	<link href="../plugins/css/jquery-ui-1.10.4.custom.min.css" rel="stylesheet" type="text/css">
+	<link href="../plugins/css/normalize.css" rel="stylesheet" type="text/css">
 	<link href="css/style.css" rel="stylesheet" type="text/css">
 </head>
 
@@ -89,7 +89,7 @@ if (isset($_SESSION['msg'])) {
 										</tr>
 										<tr>
 											<td>
-												<input type="text" class="common-input input-date datepicker">
+												<input id="fecha-inicio" type="text" name="fecha-inicio" class="common-input input-date datepicker is-required">
 												<span class="icon-calendar" style="margin-right: 10px"></span>
 											</td>
 										</tr>
@@ -98,7 +98,7 @@ if (isset($_SESSION['msg'])) {
 										</tr>
 										<tr>
 											<td>
-												<input type="text" class="common-input input-date datepicker">
+												<input id="fecha-fin" type="text" name="fecha-fin"  class="common-input input-date datepicker is-required">
 												<span class="icon-calendar" style="margin-right: 10px"></span>
 											</td>
 										</tr>										
@@ -109,14 +109,14 @@ if (isset($_SESSION['msg'])) {
 											<td>
 												<div id="checkbox-wrapper">
 													<div id="checkbox-list">
-													<input type="checkbox" name="-15"><label>-15</label>
-													<input type="checkbox" name="-10"><label>-10</label>
-													<input type="checkbox"><label>-5</label>
-													<input type="checkbox"><label>0</label>
-													<input type="checkbox"><label>5</label>
-													<input type="checkbox"><label>10</label>
-													<input type="checkbox"><label>20</label>
-													<input type="checkbox"><label>30</label>
+													<input type="checkbox" name="inma" value="-15"><label>-15</label>
+													<input type="checkbox" name="inma" value="-10"><label>-10</label>
+													<input type="checkbox" name="inma" value="-5"><label>-5</label>
+													<input type="checkbox" name="inma" value="0"><label>0</label>
+													<input type="checkbox" name="inma" value="5"><label>5</label>
+													<input type="checkbox" name="inma" value="10"><label>10</label>
+													<input type="checkbox" name="inma" value="20"><label>20</label>
+													<input type="checkbox" name="inma" value="30"><label>30</label>
 												</div>
 													</div>
 											</td>
@@ -156,11 +156,22 @@ if (isset($_SESSION['msg'])) {
 			</div>
 		</div>
 	</div>
-	<script src="../plugins/jquery-1.10.2.min.js"></script>
-	<script src="../plugins/jquery-ui-1.10.4.custom.min.js"></script>
+	<script src="../plugins/js/jquery-1.10.2.min.js"></script>
+	<script src="../plugins/js/jquery-ui-1.10.4.custom.min.js"></script>
 	<script src="js/main.js"></script>
 	<script>
-		$(".datepicker").datepicker();
+		    $("#fecha-inicio").datepicker({
+        onSelect: function(selected) {
+					dateFormat: "dd/mm/yy",
+          $("#fecha-fin").datepicker("option","minDate", selected)
+        }
+    });
+    $("#fecha-fin").datepicker({ 
+      dateFormat: "dd/mm/yy",
+			onSelect: function(selected) {
+           $("#fecha-inicio").datepicker("option","maxDate", selected)
+        }
+    });  
 	</script>
 </body>
 

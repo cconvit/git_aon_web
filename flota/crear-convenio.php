@@ -25,12 +25,12 @@ $aseguradoras = $aseguradora->find_all();
 <!DOCTYPE html>
 <html>
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>Aon - Nuevo convenio</title>
-    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
-    <link href="css/jquery-ui-1.10.3.custom.min.css" rel="stylesheet" type="text/css">
-    <link href="css/normalize.css" rel="stylesheet" type="text/css">
-    <link href="css/style.css" rel="stylesheet" type="text/css">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>Aon - Crear flota</title>
+		<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+		<link href="../plugins/css/jquery-ui-1.10.4.custom.min.css" rel="stylesheet" type="text/css">
+		<link href="../plugins/css/normalize.css" rel="stylesheet" type="text/css">
+		<link href="css/style.css" rel="stylesheet" type="text/css">
   </head>
   <body>
     <div id="container">
@@ -119,9 +119,8 @@ $aseguradoras = $aseguradora->find_all();
             </div>
           </div>
         </div>
-      </div>
-      <script src="../plugins/jquery-1.10.2.min.js"></script>
-      <script src="../plugins/jquery-ui-1.10.3.custom.min.js"></script>
+      </div>    <script src="../plugins/js/jquery-1.10.2.min.js"></script>  
+    <script src="../plugins/js/jquery-ui-1.10.4.custom.min.js"></script>
       <script src="js/main.js"></script>
   </body>
 </html>

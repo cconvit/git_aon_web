@@ -42,6 +42,7 @@ var Aon = {
 };
 
 var Utils = {
+	messagePromp: $("#container").find("div.required"),
 	initDialogs: function (width) {
 		$(".dialog").dialog({
 			modal: true,
@@ -95,8 +96,10 @@ var Utils = {
 
 var Wizard = {
 	create: function (form) {
-		if (isValidateSubmit(form)) {
-			form.trigger("submit");
+		if (existCheckeds(form)) {
+			if (isValidateSubmit(form)) {
+				form.trigger("submit");
+			}
 		}
 	},
 	fleet: function (form) {
@@ -319,6 +322,22 @@ function isValidateSubmit(form) {
 		return true;
 	}
 }
+
+function existCheckeds(form) {
+	var checked = 0;
+	form.find("input[type='checkbox']").each(function (index, value) {
+		if ($(this).prop("checked")) {
+			cheked++
+		}
+	});
+	if (checked > 0) {
+		return true;
+	} else {
+		Utils.messagePromp.show();
+		return false;
+	}
+}
+
 
 function existUnselected() {
 	var unselected = 0,
