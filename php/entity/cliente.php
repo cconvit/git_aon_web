@@ -98,7 +98,7 @@ class cliente{
   
   public static function find_by_sql($sql="") {
       
-    global $database;
+    global $database; 
     $result_set = $database->query($sql);
     $object_array = array();
     while ($row = $database->fetch_array($result_set)) {
