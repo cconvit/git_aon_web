@@ -327,7 +327,7 @@ function existCheckeds(form) {
 	var checked = 0;
 	form.find("input[type='checkbox']").each(function (index, value) {
 		if ($(this).prop("checked")) {
-			cheked++
+			checked++;
 		}
 	});
 	if (checked > 0) {
@@ -337,7 +337,6 @@ function existCheckeds(form) {
 		return false;
 	}
 }
-
 
 function existUnselected() {
 	var unselected = 0,
