@@ -577,10 +577,12 @@ body, html{
 }
 .access{
   position: absolute; 
-  top: 120px; 
-  width: 740px; 
+  top: 46%;
+	margin-top: -125px;
+  width: 740px;
+	height: 250px;
   left: 50%; 
-  margin-left: -370px;
+  margin-left: -360px;
 }
 .access-icon-right{
   margin-right: 100px;
