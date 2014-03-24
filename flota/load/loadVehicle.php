@@ -20,7 +20,7 @@ if (isset($_REQUEST["id"])) {
   curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
   // Set the url
   //curl_setopt($ch, CURLOPT_URL, "http://localhost/AON/git_aon_web/inma/json.php?ot=1");
-  curl_setopt($ch, CURLOPT_URL, "http://localhost/git_aon_web/inma/json.php?ot=1");
+  curl_setopt($ch, CURLOPT_URL, "http://localhost:8888/git_aon_web/inma/json.php?ot=1");
   // Execute
   $result = curl_exec($ch);
   // Will dump a beauty json :3
@@ -35,6 +35,7 @@ if (isset($_REQUEST["id"])) {
         <th>Versión</th>
         <th>Año</th>
         <th>Inma</th>
+				<th>Inma %</th>
         <th>Cobertura</th>
         <th>Uso</th>
         <th>Ocupantes</th>
@@ -122,6 +123,16 @@ if (isset($_REQUEST["id"])) {
                         </ul>
                         <input name="inma" type="hidden" value="<?php echo $id_inma; ?>">
                         </td>
+												<td>
+													<ul id="inma-percent" class="vehicle-suggestion-list" role="inma-percent" data="selected">
+														<li data="0" role="selected"><span class="icon-mini icon-clear img-common icon-selected"></span>0</li>
+														<li data="-10"><span class="icon-mini icon-clear"></span>-10</li>
+														<li data="-5"><span class="icon-mini icon-clear"></span>-5</li>
+														<li data="0"><span class="icon-mini icon-clear"></span>0</li>
+														<li data="10"><span class="icon-mini icon-clear"></span>10</li>
+														<li data="20"><span class="icon-mini icon-clear"></span>20</li>
+													</ul>
+												</td>
                         <td>
                           <ul id="cobertura" class="vehicle-suggestion-list" role="cobertura" <?php echo $carro->is_tipo_cobertura == "1" ? "data='selected'" : "" ?>>
                             <?php if ($carro->is_tipo_cobertura != "1") { ?><li><span class="icon-mini icon-clear img-common icon-error"></span><?php echo $convertidor->getCobertura($carro->tipo_cobertura); ?></li><?php } ?>

@@ -57,14 +57,14 @@ $cotizacion_carro->id_cotizacion = $_SESSION["id_cotizacion"];
             </div>
             <div id="tabs">
               <ul>
-                <li style="padding-bottom: 0px;"><a id="errors-tab" class="img-common tab" href="#tabs-3" style="padding-bottom: 0px;">Errores</a></li>
+                <li style="padding-bottom: 0px;"><a id="errors-tab" class="img-common tab" href="#tabs-1" style="padding-bottom: 0px;">Errores</a></li>
                 <li style="padding-bottom: 0px;"><a id="valids-tab" class="img-common tab"  href="#tabs-2">Validos</a></li>
-                <li style="padding-bottom: 0px;"><a id="all-tab" class="img-common tab" href="#tabs-1">Totales</a></li>
+                <li style="padding-bottom: 0px;"><a id="all-tab" class="img-common tab" href="#tabs-3">Totales</a></li>
               </ul>
               <div id="tabs-3" class="tabs-info">
                 <div class="scrollable-list" style="width: 100%; overflow-y: auto;">
                   <table id="list-fleet" class="list-fleet" style="width: 100%">
-                    <thead id="errors">
+                    <thead id="alls">
                     <th class="no-padding" style="width: 32px; background-color: #FFFFFF; padding-left: "></th>
                     <th class="no-padding" style="width: 32px; background-color: #FFFFFF;"></th>
                     <th>rif/ci</th>
@@ -75,6 +75,7 @@ $cotizacion_carro->id_cotizacion = $_SESSION["id_cotizacion"];
                     <th>Versión</th>
                     <th>Año</th>
                     <th>inma</th>
+									  <th>inma %</th>
                     <th>Uso</th>
                     <th>Ocupantes</th>
                     <th>Cobertura</th>
@@ -86,8 +87,7 @@ $cotizacion_carro->id_cotizacion = $_SESSION["id_cotizacion"];
                       <?php
                       $cotizacion_carros = $cotizacion_carro->find_by_id_cotizacion();
                       if (sizeof($cotizacion_carros) > 0) {
-                        foreach ($cotizacion_carros as $value) {
-                            
+                        foreach ($cotizacion_carros as $value) {                          
                           $result = (($value->is_car_marca != 1) || ($value->is_car_modelo != 1) || ($value->is_car_ocupantes != 1) || ($value->is_tipo_carros != 1) || ($value->is_tipo_cobertura != 1));
                           ?>
                           <tr class="<?php echo $result ? "text-error" : "" ?>">
@@ -119,7 +119,7 @@ $cotizacion_carro->id_cotizacion = $_SESSION["id_cotizacion"];
               <div id="tabs-2" class="tabs-info">
                 <div class="scrollable-list" style="width: 100%; overflow-y: auto;">
                   <table id="list-fleet" class="list-fleet"  style="width: 100%">
-                    <thead id="errors">
+                    <thead id="valids">
                     <th class="no-padding" style="width: 32px; background-color: #FFFFFF; padding-left: "></th>
                     <th class="no-padding" style="width: 32px; background-color: #FFFFFF;"></th>
                     <th>rif/ci</th>
@@ -130,6 +130,7 @@ $cotizacion_carro->id_cotizacion = $_SESSION["id_cotizacion"];
                     <th>Versión</th>
                     <th>Año</th>
                     <th>inma</th>
+										<th>inma %</th>
                     <th>Uso</th>
                     <th>Ocupantes</th>
                     <th>Cobertura</th>
@@ -183,6 +184,7 @@ $cotizacion_carro->id_cotizacion = $_SESSION["id_cotizacion"];
                     <th>Versión</th>
                     <th>Año</th>
                     <th>inma</th>
+										<th>inma %</th>						
                     <th>Uso</th>
                     <th>Ocupantes</th>
                     <th>Cobertura</th>

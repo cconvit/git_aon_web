@@ -148,6 +148,11 @@ a:hover, a:active {
 .ui-dialog .ui-widget-header{
   display: none;
 }
+.ui-tabs .ui-widget-header{
+	background-color: #FFFFFF;
+	background-image: none;
+	border: none;
+}
 .ui.dialog .ui-widget-content{
   border: none;
   background-color: #FFFFFF;
@@ -457,6 +462,7 @@ body, html{
 }
 #tabs{
   padding: 10px 0px 0px  0px;
+	border: none;
 }
 #tabs ul{
   height: 24px;
