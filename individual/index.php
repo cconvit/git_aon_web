@@ -277,6 +277,24 @@ if (isset($id_flota)) {
                             <option value="3">Responsabilidad Civil</option>
                           </select></td>
                       </tr>
+											<tr>
+												<td>Inma %</td>
+											</tr>
+											<tr>
+												<td>
+													<select class="required no-precharged" name="inma-porcentaje">
+														<option value="select" selected>Seleccione un porcentaje</option>
+														<option value="-15">-15</option>
+														<option value="10">-10</option>
+														<option value="-5">-5</option>
+														<option value="0">0</option>
+														<option value="5">5</option>
+														<option value="10">10</option>
+														<option value="20">20</option>
+														<option value="30">30</option>
+												</select>
+												</td>
+											</tr>
                     </table>
                   </li>
                 </ul>
@@ -293,14 +311,10 @@ if (isset($id_flota)) {
               <div id="legal">
                 <ul>
                   <li>Al sistema que ud. está ingresando le son aplicables las disposiciones contenidas en la Ley sobre Mensajes de Datos y Firmas Electrónicas, así como también aquellas previstas en</li>
-                  <li>los <a href="terminos.html" class="destacado" target="_blank" onClick="window.open(this.href, this.target, 'width=500, height=400, resizable=0');
-                      return false;">Términos de Uso</a> publicados en esta página.  Operar con el cotizador en línea implica aceptar los <a href="terminos.html" class="destacado" target="_blank" onClick="window.open(this.href, this.target, 'width=500, height=400, resizable=0');
-                          return false;">Términos de Uso</a> en los que se ofrece el servicio.</li>
+                  <li>los <a href="terminos.html" class="destacado" target="_blank" onClick="window.open(this.href, this.target, 'width=500, height=400, resizable=0');return false;">Términos de Uso</a> publicados en esta página.  Operar con el cotizador en línea implica aceptar los <a href="terminos.html" class="destacado" target="_blank" onClick="window.open(this.href, this.target, 'width=500, height=400, resizable=0'); return false;">Términos de Uso</a> en los que se ofrece el servicio.</li>
                   <li style="width: 220px;">
                     <input type="checkbox" id="acepto" name="acepto">
-                    <label for="acepto" style="padding-left: 5px;">He leído y aceptado los <a href="terminos.html" class="destacado" target="_blank" onClick="window.open(this.href, this.target, 'width=500, height=400, resizable=0');
-                        return false;">Términos de Uso</a> y la <a href="legal.html" class="destacado" target="_blank" onClick="window.open(this.href, this.target, 'width=500, height=300, resizable=0');
-                            return false;">Información Legal</a></label>
+                    <label for="acepto" style="padding-left: 5px;">He leído y aceptado los <a href="terminos.html" class="destacado" target="_blank" onClick="window.open(this.href, this.target, 'width=500, height=400, resizable=0');return false;">Términos de Uso</a> y la <a href="legal.html" class="destacado" target="_blank" onClick="window.open(this.href, this.target, 'width=500, height=300, resizable=0'); return false;">Información Legal</a></label>
                   </li>
                 </ul>
                 <input type="button" id="datos-submit" class="boton boton-footer" value="Siguiente">
