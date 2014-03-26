@@ -76,12 +76,43 @@ if(isset($_REQUEST['id'])){
                       <tr>
                         <td><textarea class="common-input is-required" name="descripcion" style="height: 66px;"><?php echo $aux[0]->descripcion;?></textarea></td>
                       </tr>
-                      <tr>
-                        <td>INMA (%)</td>
-                      </tr>
-                      <tr>
-                        <td><input type="text" class="common-input is-required" name="inma"  value="<?php echo $aux[0]->porcentaje_INMA*100;?>"></td></td>
-                      </tr>
+   <tr>
+											<td>Fecha de inicio</td>
+										</tr>
+										<tr>
+											<td>
+												<input id="fecha-inicio" type="text" name="fecha-inicio" class="common-input input-date datepicker is-required">
+												<span class="icon-calendar" style="margin-right: 10px"></span>
+											</td>
+										</tr>
+										<tr>
+											<td>Fecha de vencimiento</td>
+										</tr>
+										<tr>
+											<td>
+												<input id="fecha-fin" type="text" name="fecha-fin"  class="common-input input-date datepicker is-required">
+												<span class="icon-calendar" style="margin-right: 10px"></span>
+											</td>
+										</tr>										
+										<tr>
+											<td>INMA (%)</td>
+										</tr>
+										<tr>
+											<td>
+												<div id="checkbox-wrapper">
+													<div id="checkbox-list">
+													<input type="checkbox" name="inma" value="-15"><label>-15</label>
+													<input type="checkbox" name="inma" value="-10"><label>-10</label>
+													<input type="checkbox" name="inma" value="-5"><label>-5</label>
+													<input type="checkbox" name="inma" value="0"><label>0</label>
+													<input type="checkbox" name="inma" value="5"><label>5</label>
+													<input type="checkbox" name="inma" value="10"><label>10</label>
+													<input type="checkbox" name="inma" value="20"><label>20</label>
+													<input type="checkbox" name="inma" value="30"><label>30</label>
+												</div>
+													</div>
+											</td>
+										</tr>
                       <tr>
                         <td><div class="required hide">Uno o más campos son inválidos.</div></td>
                       </tr>

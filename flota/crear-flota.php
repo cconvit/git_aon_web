@@ -47,10 +47,10 @@ if (isset($_SESSION['msg'])) {
 					<li>
 						<a href="coberturas.php">Coberturas</a>
 					</li>
-					<li class="current">
+					<li>
 						<a href="convenios.php">Convenios</a>
 					</li>
-					<li>
+					<li class="current">
 						<a href="flotas.php">Flotas</a>
 					</li>
 					<li style="border: none;">
