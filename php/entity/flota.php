@@ -53,9 +53,9 @@ class flota{
                                   empresa='{$database->escape_value($this->empresa)}',
                                   porcentaje_INMA='{$database->escape_value($this->porcentaje_INMA)}',
                                   avatar='{$database->escape_value($this->avatar)}',
-                                  descripcion='{$database->escape_value($this->descripcion)}'
+                                  descripcion='{$database->escape_value($this->descripcion)}',
                                   validez_inicio='{$database->escape_value($this->validez_inicio)}',
-                                  validez_fin='{$database->escape_value($this->validez_fin)}',
+                                  validez_fin='{$database->escape_value($this->validez_fin)}'
                                   WHERE id='{$database->escape_value($this->id)}'";
 
 

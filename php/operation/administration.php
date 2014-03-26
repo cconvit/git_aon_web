@@ -74,7 +74,7 @@ if (isset($_REQUEST["operation_type"])) {
       break;
 
     case 17:
-      updateFlota($_REQUEST["nombre"], $_REQUEST["descripcion"], $_REQUEST["inma"], $_REQUEST["inicio"], $_REQUEST["fin"]);
+      updateFlota($_REQUEST["nombre"], $_REQUEST["descripcion"], $_REQUEST["inma"], $_REQUEST["fecha-inicio"], $_REQUEST["fecha-fin"]);
       break;
 
     case 18:
@@ -505,14 +505,18 @@ function newFlota($nombre, $descripcion, $inma,$validez_inicio,$validez_fin) {
 function updateFlota($nombre, $descripcion, $inma,$validez_inicio,$validez_fin) {
 
   require_once ('../entity/flota.php');
+  require_once ('../entity/inma_flota.php');
   $flota = new flota();
   $flota->empresa = $nombre;
   $flota->descripcion = $descripcion;
-  $flota->porcentaje_INMA = $inma / 100;
+  $flota->porcentaje_INMA = "0";
   $flota->id = $_SESSION['id_flota'];
-  $flota->validez_inicio=$validez_inicio;
-  $flota->validez_fin=$validez_fin;
+  
+  $dt_inicio = DateTime::createFromFormat("d/m/Y", $validez_inicio);
+  $dt_fin = DateTime::createFromFormat("d/m/Y", $validez_fin);
 
+  $flota->validez_inicio=$dt_inicio->format("Y-m-d");
+  $flota->validez_fin=$dt_fin->format("Y-m-d");
 
   $_SESSION["msg"] = "show";
 
@@ -521,6 +525,18 @@ function updateFlota($nombre, $descripcion, $inma,$validez_inicio,$validez_fin) 
     $_SESSION["msg_type"] = "error";
     header('Location: ' . $_GET["target_fail"]);
   } else {
+      $inma_flota=new inma_flota();
+      $inma_flota->id_flota=$flota->id;
+      $inma_flota->delete_by_flota();
+      
+    foreach ($inma as $value){
+        
+        $inma_flota=new inma_flota();
+        $inma_flota->id_flota=$flota->id;
+        $inma_flota->inma=$value;
+        $inma_flota->create();
+    }
+    
     $_SESSION["msg_desc"] = "La actualización de la flota se realizó exitosamente.";
     $_SESSION["msg_type"] = "succesfull";
     header('Location: ' . $_GET["target"]);
