@@ -3,6 +3,7 @@ session_start();
 require_once("../php/db/config.php");
 require_once ('../php/db/database.php');
 require_once ('../php/entity/flota.php');
+require_once ('../php/entity/inma_flota.php');
 
 $msg = "hide";
 $msg_desc = "";
@@ -24,6 +25,8 @@ if(isset($_REQUEST['id'])){
     $_SESSION["id_flota"] = $_REQUEST['id'];
     $flota->id=$_REQUEST['id'];
     $aux = $flota->find_by_id_flota();
+    $inma_flota=new inma_flota();
+    $inma_flota->id_flota=$flota->id;
 }
 ?>
 <!DOCTYPE html>
@@ -78,6 +81,7 @@ if(isset($_REQUEST['id'])){
                       </tr>
    										<tr>
 											<td>Fecha de inicio</td>
+<<<<<<< HEAD
 											</tr>
 											<tr>
 												<td>
@@ -85,12 +89,21 @@ if(isset($_REQUEST['id'])){
 													<span class="icon-calendar" style="margin-right: 10px"></span>
 												</td>
 											</tr>
+=======
+										</tr>
+										<tr>
+											<td>
+												<input id="fecha-inicio" type="text" name="fecha-inicio" value="<?php $dt_inicio = DateTime::createFromFormat("Y-m-d", $aux[0]->validez_inicio); echo $dt_inicio->format("d/m/Y");?>" class="common-input input-date datepicker is-required">
+												<span class="icon-calendar" style="margin-right: 10px"></span>
+											</td>
+										</tr>
+>>>>>>> FETCH_HEAD
 										<tr>
 											<td>Fecha de vencimiento</td>
 										</tr>
 										<tr>
 											<td>
-												<input id="fecha-fin" type="text" name="fecha-fin"  class="common-input input-date datepicker is-required">
+												<input id="fecha-fin" type="text" name="fecha-fin" value="<?php $dt_fin = DateTime::createFromFormat("Y-m-d", $aux[0]->validez_fin); echo $dt_fin->format("d/m/Y");?>"  class="common-input input-date datepicker is-required">
 												<span class="icon-calendar" style="margin-right: 10px"></span>
 											</td>
 										</tr>										
@@ -101,16 +114,24 @@ if(isset($_REQUEST['id'])){
 											<td>
 												<div id="checkbox-wrapper">
 													<div id="checkbox-list">
-													<input type="checkbox" name="inma" value="-15"><label>-15</label>
-													<input type="checkbox" name="inma" value="-10"><label>-10</label>
-													<input type="checkbox" name="inma" value="-5"><label>-5</label>
-													<input type="checkbox" name="inma" value="0"><label>0</label>
-													<input type="checkbox" name="inma" value="5"><label>5</label>
-													<input type="checkbox" name="inma" value="10"><label>10</label>
-													<input type="checkbox" name="inma" value="20"><label>20</label>
-													<input type="checkbox" name="inma" value="30"><label>30</label>
+                                                                                                        <?php $inma_flota->inma="-15"; $result=$inma_flota->find_inma_flota_valid(); $check= (sizeof($result) > 0) ? " checked":""; ?>
+													<input type="checkbox" name="inma[]" value="-15"<?php echo $check;?>><label>-15</label>
+                                                                                                        <?php $inma_flota->inma="-10"; $result=$inma_flota->find_inma_flota_valid(); $check= (sizeof($result) > 0) ? " checked":""; ?>
+													<input type="checkbox" name="inma[]" value="-10"<?php echo $check;?>><label>-10</label>
+                                                                                                        <?php $inma_flota->inma="-5"; $result=$inma_flota->find_inma_flota_valid(); $check= (sizeof($result) > 0) ? " checked":""; ?>
+													<input type="checkbox" name="inma[]" value="-5"<?php echo $check;?>><label>-5</label>
+                                                                                                        <?php $inma_flota->inma="0"; $result=$inma_flota->find_inma_flota_valid(); $check= (sizeof($result) > 0) ? " checked":""; ?>
+													<input type="checkbox" name="inma[]" value="0"<?php echo $check;?>><label>0</label>
+                                                                                                        <?php $inma_flota->inma="5"; $result=$inma_flota->find_inma_flota_valid(); $check= (sizeof($result) > 0) ? " checked":""; ?>
+													<input type="checkbox" name="inma[]" value="5"<?php echo $check;?>><label>5</label>
+                                                                                                        <?php $inma_flota->inma="10"; $result=$inma_flota->find_inma_flota_valid(); $check= (sizeof($result) > 0) ? " checked":""; ?>
+													<input type="checkbox" name="inma[]" value="10"<?php echo $check;?>><label>10</label>
+                                                                                                        <?php $inma_flota->inma="20"; $result=$inma_flota->find_inma_flota_valid(); $check= (sizeof($result) > 0) ? " checked":""; ?>
+													<input type="checkbox" name="inma[]" value="20"<?php echo $check;?>><label>20</label>
+                                                                                                        <?php $inma_flota->inma="30"; $result=$inma_flota->find_inma_flota_valid(); $check= (sizeof($result) > 0) ? " checked":""; ?>
+													<input type="checkbox" name="inma[]" value="30"<?php echo $check;?>><label>30</label>
+                                                                                            		</div>
 												</div>
-													</div>
 											</td>
 										</tr>
                       <tr>

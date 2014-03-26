@@ -75,12 +75,12 @@ class inma_flota{
             return false;
         }
     }
-    public function delete_by_convenio() {
+    public function delete_by_flota() {
 
     global $database;
 
     $sql = "DELETE FROM " . self::$table_name . " 
-        WHERE id_convenio_as='{$database->escape_value($this->id_convenio_as)}'
+        WHERE id_flota='{$database->escape_value($this->id_flota)}'
        ";
         
     if ($database->query($sql)) {
