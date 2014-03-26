@@ -76,15 +76,15 @@ if(isset($_REQUEST['id'])){
                       <tr>
                         <td><textarea class="common-input is-required" name="descripcion" style="height: 66px;"><?php echo $aux[0]->descripcion;?></textarea></td>
                       </tr>
-   <tr>
+   										<tr>
 											<td>Fecha de inicio</td>
-										</tr>
-										<tr>
-											<td>
-												<input id="fecha-inicio" type="text" name="fecha-inicio" class="common-input input-date datepicker is-required">
-												<span class="icon-calendar" style="margin-right: 10px"></span>
-											</td>
-										</tr>
+											</tr>
+											<tr>
+												<td>
+													<input id="fecha-inicio" type="text" name="fecha-inicio" class="common-input input-date datepicker is-required">
+													<span class="icon-calendar" style="margin-right: 10px"></span>
+												</td>
+											</tr>
 										<tr>
 											<td>Fecha de vencimiento</td>
 										</tr>
@@ -135,9 +135,10 @@ if(isset($_REQUEST['id'])){
           </div>
         </div>
       </div>
-    </div>    <script src="../plugins/js/jquery-1.10.2.min.js"></script>  
-    <script src="../plugins/js/jquery-ui-1.10.4.custom.min.js"></script>
-    <script src="js/main.js"></script>
+    </div>    
+		<script src="../plugins/js/jquery-1.10.2.min.js"></script>
+		<script src="../plugins/js/jquery-ui-1.10.4.custom.min.js"></script>
+		<script src="js/main.js"></script>
   </body>
 </html>
 <?php
