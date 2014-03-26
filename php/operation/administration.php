@@ -70,7 +70,7 @@ if (isset($_REQUEST["operation_type"])) {
       break;
 
     case 16:
-      newFlota($_REQUEST["nombre"], $_REQUEST["descripcion"], $_REQUEST["inma"], $_REQUEST["inicio"], $_REQUEST["fin"]);
+      newFlota($_REQUEST["nombre"], $_REQUEST["descripcion"], $_REQUEST["inma"], $_REQUEST["fecha-inicio"], $_REQUEST["fecha-fin"]);
       break;
 
     case 17:
@@ -458,8 +458,8 @@ function newFlota($nombre, $descripcion, $inma,$validez_inicio,$validez_fin) {
   $flota->empresa = $nombre;
   $flota->descripcion = $descripcion;
   $flota->porcentaje_INMA = $inma / 100;
-  $flota->validez_inicio=date('Y-m-d');
-  $flota->validez_fin="2014-12-31";
+  $flota->validez_inicio=$validez_inicio;
+  $flota->validez_fin=$validez_fin;
 
 
   $_SESSION["msg"] = "show";
