@@ -6,8 +6,8 @@ class cotizacion_carro {
     protected static $db_fields = array('id', 'asegurado', 'identificacion', 'edad',
         'sexo', 'estado_civil', 'tipo_carro', 'car_marca', 'car_modelo', 'car_ano',
         'car_version', 'placa', 'car_ocupantes', 'tipo_cobertura', 'id_cotizacion',
-        'valor_INMA', 'is_car_marca', 'is_car_modelo', 'is_car_ocupantes', 'is_edad',
-        'is_sexo', 'is_estado_civil', 'is_tipo_carros', 'is_tipo_cobertura', 'cr_time',
+        'valor_INMA','porcentaje_inma', 'is_car_marca', 'is_car_modelo', 'is_car_ocupantes', 'is_edad',
+        'is_sexo', 'is_estado_civil', 'is_tipo_carros', 'is_tipo_cobertura','is_porcentaje_inma', 'cr_time',
         'ut_time');
     public $id;
     public $asegurado;
@@ -24,6 +24,7 @@ class cotizacion_carro {
     public $tipo_cobertura;
     public $id_cotizacion;
     public $valor_INMA;
+    public $porcentaje_inma;
     public $placa;
     public $is_car_marca;
     public $is_car_modelo;
@@ -33,6 +34,7 @@ class cotizacion_carro {
     public $is_tipo_carros;
     public $is_tipo_cobertura;
     public $is_estado_civil;
+    public $is_porcentaje_inma;
     public $cr_time;
     public $ut_time;
 
@@ -65,7 +67,8 @@ class cotizacion_carro {
                                   OR `is_car_modelo`=0 
                                   OR `is_car_ocupantes`=0 
                                   OR `is_tipo_carros`=0 
-                                  OR `is_tipo_cobertura`=0) 
+                                  OR `is_tipo_cobertura`=0
+                                  OR `is_porcentaje_inma`=0) 
                                   AND `id_cotizacion`='{$database->escape_value($this->id_cotizacion)}'");
     }
     
@@ -75,11 +78,12 @@ class cotizacion_carro {
         global $database;
         
         return self::find_by_sql("SELECT * FROM `tbl_cotizacion_carros`  
-                                  WHERE (`is_car_marca`=1 
+                                  WHERE `is_car_marca`=1 
                                   AND `is_car_modelo`=1
                                   AND `is_car_ocupantes`=1 
                                   AND `is_tipo_carros`=1 
-                                  AND `is_tipo_cobertura`=1) 
+                                  AND `is_tipo_cobertura`=1
+                                  AND `is_porcentaje_inma`=1
                                   AND `id_cotizacion`='{$database->escape_value($this->id_cotizacion)}'");
     }
     
@@ -102,8 +106,8 @@ class cotizacion_carro {
 
         $sql = "INSERT INTO " . self::$table_name . " (`asegurado`, `identificacion`, `edad`, `sexo`, 
             `estado_civil`, `tipo_carro`, `car_marca`, `car_modelo`, `car_ano`, `car_version`, `placa`,
-            `car_ocupantes`, `tipo_cobertura`, `id_cotizacion`, `valor_INMA`, `is_car_marca`, `is_car_modelo`,
-            `is_car_ocupantes`, `is_edad`, `is_sexo`, `is_estado_civil`, `is_tipo_carros`, `is_tipo_cobertura`,
+            `car_ocupantes`, `tipo_cobertura`, `id_cotizacion`, `valor_INMA`,`porcentaje_inma`, `is_car_marca`, `is_car_modelo`,
+            `is_car_ocupantes`, `is_edad`, `is_sexo`, `is_estado_civil`, `is_tipo_carros`, `is_tipo_cobertura`,`is_porcentaje_inma`,
             `cr_time`) VALUES (
                                                 '{$database->escape_value($this->asegurado)}',
                                                 '{$database->escape_value($this->identificacion)}',
@@ -120,6 +124,7 @@ class cotizacion_carro {
                                                 '{$database->escape_value($this->tipo_cobertura)}',
                                                 '{$database->escape_value($this->id_cotizacion)}',
                                                 '{$database->escape_value($this->valor_INMA)}',
+                                                '{$database->escape_value($this->porcentaje_inma)}',
                                                 '{$database->escape_value($this->is_car_marca)}',
                                                 '{$database->escape_value($this->is_car_modelo)}',
                                                 '{$database->escape_value($this->is_car_ocupantes)}',   
@@ -128,6 +133,7 @@ class cotizacion_carro {
                                                 '{$database->escape_value($this->is_estado_civil)}',
                                                 '{$database->escape_value($this->is_tipo_carros)}',
                                                 '{$database->escape_value($this->is_tipo_cobertura)}',
+                                                '{$database->escape_value($this->is_porcentaje_inma)}',
                                                  NOW())";
 
         if ($database->query($sql)) {
@@ -154,6 +160,7 @@ class cotizacion_carro {
                                     car_ocupantes='{$database->escape_value($this->car_ocupantes)}',
                                     tipo_cobertura='{$database->escape_value($this->tipo_cobertura)}',
                                     valor_INMA='{$database->escape_value($this->valor_INMA)}',
+                                    porcentaje_inma='{$database->escape_value($this->porcentaje_inma)}',
                                     is_car_marca='{$database->escape_value($this->is_car_marca)}',
                                     is_car_modelo='{$database->escape_value($this->is_car_modelo)}',
                                     is_car_ocupantes='{$database->escape_value($this->is_car_ocupantes)}',
@@ -161,7 +168,8 @@ class cotizacion_carro {
                                     is_sexo='{$database->escape_value($this->is_sexo)}',
                                     is_tipo_carros='{$database->escape_value($this->is_tipo_carros)}',
                                     is_tipo_cobertura='{$database->escape_value($this->is_tipo_cobertura)}',
-                                    is_estado_civil='{$database->escape_value($this->is_estado_civil)}'
+                                    is_estado_civil='{$database->escape_value($this->is_estado_civil)}',
+                                    is_porcentaje_inma='{$database->escape_value($this->is_porcentaje_inma)}'
                                   WHERE id='{$database->escape_value($this->id)}'
 ";
                        

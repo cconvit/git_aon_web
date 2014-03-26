@@ -18,14 +18,14 @@ $flota = unserialize($_SESSION['flota']);
 if (isset($_POST["nombre"]) && isset($_POST["cedula"]) && isset($_POST["telefono"]) && isset($_POST["correo"]) &&
         isset($_POST["edad"]) && isset($_POST["sexo"]) && isset($_POST["civil"]) && isset($_POST["tipo"]) &&
         isset($_POST["marca"]) && isset($_POST["modelo"]) && isset($_POST["ano"]) && isset($_POST["ocupantes"]) &&
-        isset($_POST["cobertura"]) && isset($_POST["version"]) && isset($flota)) {
+        isset($_POST["cobertura"]) && isset($_POST["version"]) && isset($flota) && isset($_POST["inma-porcentaje"])) {
 
   //FALTA valor, usado 
 
   $cotizacion = new cotizacion();
   $parametros = new parametros();
   $array_parametros = $parametros->find_all();
-
+  $flota->porcentaje_INMA=$_POST["inma-porcentaje"]/100;
 
   $cotizacion->nombre = $_POST["nombre"];
   $cotizacion->cedula = $_POST["cedula"];
@@ -55,7 +55,6 @@ if (isset($_POST["nombre"]) && isset($_POST["cedula"]) && isset($_POST["telefono
     $cotizacion->car_version = $_POST["version"];
     $cotizacion->car_ano = $_POST["ano"];
   }
-
   //Calculamos la suma asegurada
   $suma_asegurada = $cotizacion->valor_INMA + $cotizacion->valor_INMA * $flota->porcentaje_INMA;
   //Busqueda de la clasificacion
@@ -80,11 +79,14 @@ if (isset($_POST["nombre"]) && isset($_POST["cedula"]) && isset($_POST["telefono
   $solicitud->parametros = $array_parametros;
 
   $_SESSION['solicitud'] = serialize($solicitud);
+  $_SESSION['flota'] = serialize($flota);
 
  if (sizeof($solicitud->res_clasificacion) > 0)
     header("Location: ../aseguradoras.php");
   else
     header("Location: ../contactanos.php");
+
 } else
   echo "Error en las variables";
+
 ?>

@@ -29,7 +29,7 @@ class calcular_primas{
                     //Suma asegurada * Tasa Cobertura     ///Prima Casco
                 
                     $cobertura->prima=$suma_asegurada*($tasa/100);
-                    
+                    //echo "TASA: ".$tasa." SUMA ASEGURADA: ".$suma_asegurada." PRIMA: ".$cobertura->prima."  ------- ";
                     $segmentacion=new segmentacion();
                     $segmentacion->id_convenio_as=$cobertura->id_convenio_as;
                     $segmentacion->id_estado_civil=$this->estado_civil;

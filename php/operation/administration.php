@@ -101,7 +101,7 @@ if (isset($_REQUEST["operation_type"])) {
       deleteConvenioFlota($_REQUEST["id"]);
       break;
     case 24:
-      updateCarro($_REQUEST["id"], $_REQUEST["marca"], $_REQUEST["modelo"], $_REQUEST["version"], $_REQUEST["ano"], $_REQUEST["inma"], $_REQUEST["cobertura"], $_REQUEST["uso"], $_REQUEST["ocupantes"], $_REQUEST["edad"], $_REQUEST["sexo"], $_REQUEST["civil"]);
+      updateCarro($_REQUEST["id"], $_REQUEST["marca"], $_REQUEST["modelo"], $_REQUEST["version"], $_REQUEST["ano"], $_REQUEST["inma"], $_REQUEST["cobertura"], $_REQUEST["uso"], $_REQUEST["ocupantes"], $_REQUEST["edad"], $_REQUEST["sexo"], $_REQUEST["civil"],$_REQUEST["inma-porcentaje"]);
       break;
     case 25:
       deleteCarro($_REQUEST["id"]);
@@ -451,15 +451,21 @@ function createCondicion($condicion, $tipo_cob) {
 }
 
 function newFlota($nombre, $descripcion, $inma,$validez_inicio,$validez_fin) {
-
+      
   require_once ('../entity/flota.php');
   require_once ('../entity/re_plantilla_flota.php');
+  require_once ('../entity/inma_flota.php');
   $flota = new flota();
+  
   $flota->empresa = $nombre;
   $flota->descripcion = $descripcion;
-  $flota->porcentaje_INMA = $inma / 100;
-  $flota->validez_inicio=$validez_inicio;
-  $flota->validez_fin=$validez_fin;
+  $flota->porcentaje_INMA ="0";
+        //  $inma / 100;
+  $dt_inicio = DateTime::createFromFormat("d/m/Y", $validez_inicio);
+  $dt_fin = DateTime::createFromFormat("d/m/Y", $validez_fin);
+
+  $flota->validez_inicio=$dt_inicio->format("Y-m-d");
+  $flota->validez_fin=$dt_fin->format("Y-m-d");
 
 
   $_SESSION["msg"] = "show";
@@ -480,6 +486,14 @@ function newFlota($nombre, $descripcion, $inma,$validez_inicio,$validez_fin) {
     $re_plantilla_flota->id_plantilla="3";
     $re_plantilla_flota->id_tipo_seguro="3";
     $re_plantilla_flota->create();
+    
+    foreach ($inma as $value){
+        
+        $inma_flota=new inma_flota();
+        $inma_flota->id_flota=$flota->id;
+        $inma_flota->inma=$value;
+        $inma_flota->create();
+    }
     
     $_SESSION["msg_desc"] = "La creación de la flota se realizó exitosamente.";
     $_SESSION["msg_type"] = "succesfull";
@@ -673,7 +687,7 @@ function proccessCotizacion() {
       $clasificacion->tipo_carro = $value->tipo_carro;
 
       //Calculamos la suma asegurada
-      $suma_asegurada = $value->valor_INMA + $value->valor_INMA * $flota->porcentaje_INMA;
+      $suma_asegurada = $value->valor_INMA + ($value->valor_INMA * ($value->porcentaje_inma/100));
       $res_clasificacion = $find_aseguradora->get_clasificacion($value->tipo_cobertura, $cotizacion_aux[0]->id_flota, $clasificacion, $suma_asegurada);
 
       //Obtenemos las coberturas asociadas a cada registro de la clasificacion
@@ -691,7 +705,7 @@ function proccessCotizacion() {
       foreach ($re_flota_co_as_aux as $aseguradora)
         array_push($aseguradoras, $aseguradora->id_aseguradora);
 
-      $solicitud->calcular_primas($aseguradoras, 1);
+      $solicitud->calcular_primas($aseguradoras,$value->porcentaje_inma/100);
       array_push($solicitudes_procesadas, $solicitud);
     }
 
@@ -723,7 +737,7 @@ function deleteConvenioFlota($id) {
   header('Location: ' . $_GET["target"]);
 }
 
-function updateCarro($id, $marca, $modelo, $version, $ano, $inma, $cobertura, $uso, $ocupantes, $edad, $sexo, $civil) {
+function updateCarro($id, $marca, $modelo, $version, $ano, $inma, $cobertura, $uso, $ocupantes, $edad, $sexo, $civil,$porcentaje_inma) {
 
   require_once ('../entity/cotizacion_carro.php');
   require_once ('../operation/validar_carro_cotizacion.php');
@@ -741,6 +755,7 @@ function updateCarro($id, $marca, $modelo, $version, $ano, $inma, $cobertura, $u
   $carro->edad = $edad;
   $carro->sexo = $sexo;
   $carro->estado_civil = $civil;
+  $carro->porcentaje_inma=$porcentaje_inma;
 
 
   $validar = new validar_carro_cotizacion();

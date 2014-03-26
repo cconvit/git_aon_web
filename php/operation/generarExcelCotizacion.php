@@ -17,7 +17,7 @@ class generarExcelCotizacion {
     $convenio_aseguradora = new convenio_aseguradora();
     $cotizacion_aux = new cotizacion();
 
-    $array = array("P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "AA", "AB", "AC", "AD", "AE", "AF", "AG", "AH", "AI", "AJ", "AK", "AL", "AM", "AN", "AO", "AP", "AQ", "AR", "AS", "AT", "AU", "AV", "AW", "AX", "AY", "AZ");
+    $array = array("Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "AA", "AB", "AC", "AD", "AE", "AF", "AG", "AH", "AI", "AJ", "AK", "AL", "AM", "AN", "AO", "AP", "AQ", "AR", "AS", "AT", "AU", "AV", "AW", "AX", "AY", "AZ");
     $GLOBALS["array_cob_id"] = Array(Array());
 
     foreach ($aseguradoras as $aseguradora) {
@@ -41,7 +41,7 @@ class generarExcelCotizacion {
           
         $cotizacion_aux->id = $solicitudes[0]->cotizacion->id_cotizacion;
         $cotizacion = $cotizacion_aux->find_by_id();
-        
+      
         $datos_header = $this->saveCarros($objPHPExcel, $solicitudes, $aseguradora, $array,$cotizacion[0]);
         //var_dump($cotizacion_aseguradora);
 
@@ -124,9 +124,11 @@ class generarExcelCotizacion {
     $objPHPExcel->getActiveSheet()->SetCellValue('L11', 'Clasifi Aseg');
     $objPHPExcel->getActiveSheet()->SetCellValue('M11', 'Año');
     $objPHPExcel->getActiveSheet()->SetCellValue('N11', 'INMA');
-    $objPHPExcel->getActiveSheet()->SetCellValue('O11', "Suma Asegurada");
-    $objPHPExcel->getActiveSheet()->SetCellValue('P11', "TASA CASCO");
-    $objPHPExcel->getActiveSheet()->getStyle('A11:P11')->getFont()->setBold(true);
+    $objPHPExcel->getActiveSheet()->SetCellValue('O11', '% INMA');
+    $objPHPExcel->getActiveSheet()->SetCellValue('P11', "Suma Asegurada");
+    $objPHPExcel->getActiveSheet()->SetCellValue('Q11', "TASA CASCO");
+    $objPHPExcel->getActiveSheet()->getStyle('A11:Q11')->getFont()->setBold(true);
+    $objPHPExcel->getActiveSheet()->getColumnDimension('P')->setAutoSize(true);
   }
 
   function setHeaderCoberturas($objPHPExcel, $solicitudes, $aseguradora, $array) {
@@ -184,7 +186,7 @@ class generarExcelCotizacion {
     $suma_cotizacion = 0;
     $datos_header = Array();
     $dias=0;
-
+   
     for ($y = 0; $y < sizeof($solicitudes); $y++) {
 
       
@@ -201,8 +203,8 @@ class generarExcelCotizacion {
           $coberturas = $cotizacion_aseguradora->coberturas;
           $suma_primas_coberturas = 0;
 
-          $objPHPExcel->getActiveSheet()->SetCellValue('P' . ($row + $y), $coberturas[0]->tasa);
-          $objPHPExcel->getActiveSheet()->getColumnDimension('P')->setAutoSize(true);
+          $objPHPExcel->getActiveSheet()->SetCellValue('Q' . ($row + $y), $coberturas[0]->tasa);
+          $objPHPExcel->getActiveSheet()->getColumnDimension('Q')->setAutoSize(true);
         
           for ($x = 0; $x < sizeof($coberturas); $x++) {
 
@@ -258,9 +260,10 @@ class generarExcelCotizacion {
           $objPHPExcel->getActiveSheet()->SetCellValue('M' . ($row + $y), $solicitudes[$y]->cotizacion->car_ano);
           $objPHPExcel->getActiveSheet()->SetCellValue('N' . ($row + $y), formatMoney($solicitudes[$y]->cotizacion->valor_INMA, true));
           $inma=$solicitudes[$y]->cotizacion->valor_INMA;
-          $por_inma=$solicitudes[$y]->flota->porcentaje_INMA;
-          $suma_asegurada=$inma+($inma*$por_inma);
-          $objPHPExcel->getActiveSheet()->SetCellValue('O' . ($row + $y), formatMoney($suma_asegurada, true));
+          $por_inma=$solicitudes[$y]->cotizacion->porcentaje_inma;
+          $suma_asegurada=$inma+($inma*$por_inma/100);
+          $objPHPExcel->getActiveSheet()->SetCellValue('P' . ($row + $y), formatMoney($suma_asegurada, true));
+          $objPHPExcel->getActiveSheet()->SetCellValue('O' . ($row + $y), $por_inma);
           $objPHPExcel->getActiveSheet()->getStyle('A' . ($row + $y) . ':AZ' . ($row + $y))->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
 
           for ($i = 0; $i <= 14; $i++) {
@@ -286,9 +289,10 @@ class generarExcelCotizacion {
           $objPHPExcel->getActiveSheet()->SetCellValue('M' . ($row + $y), $solicitudes[$y]->cotizacion->car_ano);
           $objPHPExcel->getActiveSheet()->SetCellValue('N' . ($row + $y), formatMoney($solicitudes[$y]->cotizacion->valor_INMA, true));
           $inma=$solicitudes[$y]->cotizacion->valor_INMA;
-          $por_inma=$solicitudes[$y]->flota->porcentaje_INMA;
-          $suma_asegurada=$inma+($inma*$por_inma);
-          $objPHPExcel->getActiveSheet()->SetCellValue('O' . ($row + $y), formatMoney($suma_asegurada, true));
+          $por_inma=$solicitudes[$y]->cotizacion->porcentaje_inma;
+          $suma_asegurada=$inma+($inma*$por_inma/100);
+          $objPHPExcel->getActiveSheet()->SetCellValue('P' . ($row + $y), formatMoney($suma_asegurada, true));
+          $objPHPExcel->getActiveSheet()->SetCellValue('O' . ($row + $y), $por_inma);
           $objPHPExcel->getActiveSheet()->getStyle('A' . ($row + $y) . ':AZ' . ($row + $y))->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
           $objPHPExcel->getActiveSheet()->SetCellValue('P' . ($row + $y), "No se pudo cotizar");
           

@@ -12,7 +12,7 @@ class solicitud {
     
   }
 
-  public function calcular_primas($aseguradoras) {
+  public function calcular_primas($aseguradoras,$porcentaje_inma) {
 
     //Creamos el objeto para calcular las primas y seteamos campos requeridos para los calculos
     $calcular_primas = new calcular_primas();
@@ -22,7 +22,7 @@ class solicitud {
     $calcular_primas->estado_civil = $this->cotizacion->estado_civil;
     $calcular_primas->sexo = $this->cotizacion->sexo;
     $calcular_primas->valor_INMA = $this->cotizacion->valor_INMA;
-    $calcular_primas->porcentaje_INMA = $this->flota->porcentaje_INMA;
+    $calcular_primas->porcentaje_INMA = $porcentaje_inma;
     $calcular_primas->UT = $this->parametros[0]->valor; //Cambiar este valor
     $calcular_primas->tipo_seguro = $this->cotizacion->tipo_cobertura;
 

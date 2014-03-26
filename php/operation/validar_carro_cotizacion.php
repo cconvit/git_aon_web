@@ -8,6 +8,12 @@ class validar_carro_cotizacion {
 
     public function processFile($path, $id_cotizacion) {
 
+        require_once '../entity/cotizacion.php';
+        
+        $cotizacion=new cotizacion();
+        $cotizacion->id=$id_cotizacion;
+        $cot=$cotizacion->find_by_id();
+        
         $objPHPExcel = PHPExcel_IOFactory::load($path);
 
         foreach ($objPHPExcel->getWorksheetIterator() as $worksheet) {
@@ -17,21 +23,22 @@ class validar_carro_cotizacion {
             $highestColumn = $worksheet->getHighestColumn(); // e.g 'F'
             $highestColumnIndex = PHPExcel_Cell::columnIndexFromString($highestColumn);
             $nrColumns = ord($highestColumn) - 64;
-            return $this->validarRegistros($worksheet, $nrColumns, $highestRow, $highestColumnIndex, $id_cotizacion);
+            return $this->validarRegistros($worksheet, $nrColumns, $highestRow, $highestColumnIndex, $id_cotizacion,$cot[0]->id_flota);
         }
     }
 
-    function validarRegistros($worksheet, $nrColumns, $highestRow, $highestColumnIndex, $id_cotizacion) {
+    function validarRegistros($worksheet, $nrColumns, $highestRow, $highestColumnIndex, $id_cotizacion,$id_flota) {
 
         require_once '../entity/inma.php';
         require_once '../entity/cotizacion_carro.php';
+                        
 
         $inma = new inma();
         $result = false;
 
 
         //Verificamos que el archivo tenga las columnas determinadas para esta importacion
-        if (($nrColumns >= 14) && ($highestRow > 1)) {
+        if (($nrColumns >= 15) && ($highestRow > 1)) {
 
             //Iteramos sobre las filas
             for ($row = 2; $row <= $highestRow; ++$row) {
@@ -41,7 +48,7 @@ class validar_carro_cotizacion {
                 $carro->id_cotizacion = $id_cotizacion;
 
                 //Iteramos sobre las columnas
-                for ($col = 0; $col < 15; ++$col) {
+                for ($col = 0; $col < 16; ++$col) {
                     //Obtenemos la informacion de la celda
                     $cell = $worksheet->getCellByColumnAndRow($col, $row);
                     $val = $cell->getValue();
@@ -142,6 +149,14 @@ class validar_carro_cotizacion {
                             else
                                 $carro->is_estado_civil = 0;
                             break;
+                        case 14:
+                           // $reg_valido = $this->isValidType("s", $dataType);
+                            $carro->porcentaje_inma = $val;
+                            if ($this->isPorcentajeInma($id_flota, $val))
+                                $carro->is_porcentaje_inma = 1;
+                            else
+                                $carro->is_porcentaje_inma = 0;
+                            break;
                     }//End switch
                     //Verificamos si todos los datos estaban correctos
                 }//End for COL
@@ -150,7 +165,6 @@ class validar_carro_cotizacion {
                  if ($carro->tipo_cobertura == 3)
                       $carro->is_car_modelo = 1;
                 */
-                
                 if ($carro->identificacion != "")
                     $carro->create();
             }//End for ROW
@@ -215,7 +229,10 @@ class validar_carro_cotizacion {
                 $carro->is_estado_civil = 1;
             else
                 $carro->is_estado_civil = 0;
-
+            
+            //TODO Cambiar por validacion contra base de datos
+            $carro->is_porcentaje_inma = 1;
+            
             if ($carro->update())
                 return true;
             else
@@ -272,6 +289,23 @@ class validar_carro_cotizacion {
             case 1: return "CASADO";
             default : return "SOLTERO";
         }
+    }
+    
+    public function isPorcentajeInma($flota,$inma) {
+
+        require_once '../entity/inma_flota.php';
+        
+        $inma_flota=new inma_flota();
+        $inma_flota->id_flota=$flota;
+        $inma_flota->inma=$inma;
+        
+       $results=$inma_flota->find_inma_flota_valid();
+        
+       if(sizeof($results)>0)
+           return true;
+       else
+           return false;
+           
     }
 
     public function isValidEstadoCivil($estado_civil) {

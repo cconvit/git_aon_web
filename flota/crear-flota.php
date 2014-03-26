@@ -109,14 +109,14 @@ if (isset($_SESSION['msg'])) {
 											<td>
 												<div id="checkbox-wrapper">
 													<div id="checkbox-list">
-													<input type="checkbox" name="inma" value="-15"><label>-15</label>
-													<input type="checkbox" name="inma" value="-10"><label>-10</label>
-													<input type="checkbox" name="inma" value="-5"><label>-5</label>
-													<input type="checkbox" name="inma" value="0"><label>0</label>
-													<input type="checkbox" name="inma" value="5"><label>5</label>
-													<input type="checkbox" name="inma" value="10"><label>10</label>
-													<input type="checkbox" name="inma" value="20"><label>20</label>
-													<input type="checkbox" name="inma" value="30"><label>30</label>
+													<input type="checkbox" name="inma[]" value="-15"><label>-15</label>
+													<input type="checkbox" name="inma[]" value="-10"><label>-10</label>
+													<input type="checkbox" name="inma[]" value="-5"><label>-5</label>
+													<input type="checkbox" name="inma[]" value="0"><label>0</label>
+													<input type="checkbox" name="inma[]" value="5"><label>5</label>
+													<input type="checkbox" name="inma[]" value="10"><label>10</label>
+													<input type="checkbox" name="inma[]" value="20"><label>20</label>
+													<input type="checkbox" name="inma[]" value="30"><label>30</label>
 												</div>
 													</div>
 											</td>
