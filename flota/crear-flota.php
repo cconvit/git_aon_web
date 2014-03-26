@@ -109,16 +109,20 @@ if (isset($_SESSION['msg'])) {
 											<td>
 												<div id="checkbox-wrapper">
 													<div id="checkbox-list">
-													<input type="checkbox" name="inma[]" value="-15"><label>-15</label>
-													<input type="checkbox" name="inma[]" value="-10"><label>-10</label>
-													<input type="checkbox" name="inma[]" value="-5"><label>-5</label>
-													<input type="checkbox" name="inma[]" value="0"><label>0</label>
-													<input type="checkbox" name="inma[]" value="5"><label>5</label>
-													<input type="checkbox" name="inma[]" value="10"><label>10</label>
-													<input type="checkbox" name="inma[]" value="20"><label>20</label>
-													<input type="checkbox" name="inma[]" value="30"><label>30</label>
-												</div>
+														<input type="checkbox" name="inma[]" value="-15"><label>-15</label>
+														<input type="checkbox" name="inma[]" value="-10"><label>-10</label>
+														<input type="checkbox" name="inma[]" value="-5"><label>-5</label>
+														<input type="checkbox" name="inma[]" value="0"><label>0</label>
+														<input type="checkbox" name="inma[]" value="5"><label>5</label>
+														<input type="checkbox" name="inma[]" value="10"><label>10</label>
+														<input type="checkbox" name="inma[]" value="20"><label>20</label>
+														<input type="checkbox" name="inma[]" value="30"><label>30</label>
+														<input type="checkbox" name="inma[]" value="35"><label>35</label>
+														<input type="checkbox" name="inma[]" value="40"><label>40</label>
+														<input type="checkbox" name="inma[]" value="45"><label>45</label>
+														<input type="checkbox" name="inma[]" value="50"><label>50</label>
 													</div>
+												</div>
 											</td>
 										</tr>
 										<tr>
