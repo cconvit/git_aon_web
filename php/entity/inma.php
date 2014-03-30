@@ -4,7 +4,7 @@ class inma {
 
   public function inma() {
 
-    mysql_connect("localhost", "master", "B6VqKSNvVb83aPPn");
+    mysql_connect("localhost", "inma", "123456");
     mysql_select_db("inma");
   }
 
