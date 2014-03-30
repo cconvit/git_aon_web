@@ -13,11 +13,12 @@ class generarExcelCotizacion {
     require_once '../entity/convenio_aseguradora.php';
     require_once '../entity/cotizacion.php';
     require_once '../entity/descarga_cotizacion.php';
+    require_once '../entity/segmentacion.php';
 
     $convenio_aseguradora = new convenio_aseguradora();
     $cotizacion_aux = new cotizacion();
 
-    $array = array("Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "AA", "AB", "AC", "AD", "AE", "AF", "AG", "AH", "AI", "AJ", "AK", "AL", "AM", "AN", "AO", "AP", "AQ", "AR", "AS", "AT", "AU", "AV", "AW", "AX", "AY", "AZ");
+    $array = array( "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "AA", "AB", "AC", "AD", "AE", "AF", "AG", "AH", "AI", "AJ", "AK", "AL", "AM", "AN", "AO", "AP", "AQ", "AR", "AS", "AT", "AU", "AV", "AW", "AX", "AY", "AZ");
     $GLOBALS["array_cob_id"] = Array(Array());
 
     foreach ($aseguradoras as $aseguradora) {
@@ -41,15 +42,17 @@ class generarExcelCotizacion {
           
         $cotizacion_aux->id = $solicitudes[0]->cotizacion->id_cotizacion;
         $cotizacion = $cotizacion_aux->find_by_id();
-      
-        $datos_header = $this->saveCarros($objPHPExcel, $solicitudes, $aseguradora, $array,$cotizacion[0]);
-        //var_dump($cotizacion_aseguradora);
-
+        
         $convenio_aseguradora->id = $cotizacion_aseguradora->convenio;
 
         $convenio_aseguradora->id = $cotizacion_aseguradora->convenio;
 
         $convenio = $convenio_aseguradora->find_by_id_convenio();
+      
+        $datos_header = $this->saveCarros($objPHPExcel, $solicitudes, $aseguradora, $array,$cotizacion[0],$convenio_aseguradora->id);
+        //var_dump($cotizacion_aseguradora);
+
+        
 
         $this->setHeaderEmpresa($objPHPExcel, $datos_header, $convenio, $cotizacion);
         $objPHPExcel->getActiveSheet()->getStyle('A11:AZ11')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
@@ -125,10 +128,12 @@ class generarExcelCotizacion {
     $objPHPExcel->getActiveSheet()->SetCellValue('M11', 'Año');
     $objPHPExcel->getActiveSheet()->SetCellValue('N11', 'INMA');
     $objPHPExcel->getActiveSheet()->SetCellValue('O11', '% INMA');
-    $objPHPExcel->getActiveSheet()->SetCellValue('P11', "Suma Asegurada");
-    $objPHPExcel->getActiveSheet()->SetCellValue('Q11', "TASA CASCO");
-    $objPHPExcel->getActiveSheet()->getStyle('A11:Q11')->getFont()->setBold(true);
+    $objPHPExcel->getActiveSheet()->SetCellValue('P11', '% Segmentación');
+    $objPHPExcel->getActiveSheet()->SetCellValue('Q11', "Suma Asegurada");
+    $objPHPExcel->getActiveSheet()->SetCellValue('R11', "TASA CASCO");
+    $objPHPExcel->getActiveSheet()->getStyle('A11:R11')->getFont()->setBold(true);
     $objPHPExcel->getActiveSheet()->getColumnDimension('P')->setAutoSize(true);
+    $objPHPExcel->getActiveSheet()->getColumnDimension('Q')->setAutoSize(true);
   }
 
   function setHeaderCoberturas($objPHPExcel, $solicitudes, $aseguradora, $array) {
@@ -176,7 +181,7 @@ class generarExcelCotizacion {
     return $cotizacion_aseguradora_aux;
   }
 
-  function saveCarros($objPHPExcel, $solicitudes, $aseguradora, $array) {
+  function saveCarros($objPHPExcel, $solicitudes, $aseguradora, $array,$coti,$convenio_id) {
 
     require_once '../../individual/tool/function_tool.php';
     require_once './validar_carro_cotizacion.php';
@@ -203,8 +208,8 @@ class generarExcelCotizacion {
           $coberturas = $cotizacion_aseguradora->coberturas;
           $suma_primas_coberturas = 0;
 
-          $objPHPExcel->getActiveSheet()->SetCellValue('Q' . ($row + $y), $coberturas[0]->tasa);
-          $objPHPExcel->getActiveSheet()->getColumnDimension('Q')->setAutoSize(true);
+          $objPHPExcel->getActiveSheet()->SetCellValue('R' . ($row + $y), $coberturas[0]->tasa);
+          $objPHPExcel->getActiveSheet()->getColumnDimension('R')->setAutoSize(true);
         
           for ($x = 0; $x < sizeof($coberturas); $x++) {
 
@@ -262,8 +267,17 @@ class generarExcelCotizacion {
           $inma=$solicitudes[$y]->cotizacion->valor_INMA;
           $por_inma=$solicitudes[$y]->cotizacion->porcentaje_inma;
           $suma_asegurada=$inma+($inma*$por_inma/100);
-          $objPHPExcel->getActiveSheet()->SetCellValue('P' . ($row + $y), formatMoney($suma_asegurada, true));
+          $objPHPExcel->getActiveSheet()->SetCellValue('Q' . ($row + $y), formatMoney($suma_asegurada, true));
           $objPHPExcel->getActiveSheet()->SetCellValue('O' . ($row + $y), $por_inma);
+          
+          //Segmentacion
+         
+          $estado_civil=$solicitudes[$y]->cotizacion->estado_civil;
+          $sexo=$solicitudes[$y]->cotizacion->sexo;
+          $edad=$solicitudes[$y]->cotizacion->edad;
+          $segmentacion=$this->getSegmentacion($convenio_id,$estado_civil,$sexo,$edad);
+          $objPHPExcel->getActiveSheet()->SetCellValue('P' . ($row + $y), $segmentacion);
+          
           $objPHPExcel->getActiveSheet()->getStyle('A' . ($row + $y) . ':AZ' . ($row + $y))->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
 
           for ($i = 0; $i <= 14; $i++) {
@@ -309,6 +323,23 @@ class generarExcelCotizacion {
     return $datos_header;
   }
 
+  function getSegmentacion($id_convenio,$estado_civil,$sexo,$edad){
+      
+
+      $segmentacion=new segmentacion();
+                    $segmentacion->id_convenio_as=$id_convenio;
+                    $segmentacion->id_estado_civil=$estado_civil;
+                    $segmentacion->id_sexo=$sexo;
+                    $segmentacion->edad=$edad;
+                       
+      $array_segmentacion=$segmentacion->find_tasa();
+
+                    foreach ($array_segmentacion as $item){
+                        return $item->tasa;
+                    }
+        return "0";
+
+  }
 }
 
 ?>
