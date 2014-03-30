@@ -75,7 +75,7 @@ $cotizacion_carro->id_cotizacion = $_SESSION["id_cotizacion"];
                     <th>Versión</th>
                     <th>Año</th>
                     <th>inma</th>
-									  <th>inma %</th>
+	            <th>inma %</th>
                     <th>Uso</th>
                     <th>Ocupantes</th>
                     <th>Cobertura</th>
@@ -88,7 +88,7 @@ $cotizacion_carro->id_cotizacion = $_SESSION["id_cotizacion"];
                       $cotizacion_carros = $cotizacion_carro->find_by_id_cotizacion();
                       if (sizeof($cotizacion_carros) > 0) {
                         foreach ($cotizacion_carros as $value) {                          
-                          $result = (($value->is_car_marca != 1) || ($value->is_car_modelo != 1) || ($value->is_car_ocupantes != 1) || ($value->is_tipo_carros != 1) || ($value->is_tipo_cobertura != 1));
+                          $result = (($value->is_car_marca != 1) || ($value->is_car_modelo != 1) || ($value->is_car_ocupantes != 1) || ($value->is_tipo_carros != 1) || ($value->is_tipo_cobertura != 1) || ($value->is_porcentaje_inma != 1));
                           ?>
                           <tr class="<?php echo $result ? "text-error" : "" ?>">
                             <td class="no-padding no-border"><a class="img-common icon-edit icon-actions suggestion" data='<?php echo $value->id; ?>'></a></td>
@@ -101,6 +101,7 @@ $cotizacion_carro->id_cotizacion = $_SESSION["id_cotizacion"];
                             <td><?php echo $value->car_version; ?></td>
                             <td><?php echo $value->car_ano; ?></td>
                             <td><?php echo $value->valor_INMA; ?></td>
+                            <td><?php echo $value->porcentaje_inma; ?></td>
                             <td><?php echo $validar->getTipoCarro($value->tipo_carro); ?></td>
                             <td><?php echo $value->car_ocupantes; ?></td>
                             <td><?php echo $validar->getCobertura($value->tipo_cobertura); ?></td>
@@ -155,6 +156,7 @@ $cotizacion_carro->id_cotizacion = $_SESSION["id_cotizacion"];
                             <td><?php echo $value->car_version; ?></td>
                             <td><?php echo $value->car_ano; ?></td>
                             <td><?php echo $value->valor_INMA; ?></td>
+                            <td><?php echo $value->porcentaje_inma; ?></td>
                             <td><?php echo $validar->getTipoCarro($value->tipo_carro); ?></td>
                             <td><?php echo $value->car_ocupantes; ?></td>
                             <td><?php echo $validar->getCobertura($value->tipo_cobertura); ?></td>
@@ -209,6 +211,7 @@ $cotizacion_carro->id_cotizacion = $_SESSION["id_cotizacion"];
                             <td><?php echo $value->car_version; ?></td>
                             <td><?php echo $value->car_ano; ?></td>
                             <td><?php echo $value->valor_INMA; ?></td>
+                            <td><?php echo $value->porcentaje_inma; ?></td>
                             <td><?php echo $validar->getTipoCarro($value->tipo_carro); ?></td>
                             <td><?php echo $value->car_ocupantes; ?></td>
                             <td><?php echo $validar->getCobertura($value->tipo_cobertura); ?></td>

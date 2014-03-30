@@ -9,6 +9,7 @@ class calcular_primas{
     public $sexo;
     public $valor_INMA;
     public $porcentaje_INMA;
+    public $porcentaje_segmentacion;
     public $UT;
     public $tipo_carro;
     public $tipo_seguro;
@@ -27,7 +28,7 @@ class calcular_primas{
             
             case 1: 
                     //Suma asegurada * Tasa Cobertura     ///Prima Casco
-                
+                    $porcentaje_segmentacion=0;
                     $cobertura->prima=$suma_asegurada*($tasa/100);
                     //echo "TASA: ".$tasa." SUMA ASEGURADA: ".$suma_asegurada." PRIMA: ".$cobertura->prima."  ------- ";
                     $segmentacion=new segmentacion();
@@ -40,7 +41,7 @@ class calcular_primas{
                     foreach ($array_segmentacion as $item){
 
                         $cobertura->prima=$cobertura->prima+($cobertura->prima*$item->tasa/100);
-                        
+                        $porcentaje_segmentacion=$item->tasa;
                         break;
                     }
 
