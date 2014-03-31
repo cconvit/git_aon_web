@@ -35,6 +35,7 @@ class MySQLDatabase {
 
 	public function query($sql) {
 		$this->last_query = $sql;
+                $db_select = mysql_select_db(DB_NAME, $this->connection);
 		$result = mysql_query($sql, $this->connection);
 		$this->confirm_query($result);
 		return $result;
@@ -63,6 +64,7 @@ class MySQLDatabase {
   }
   
   public function insert_id() {
+      //$db_select = mysql_select_db(DB_NAME, $this->connection);
     // get the last id inserted over the current db connection
     return mysql_insert_id($this->connection);
   }

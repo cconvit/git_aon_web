@@ -620,7 +620,7 @@ function newCotizacion($nombre, $descripcion, $cliente, $flota, $tmp_name) {
         $result = $validar_carros->processFile($tmp_name, $cotizacion->id);
         $_SESSION["id_cotizacion"] = $cotizacion->id;
         if ($result) {
-            //echo "";
+            //echo $result;
             header('Location: ' . $_GET["target"]);
         } else {
             $cotizacion->delete();

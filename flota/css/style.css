@@ -905,7 +905,7 @@ a.access-title{
   text-align: center;
 }
 .text-error{
-  color:#E61E17 ;
+  color:#E61E17 !important;
 }
 .pull-left{
   float: left;
