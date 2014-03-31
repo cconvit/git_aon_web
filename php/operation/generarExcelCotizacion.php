@@ -66,8 +66,8 @@ class generarExcelCotizacion {
         $nombre = $cotizacion[0]->nombre . "_" . $cotizacion[0]->id . "_" . $convenio[0]->nombre;
         $nombre = str_replace(" ", "_", $nombre);
         $objWriter = new PHPExcel_Writer_Excel2007($objPHPExcel);
-        $objWriter->save("/Users/Admin/Sites/git_aon_web/flota/files/" . $nombre . ".xlsx");
-        //$objWriter->save("/Users/crivera/Sites/AON/git_aon_web/flota/files/" . $nombre . ".xlsx");
+        //$objWriter->save("/Users/Admin/Sites/git_aon_web/flota/files/" . $nombre . ".xlsx");
+        $objWriter->save("/Applications/XAMPP/xamppfiles/htdocs/git_aon_web/flota/files/" . $nombre . ".xlsx");
 
         $descarga_cotizacion = new descarga_cotizacion();
         $descarga_cotizacion->id_cotizacion = $cotizacion[0]->id;
