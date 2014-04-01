@@ -101,6 +101,7 @@ $cotizacion_carro->id_cotizacion = $_SESSION["id_cotizacion"];
                                                         <td><?php echo $value->car_version; ?></td>
                                                         <td><?php echo $value->car_ano; ?></td>
                                                         <td><?php echo $value->valor_INMA; ?></td>
+                                                        <td><?php echo $value->porcentaje_inma; ?></td>
                                                         <td><?php echo $validar->getTipoCarro($value->tipo_carro); ?></td>
                                                         <td><?php echo $value->car_ocupantes; ?></td>
                                                         <td><?php echo $validar->getCobertura($value->tipo_cobertura); ?></td>
@@ -155,6 +156,7 @@ $cotizacion_carro->id_cotizacion = $_SESSION["id_cotizacion"];
                                                         <td><?php echo $value->car_version; ?></td>
                                                         <td><?php echo $value->car_ano; ?></td>
                                                         <td><?php echo $value->valor_INMA; ?></td>
+                                                        <td><?php echo $value->porcentaje_inma; ?></td>
                                                         <td><?php echo $validar->getTipoCarro($value->tipo_carro); ?></td>
                                                         <td><?php echo $value->car_ocupantes; ?></td>
                                                         <td><?php echo $validar->getCobertura($value->tipo_cobertura); ?></td>
@@ -209,6 +211,7 @@ $cotizacion_carro->id_cotizacion = $_SESSION["id_cotizacion"];
                                                         <td><?php echo $value->car_version; ?></td>
                                                         <td><?php echo $value->car_ano; ?></td>
                                                         <td><?php echo $value->valor_INMA; ?></td>
+                                                        <td><?php echo $value->porcentaje_inma; ?></td>
                                                         <td><?php echo $validar->getTipoCarro($value->tipo_carro); ?></td>
                                                         <td><?php echo $value->car_ocupantes; ?></td>
                                                         <td><?php echo $validar->getCobertura($value->tipo_cobertura); ?></td>
