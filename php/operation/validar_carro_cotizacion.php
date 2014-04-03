@@ -9,11 +9,11 @@ class validar_carro_cotizacion {
     public function processFile($path, $id_cotizacion) {
 
         require_once '../entity/cotizacion.php';
-        
-        $cotizacion=new cotizacion();
-        $cotizacion->id=$id_cotizacion;
-        $cot=$cotizacion->find_by_id();
-        
+
+        $cotizacion = new cotizacion();
+        $cotizacion->id = $id_cotizacion;
+        $cot = $cotizacion->find_by_id();
+
         $objPHPExcel = PHPExcel_IOFactory::load($path);
 
         foreach ($objPHPExcel->getWorksheetIterator() as $worksheet) {
@@ -23,15 +23,15 @@ class validar_carro_cotizacion {
             $highestColumn = $worksheet->getHighestColumn(); // e.g 'F'
             $highestColumnIndex = PHPExcel_Cell::columnIndexFromString($highestColumn);
             $nrColumns = ord($highestColumn) - 64;
-            return $this->validarRegistros($worksheet, $nrColumns, $highestRow, $highestColumnIndex, $id_cotizacion,$cot[0]->id_flota);
+            return $this->validarRegistros($worksheet, $nrColumns, $highestRow, $highestColumnIndex, $id_cotizacion, $cot[0]->id_flota);
         }
     }
 
-    function validarRegistros($worksheet, $nrColumns, $highestRow, $highestColumnIndex, $id_cotizacion,$id_flota) {
+    function validarRegistros($worksheet, $nrColumns, $highestRow, $highestColumnIndex, $id_cotizacion, $id_flota) {
 
         require_once '../entity/inma.php';
         require_once '../entity/cotizacion_carro.php';
-                        
+
 
         $inma = new inma();
         $result = false;
@@ -65,7 +65,7 @@ class validar_carro_cotizacion {
                             $carro->asegurado = $val;
                             break;
                         case 2:
-                           // $reg_valido = $this->isValidType("s", $dataType);
+                            // $reg_valido = $this->isValidType("s", $dataType);
                             $carro->placa = $val;
                             break;
                         case 3:
@@ -81,9 +81,9 @@ class validar_carro_cotizacion {
                             $reg_valido = $this->isValidType("s", $dataType);
                             $carro->car_modelo = $val;
 
-                            if ($inma->isModelo($marca, $val)){
+                            if ($inma->isModelo($marca, $val)) {
                                 $carro->is_car_modelo = 1;
-                            }else{
+                            } else {
                                 $carro->is_car_modelo = 0;
                             }
                             break;
@@ -92,7 +92,7 @@ class validar_carro_cotizacion {
                             $carro->car_version = $val;
                             break;
                         case 6:
-                           // $reg_valido = $this->isValidType("n", $dataType);
+                            // $reg_valido = $this->isValidType("n", $dataType);
                             $carro->car_ano = $val;
                             break;
                         case 7:
@@ -126,7 +126,7 @@ class validar_carro_cotizacion {
                                 $carro->is_tipo_cobertura = 0;
                             break;
                         case 11:
-                          //  $reg_valido = $this->isValidType("n", $dataType);
+                            //  $reg_valido = $this->isValidType("n", $dataType);
                             $carro->edad = $val;
                             if ($reg_valido)
                                 $carro->is_edad = 1;
@@ -134,7 +134,7 @@ class validar_carro_cotizacion {
                                 $carro->is_edad = 0;
                             break;
                         case 12:
-                           // $reg_valido = $this->isValidType("s", $dataType);
+                            // $reg_valido = $this->isValidType("s", $dataType);
                             $carro->sexo = $this->isSexo($val);
                             if ($carro->sexo != 0)
                                 $carro->is_sexo = 1;
@@ -142,7 +142,7 @@ class validar_carro_cotizacion {
                                 $carro->is_sexo = 0;
                             break;
                         case 13:
-                           // $reg_valido = $this->isValidType("s", $dataType);
+                            // $reg_valido = $this->isValidType("s", $dataType);
                             $carro->estado_civil = $this->isEstadoCivil($val);
                             if ($carro->estado_civil != 0)
                                 $carro->is_estado_civil = 1;
@@ -150,7 +150,7 @@ class validar_carro_cotizacion {
                                 $carro->is_estado_civil = 0;
                             break;
                         case 14:
-                           // $reg_valido = $this->isValidType("s", $dataType);
+                            // $reg_valido = $this->isValidType("s", $dataType);
                             $carro->porcentaje_inma = $val;
                             if ($this->isPorcentajeInma($id_flota, $val))
                                 $carro->is_porcentaje_inma = 1;
@@ -160,11 +160,11 @@ class validar_carro_cotizacion {
                     }//End switch
                     //Verificamos si todos los datos estaban correctos
                 }//End for COL
-                
+
                 /*
-                 if ($carro->tipo_cobertura == 3)
-                      $carro->is_car_modelo = 1;
-                */
+                  if ($carro->tipo_cobertura == 3)
+                  $carro->is_car_modelo = 1;
+                 */
                 if ($carro->identificacion != "")
                     $carro->create();
             }//End for ROW
@@ -229,10 +229,10 @@ class validar_carro_cotizacion {
                 $carro->is_estado_civil = 1;
             else
                 $carro->is_estado_civil = 0;
-            
+
             //TODO Cambiar por validacion contra base de datos
             $carro->is_porcentaje_inma = 1;
-            
+
             if ($carro->update())
                 return true;
             else
@@ -290,22 +290,21 @@ class validar_carro_cotizacion {
             default : return "SOLTERO";
         }
     }
-    
-    public function isPorcentajeInma($flota,$inma) {
+
+    public function isPorcentajeInma($flota, $inma) {
 
         require_once '../entity/inma_flota.php';
-        
-        $inma_flota=new inma_flota();
-        $inma_flota->id_flota=$flota;
-        $inma_flota->inma=$inma;
-        
-       $results=$inma_flota->find_inma_flota_valid();
-        
-       if(sizeof($results)>0)
-           return true;
-       else
-           return false;
-           
+
+        $inma_flota = new inma_flota();
+        $inma_flota->id_flota = $flota;
+        $inma_flota->inma = $inma;
+
+        $results = $inma_flota->find_inma_flota_valid();
+
+        if (sizeof($results) > 0)
+            return true;
+        else
+            return false;
     }
 
     public function isValidEstadoCivil($estado_civil) {

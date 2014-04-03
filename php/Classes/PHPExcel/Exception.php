@@ -1,4 +1,5 @@
 <?php
+
 /**
  * PHPExcel
  *
@@ -25,7 +26,6 @@
  * @version    1.7.9, 2013-06-02
  */
 
-
 /**
  * PHPExcel_Exception
  *
@@ -34,6 +34,7 @@
  * @copyright  Copyright (c) 2006 - 2013 PHPExcel (http://www.codeplex.com/PHPExcel)
  */
 class PHPExcel_Exception extends Exception {
+
     /**
      * Error handler callback
      *
@@ -49,4 +50,5 @@ class PHPExcel_Exception extends Exception {
         $e->file = $file;
         throw $e;
     }
+
 }

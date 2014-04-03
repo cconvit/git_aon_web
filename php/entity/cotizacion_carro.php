@@ -6,8 +6,8 @@ class cotizacion_carro {
     protected static $db_fields = array('id', 'asegurado', 'identificacion', 'edad',
         'sexo', 'estado_civil', 'tipo_carro', 'car_marca', 'car_modelo', 'car_ano',
         'car_version', 'placa', 'car_ocupantes', 'tipo_cobertura', 'id_cotizacion',
-        'valor_INMA','porcentaje_inma', 'is_car_marca', 'is_car_modelo', 'is_car_ocupantes', 'is_edad',
-        'is_sexo', 'is_estado_civil', 'is_tipo_carros', 'is_tipo_cobertura','is_porcentaje_inma', 'cr_time',
+        'valor_INMA', 'porcentaje_inma', 'is_car_marca', 'is_car_modelo', 'is_car_ocupantes', 'is_edad',
+        'is_sexo', 'is_estado_civil', 'is_tipo_carros', 'is_tipo_cobertura', 'is_porcentaje_inma', 'cr_time',
         'ut_time');
     public $id;
     public $asegurado;
@@ -43,25 +43,25 @@ class cotizacion_carro {
     }
 
     // Common Database Methods
-    public  function find_by_id_cotizacion() {
-        
+    public function find_by_id_cotizacion() {
+
         global $database;
-        
-        return self::find_by_sql("SELECT * FROM " . self::$table_name. " WHERE `id_cotizacion`='{$database->escape_value($this->id_cotizacion)}'");
+
+        return self::find_by_sql("SELECT * FROM " . self::$table_name . " WHERE `id_cotizacion`='{$database->escape_value($this->id_cotizacion)}'");
     }
-    
-    public  function find_by_id_cotizacion_carro() {
-        
+
+    public function find_by_id_cotizacion_carro() {
+
         global $database;
-        
-        return self::find_by_sql("SELECT * FROM " . self::$table_name. " WHERE `id`='{$database->escape_value($this->id)}'");
+
+        return self::find_by_sql("SELECT * FROM " . self::$table_name . " WHERE `id`='{$database->escape_value($this->id)}'");
     }
 
     // Common Database Methods
-    public  function find_by_id_cotizacion_error() {
-        
+    public function find_by_id_cotizacion_error() {
+
         global $database;
-        
+
         return self::find_by_sql("SELECT * FROM `tbl_cotizacion_carros` 
                                   WHERE (`is_car_marca`=0 
                                   OR `is_car_modelo`=0 
@@ -71,12 +71,12 @@ class cotizacion_carro {
                                   OR `is_porcentaje_inma`=0) 
                                   AND `id_cotizacion`='{$database->escape_value($this->id_cotizacion)}'");
     }
-    
+
     // Common Database Methods
-    public  function find_by_id_cotizacion_success() {
-        
+    public function find_by_id_cotizacion_success() {
+
         global $database;
-        
+
         return self::find_by_sql("SELECT * FROM `tbl_cotizacion_carros`  
                                   WHERE `is_car_marca`=1 
                                   AND `is_car_modelo`=1
@@ -86,16 +86,15 @@ class cotizacion_carro {
                                   AND `is_porcentaje_inma`=1
                                   AND `id_cotizacion`='{$database->escape_value($this->id_cotizacion)}'");
     }
-    
+
     public static function find_by_sql($sql = "") {
 
         global $database;
         $result_set = $database->query($sql);
         $object_array = array();
         while ($row = $database->fetch_array($result_set)) {
-           
+
             $object_array[] = self::instantiate($row);
-           
         }
         return $object_array;
     }
@@ -144,11 +143,11 @@ class cotizacion_carro {
         }
     }
 
-    public  function update() {
-        
+    public function update() {
+
         global $database;
-        
-        $qry="UPDATE ". self::$table_name." SET 
+
+        $qry = "UPDATE " . self::$table_name . " SET 
                                     edad='{$database->escape_value($this->edad)}',
                                     sexo='{$database->escape_value($this->sexo)}',
                                     estado_civil='{$database->escape_value($this->estado_civil)}',
@@ -172,31 +171,31 @@ class cotizacion_carro {
                                     is_porcentaje_inma='{$database->escape_value($this->is_porcentaje_inma)}'
                                   WHERE id='{$database->escape_value($this->id)}'
 ";
-                       
-       if ($database->query($qry)) {
-            
+
+        if ($database->query($qry)) {
+
             return true;
         } else {
             return false;
         }
     }
-    
-      public function delete() {
 
-    global $database;
+    public function delete() {
 
-    $sql = "DELETE FROM " . self::$table_name . " WHERE id='{$database->escape_value($this->id)}'";
+        global $database;
 
-    if ($database->query($sql)) {
-      if (mysql_affected_rows() != 0)
-        return true;
-      else
-        return false;
-    } else {
-      return false;
+        $sql = "DELETE FROM " . self::$table_name . " WHERE id='{$database->escape_value($this->id)}'";
+
+        if ($database->query($sql)) {
+            if (mysql_affected_rows() != 0)
+                return true;
+            else
+                return false;
+        } else {
+            return false;
+        }
     }
-  }
-  
+
     ///////////////////////////METODOS ESTANDAR//////////////////////////////////
 
     private static function instantiate($record) {

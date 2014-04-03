@@ -20,222 +20,222 @@ $msg_desc = "";
 $msg_type = "succesfull";
 
 if (isset($_SESSION['msg'])) {
-  if ($_SESSION['msg'] == "show") {
-    $msg = "show";
-    $msg_desc = $_SESSION['msg_desc'];
-    $msg_type = $_SESSION['msg_type'];
-  }
+    if ($_SESSION['msg'] == "show") {
+        $msg = "show";
+        $msg_desc = $_SESSION['msg_desc'];
+        $msg_type = $_SESSION['msg_type'];
+    }
 }
 ?>
 <!DOCTYPE html>
 <html>
-  <head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<title>Aon - Crear flota</title>
-		<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
-		<link href="../plugins/css/jquery-ui-1.10.4.custom.min.css" rel="stylesheet" type="text/css">
-		<link href="../plugins/css/normalize.css" rel="stylesheet" type="text/css">
-		<link href="css/style.css" rel="stylesheet" type="text/css">
-  </head>
-  <body>
-    <div id="load">
-      <form id="add-cooverage" method="post" action="../php/operation/administration.php?operation_type=13&target=../../flota/cargar-condiciones.php" onsubmit="return checksSelected($(this))">
-        <table align="center" width="360">
-          <tbody>
-            <tr>
-              <td>Cobertura</td>
-            </tr>
-            <tr>
-              <td><select name="cobertura" class="common-input common-select">
-                  <?php
-                  if (sizeof($coberturas) > 0) {
-                    foreach ($coberturas as $value) {
-                      ?>
-                      <option value="<?php echo $value->id; ?>"><?php echo $value->desc_cobertura; ?></option>
-                      <?php
-                    }
-                  }
-                  ?>                 
-                </select>
-              </td>
-            </tr>
-            <tr>
-              <td>Tipo de Cálculo</td>
-            </tr>
-            <tr>
-              <td><select name="calculo" class="common-input common-select">
-                  <?php
-                  if (sizeof($calculos) > 0) {
-                    foreach ($calculos as $value) {
-                      ?>
-                      <option value="<?php echo $value->id; ?>"><?php echo utf8_encode($value->descripcion); ?></option>
-                      <?php
-                    }
-                  }
-                  ?>
-                </select>
-              </td>
-            </tr>
-            <tr>
-              <td>Tasa</td>
-            </tr>
-            <tr>
-              <td><input type="text" name="tasa" class="common-input"></td>
-            </tr>     
-            <tr>
-              <td>
-                <table>
-                  <tr>
-                    <td><div class="common-value">Lte. Particular</div></td>
-                    <td><div class="common-value text-center">Lte. Rustico</div></td>
-                    <td><div class="common-value text-center">Lte. Pickup/Van</div></td>
-                  </tr>
-                  <tr>
-                    <td><input type="text" name="limite_particular" class="common-input common-value is-required" style="margin-right: 10px;" value=""></td>
-                    <td><input type="text" name="limite_rustico" class="common-input common-value is-required" style="margin-right: 10px;" value=""></td>
-                    <td><input type="text" name="limite_pickup" class="common-input common-value is-required" value=""></td>
-                  </tr>                  
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Aon - Crear flota</title>
+        <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+        <link href="../plugins/css/jquery-ui-1.10.4.custom.min.css" rel="stylesheet" type="text/css">
+        <link href="../plugins/css/normalize.css" rel="stylesheet" type="text/css">
+        <link href="css/style.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+        <div id="load">
+            <form id="add-cooverage" method="post" action="../php/operation/administration.php?operation_type=13&target=../../flota/cargar-condiciones.php" onsubmit="return checksSelected($(this))">
+                <table align="center" width="360">
+                    <tbody>
+                        <tr>
+                            <td>Cobertura</td>
+                        </tr>
+                        <tr>
+                            <td><select name="cobertura" class="common-input common-select">
+                                    <?php
+                                    if (sizeof($coberturas) > 0) {
+                                        foreach ($coberturas as $value) {
+                                            ?>
+                                            <option value="<?php echo $value->id; ?>"><?php echo $value->desc_cobertura; ?></option>
+                                            <?php
+                                        }
+                                    }
+                                    ?>                 
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Tipo de Cálculo</td>
+                        </tr>
+                        <tr>
+                            <td><select name="calculo" class="common-input common-select">
+                                    <?php
+                                    if (sizeof($calculos) > 0) {
+                                        foreach ($calculos as $value) {
+                                            ?>
+                                            <option value="<?php echo $value->id; ?>"><?php echo utf8_encode($value->descripcion); ?></option>
+                                            <?php
+                                        }
+                                    }
+                                    ?>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Tasa</td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" name="tasa" class="common-input"></td>
+                        </tr>     
+                        <tr>
+                            <td>
+                                <table>
+                                    <tr>
+                                        <td><div class="common-value">Lte. Particular</div></td>
+                                        <td><div class="common-value text-center">Lte. Rustico</div></td>
+                                        <td><div class="common-value text-center">Lte. Pickup/Van</div></td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="text" name="limite_particular" class="common-input common-value is-required" style="margin-right: 10px;" value=""></td>
+                                        <td><input type="text" name="limite_rustico" class="common-input common-value is-required" style="margin-right: 10px;" value=""></td>
+                                        <td><input type="text" name="limite_pickup" class="common-input common-value is-required" value=""></td>
+                                    </tr>                  
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <table>
+                                    <tr>
+                                        <td><div class="common-value">Val. Particular</div></td>
+                                        <td><div class="common-value text-center">Val. Rustico</div></td>
+                                        <td><div class="common-value text-center">Val. Pickup/Van</div></td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="text" name="valor_particular" class="common-input common-value is-required" style="margin-right: 10px;" value=""></td>
+                                        <td><input type="text" name="valor_rustico" class="common-input common-value is-required" style="margin-right: 10px;" value=""></td>
+                                        <td><input type="text" name="valor_pickup" class="common-input common-value is-required" value=""></td>
+                                    </tr>                  
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding-top: 12px;">Asociar a las siguientes coberturas:</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <ul id="check-list" style="margin-top: 7px;">
+                                    <li>
+                                        <input type="checkbox" name="cobertura_amplia" value="true">
+                                        <label form="cobertura_amplia">Cobertura amplia</label></li>
+                                    <li>
+                                        <input type="checkbox" name="perdida_total" value="true">
+                                        <label form="perdida_total">Pérdida total</label></li>
+                                    <li>
+                                        <input type="checkbox" name="rcv" value="true">
+                                        <label form="rcv">RCV</label>
+                                    </li>               
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding-top: 10px; padding-bottom: 10px">Aplica en las siguientes condiciones:</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox" name="incluida" value="true">
+                                <label form="rcv">Incluida sin costo</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding-top: 10px;"><div class="required hide">Uno o más campos son inválidos.</div></td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td>
+                                <div class="buttons-panel">
+                                    <input type="submit" class="img-common common-button" value="Guardar">
+                                    <input type="button" class="img-common common-button" value="Salir" onclick="$('#load').dialog('close');">
+                                </div>
+                            </td>
+                        </tr>
+                    </tfoot>
                 </table>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <table>
-                  <tr>
-                    <td><div class="common-value">Val. Particular</div></td>
-                    <td><div class="common-value text-center">Val. Rustico</div></td>
-                    <td><div class="common-value text-center">Val. Pickup/Van</div></td>
-                  </tr>
-                  <tr>
-                    <td><input type="text" name="valor_particular" class="common-input common-value is-required" style="margin-right: 10px;" value=""></td>
-                    <td><input type="text" name="valor_rustico" class="common-input common-value is-required" style="margin-right: 10px;" value=""></td>
-                    <td><input type="text" name="valor_pickup" class="common-input common-value is-required" value=""></td>
-                  </tr>                  
-                </table>
-              </td>
-            </tr>
-            <tr>
-              <td style="padding-top: 12px;">Asociar a las siguientes coberturas:</td>
-            </tr>
-            <tr>
-              <td>
-                <ul id="check-list" style="margin-top: 7px;">
-                  <li>
-                    <input type="checkbox" name="cobertura_amplia" value="true">
-                    <label form="cobertura_amplia">Cobertura amplia</label></li>
-                  <li>
-                    <input type="checkbox" name="perdida_total" value="true">
-                    <label form="perdida_total">Pérdida total</label></li>
-                  <li>
-                    <input type="checkbox" name="rcv" value="true">
-                    <label form="rcv">RCV</label>
-                  </li>               
-                </ul>
-              </td>
-            </tr>
-            <tr>
-              <td style="padding-top: 10px; padding-bottom: 10px">Aplica en las siguientes condiciones:</td>
-            </tr>
-            <tr>
-              <td>
-                <input type="checkbox" name="incluida" value="true">
-                <label form="rcv">Incluida sin costo</label>
-              </td>
-            </tr>
-            <tr>
-              <td style="padding-top: 10px;"><div class="required hide">Uno o más campos son inválidos.</div></td>
-            </tr>
-          </tbody>
-          <tfoot>
-            <tr>
-              <td>
-                <div class="buttons-panel">
-                  <input type="submit" class="img-common common-button" value="Guardar">
-                  <input type="button" class="img-common common-button" value="Salir" onclick="$('#load').dialog('close');">
+            </form>
+        </div>
+        <div id="container">
+            <div id="header">
+                <a href="index.php"><img id="logo" src="img/logo.png"></a>
+                <div id="top-nav"></div>
+            </div>
+            <div id="content">
+                <div class="message <?php echo $msg . " " . $msg_type; ?>"><?php echo $msg_desc; ?></div>
+                <div id="left-nav">
+                    <ul>
+                        <li><a href="clientes.php">Clientes</a></li>
+                        <li><a href="seguros.php">Seguros</a></li>
+                        <li><a href="coberturas.php">Coberturas</a></li>
+                        <li class="current"><a href="convenios.php">Convenios</a></li>
+                        <li><a href="flotas.php">Flotas</a></li>
+                        <li style="border: none;"><a href="cotizaciones.php">Cotizaciones</a></li>
+                    </ul>
                 </div>
-              </td>
-            </tr>
-          </tfoot>
-        </table>
-      </form>
-    </div>
-    <div id="container">
-      <div id="header">
-        <a href="index.php"><img id="logo" src="img/logo.png"></a>
-        <div id="top-nav"></div>
-      </div>
-      <div id="content">
-        <div class="message <?php echo $msg . " " . $msg_type; ?>"><?php echo $msg_desc; ?></div>
-        <div id="left-nav">
-          <ul>
-            <li><a href="clientes.php">Clientes</a></li>
-            <li><a href="seguros.php">Seguros</a></li>
-            <li><a href="coberturas.php">Coberturas</a></li>
-            <li class="current"><a href="convenios.php">Convenios</a></li>
-            <li><a href="flotas.php">Flotas</a></li>
-            <li style="border: none;"><a href="cotizaciones.php">Cotizaciones</a></li>
-          </ul>
-        </div>
-        <div id="main">
-          <div id="main-detail">
-            <div id="nav-operations">
-              <span class="title">Condiciones de negocio</span>
-              <input type="button" class="img-common add-button" value="Añadir condición" onclick="$('#load').dialog('open');">
+                <div id="main">
+                    <div id="main-detail">
+                        <div id="nav-operations">
+                            <span class="title">Condiciones de negocio</span>
+                            <input type="button" class="img-common add-button" value="Añadir condición" onclick="$('#load').dialog('open');">
+                        </div>
+                        <div id="scroll">
+                            <table class="tbl-details" cellspacing="0" borderspacing="0">
+                                <tbody>
+                                    <?php
+                                    if (sizeof($condiciones) > 0) {
+                                        foreach ($condiciones as $value) {
+                                            ?>
+                                            <tr>
+                                                <td>
+                                                    <div class='item'>
+                                                        <p><span class="img-common check icon-check"></span><span class="item-title"><?php echo $value->descripcion; ?></span></p>
+                                                        <p class="separator"></p>
+                                                        <div class="info-down">
+                                                            <div class="options">
+                                                                <form method="post" action="../php/operation/administration.php?operation_type=15&target=../../flota/cargar-condiciones.php" onsubmit="return formOperation()">
+                                                                    <p>
+                                                                        <input type="button" class="img-common icon-operation icon-modified" data="<?php echo $value->id_cob_as; ?>" onclick="Utils.loadDialog('load/loadCondition.php', $(this), $('#modify'));">
+                                                                        <input type="submit" class="img-common icon-operation icon-delete" value="" data="<?php echo $value->id_cob_as; ?>">
+                                                                        <input type="hidden" name="id" value="<?php echo $value->id_cob_as; ?>">
+                                                                    </p>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>            
+                                                </td>
+                                            </tr>     
+                                            <?php
+                                        }
+                                    }
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div id="footer">
+                    <div id="nav-step">
+                        <ul>
+                            <li><input type="button" class="img-common icon-step icon-exit" value="Salir" onclick="Wizard.exit('convenios.php');"></li>
+                            <li><a><?php echo $_SESSION['cargar_datos'] == 1 ? "Crear" : "Modificar"; ?> convenio</a></li>
+                            <li><span class="img-common arrow"></span></li>                      
+                            <li><a href="cargar-datos.php">Importar datos</a></li>
+                            <li><span class="img-common arrow"></span></li>               
+                            <li><a class="current-step" href="cargar-condiciones.php">Condiciones de negocio</a></li>
+                            <li><input type="button" class="img-common icon-step icon-end" value="Finalizar" onclick="Wizard.exit('convenios.php')"></li>            
+                        </ul>
+                    </div>
+                </div>
             </div>
-            <div id="scroll">
-              <table class="tbl-details" cellspacing="0" borderspacing="0">
-                <tbody>
-                  <?php
-                  if (sizeof($condiciones) > 0) {
-                    foreach ($condiciones as $value) {
-                      ?>
-                      <tr>
-                        <td>
-                          <div class='item'>
-                            <p><span class="img-common check icon-check"></span><span class="item-title"><?php echo $value->descripcion; ?></span></p>
-                            <p class="separator"></p>
-                            <div class="info-down">
-                              <div class="options">
-                                <form method="post" action="../php/operation/administration.php?operation_type=15&target=../../flota/cargar-condiciones.php" onsubmit="return formOperation()">
-                                  <p>
-                                    <input type="button" class="img-common icon-operation icon-modified" data="<?php echo $value->id_cob_as; ?>" onclick="Utils.loadDialog('load/loadCondition.php', $(this), $('#modify'));">
-                                    <input type="submit" class="img-common icon-operation icon-delete" value="" data="<?php echo $value->id_cob_as; ?>">
-                                    <input type="hidden" name="id" value="<?php echo $value->id_cob_as; ?>">
-                                  </p>
-                                </form>
-                              </div>
-                            </div>
-                          </div>            
-                        </td>
-                      </tr>     
-                      <?php
-                    }
-                  }
-                  ?>
-                </tbody>
-              </table>
-            </div>
-          </div>
         </div>
-        <div id="footer">
-          <div id="nav-step">
-            <ul>
-              <li><input type="button" class="img-common icon-step icon-exit" value="Salir" onclick="Wizard.exit('convenios.php');"></li>
-              <li><a><?php echo $_SESSION['cargar_datos'] == 1 ? "Crear" : "Modificar"; ?> convenio</a></li>
-              <li><span class="img-common arrow"></span></li>                      
-              <li><a href="cargar-datos.php">Importar datos</a></li>
-              <li><span class="img-common arrow"></span></li>               
-              <li><a class="current-step" href="cargar-condiciones.php">Condiciones de negocio</a></li>
-              <li><input type="button" class="img-common icon-step icon-end" value="Finalizar" onclick="Wizard.exit('convenios.php')"></li>            
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div id="modify" class="dialog"></div>    <script src="../plugins/js/jquery-1.10.2.min.js"></script>  
-    <script src="../plugins/js/jquery-ui-1.10.4.custom.min.js"></script>
-    <script src="js/main.js"></script>
-  </body>
+        <div id="modify" class="dialog"></div>    <script src="../plugins/js/jquery-1.10.2.min.js"></script>  
+        <script src="../plugins/js/jquery-ui-1.10.4.custom.min.js"></script>
+        <script src="js/main.js"></script>
+    </body>
 </html>
 <?php
 $_SESSION['msg'] = "hide";

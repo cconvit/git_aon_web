@@ -1,4 +1,5 @@
 <?php
+
 /**
  * PHPExcel
  *
@@ -23,7 +24,6 @@
  * @version    1.7.9, 2013-06-02
  */
 
-
 /**
  * PHPExcel_IComparable
  *
@@ -31,13 +31,12 @@
  * @package    PHPExcel
  * @copyright  Copyright (c) 2006 - 2013 PHPExcel (http://www.codeplex.com/PHPExcel)
  */
-interface PHPExcel_IComparable
-{
-	/**
-	 * Get hash code
-	 *
-	 * @return string	Hash code
-	 */
-	public function getHashCode();
+interface PHPExcel_IComparable {
 
+    /**
+     * Get hash code
+     *
+     * @return string	Hash code
+     */
+    public function getHashCode();
 }
