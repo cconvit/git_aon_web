@@ -137,11 +137,12 @@ if (isset($_REQUEST["id"])) {
                                                 <td>
                                                     <ul id="inma-percent" class="vehicle-suggestion-list" role="inma-percent" data="selected">
                                                         <?php
-                                                        if($carro->is_porcentaje_inma == 0)echo '<li><span class="icon-mini icon-clear img-common icon-error"></span>NO ENCONTRADO</li>';
+                                                        if ($carro->is_porcentaje_inma == 0)
+                                                            echo '<li><span class="icon-mini icon-clear img-common icon-error"></span>NO ENCONTRADO</li>';
                                                         foreach ($inmas as $value) {
-                                                            $role=($value->inma == $carro->porcentaje_inma) ? " role='selected' ":"";
-                                                            $role_css=($value->inma == $carro->porcentaje_inma) ? " img-common icon-selected":"";
-                                                            echo '<li data="' . $value->inma . '" '.$role.'><span class="icon-mini icon-clear'.$role_css.'"></span>' . $value->inma . '</li>';
+                                                            $role = ($value->inma == $carro->porcentaje_inma) ? " role='selected' " : "";
+                                                            $role_css = ($value->inma == $carro->porcentaje_inma) ? " img-common icon-selected" : "";
+                                                            echo '<li data="' . $value->inma . '" ' . $role . '><span class="icon-mini icon-clear' . $role_css . '"></span>' . $value->inma . '</li>';
                                                         }
                                                         ?>
                                                     </ul>

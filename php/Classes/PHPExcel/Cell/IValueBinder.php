@@ -1,4 +1,5 @@
 <?php
+
 /**
  * PHPExcel
  *
@@ -25,7 +26,6 @@
  * @version    1.7.9, 2013-06-02
  */
 
-
 /**
  * PHPExcel_Cell_IValueBinder
  *
@@ -33,8 +33,8 @@
  * @package    PHPExcel_Cell
  * @copyright  Copyright (c) 2006 - 2013 PHPExcel (http://www.codeplex.com/PHPExcel)
  */
-interface PHPExcel_Cell_IValueBinder
-{
+interface PHPExcel_Cell_IValueBinder {
+
     /**
      * Bind value to a cell
      *

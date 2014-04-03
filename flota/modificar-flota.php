@@ -83,9 +83,10 @@ if (isset($_REQUEST['id'])) {
                                                 <td>Fecha de inicio</td>
                                             <tr>
                                                 <td>
-                                                    <input id="fecha-inicio" type="text" name="fecha-inicio" value="<?php $dt_inicio = DateTime::createFromFormat("Y-m-d", $aux[0]->validez_inicio);
-echo $dt_inicio->format("d/m/Y");
-?>" class="common-input input-date datepicker is-required">
+                                                    <input id="fecha-inicio" type="text" name="fecha-inicio" value="<?php
+                                                    $dt_inicio = DateTime::createFromFormat("Y-m-d", $aux[0]->validez_inicio);
+                                                    echo $dt_inicio->format("d/m/Y");
+                                                    ?>" class="common-input input-date datepicker is-required">
                                                     <span class="icon-calendar" style="margin-right: 10px"></span>
                                                 </td>
                                             </tr>
@@ -94,9 +95,10 @@ echo $dt_inicio->format("d/m/Y");
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    <input id="fecha-fin" type="text" name="fecha-fin" value="<?php $dt_fin = DateTime::createFromFormat("Y-m-d", $aux[0]->validez_fin);
-                                                           echo $dt_fin->format("d/m/Y");
-?>"  class="common-input input-date datepicker is-required">
+                                                    <input id="fecha-fin" type="text" name="fecha-fin" value="<?php
+                                                    $dt_fin = DateTime::createFromFormat("Y-m-d", $aux[0]->validez_fin);
+                                                    echo $dt_fin->format("d/m/Y");
+                                                    ?>"  class="common-input input-date datepicker is-required">
                                                     <span class="icon-calendar" style="margin-right: 10px"></span>
                                                 </td>
                                             </tr>										
@@ -155,29 +157,29 @@ echo $dt_inicio->format("d/m/Y");
                                                             $check = (sizeof($result) > 0) ? " checked" : "";
                                                             ?>
                                                             <input type="checkbox" name="inma[]" value="30"<?php echo $check; ?>><label>30</label>
-<?php
-$inma_flota->inma = "35";
-$result = $inma_flota->find_inma_flota_valid();
-$check = (sizeof($result) > 0) ? " checked" : "";
-?>
+                                                            <?php
+                                                            $inma_flota->inma = "35";
+                                                            $result = $inma_flota->find_inma_flota_valid();
+                                                            $check = (sizeof($result) > 0) ? " checked" : "";
+                                                            ?>
                                                             <input type="checkbox" name="inma[]" value="35"<?php echo $check; ?>><label>35</label>
-<?php
-$inma_flota->inma = "40";
-$result = $inma_flota->find_inma_flota_valid();
-$check = (sizeof($result) > 0) ? " checked" : "";
-?>
+                                                            <?php
+                                                            $inma_flota->inma = "40";
+                                                            $result = $inma_flota->find_inma_flota_valid();
+                                                            $check = (sizeof($result) > 0) ? " checked" : "";
+                                                            ?>
                                                             <input type="checkbox" name="inma[]" value="40"<?php echo $check; ?>><label>40</label>
-<?php
-$inma_flota->inma = "45";
-$result = $inma_flota->find_inma_flota_valid();
-$check = (sizeof($result) > 0) ? " checked" : "";
-?>
+                                                            <?php
+                                                            $inma_flota->inma = "45";
+                                                            $result = $inma_flota->find_inma_flota_valid();
+                                                            $check = (sizeof($result) > 0) ? " checked" : "";
+                                                            ?>
                                                             <input type="checkbox" name="inma[]" value="45"<?php echo $check; ?>><label>45</label>
-<?php
-$inma_flota->inma = "50";
-$result = $inma_flota->find_inma_flota_valid();
-$check = (sizeof($result) > 0) ? " checked" : "";
-?>
+                                                            <?php
+                                                            $inma_flota->inma = "50";
+                                                            $result = $inma_flota->find_inma_flota_valid();
+                                                            $check = (sizeof($result) > 0) ? " checked" : "";
+                                                            ?>
                                                             <input type="checkbox" name="inma[]" value="50"<?php echo $check; ?>><label>50</label>
                                                         </div>
                                                     </div>

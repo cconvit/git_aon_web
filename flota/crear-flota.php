@@ -164,18 +164,18 @@ if (isset($_SESSION['msg'])) {
         <script src="../plugins/js/jquery-ui-1.10.4.custom.min.js"></script>
         <script src="js/main.js"></script>
         <script>
-                                                                    $("#fecha-inicio").datepicker({
-                                                                        onSelect: function(selected) {
-                                                                            dateFormat: "dd/mm/yy",
-                                                                                    $("#fecha-fin").datepicker("option", "minDate", selected)
-                                                                        }
-                                                                    });
-                                                                    $("#fecha-fin").datepicker({
-                                                                        dateFormat: "dd/mm/yy",
-                                                                        onSelect: function(selected) {
-                                                                            $("#fecha-inicio").datepicker("option", "maxDate", selected)
-                                                                        }
-                                                                    });
+                                        $("#fecha-inicio").datepicker({
+                                            onSelect: function(selected) {
+                                                dateFormat: "dd/mm/yy",
+                                                        $("#fecha-fin").datepicker("option", "minDate", selected)
+                                            }
+                                        });
+                                        $("#fecha-fin").datepicker({
+                                            dateFormat: "dd/mm/yy",
+                                            onSelect: function(selected) {
+                                                $("#fecha-inicio").datepicker("option", "maxDate", selected)
+                                            }
+                                        });
         </script>
     </body>
 

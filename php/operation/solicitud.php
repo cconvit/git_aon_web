@@ -2,54 +2,54 @@
 
 class solicitud {
 
-  public $cotizacion;
-  public $res_clasificacion;
-  public $re_aseguradora_cotizacion;
-  public $flota;
-  public $parametros;
+    public $cotizacion;
+    public $res_clasificacion;
+    public $re_aseguradora_cotizacion;
+    public $flota;
+    public $parametros;
 
-  public function solicitud() {
-    
-  }
-
-  public function calcular_primas($aseguradoras,$porcentaje_inma) {
-
-    //Creamos el objeto para calcular las primas y seteamos campos requeridos para los calculos
-    $calcular_primas = new calcular_primas();
-    $calcular_primas->ano = $this->cotizacion->car_ano;
-    $calcular_primas->ocupantes = $this->cotizacion->car_ocupantes;
-    $calcular_primas->edad = $this->cotizacion->edad;
-    $calcular_primas->estado_civil = $this->cotizacion->estado_civil;
-    $calcular_primas->sexo = $this->cotizacion->sexo;
-    $calcular_primas->valor_INMA = $this->cotizacion->valor_INMA;
-    $calcular_primas->porcentaje_INMA = $porcentaje_inma;
-    $calcular_primas->UT = $this->parametros[0]->valor; //Cambiar este valor
-    $calcular_primas->tipo_seguro = $this->cotizacion->tipo_cobertura;
-
-
-    $this->re_aseguradora_cotizacion = array();
-
-    foreach ($aseguradoras as $item) {
-
-
-      for ($x = 0; $x < sizeof($this->res_clasificacion); $x++) {
-
-
-        if ($this->res_clasificacion[$x]->id_aseguradora == $item) {
-
-
-          foreach ($this->res_clasificacion[$x]->coberturas as $cobertura) {
-
-            $tasa = $this->res_clasificacion[$x]->tasa;
-            $ano = $this->res_clasificacion[$x]->ano;
-
-            $calcular_primas->get_prima($cobertura, $tasa);
-          }
-          array_push($this->re_aseguradora_cotizacion, $this->res_clasificacion[$x]);
-        }
-      }
+    public function solicitud() {
+        
     }
-  }
+
+    public function calcular_primas($aseguradoras, $porcentaje_inma) {
+
+        //Creamos el objeto para calcular las primas y seteamos campos requeridos para los calculos
+        $calcular_primas = new calcular_primas();
+        $calcular_primas->ano = $this->cotizacion->car_ano;
+        $calcular_primas->ocupantes = $this->cotizacion->car_ocupantes;
+        $calcular_primas->edad = $this->cotizacion->edad;
+        $calcular_primas->estado_civil = $this->cotizacion->estado_civil;
+        $calcular_primas->sexo = $this->cotizacion->sexo;
+        $calcular_primas->valor_INMA = $this->cotizacion->valor_INMA;
+        $calcular_primas->porcentaje_INMA = $porcentaje_inma;
+        $calcular_primas->UT = $this->parametros[0]->valor; //Cambiar este valor
+        $calcular_primas->tipo_seguro = $this->cotizacion->tipo_cobertura;
+
+
+        $this->re_aseguradora_cotizacion = array();
+
+        foreach ($aseguradoras as $item) {
+
+
+            for ($x = 0; $x < sizeof($this->res_clasificacion); $x++) {
+
+
+                if ($this->res_clasificacion[$x]->id_aseguradora == $item) {
+
+
+                    foreach ($this->res_clasificacion[$x]->coberturas as $cobertura) {
+
+                        $tasa = $this->res_clasificacion[$x]->tasa;
+                        $ano = $this->res_clasificacion[$x]->ano;
+
+                        $calcular_primas->get_prima($cobertura, $tasa);
+                    }
+                    array_push($this->re_aseguradora_cotizacion, $this->res_clasificacion[$x]);
+                }
+            }
+        }
+    }
 
 }
 
