@@ -88,14 +88,19 @@ var Utils = {
 			span: selected.find("span")
 		};
 	},
-	setSuggestionList: function (item) {},
 	init: function () {
 		this.initDialogs(400);
 	}
 };
 
 var Wizard = {
-	create: function (form) {
+	valid: function (form) {
+		console.log("valid")
+		if (isValidateSubmit(form)) {
+			form.trigger("submit");
+		}
+	},
+	checks: function (form) {
 		if (existCheckeds(form)) {
 			if (isValidateSubmit(form)) {
 				form.trigger("submit");
@@ -172,8 +177,11 @@ $(function (e) {
 		var role = $(this).attr("role"),
 			form = $("body").find("form");
 		switch (role) {
-		case "create":
-			wizard.create(form);
+		case "valid":
+			wizard.valid(form);
+			break;
+		case "checks":
+			wizard.checks(form);
 			break;
 		case "fleet":
 			wizard.fleet(form);
