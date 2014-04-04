@@ -273,6 +273,34 @@ $(function(e) {
         }
         return false;
     });
+
+    // show view dialog prompt
+    var id_convenio = $("body").find("input[id='id-convenio']").val();
+    $(".icon-view").on("click", function(e) {
+        var id = $(this).data("table");
+        switch (id) {
+            case 1:
+                Utils.loadDialog("views/viewAmplia.php?id=" + id_convenio, $(this), $("#view"));
+                break;
+            case 2:
+                Utils.loadDialog("views/viewTotal.php?id=" + id_convenio, $(this), $("#view"));
+                break;
+            case 3:
+                console.log("dialog")
+                Utils.loadDialog("views/viewClasificacion.php?id=" + id_convenio, $(this), $("#view"));
+                break;
+            case 4:
+                Utils.loadDialog("views/viewMontoAsegurado.php?id=" + id_convenio, $(this), $("#view"));
+                break;
+            case 5:
+                Utils.loadDialog("views/viewSegmentacion.php?id=" + id_convenio, $(this), $("#view"));
+                break;
+            case 6:
+                Utils.loadDialog("views/viewAsistenciaVial.php?id=" + id_convenio, $(this), $("#view"));
+                break;
+        }
+        Utils.initDialogs(510);
+    });
 });
 
 // generics functions 
