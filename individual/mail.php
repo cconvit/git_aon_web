@@ -1,1 +1,0 @@
-<?phpmail('riverarcarlosm@gmail.com', 'Test', 'This is an email', "From: Me <riverarcarlosm@gmail.com>rn");?>
