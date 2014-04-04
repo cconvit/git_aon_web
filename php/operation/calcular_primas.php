@@ -27,7 +27,9 @@ class calcular_primas {
             case 1:
                 //Suma asegurada * Tasa Cobertura     ///Prima Casco
                 $porcentaje_segmentacion = 0;
-                $cobertura->prima = $suma_asegurada * ($tasa / 100);
+                $tasa_bruta=$tasa;
+                $tasa_neta=0;
+                
                 //echo "TASA: ".$tasa." SUMA ASEGURADA: ".$suma_asegurada." PRIMA: ".$cobertura->prima."  ------- ";
                 $segmentacion = new segmentacion();
                 $segmentacion->id_convenio_as = $cobertura->id_convenio_as;
@@ -38,12 +40,15 @@ class calcular_primas {
 
                 foreach ($array_segmentacion as $item) {
 
-                    $cobertura->prima = $cobertura->prima + ($cobertura->prima * $item->tasa / 100);
+                    //$cobertura->prima = $cobertura->prima + ($cobertura->prima * $item->tasa / 100);
                     $porcentaje_segmentacion = $item->tasa;
+                    
+                    
                     break;
                 }
-
-
+                
+                $tasa_neta=$tasa_bruta+($tasa_bruta*$porcentaje_segmentacion/100);
+                $cobertura->prima = $suma_asegurada * ($tasa_neta / 100);
 
                 $cobertura->tasa = $tasa;
                 $cobertura->limite = $suma_asegurada;

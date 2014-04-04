@@ -12,7 +12,6 @@ require_once ('../../php/entity/clasificacion.php');
 require_once ('../../php/entity/re_tipo_cobertura_aseguradora.php');
 require_once ('../../php/entity/parametros.php');
 
-
 $flota = unserialize($_SESSION['flota']);
 
 if (isset($_POST["nombre"]) && isset($_POST["cedula"]) && isset($_POST["telefono"]) && isset($_POST["correo"]) &&
@@ -85,6 +84,8 @@ if (isset($_POST["nombre"]) && isset($_POST["cedula"]) && isset($_POST["telefono
         header("Location: ../aseguradoras.php");
     else
         header("Location: ../contactanos.php");
+
+ 
 } else
     echo "Error en las variables";
 ?>
