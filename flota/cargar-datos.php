@@ -73,7 +73,7 @@ $aux = $convenio_aseguradora->find_by_id_convenio();
                                                     <form method="post" action="../php/operation/operation_upload.php?operation_upload=1&target=../../flota/cargar-datos.php" enctype="multipart/form-data">
                                                         <p>
                                                             <input id="input-file" type="button" class="img-common icon-operation icon-upload">
-                                                            <input type="button" data-table="1" class="img-common icon-operation icon-view">
+                                                            <input type="button" data-table="1" data="10" class="img-common icon-operation icon-view">
                                                             <input type="file" name="file" class="hide">
                                                         </p>
                                                     </form>
@@ -92,7 +92,7 @@ $aux = $convenio_aseguradora->find_by_id_convenio();
                                                     <form method="post" action="../php/operation/operation_upload.php?operation_upload=2&target=../../flota/cargar-datos.php" enctype="multipart/form-data">
                                                         <p>
                                                             <input id="input-file" type="button" class="img-common icon-operation icon-upload">
-                                                            <input type="button" data-table="2" class="img-common icon-operation icon-view">
+                                                            <input type="button" data-table="2" data="10" class="img-common icon-operation icon-view">
                                                             <input type="file" name="file" class="hide" value="null">
                                                         </p>
                                                     </form>
@@ -111,7 +111,7 @@ $aux = $convenio_aseguradora->find_by_id_convenio();
                                                     <form method="post" action="../php/operation/operation_upload.php?operation_upload=3&target=../../flota/cargar-datos.php" enctype="multipart/form-data">
                                                         <p>
                                                             <input id="input-file" type="button" class="img-common icon-operation icon-upload">
-                                                            <input type="button" data-table="3" class="img-common icon-operation icon-view">
+                                                            <input type="button" data-table="3" data="10" class="img-common icon-operation icon-view">
                                                             <input type="file" name="file" class="hide" value="null">
                                                         </p>
                                                     </form>
@@ -130,7 +130,7 @@ $aux = $convenio_aseguradora->find_by_id_convenio();
                                                     <form method="post" action="../php/operation/operation_upload.php?operation_upload=6&target=../../flota/cargar-datos.php" enctype="multipart/form-data">
                                                         <p>
                                                             <input id="input-file" type="button" class="img-common icon-operation icon-upload">
-                                                            <input type="button" data-table="4" class="img-common icon-operation icon-view">
+                                                            <input type="button" data-table="4" data="10" class="img-common icon-operation icon-view">
                                                             <input type="file" name="file" class="hide" value="null">
                                                         </p>
                                                     </form>
@@ -149,7 +149,7 @@ $aux = $convenio_aseguradora->find_by_id_convenio();
                                                     <form method="post" action="../php/operation/operation_upload.php?operation_upload=4&target=../../flota/cargar-datos.php" enctype="multipart/form-data">
                                                         <p>
                                                             <input id="input-file" type="button" class="img-common icon-operation icon-upload">
-                                                            <input type="button" data-table="5" class="img-common icon-operation icon-view">
+                                                            <input type="button" data-table="5" data="10" class="img-common icon-operation icon-view">
                                                             <input type="file" name="file" class="hide" value="null">
                                                         </p>
                                                     </form>
@@ -168,7 +168,7 @@ $aux = $convenio_aseguradora->find_by_id_convenio();
                                                     <form method="post" action="../php/operation/operation_upload.php?operation_upload=5&target=../../flota/cargar-datos.php" enctype="multipart/form-data">
                                                         <p>
                                                             <input id="input-file" type="button" class="img-common icon-operation icon-upload">
-                                                            <input type="button" data-table="6" class="img-common icon-operation icon-view">
+                                                            <input type="button" data-table="6" data="10" class="img-common icon-operation icon-view">
                                                             <input type="file" name="file" class="hide">
                                                         </p>
                                                     </form>
@@ -180,7 +180,6 @@ $aux = $convenio_aseguradora->find_by_id_convenio();
                             </table>
                         </div>
                     </div>
-                    <input type="hidden" id="id-convenio" value="10">
                 </div>
                 <div id="footer">
                     <div id="nav-step">

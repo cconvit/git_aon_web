@@ -277,26 +277,27 @@ $(function(e) {
     // show view dialog prompt
     var id_convenio = $("body").find("input[id='id-convenio']").val();
     $(".icon-view").on("click", function(e) {
+        console.log(id_convenio)
         var id = $(this).data("table");
         switch (id) {
             case 1:
-                Utils.loadDialog("views/viewAmplia.php?id=" + id_convenio, $(this), $("#view"));
+                Utils.loadDialog("views/viewAmplia.php", $(this), $("#view"));
                 break;
             case 2:
-                Utils.loadDialog("views/viewTotal.php?id=" + id_convenio, $(this), $("#view"));
+                Utils.loadDialog("views/viewTotal.php", $(this), $("#view"));
                 break;
             case 3:
                 console.log("dialog")
-                Utils.loadDialog("views/viewClasificacion.php?id=" + id_convenio, $(this), $("#view"));
+                Utils.loadDialog("views/viewClasificacion.php", $(this), $("#view"));
                 break;
             case 4:
-                Utils.loadDialog("views/viewMontoAsegurado.php?id=" + id_convenio, $(this), $("#view"));
+                Utils.loadDialog("views/viewMontoAsegurado.php", $(this), $("#view"));
                 break;
             case 5:
-                Utils.loadDialog("views/viewSegmentacion.php?id=" + id_convenio, $(this), $("#view"));
+                Utils.loadDialog("views/viewSegmentacion.php", $(this), $("#view"));
                 break;
             case 6:
-                Utils.loadDialog("views/viewAsistenciaVial.php?id=" + id_convenio, $(this), $("#view"));
+                Utils.loadDialog("views/viewAsistenciaVial.php", $(this), $("#view"));
                 break;
         }
         Utils.initDialogs(510);
