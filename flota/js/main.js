@@ -275,9 +275,7 @@ $(function(e) {
     });
 
     // show view dialog prompt
-    var id_convenio = $("body").find("input[id='id-convenio']").val();
     $(".icon-view").on("click", function(e) {
-        console.log(id_convenio)
         var id = $(this).data("table");
         switch (id) {
             case 1:
