@@ -1,3 +1,19 @@
+<?php
+session_start();
+require_once("../../php/db/config.php");
+require_once ('../../php/db/database.php');
+require_once ('../../php/entity/tasa_casco.php');
+
+$datos=null;
+
+if (isset($_REQUEST["id"])) {
+    
+    $tasa_casco=new tasa_casco();
+    $tasa_casco->id_convenio_as=$_REQUEST["id"];
+    $tasa_casco->id_tipo_co="1";
+    $datos=$tasa_casco->find_by_convenio_tipo_seguro();
+}
+?>
 <div class="view-content">
     <table style="width:470px; text-align: center">
         <thead>
@@ -9,120 +25,20 @@
             </tr>
         </thead>
         <tbody>
-            <tr class="grey">
-                <td>A</td>
-                <td>1</td>
-                <td class="text-center">2000</td>
-                <td class="text-center">2.23</td>
-            </tr>
-            <tr>
-                <td>A</td>
-                <td>1</td>
-                <td class="text-center">2000</td>
-                <td class="text-center">2.23</td>
-            </tr>
-            <tr class="grey">
-                <td>A</td>
-                <td>1</td>
-                <td class="text-center">2000</td>
-                <td class="text-center">2.23</td>
-            </tr>
-            <tr>
-                <td>A</td>
-                <td>1</td>
-                <td class="text-center">2000</td>
-                <td class="text-center">2.23</td>
-            </tr>
-            <tr class="grey">
-                <td>A</td>
-                <td>1</td>
-                <td class="text-center">2000</td>
-                <td class="text-center">2.23</td>
-            </tr>
-            <tr>
-                <td>A</td>
-                <td>1</td>
-                <td class="text-center">2000</td>
-                <td class="text-center">2.23</td>
-            </tr>            
-            <tr class="grey">
-                <td>A</td>
-                <td>1</td>
-                <td class="text-center">2000</td>
-                <td class="text-center">2.23</td>
-            </tr>
-            <tr>
-                <td>A</td>
-                <td>1</td>
-                <td class="text-center">2000</td>
-                <td class="text-center">2.23</td>
-            </tr>
-            <tr class="grey">
-                <td>A</td>
-                <td>1</td>
-                <td class="text-center">2000</td>
-                <td class="text-center">2.23</td>
-            </tr>
-            <tr>
-                <td>A</td>
-                <td>1</td>
-                <td class="text-center">2000</td>
-                <td class="text-center">2.23</td>
-            </tr>
-            <tr class="grey">
-                <td>A</td>
-                <td>1</td>
-                <td class="text-center">2000</td>
-                <td class="text-center">2.23</td>
-            </tr>
-            <tr>
-                <td>A</td>
-                <td>1</td>
-                <td class="text-center">2000</td>
-                <td class="text-center">2.23</td>
-            </tr>
-            <tr class="grey">
-                <td>A</td>
-                <td>1</td>
-                <td class="text-center">2000</td>
-                <td class="text-center">2.23</td>
-            </tr>
-            <tr>
-                <td>A</td>
-                <td>1</td>
-                <td class="text-center">2000</td>
-                <td class="text-center">2.23</td>
-            </tr>            
-            <tr class="grey">
-                <td>A</td>
-                <td>1</td>
-                <td class="text-center">2000</td>
-                <td class="text-center">2.23</td>
-            </tr>
-            <tr >
-                <td>A</td>
-                <td>1</td>
-                <td class="text-center">2000</td>
-                <td class="text-center">2.23</td>
-            </tr>
-            <tr class="grey">
-                <td>A</td>
-                <td>1</td>
-                <td class="text-center">2000</td>
-                <td class="text-center">2.23</td>
-            </tr>
-            <tr>
-                <td>A</td>
-                <td>1</td>
-                <td class="text-center">2000</td>
-                <td class="text-center">2.23</td>
-            </tr>
-            <tr class="grey">
-                <td>A</td>
-                <td>1</td>
-                <td class="text-center">2000</td>
-                <td class="text-center">2.23</td>
-            </tr>
+            <?php
+            if($datos != null){
+                foreach ($datos as $value){
+                ?>
+                    <tr class="grey">
+                    <td><?php echo $value->clasificacion; ?></td>
+                    <td><?php echo $value->tipo_carro; ?></td>
+                    <td class="text-center"><?php echo $value->ano; ?></td>
+                    <td class="text-center"><?php echo $value->tasa; ?></td>
+                </tr>
+               <?php
+                }
+            }
+            ?>
         </tbody>
     </table>
 </div>

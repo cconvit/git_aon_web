@@ -20,6 +20,14 @@ class clasificacion {
         
     }
 
+    public function find_by_convenio() {
+        global $database;
+
+        return self::find_by_sql("SELECT * FROM " . self::$table_name . " 
+                                WHERE   id_convenio_as='{$database->escape_value($this->convenio)}' 
+                                ");
+    }
+    
     //Buscamos por Marca, Modelo y Tipo de Carro
     public function find_clasificacion_by_marca_modelo_carro_ano($tipo_cobertura, $id_flota) {
 

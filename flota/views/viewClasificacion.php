@@ -1,3 +1,18 @@
+<?php
+session_start();
+require_once("../../php/db/config.php");
+require_once ('../../php/db/database.php');
+require_once ('../../php/entity/clasificacion.php');
+
+$datos=null;
+
+if (isset($_REQUEST["id"])) {
+    
+    $clasificacion=new clasificacion();
+    $clasificacion->convenio=$_REQUEST["id"];
+    $datos=$clasificacion->find_by_convenio();
+}
+?>
 <div class="view-content">
     <table style="width:470px;">
         <thead>
@@ -8,132 +23,20 @@
                 <th style="text-align: left">TIPO DE CARRO</th>
             </tr>
         <tbody>
-            <tr class="grey">
-                <td>TOYOTA</td>
-                <td>PALIO ADVENTURE</td>
-                <td class="text-center">A</td>
-                <td class="text-center">1</td>
-            </tr>
-            <tr>
-                <td>TOYOTA</td>
-                <td>GRAND CHEROKEE</td>
-                <td class="text-center">A</td>
-                <td class="text-center">1</td>
-            </tr>
-            <tr class="grey">
-                <td>TOYOTA</td>
-                <td>COROLLA</td>
-                <td class="text-center">A</td>
-                <td class="text-center">1</td>
-            </tr>
-            <tr>
-                <td>MERCEDES BENZ</td>
-                <td>COROLLA</td>
-                <td class="text-center">A</td>
-                <td class="text-center">1</td>
-            </tr>
-            <tr class="grey">
-                <td>TOYOTA</td>
-                <td>COROLLA</td>
-                <td class="text-center">A</td>
-                <td class="text-center">1</td>
-            </tr>
-            <tr>
-                <td>TOYOTA</td>
-                <td>GRAND CHEROKEE</td>
-                <td class="text-center">A</td>
-                <td class="text-center">1</td>
-            </tr>
-            <tr class="grey">
-                <td>TOYOTA</td>
-                <td>COROLLA</td>
-                <td class="text-center">A</td>
-                <td class="text-center">1</td>
-            </tr>
-            <tr>
-                <td>MERCEDES BENZ</td>
-                <td>COROLLA</td>
-                <td class="text-center">A</td>
-                <td class="text-center">1</td>
-            </tr>
-            <tr class="grey">
-                <td>TOYOTA</td>
-                <td>COROLLA</td>
-                <td class="text-center">A</td>
-                <td class="text-center">1</td>
-            </tr>
-            <tr>
-                <td>TOYOTA</td>
-                <td>GRAND CHEROKEE</td>
-                <td class="text-center">A</td>
-                <td class="text-center">1</td>
-            </tr>
-            <tr class="grey">
-                <td>TOYOTA</td>
-                <td>COROLLA</td>
-                <td class="text-center">A</td>
-                <td class="text-center">1</td>
-            </tr>
-            <tr>
-                <td>MERCEDES BENZ</td>
-                <td>COROLLA</td>
-                <td class="text-center">A</td>
-                <td class="text-center">1</td>
-            </tr>
-            <tr class="grey">
-                <td>TOYOTA</td>
-                <td>COROLLA</td>
-                <td class="text-center">A</td>
-                <td class="text-center">1</td>
-            </tr>
-            <tr>
-                <td>TOYOTA</td>
-                <td>GRAND CHEROKEE</td>
-                <td class="text-center">A</td>
-                <td class="text-center">1</td>
-            </tr>
-            <tr class="grey">
-                <td>TOYOTA</td>
-                <td>COROLLA</td>
-                <td class="text-center">A</td>
-                <td class="text-center">1</td>
-            </tr>
-            <tr>
-                <td>MERCEDES BENZ</td>
-                <td>COROLLA</td>
-                <td class="text-center">A</td>
-                <td class="text-center">1</td>
-            </tr>
-            <tr class="grey">
-                <td>TOYOTA</td>
-                <td>COROLLA</td>
-                <td class="text-center">A</td>
-                <td class="text-center">1</td>
-            </tr>
-            <tr>
-                <td>TOYOTA</td>
-                <td>GRAND CHEROKEE</td>
-                <td class="text-center">A</td>
-                <td class="text-center">1</td>
-            </tr>
-            <tr class="grey">
-                <td>TOYOTA</td>
-                <td>COROLLA</td>
-                <td class="text-center">A</td>
-                <td class="text-center">1</td>
-            </tr>
-            <tr>
-                <td>MERCEDES BENZ</td>
-                <td>COROLLA</td>
-                <td class="text-center">A</td>
-                <td class="text-center">1</td>
-            </tr>
-            <tr class="grey">
-                <td>TOYOTA</td>
-                <td>COROLLA</td>
-                <td class="text-center">A</td>
-                <td class="text-center">1</td>
-            </tr>
+            <?php
+            if($datos != null){
+                foreach ($datos as $value){
+                ?>
+                    <tr class="grey">
+                    <td><?php echo $value->marca; ?></td>
+                    <td><?php echo $value->modelo; ?></td>
+                    <td class="text-center"><?php echo $value->clasificacion; ?></td>
+                    <td class="text-center"><?php echo $value->tipo_carro; ?></td>
+                </tr>
+               <?php
+                }
+            }
+            ?>
         </tbody>
         </thead>
     </table>

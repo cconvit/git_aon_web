@@ -15,6 +15,15 @@ class tasa_casco {
     public static function find_all() {
         return self::find_by_sql("SELECT * FROM " . self::$table_name);
     }
+    
+    public  function find_by_convenio_tipo_seguro() {
+        
+        global $database;
+        
+        return self::find_by_sql("SELECT * FROM " . self::$table_name." "
+                . "WHERE id_convenio_as='{$database->escape_value($this->id_convenio_as)}' "
+                . "AND id_tipo_co='{$database->escape_value($this->id_tipo_co)}'");
+    }
 
     public static function find_by_sql($sql = "") {
 

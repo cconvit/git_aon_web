@@ -1,3 +1,18 @@
+<?php
+session_start();
+require_once("../../php/db/config.php");
+require_once ('../../php/db/database.php');
+require_once ('../../php/entity/grua.php');
+
+$datos=null;
+
+if (isset($_REQUEST["id"])) {
+    
+    $grua=new grua();
+    $grua->id_convenio_aseguradora=$_REQUEST["id"];
+    $datos=$grua->find_by_convenio();
+}
+?>
 <div class="view-content">
     <table style="width:470px; text-align: center">
         <thead>
@@ -8,257 +23,19 @@
             </tr>
         </thead>
         <tbody>
-            <tr class="grey">
-                <td>1</td>
-                <td>1983</td>
-                <td class="text-center">570</td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>1984</td>
-                <td class="text-center">570</td>
-            </tr>
-            <tr class="grey">
-                <td>1</td>
-                <td>1983</td>
-                <td class="text-center">570</td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>1984</td>
-                <td class="text-center">570</td>
-            </tr>
-            <tr class="grey">
-                <td>1</td>
-                <td>1983</td>
-                <td class="text-center">570</td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>1984</td>
-                <td class="text-center">570</td>
-            </tr>
-            <tr class="grey">
-                <td>1</td>
-                <td>1983</td>
-                <td class="text-center">570</td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>1984</td>
-                <td class="text-center">570</td>
-            </tr>
-            <tr class="grey">
-                <td>1</td>
-                <td>1983</td>
-                <td class="text-center">570</td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>1984</td>
-                <td class="text-center">570</td>
-            </tr>
-            <tr class="grey">
-                <td>1</td>
-                <td>1983</td>
-                <td class="text-center">570</td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>1984</td>
-                <td class="text-center">570</td>
-            </tr>
-            <tr class="grey">
-                <td>1</td>
-                <td>1983</td>
-                <td class="text-center">570</td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>1984</td>
-                <td class="text-center">570</td>
-            </tr>
-            <tr class="grey">
-                <td>1</td>
-                <td>1983</td>
-                <td class="text-center">570</td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>1984</td>
-                <td class="text-center">570</td>
-            </tr>
-            <tr class="grey">
-                <td>1</td>
-                <td>1983</td>
-                <td class="text-center">570</td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>1984</td>
-                <td class="text-center">570</td>
-            </tr>
-            <tr class="grey">
-                <td>1</td>
-                <td>1983</td>
-                <td class="text-center">570</td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>1984</td>
-                <td class="text-center">570</td>
-            </tr>
-            <tr class="grey">
-                <td>1</td>
-                <td>1983</td>
-                <td class="text-center">570</td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>1984</td>
-                <td class="text-center">570</td>
-            </tr>
-            <tr class="grey">
-                <td>1</td>
-                <td>1983</td>
-                <td class="text-center">570</td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>1984</td>
-                <td class="text-center">570</td>
-            </tr>
-            <tr class="grey">
-                <td>1</td>
-                <td>1983</td>
-                <td class="text-center">570</td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>1984</td>
-                <td class="text-center">570</td>
-            </tr>
-            <tr class="grey">
-                <td>1</td>
-                <td>1983</td>
-                <td class="text-center">570</td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>1984</td>
-                <td class="text-center">570</td>
-            </tr>
-            <tr class="grey">
-                <td>1</td>
-                <td>1983</td>
-                <td class="text-center">570</td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>1984</td>
-                <td class="text-center">570</td>
-            </tr>
-            <tr class="grey">
-                <td>1</td>
-                <td>1983</td>
-                <td class="text-center">570</td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>1984</td>
-                <td class="text-center">570</td>
-            </tr>
-            <tr class="grey">
-                <td>1</td>
-                <td>1983</td>
-                <td class="text-center">570</td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>1984</td>
-                <td class="text-center">570</td>
-            </tr>
-            <tr class="grey">
-                <td>1</td>
-                <td>1983</td>
-                <td class="text-center">570</td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>1984</td>
-                <td class="text-center">570</td>
-            </tr>
-            <tr class="grey">
-                <td>1</td>
-                <td>1983</td>
-                <td class="text-center">570</td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>1984</td>
-                <td class="text-center">570</td>
-            </tr>
-            <tr class="grey">
-                <td>1</td>
-                <td>1983</td>
-                <td class="text-center">570</td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>1984</td>
-                <td class="text-center">570</td>
-            </tr>
-            <tr class="grey">
-                <td>1</td>
-                <td>1983</td>
-                <td class="text-center">570</td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>1984</td>
-                <td class="text-center">570</td>
-            </tr>
-            <tr class="grey">
-                <td>1</td>
-                <td>1983</td>
-                <td class="text-center">570</td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>1984</td>
-                <td class="text-center">570</td>
-            </tr>
-            <tr class="grey">
-                <td>1</td>
-                <td>1983</td>
-                <td class="text-center">570</td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>1984</td>
-                <td class="text-center">570</td>
-            </tr>
-            <tr class="grey">
-                <td>1</td>
-                <td>1983</td>
-                <td class="text-center">570</td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>1984</td>
-                <td class="text-center">570</td>
-            </tr>
-            <tr class="grey">
-                <td>1</td>
-                <td>1983</td>
-                <td class="text-center">570</td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>1984</td>
-                <td class="text-center">570</td>
-            </tr>
-
+            <?php
+            if($datos != null){
+                foreach ($datos as $value){
+                ?>
+                    <tr class="grey">
+                    <td><?php echo $value->id_tipo_carro; ?></td>
+                    <td><?php echo $value->ano; ?></td>
+                    <td class="text-center"><?php echo $value->valor; ?></td>
+                </tr>
+               <?php
+                }
+            }
+            ?>  
         </tbody>
     </table>
 </div>

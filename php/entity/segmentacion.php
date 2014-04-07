@@ -30,6 +30,15 @@ class segmentacion {
                                                    AND   id_sexo='{$database->escape_value($this->id_sexo)}'
                                                    LIMIT 1");
     }
+    
+    public function find_by_convenio() {
+
+        global $database;
+
+        return self::find_by_sql("SELECT * FROM " . self::$table_name . " 
+                                                   WHERE id_convenio_as='{$database->escape_value($this->id_convenio_as)}'
+                                                   ");
+    }
 
     public static function find_by_sql($sql = "") {
 
