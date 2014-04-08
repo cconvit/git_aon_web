@@ -67,13 +67,13 @@ class generarExcelCotizacion {
                 $nombre = str_replace(" ", "_", $nombre);
                 $objWriter = new PHPExcel_Writer_Excel2007($objPHPExcel);
                 //$objWriter->save("/Users/Admin/Sites/Aon/git_aon_web/flota/files/" . $nombre . ".xlsx");
-                $objWriter->save("/Applications/XAMPP/xamppfiles/htdocs/git_aon_web/flota/files/" . $nombre . ".xlsx");
+                $objWriter->save("/Users/Admin/Sites/Aon/git_aon_web/flota/files/" . $nombre . ".xlsx");
                 $descarga_cotizacion = new descarga_cotizacion();
                 $descarga_cotizacion->id_cotizacion = $cotizacion[0]->id;
                 $descarga_cotizacion->nombre = $cotizacion[0]->nombre;
                 $descarga_cotizacion->seguro = $convenio[0]->nombre;
                 //$descarga_cotizacion->link = "http://localhost/Aon/git_aon_web/flota/files/" . $nombre . ".xlsx";
-                $descarga_cotizacion->link = "http://localhost/git_aon_web/flota/files/" . $nombre . ".xlsx";
+                $descarga_cotizacion->link = "http://localhost/Aon/git_aon_web/flota/files/" . $nombre . ".xlsx";
                 $descarga_cotizacion->create();
             }
         }
