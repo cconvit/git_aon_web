@@ -338,7 +338,7 @@ class generarExcelCotizacion {
                 $objPHPExcel->getActiveSheet()->SetCellValue('U' . ($row + $y), "0");
 
                 $objPHPExcel->getActiveSheet()->getStyle('A' . ($row + $y) . ':AZ' . ($row + $y))->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-                $objPHPExcel->getActiveSheet()->SetCellValue('L' . ($row + $y), "No se pudo cotizar");
+                $objPHPExcel->getActiveSheet()->SetCellValue('L' . ($row + $y), "No se pudo clasificar");
             }
         }
         $datos_header["total_vehiculos"] = sizeof($solicitudes);
