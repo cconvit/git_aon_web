@@ -14,6 +14,8 @@ class re_tipo_cobertura_aseguradora {
     public $prima;
     public $limite;
     public $tasa;
+    public $prima_bruta;
+    public $tasa_neta;
     public $incluida;
 
     public function re_tipo_cobertura_aseguradora() {

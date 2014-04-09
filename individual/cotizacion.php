@@ -118,7 +118,24 @@ if (isset($solicitud) && isset($var_aseguradoras)) {
                                       break;
                                     }
                                   }
-                                  ?>
+                                  
+                                  if($cobertura->id_cob_as == 1 || $cobertura->id_cob_as ==2){
+                                   ?>
+                                    <tr>
+                                    <td class="gm"><?php echo $detalle->descripcion; ?></td>
+                                    <td class="gc right italic"><?php echo $limite; ?></td>
+                                    <td class="gc italic"><?php echo $tasa; ?></td>
+                                    <td class="gc italic" style="text-align: right"><?php echo formatMoney($cobertura->prima_bruta,true); ?></td>
+                                  </tr>
+                                    <tr>
+                                    <td class="gm">RECARGO Y DESCUENTO</td>
+                                    <td class="gc right italic"></td>
+                                    <td class="gc italic"><?php echo $cobertura->tasa_neta." %"; ?></td>
+                                    <td class="gc italic" style="text-align: right"><?php echo $prima; ?></td>
+                                  </tr> 
+                                  <?php    
+                                  }else{
+                                   ?>
                                   <tr>
                                     <td class="gm"><?php echo $detalle->descripcion; ?></td>
                                     <td class="gc right italic"><?php echo $limite; ?></td>
@@ -126,6 +143,9 @@ if (isset($solicitud) && isset($var_aseguradoras)) {
                                     <td class="gc italic" style="text-align: right"><?php echo $prima; ?></td>
                                   </tr>
                                   <?php
+                                      
+                                  }
+                                  
                                 }//End foreach plantilla_detalle
                                 ?>
                                 <tr class="sub-total">
