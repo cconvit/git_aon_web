@@ -52,9 +52,9 @@ if (isset($solicitud) && isset($var_aseguradoras)) {
                 <div id="supper" class="separator"></div>
                 <div id="header">
                     <div class="center">
-                        <p class="menu"><a class="current" href="index.php?i=<?php echo $id_flota;?>">Inicio</a><span>│</span><a href="terminos.html" target="_blank" onClick="window.open(this.href, this.target, 'width=500, height=400, resizable=0');
+                        <p class="menu"><a class="current" href="index.php?i=<?php echo $flota->id;?>">Inicio</a><span>│</span><a href="terminos.html" target="_blank" onClick="window.open(this.href, this.target, 'width=500, height=400, resizable=0');
                         return false;">Términos de Uso</a></p>
-                        <p><a href="index.php"><img src="img/logo.png"></a></p>
+                        <p><a href="index.php?i=<?php echo $flota->id;?>"><img src="img/logo.png"></a></p>
                         <p> <span>Aon Risk Services Venezuela Corretaje de Seguros, C.A. | RIF J-00067607-0 | Inscripción SAA N 102.</span></p>
                         <div class="exclusivo"></div>
                     </div>

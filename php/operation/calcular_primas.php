@@ -27,7 +27,7 @@ class calcular_primas {
             case 1:
                 //Suma asegurada * Tasa Cobertura     ///Prima Casco
                 $porcentaje_segmentacion = 0;
-                $tasa_bruta=$tasa;
+                $tasa_bruta=$tasa; 
                 $tasa_neta=0;
                 
                 //echo "TASA: ".$tasa." SUMA ASEGURADA: ".$suma_asegurada." PRIMA: ".$cobertura->prima."  ------- ";
