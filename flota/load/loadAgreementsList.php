@@ -21,7 +21,7 @@ $convenios_aseguradoras = $convenio_aseguradora->find_distinc_flota($_SESSION['i
                                     <div class="img-common checkbox" is-checked="false" data="<?php echo $value->id; ?>"></div>
                                     <div class="info-check">
                                         <p class="title-list"><?php echo $value->as_nombre; ?></p>
-                                        <p class="subtitle-list"><?php echo $value->descripcion; ?></p>   
+                                        <p class="subtitle-list"><?php echo $value->nombre; ?></p>   
                                     </div>
                                 </div>
                                 <div class="separator"></div>
