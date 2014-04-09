@@ -25,9 +25,15 @@ if (isset($_REQUEST["id"])) {
         <tbody>
             <?php
             if($datos != null){
+                $color=false;
                 foreach ($datos as $value){
+                    if($color)
+                        echo '<tr class="grey">';
+                    else
+                        echo '<tr></tr>';
+                    $color=!$color;
+                    
                 ?>
-                    <tr class="grey">
                     <td><?php echo $value->id_tipo_carro; ?></td>
                     <td><?php echo $value->ano; ?></td>
                     <td class="text-center"><?php echo $value->valor; ?></td>
