@@ -54,8 +54,8 @@ if (isset($solicitud) && isset($var_aseguradoras)) {
                     <div class="center">
                         <p class="menu"><a class="current" href="index.php?i=<?php echo $flota->id;?>">Inicio</a><span>│</span><a href="terminos.html" target="_blank" onClick="window.open(this.href, this.target, 'width=500, height=400, resizable=0');
                         return false;">Términos de Uso</a></p>
-                        <p><a href="index.php?i=<?php echo $flota->id;?>"><img src="img/logo.png"></a></p>
-                        <p> <span>Aon Risk Services Venezuela Corretaje de Seguros, C.A. | RIF J-00067607-0 | Inscripción SAA N 102.</span></p>
+                        <!--<p><a href="index.php?i=<?php echo $flota->id;?>"><img src="img/logo.png"></a></p>-->
+                       <!-- <p><span>Aon Risk Services Venezuela Corretaje de Seguros, C.A. | RIF J-00067607-0 | Inscripción SAA N 102.</span></p>-->
                         <div class="exclusivo"></div>
                     </div>
                 </div>
@@ -209,7 +209,7 @@ if (isset($solicitud) && isset($var_aseguradoras)) {
                 </div>
             </div>
             <script src="../plugins/js/jquery-1.10.2.min.js"></script>
-            <script src="../plugins/js/jquery-ui-1.10.4.custom.min"></script>
+            <script src="../plugins/js/jquery-ui-1.10.4.custom.min.js"></script>
             <script src="js/main.js"></script>
         </body>
     </html>

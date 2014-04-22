@@ -35,7 +35,7 @@ $cotizacion_carro->id_cotizacion = $_SESSION["id_cotizacion"];
         <div id="vehicle"></div>
         <div id="container">
             <div id="header">
-                <a href="index.php"><img id="logo" src="img/logo.png"></a>
+                <!--<a href="index.php"><img id="logo" src="img/logo.png"></a>-->
                 <div id="top-nav"></div>
             </div>
             <div id="content">
@@ -238,13 +238,14 @@ $cotizacion_carro->id_cotizacion = $_SESSION["id_cotizacion"];
                         <li><a>Crear cotización</a></li>
                         <li><span class="img-common arrow"></span></li>                      
                         <li><a class='current-step' href="cargar-datos.php">Validar flota</a></li>
-                        <li><a href="../php/operation/administration.php?operation_type=22&target=../../flota/descargar-cotizacion.php?id=<?php echo $_SESSION["id_cotizacion"]; ?>" class="img-common icon-step icon-end icon-href">Cotizar</a>           
+                        <li><a href="../php/operation/administration.php?operation_type=22&target=../../flota/descargar-cotizacion.php?id=<?php echo $_SESSION["id_cotizacion"]; ?>" class="img-common icon-step icon-end icon-href" onclick="$('#load').dialog('open')">Cotizar</a>           
                     </ul>
                 </div>
             </div>
             <div id="load" class="modal">
                 <div class="modal"><p>Estamos procesando la flota. Esta operación puede tardar unos minutos. Por favor, espere</p></div>
-            </div>    <script src="../plugins/js/jquery-1.10.2.min.js"></script>  
+            </div>    
+						<script src="../plugins/js/jquery-1.10.2.min.js"></script>  
             <script src="../plugins/js/jquery-ui-1.10.4.custom.min.js"></script>
             <script src="js/main.js"></script>
     </body>
