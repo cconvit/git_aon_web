@@ -106,7 +106,7 @@ class calcular_primas {
                 $grua->id_tipo_carro = $cobertura->id_tipo_carro;
                 $grua->id_convenio_aseguradora = $cobertura->id_convenio_as;
                 $result = $grua->find_by_convenio_carro_ano();
-
+                $cobertura->prima = 0;
                 if (sizeof($result) > 0)
                     $cobertura->prima = $result[0]->valor;
 

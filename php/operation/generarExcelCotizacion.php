@@ -20,10 +20,8 @@ class generarExcelCotizacion {
 //"R", "S", "T", "U", "V",
         $array = array("W", "X", "Y", "Z", "AA", "AB", "AC", "AD", "AE", "AF", "AG", "AH", "AI", "AJ", "AK", "AL", "AM", "AN", "AO", "AP", "AQ", "AR", "AS", "AT", "AU", "AV", "AW", "AX", "AY", "AZ");
         $GLOBALS["array_cob_id"] = Array(Array());
-
+        
         foreach ($aseguradoras as $aseguradora) {
-
-
 
             $objPHPExcel = new PHPExcel();
             $objPHPExcel->getProperties()->setCreator("Maarten Balliauw");
@@ -45,14 +43,10 @@ class generarExcelCotizacion {
 
                 $convenio_aseguradora->id = $cotizacion_aseguradora->convenio;
 
-                $convenio_aseguradora->id = $cotizacion_aseguradora->convenio;
-
                 $convenio = $convenio_aseguradora->find_by_id_convenio();
 
                 $datos_header = $this->saveCarros($objPHPExcel, $solicitudes, $aseguradora, $array, $cotizacion[0], $convenio_aseguradora->id);
                 //var_dump($cotizacion_aseguradora);
-
-
 
                 $this->setHeaderEmpresa($objPHPExcel, $datos_header, $convenio, $cotizacion);
                 $objPHPExcel->getActiveSheet()->getStyle('A11:AZ11')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
@@ -61,18 +55,18 @@ class generarExcelCotizacion {
 
                 $objPHPExcel->getActiveSheet()->setTitle('Cotizacion');
 
-
                 // Save Excel 2007 file
                 $nombre = $cotizacion[0]->nombre . "_" . $cotizacion[0]->id . "_" . $convenio[0]->nombre;
                 $nombre = str_replace(" ", "_", $nombre);
                 $objWriter = new PHPExcel_Writer_Excel2007($objPHPExcel);
                 $objWriter->save("/Applications/XAMPP/xamppfiles/htdocs/Aon/git_aon_web/flota/files/" . $nombre . ".xlsx");
+                //$objWriter->save("/Applications/XAMPP/xamppfiles/htdocs/git_aon_web/flota/files/" . $nombre . ".xlsx");
                 $descarga_cotizacion = new descarga_cotizacion();
                 $descarga_cotizacion->id_cotizacion = $cotizacion[0]->id;
                 $descarga_cotizacion->nombre = $cotizacion[0]->nombre;
                 $descarga_cotizacion->seguro = $convenio[0]->nombre;
-                //$descarga_cotizacion->link = "http://localhost/Aon/git_aon_web/flota/files/" . $nombre . ".xlsx";
                 $descarga_cotizacion->link = "http://localhost/Aon/git_aon_web/flota/files/" . $nombre . ".xlsx";
+                //$descarga_cotizacion->link = "http://localhost/git_aon_web/flota/files/" . $nombre . ".xlsx";
                 $descarga_cotizacion->create();
             }
         }
@@ -157,10 +151,12 @@ class generarExcelCotizacion {
 
                     if ($solicitudes[$y]->cotizacion->tipo_cobertura == 1 || $solicitudes[$y]->cotizacion->tipo_cobertura == 2) {
                         $coberturas = $cotizacion_aseguradora->coberturas;
+                        $cotizacion_aseguradora_aux=$cotizacion_aseguradora;
                         $y = sizeof($solicitudes);
                         break;
                     } else {
                         $coberturas = $cotizacion_aseguradora->coberturas;
+                        $cotizacion_aseguradora_aux=$cotizacion_aseguradora;
                     }
                 }
             }
@@ -182,7 +178,6 @@ class generarExcelCotizacion {
         $objPHPExcel->getActiveSheet()->getStyle($array[sizeof($coberturas)] . '11')->getFont()->setBold(true);
         //$objPHPExcel->getActiveSheet()->getStyle($array[sizeof($coberturas)+1] . '11')->getFont()->setBold(true);
         $y = sizeof($solicitudes);
-        $cotizacion_aseguradora_aux = $cotizacion_aseguradora;
 
 
         return $cotizacion_aseguradora_aux;
@@ -227,7 +222,7 @@ class generarExcelCotizacion {
                             $tasa_bruta=$coberturas[$x]->tasa;
                             
                         }
-
+                        $prima=0;
                         if ($coberturas[$x]->prima != 0) {
                             $prima = formatMoney($coberturas[$x]->prima, true);
                             $prinma_aux = str_replace(".", "", $prima);

@@ -718,7 +718,7 @@ function proccessCotizacion() {
             $aseguradoras = Array();
             foreach ($re_flota_co_as_aux as $aseguradora)
                 array_push($aseguradoras, $aseguradora->id_aseguradora);
-
+            
             $solicitud->calcular_primas($aseguradoras, $value->porcentaje_inma / 100);
             array_push($solicitudes_procesadas, $solicitud);
         }
