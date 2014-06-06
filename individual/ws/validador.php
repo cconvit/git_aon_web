@@ -66,6 +66,7 @@ if (isset($_POST["nombre"]) && isset($_POST["cedula"]) && isset($_POST["telefono
 
     $res_clasificacion = $find_aseguradora->get_clasificacion($cotizacion->tipo_cobertura, $cotizacion->id_flota, $clasificacion, $suma_asegurada);
     //var_dump($res_clasificacion);
+    //
     //Obtenemos las coberturas asociadas a cada registro de la clasificacion
     $find_aseguradora->get_coberturas($cotizacion->tipo_cobertura, $res_clasificacion);
     //var_dump($res_clasificacion);

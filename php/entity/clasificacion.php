@@ -133,7 +133,7 @@ class clasificacion {
         
         return self::find_by_sql("SELECT '0' as 'id',a.id_aseguradora as 'id_aseguradora',ase.nombre as 'as_nombre','{$database->escape_value($this->marca)}' as 'marca',
                                        '{$database->escape_value($this->modelo)}' as 'modelo','TODOS' as 'clasificacion',
-                                       '3' as 'tipo_carro','0' as 'tasa','{$database->escape_value($this->ano)}'  as 'ano',
+                                       '{$database->escape_value($this->tipo_carro)}' as 'tipo_carro','0' as 'tasa','{$database->escape_value($this->ano)}'  as 'ano',
                                        a.id_convenio_as as 'convenio' 
                                  FROM tbl_re_flota_co_as a 
                                  INNER JOIN tbl_aseguradora ase ON ase.id=a.id_aseguradora 
