@@ -13,7 +13,7 @@
     <body>
         <div id="container">
             <div id="header">
-								<!--<a href="index.php"><img id="logo" src="img/logo.png"></a>-->
+								<a href="index.php"><img id="logo" src="img/logo.png"></a>
                 <div id="top-nav"></div>
             </div>
             <div id="content">
