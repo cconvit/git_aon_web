@@ -35,7 +35,7 @@ $cotizacion_carro->id_cotizacion = $_SESSION["id_cotizacion"];
         <div id="vehicle"></div>
         <div id="container">
             <div id="header">
-                <!--<a href="index.php"><img id="logo" src="img/logo.png"></a>-->
+                <a href="index.php"><img id="logo" src="img/logo.png"></a>
                 <div id="top-nav"></div>
             </div>
             <div id="content">
