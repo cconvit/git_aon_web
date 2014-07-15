@@ -169,6 +169,9 @@ a:hover, a:active {
 .ui-widget{
     font-family: Arial, Helvetica, sans-serif;
 }
+.dialog{
+  display: none;
+}
 
 /* tabs */
 
