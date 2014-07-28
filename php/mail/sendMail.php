@@ -22,12 +22,13 @@ function sendMailCotizacion($to, $to_name, $body_html, $redirect, $error) {
     $mail->IsHTML(true);
     $mail->CharSet = 'UTF-8';
 
-    if ($mail->Send()) {
+    /*if ($mail->Send()) {
 
-        header("Location: " . $redirect);
+        //header("Location: " . $redirect);
     } else {
-        header("Location: " . $error);
-    }
+      echo "error";
+        //header("Location: " . $error);
+    }*/
 }
 
 function sendMailCotizacion_mail($to, $to_name, $body_html, $redirect, $error) {
